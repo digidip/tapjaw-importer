@@ -1,6 +1,8 @@
 import TapjawConnector from "./tapjaw-connector";
 
-export default interface TapjawAuthentication {
+export class TapjawAuthenticatorError extends Error {}
+
+export default interface TapjawAuthenticator {
     isAuthenticated(): boolean;
     authenticate(connector: TapjawConnector): Promise<void>;
 }
