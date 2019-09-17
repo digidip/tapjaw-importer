@@ -1,13 +1,5 @@
+import { TapjawAdapterArguments } from './tapjaw-adapter';
 
-/*
-Example:
-    class Moo implements TapjawIterator {
-        public async * iterate(): AsyncGenerator<TapjawMessage> {
-            yield new TapjawMessage('Cat', {});
-            yield new TapjawMessage('Dog', {});
-        }
-    }
-*/
 export default interface TapjawIterator {
-    run(method: CallableFunction, args: any): Promise<any>;
+    run(adapterMethod: CallableFunction, args: TapjawAdapterArguments): Promise<any>;
 }

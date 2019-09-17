@@ -1,5 +1,9 @@
 export class TapjawAdapterError extends Error { }
 
+export interface TapjawAdapterArguments {
+    [key: string]: any;
+}
+
 interface TapjawAdapter {
 }
 

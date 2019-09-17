@@ -1,3 +1,4 @@
+import { TapjawAdapterArguments } from './tapjaw-adapter';
 export default interface TapjawIterator {
-    run(method: CallableFunction, args: any): Promise<any>;
+    run(adapterMethod: CallableFunction, args: TapjawAdapterArguments): Promise<any>;
 }
