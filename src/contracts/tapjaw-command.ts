@@ -10,8 +10,6 @@ export default abstract class TapjawCommand extends Command {
     };
 
     abstract instance: any; // @todo see if we can honour Parser.Input
-    abstract flags: flags.Input<any>;
-
     protected abstract iterator: TapjawIterator;
     protected abstract adapter: TapjawAdapter;
 
