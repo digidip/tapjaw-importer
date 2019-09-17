@@ -48,7 +48,7 @@
   ],
   "scripts": {
     "postpack": "rm .oclif.manifest.json",
-    "prepack": "rm -rf lib && tsc && oclif-dev manifest",
+    "prepack": "rm -rf lib && node_modules/typescript/bin/tsc && oclif-dev manifest",
     "lint": "node_modules/tslint/bin/tslint --project ."
   },
   "types": "lib/index.d.ts"
