@@ -1,7 +1,6 @@
 import { Command, flags } from '@oclif/command';
 import TapjawIterator from './tapjaw-iterator';
 import TapjawAdapter from './tapjaw-adapter';
-import { IConfig } from '@oclif/config';
 import TapjawMessage from './tapjaw-message';
 
 export default abstract class TapjawCommand extends Command {
@@ -12,7 +11,7 @@ export default abstract class TapjawCommand extends Command {
 
     abstract instance: any; // @todo see if we can honour Parser.Input
     protected abstract iterator: TapjawIterator;
-    protected abstract adapter: TapjawAdapter;
+    protected abstract adapter: TapjawAdapter<TapjawMessage>;
 
     // protected setDependency(adapter: TapjawAdapter, iterator: TapjawIterator): void {
     //     this.adapter = adapter;

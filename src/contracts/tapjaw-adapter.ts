@@ -7,5 +7,5 @@ type TapjawAdapterType<T, U extends TapjawMessage> = {
 };
 
 // tslint:disable:no-unnecessary-class
-export default abstract class TapjawAdapter implements TapjawAdapterType<TapjawAdapter, TapjawMessage> {
+export default abstract class TapjawAdapter<M extends TapjawMessage> implements TapjawAdapterType<TapjawAdapter<TapjawMessage>, M> {
 }
