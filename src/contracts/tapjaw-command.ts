@@ -2,6 +2,7 @@ import { Command, flags } from '@oclif/command';
 import TapjawIterator from './tapjaw-iterator';
 import TapjawAdapter from './tapjaw-adapter';
 import { IConfig } from '@oclif/config';
+import TapjawMessage from './tapjaw-message';
 
 export default abstract class TapjawCommand extends Command {
     static args = [];

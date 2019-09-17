@@ -1,6 +1,9 @@
 import TapjawMessage from './tapjaw-message';
 export declare class TapjawAdapterError extends Error {
 }
-export default interface TapjawAdapter<T = TapjawMessage> {
-    [key: string]: () => Promise<T>;
+declare type TapjawAdapterType<T, U extends TapjawMessage> = {
+    [P in keyof T]: () => Promise<U>;
+};
+export default abstract class Adapter implements TapjawAdapterType<Adapter, TapjawMessage> {
 }
+export {};
