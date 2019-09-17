@@ -18,8 +18,6 @@ export default abstract class TapjawCommand extends Command {
     protected abstract iterator: TapjawIterator;
     protected abstract adapter: TapjawAdapter;
 
-    abstract getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): CallableFunction;
-
     async run() {
         const { args, flags } = this.parse(this.instance);
 
@@ -28,4 +26,6 @@ export default abstract class TapjawCommand extends Command {
             flags.limit && Number.isInteger(flags.limit) ? flags.limit : undefined
         );
     }
+
+    protected abstract getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): CallableFunction;
 }

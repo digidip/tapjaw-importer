@@ -12,6 +12,6 @@ export default abstract class TapjawCommand extends Command {
     abstract instance: any;
     protected abstract iterator: TapjawIterator;
     protected abstract adapter: TapjawAdapter;
-    abstract getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): CallableFunction;
     run(): Promise<void>;
+    protected abstract getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): CallableFunction;
 }
