@@ -6,6 +6,7 @@
   "author": "Jeramy Wenserit <jeramy@digidip.net>",
   "license": "MIT",
   "devDependencies": {
+    "@oclif/tslint": "^3.1.1",
     "@types/iconv-lite": "^0.0.1",
     "@types/lodash": "^4.14.138",
     "@types/node": "^12.7.5",
@@ -48,6 +49,7 @@
   "scripts": {
     "postpack": "rm .oclif.manifest.json",
     "prepack": "rm -rf lib && tsc && oclif-dev manifest",
+    "lint": "node_modules/tslint/bin/tslint --project ."
   },
   "types": "lib/index.d.ts"
 }

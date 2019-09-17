@@ -1,6 +1,5 @@
 import * as https from 'https';
 import * as querystring from 'querystring';
-
 import TapjawAuthenticator, { TapjawAuthenticatorError } from '../contracts/tapjaw-authenticator';
 import TapjawConnector from '../contracts/tapjaw-connector';
 
@@ -16,7 +15,7 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
         protected readonly postParams: querystring.ParsedUrlQueryInput,
         protected readonly method: string = 'POST',
         protected readonly responseEncoding = 'utf8',
-    ) {}
+    ) { }
 
     public isAuthenticated(): boolean {
         return this.authenticated;

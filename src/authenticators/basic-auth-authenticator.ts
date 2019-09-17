@@ -1,10 +1,9 @@
 import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 import TapjawConnector from '../contracts/tapjaw-connector';
 
-
 export default class BasicAuthAuthenticator implements TapjawAuthenticator {
     private authenticated = false;
-    private header: { Authorization: string; };
+    private readonly header: { Authorization: string; };
 
     constructor(protected readonly username: string, protected readonly password: string) {
         this.header = {

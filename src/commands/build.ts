@@ -20,6 +20,7 @@ export default class Build extends Command {
     ];
 
     async run() {
+        // @ts-ignore
         const { args, flags } = this.parse(Build);
 
         this.log('hi');

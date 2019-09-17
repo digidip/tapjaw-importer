@@ -104,7 +104,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             );
 
             connectorRequest.end();
-        })
+        });
     }
 
     /**
