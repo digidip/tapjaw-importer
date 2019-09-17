@@ -1,4 +1,4 @@
-import { IncomingMessage } from 'http';
+import { IncomingMessage, request } from 'http';
 import * as https from 'https';
 import { encode, decode, encodingExists } from 'iconv-lite';
 import * as querystring from 'querystring';
@@ -160,7 +160,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     private getResponse(options: https.RequestOptions): Promise<TapjawConnectorResponse> {
         return new Promise((resolve, reject) => {
             console.log('getResponse', options);
-            const connectorRequest = https.request(
+            const connectorRequest = request(
                 options,
                 (response: IncomingMessage) => {
                     console.log('response', response);
