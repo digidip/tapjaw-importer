@@ -45,5 +45,9 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
+  "scripts": {
+    "postpack": "rm .oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc && oclif-dev manifest",
+  },
   "types": "lib/index.d.ts"
 }
