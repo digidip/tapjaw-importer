@@ -159,9 +159,11 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
 
     private getResponse(options: https.RequestOptions): Promise<TapjawConnectorResponse> {
         return new Promise((resolve, reject) => {
+            console.log('getResponse', options);
             const connectorRequest = https.request(
                 options,
                 (response: IncomingMessage) => {
+                    console.log('response', response);
                     if (response.statusCode !== 200) {
                         const error = new TapjawConnectorError(`HTTP Status code was ${response.statusCode}.`);
                         // error.statusCode = response.statusCode;
