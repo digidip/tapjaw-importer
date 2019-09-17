@@ -1,4 +1,4 @@
 
 export default interface TapjawIterator {
-    run(adapterMethod: CallableFunction): Promise<any>;
+    run(adapterMethod: CallableFunction, limit?: number): Promise<any>;
 }
