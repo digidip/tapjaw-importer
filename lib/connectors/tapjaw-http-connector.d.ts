@@ -63,7 +63,6 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      *
      * @return TapjawConnectorResponse
      */
-    post(uri: string, query: TapjawHttpQueryParameters, body: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
     /**
      * Has a security authenticator been configured?
      *
@@ -76,11 +75,5 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @return boolean
      */
     protected isAuthenticated(): boolean;
-    /**
-     * HTTP Response handler.
-     *
-     * @param response  IncomingMessage
-     * @return Promise<TapjawConnectorResponse>
-     */
-    private responseHandler;
+    private getResponse;
 }
