@@ -16,12 +16,13 @@ export interface TapjawHttpFormParameters {
 export declare type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
 export default abstract class TapjawHttpConnector implements TapjawConnector {
     protected readonly host: string;
+    protected readonly port: number;
     protected readonly security?: TapjawAuthenticator | undefined;
     abstract enableGzip: boolean;
     abstract useDecoding?: string;
     abstract useEncoding?: string;
     protected authenticatorData: any;
-    constructor(host: string, security?: TapjawAuthenticator | undefined);
+    constructor(host: string, port?: number, security?: TapjawAuthenticator | undefined);
     /**
      * Set the character set encoding to decode the API response data before encoding or returning.
      *

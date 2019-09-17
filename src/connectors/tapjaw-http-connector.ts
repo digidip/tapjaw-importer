@@ -33,7 +33,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     abstract useEncoding?: string;
     protected authenticatorData: any;
 
-    public constructor(protected readonly host: string, protected readonly security?: TapjawAuthenticator) { }
+    public constructor(protected readonly host: string, protected readonly port = 80, protected readonly security?: TapjawAuthenticator) { }
 
     /**
      * Set the character set encoding to decode the API response data before encoding or returning.
@@ -92,6 +92,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     public async get(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse> {
         const options: https.RequestOptions = {
             hostname: this.host,
+            port: this.port,
             path: `${uri}?${querystring.stringify(query)}`,
             method: 'GET',
             headers
@@ -120,6 +121,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     public async post(uri: string, query: TapjawHttpQueryParameters, body: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse> {
         const options: https.RequestOptions = {
             hostname: this.host,
+            port: this.port,
             path: `${uri}?${querystring.stringify(query)}`,
             method: 'POST',
             headers
