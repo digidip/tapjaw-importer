@@ -1,6 +1,9 @@
 import { Command, flags } from '@oclif/command';
 import TapjawIterator from './tapjaw-iterator';
 import TapjawAdapter from './tapjaw-adapter';
+import { OutputArgs, OutputFlags } from '@oclif/parser';
+import { Arg } from '@oclif/parser/lib/args';
+import { ParserInput } from '@oclif/parser/lib/parse';
 
 export default abstract class TapjawCommand extends Command {
     static args = [];
@@ -12,14 +15,14 @@ export default abstract class TapjawCommand extends Command {
     protected abstract iterator: TapjawIterator;
     protected abstract adapter: TapjawAdapter;
 
-    // protected setDependency(adapter: TapjawAdapter, iterator: TapjawIterator): void {
-    //     this.adapter = adapter;
-    //     this.iterator = iterator;
-    // }
+    abstract getAdapterCallback(args: OutputArgs<Arg<any>[]>, flags: OutputFlags<ParserInput['flags']>): CallableFunction;
 
     async run() {
         const { args, flags } = this.parse(this.instance);
 
-        this.log('hi');
+        await this.iterator.run(
+            this.getAdapterCallback(args, flags),
+            2
+        );
     }
 }
