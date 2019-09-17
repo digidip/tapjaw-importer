@@ -1,9 +1,5 @@
 import TapjawMessage from './tapjaw-message';
 export declare class TapjawAdapterError extends Error {
 }
-declare type TapjawAdapterType<T, U extends TapjawMessage> = {
-    [P in keyof T]: () => AsyncGenerator<U>;
-};
-export default abstract class TapjawAdapter<M extends TapjawMessage> implements TapjawAdapterType<TapjawAdapter<TapjawMessage>, M> {
-}
-export {};
+declare type TapjawAdapter<T extends TapjawMessage> = () => AsyncGenerator<T>;
+export default TapjawAdapter;
