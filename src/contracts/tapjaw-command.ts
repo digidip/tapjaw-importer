@@ -12,6 +12,7 @@ export default abstract class TapjawCommand extends Command {
     static args = [];
     static defaultFlags: flags.Input<any> = {
         help: flags.help({ char: 'h' }),
+        limit: flags.integer({ char: 'l', description: 'Limit the number of outputted JSON messages' }),
     };
 
     abstract instance: any; // @todo see if we can honour Parser.Input
