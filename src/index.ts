@@ -18,3 +18,6 @@ export { default as TapjawBearerAuthenticator } from './authenticators/bearer-au
 export { default as TapjawOauthAuthenticator } from './authenticators/oauth-authenticator';
 
 // Iterators
+
+// Support
+export { default as sortObjectArrays } from './support/sort-object-arrays';
