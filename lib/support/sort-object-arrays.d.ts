@@ -1,4 +1,4 @@
-declare const _default: (payload: {
+declare const _default: <T = object>(payload: {
     [key: string]: any;
-}) => object;
+}) => T;
 export default _default;

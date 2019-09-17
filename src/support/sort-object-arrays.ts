@@ -1,4 +1,4 @@
-export default (payload: { [key: string]: any; }): object => {
+export default <T = object>(payload: { [key: string]: any; }): T => {
     const keys = Object.keys(payload);
     const newPayload: { [key: string]: any; } = {};
 
@@ -26,5 +26,5 @@ export default (payload: { [key: string]: any; }): object => {
         }
     });
 
-    return newPayload;
+    return newPayload as T;
 }
