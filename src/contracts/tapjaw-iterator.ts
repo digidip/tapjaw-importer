@@ -9,5 +9,5 @@ Example:
     }
 */
 export default interface TapjawIterator {
-    run(): Promise<any>;
+    run(method: CallableFunction, args: any): Promise<any>;
 }
