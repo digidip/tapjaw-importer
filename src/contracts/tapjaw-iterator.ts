@@ -1,4 +1,3 @@
-import TapjawMessage from './tapjaw-message';
 
 /*
 Example:
@@ -9,6 +8,6 @@ Example:
         }
     }
 */
-export default interface TapjawIterator<T = TapjawMessage> {
-    iterate(): AsyncIterableIterator<T>;
+export default interface TapjawIterator {
+    run(): Promise<any>;
 }
