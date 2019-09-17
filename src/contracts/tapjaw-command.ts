@@ -5,6 +5,9 @@ import { OutputArgs, OutputFlags } from '@oclif/parser';
 import { Arg } from '@oclif/parser/lib/args';
 import { ParserInput } from '@oclif/parser/lib/parse';
 
+export type TapjawCommandArgs = OutputArgs<Arg<any>[]>;
+export type TapjawCommandFlags = OutputFlags<ParserInput['flags']>;
+
 export default abstract class TapjawCommand extends Command {
     static args = [];
     static defaultFlags: flags.Input<any> = {
@@ -15,14 +18,14 @@ export default abstract class TapjawCommand extends Command {
     protected abstract iterator: TapjawIterator;
     protected abstract adapter: TapjawAdapter;
 
-    abstract getAdapterCallback(args: OutputArgs<Arg<any>[]>, flags: OutputFlags<ParserInput['flags']>): CallableFunction;
+    abstract getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): CallableFunction;
 
     async run() {
         const { args, flags } = this.parse(this.instance);
 
         await this.iterator.run(
             this.getAdapterCallback(args, flags),
-            2
+            flags.limit && Number.isInteger(flags.limit) ? flags.limit : undefined
         );
     }
 }
