@@ -79,9 +79,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     /**
      * HTTP Response handler.
      *
-     * @param resolve   (args?: any) => void
-     * @param reject    (args?: any) => void
      * @param response  IncomingMessage
+     * @return Promise<TapjawConnectorResponse>
      */
     private responseHandler;
 }

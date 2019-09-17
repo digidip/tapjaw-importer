@@ -101,7 +101,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         return new Promise((resolve, reject) => {
             const connectorRequest = https.request(
                 options,
-                (response: IncomingMessage) => this.responseHandler(resolve, reject, response)
+                (response: IncomingMessage) => this.responseHandler(response).then(resolve).catch(reject)
             );
 
             connectorRequest.end();
@@ -130,11 +130,11 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         return new Promise((resolve, reject) => {
             const connectorRequest = https.request(
                 options,
-                (response: IncomingMessage) => this.responseHandler(resolve, reject, response)
+                (response: IncomingMessage) => this.responseHandler(response).then(resolve).catch(reject)
             );
 
             connectorRequest.end();
-        })
+        });
     }
 
     /**
@@ -158,41 +158,42 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     /**
      * HTTP Response handler.
      *
-     * @param resolve   (args?: any) => void
-     * @param reject    (args?: any) => void
      * @param response  IncomingMessage
+     * @return Promise<TapjawConnectorResponse>
      */
-    private responseHandler(resolve: (args?: any) => void, reject: (args?: any) => void, response: IncomingMessage): void {
-        if (response.statusCode !== 200) {
-            const error = new TapjawConnectorError(`HTTP Status code was ${response.statusCode}.`);
-            // error.statusCode = response.statusCode;
-            reject(error);
-        }
-
-        let buffer: Buffer[] = [];
-        response.on('data', (data: string) => buffer.push(Buffer.from(data, 'binary')));
-        response.on('end', async () => {
-            let contentBuffer = Buffer.concat(buffer);
-
-            if (!contentBuffer) {
-                reject(new TapjawConnectorError('Empty content buffer'));
+    private responseHandler(response: IncomingMessage): Promise<TapjawConnectorResponse> {
+        return new Promise((resolve, reject) => {
+            if (response.statusCode !== 200) {
+                const error = new TapjawConnectorError(`HTTP Status code was ${response.statusCode}.`);
+                // error.statusCode = response.statusCode;
+                reject(error);
             }
 
-            if (this.enableGzip) {
-                contentBuffer = zlib.gunzipSync(contentBuffer);
-            }
+            let buffer: Buffer[] = [];
+            response.on('data', (data: string) => buffer.push(Buffer.from(data, 'binary')));
+            response.on('end', async () => {
+                let contentBuffer = Buffer.concat(buffer);
 
-            if (this.useDecoding) {
-                contentBuffer = Buffer.from(decode(contentBuffer, this.useDecoding));
-            }
+                if (!contentBuffer) {
+                    reject(new TapjawConnectorError('Empty content buffer'));
+                }
 
-            // return raw string buffer.
-            resolve(
-                this.useEncoding
-                    ? encode(contentBuffer.toString(), this.useEncoding).toString()
-                    : contentBuffer.toString()
-            );
+                if (this.enableGzip) {
+                    contentBuffer = zlib.gunzipSync(contentBuffer);
+                }
+
+                if (this.useDecoding) {
+                    contentBuffer = Buffer.from(decode(contentBuffer, this.useDecoding));
+                }
+
+                // return raw string buffer.
+                resolve(
+                    this.useEncoding
+                        ? encode(contentBuffer.toString(), this.useEncoding).toString()
+                        : contentBuffer.toString()
+                );
+            });
+            response.on('error', reject);
         });
-        response.on('error', reject);
     }
 }
