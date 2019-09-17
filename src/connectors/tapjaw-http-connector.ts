@@ -104,7 +104,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                 (response: IncomingMessage) => this.responseHandler(response).then(resolve).catch(reject)
             );
 
-            connectorRequest.end();
+            // connectorRequest.end();
         });
     }
 
