@@ -33,7 +33,12 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     abstract useEncoding?: string;
     protected authenticatorData: any;
 
-    public constructor(protected readonly host: string, protected readonly port = 80, protected readonly security?: TapjawAuthenticator) { }
+    public constructor(
+        protected readonly host: string,
+        protected readonly port = 80,
+        protected readonly enableHttps = true,
+        protected readonly security?: TapjawAuthenticator
+    ) {}
 
     /**
      * Set the character set encoding to decode the API response data before encoding or returning.
@@ -160,13 +165,15 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     private getResponse(options: https.RequestOptions): Promise<TapjawConnectorResponse> {
         return new Promise((resolve, reject) => {
             console.log('getResponse', options);
-            const connectorRequest = request(
-                options,
+            const connectorRequest = https.request(
+                {
+                    ...options,
+                    protocol: this.enableHttps ? 'https' : 'http',
+                },
                 (response: IncomingMessage) => {
                     console.log('response', response);
                     if (response.statusCode !== 200) {
                         const error = new TapjawConnectorError(`HTTP Status code was ${response.statusCode}.`);
-                        // error.statusCode = response.statusCode;
                         reject(error);
                     }
 
