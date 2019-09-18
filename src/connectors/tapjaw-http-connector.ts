@@ -124,7 +124,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             port: this.port,
             path: `${uri}?${querystring.stringify(query)}`,
             method: 'POST',
-            ...{
+            headers: {
                 ...headers,
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Content-Length': Buffer.byteLength(body)
@@ -154,7 +154,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             port: this.port,
             path: `${uri}?${querystring.stringify(query)}`,
             method: 'POST',
-            ...{
+            headers: {
                 ...headers,
                 'Content-Type': 'application/json',
                 'Content-Length': Buffer.byteLength(json)
@@ -191,6 +191,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     private getResponse(options: https.RequestOptions, writeBody?: string): Promise<TapjawConnectorResponse> {
         return new Promise((resolve, reject) => {
             const requestImpl = this.enableHttps ? https.request : request;
+
             const connectorRequest = requestImpl(
                 options,
                 (response: IncomingMessage) => {
