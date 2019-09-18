@@ -64,6 +64,18 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      *
      * @return TapjawConnectorResponse
      */
+    post(uri: string, query: TapjawHttpQueryParameters, body: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    /**
+     * Send a POST request to the API.
+     *
+     * @param uri       string
+     * @param query     TapjawHttpQueryParameters
+     * @param json      TapjawHttpRequestBody
+     * @param headers   TapjawHttpHeaders (optional)
+     *
+     * @return TapjawConnectorResponse
+     */
+    postJson(uri: string, query: TapjawHttpQueryParameters, json: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
     /**
      * Has a security authenticator been configured?
      *
@@ -76,5 +88,11 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @return boolean
      */
     protected isAuthenticated(): boolean;
+    /**
+     * http/https request handler
+     *
+     * @param options https.RequestOptions
+     * @param writeBody string|undefined
+     */
     private getResponse;
 }

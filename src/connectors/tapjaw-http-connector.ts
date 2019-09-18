@@ -3,8 +3,6 @@ import * as https from 'https';
 import { encode, decode, encodingExists } from 'iconv-lite';
 import * as querystring from 'querystring';
 import * as zlib from 'zlib';
-import * as _ from 'lodash';
-
 import TapjawConnector, { TapjawConnectorResponse, TapjawConnectorError } from '../contracts/tapjaw-connector';
 import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 
@@ -104,15 +102,6 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         };
 
         return this.getResponse(options);
-
-        // return new Promise((resolve, reject) => {
-        //     const connectorRequest = https.request(
-        //         options,
-        //         (response: IncomingMessage) => this.responseHandler(response).then(resolve).catch(reject)
-        //     );
-
-        //     connectorRequest.end();
-        // });
     }
 
     /**
@@ -125,24 +114,55 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      *
      * @return TapjawConnectorResponse
      */
-    // public async post(uri: string, query: TapjawHttpQueryParameters, body: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse> {
-    //     const options: https.RequestOptions = {
-    //         hostname: this.host,
-    //         port: this.port,
-    //         path: `${uri}?${querystring.stringify(query)}`,
-    //         method: 'POST',
-    //         headers
-    //     };
+    public async post(uri: string, query: TapjawHttpQueryParameters, body: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse> {
+        if (typeof body === 'object') {
+            body = querystring.stringify(body);
+        }
 
-    //     return new Promise((resolve, reject) => {
-    //         const connectorRequest = https.request(
-    //             options,
-    //             (response: IncomingMessage) => this.responseHandler(response).then(resolve).catch(reject)
-    //         );
+        const options: https.RequestOptions = {
+            hostname: this.host,
+            port: this.port,
+            path: `${uri}?${querystring.stringify(query)}`,
+            method: 'POST',
+            ...{
+                ...headers,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': Buffer.byteLength(body)
+            }
+        };
 
-    //         connectorRequest.end();
-    //     });
-    // }
+        return this.getResponse(options, body);
+    }
+
+    /**
+     * Send a POST request to the API.
+     *
+     * @param uri       string
+     * @param query     TapjawHttpQueryParameters
+     * @param json      TapjawHttpRequestBody
+     * @param headers   TapjawHttpHeaders (optional)
+     *
+     * @return TapjawConnectorResponse
+     */
+    public async postJson(uri: string, query: TapjawHttpQueryParameters, json: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse> {
+        if (typeof json !== 'string') {
+            json = JSON.stringify(json);
+        }
+
+        const options: https.RequestOptions = {
+            hostname: this.host,
+            port: this.port,
+            path: `${uri}?${querystring.stringify(query)}`,
+            method: 'POST',
+            ...{
+                ...headers,
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(json)
+            }
+        };
+
+        return this.getResponse(options);
+    }
 
     /**
      * Has a security authenticator been configured?
@@ -162,15 +182,18 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         return Boolean(this.security && this.security.isAuthenticated());
     }
 
-    private getResponse(options: https.RequestOptions): Promise<TapjawConnectorResponse> {
+    /**
+     * http/https request handler
+     *
+     * @param options https.RequestOptions
+     * @param writeBody string|undefined
+     */
+    private getResponse(options: https.RequestOptions, writeBody?: string): Promise<TapjawConnectorResponse> {
         return new Promise((resolve, reject) => {
-            console.log('getResponse', options);
-
             const requestImpl = this.enableHttps ? https.request : request;
             const connectorRequest = requestImpl(
                 options,
                 (response: IncomingMessage) => {
-                    console.log('response', response);
                     if (response.statusCode !== 200) {
                         const error = new TapjawConnectorError(`HTTP Status code was ${response.statusCode}.`);
                         reject(error);
@@ -203,6 +226,10 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                     response.on('error', reject);
                 }
             );
+
+            if (writeBody) {
+                connectorRequest.write(writeBody);
+            }
 
             connectorRequest.end();
         });
