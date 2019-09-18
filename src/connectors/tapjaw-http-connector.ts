@@ -168,7 +168,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             const connectorRequest = https.request(
                 {
                     ...options,
-                    protocol: this.enableHttps ? 'https' : 'http',
+                    protocol: this.enableHttps ? 'https:' : 'http:',
                 },
                 (response: IncomingMessage) => {
                     console.log('response', response);
