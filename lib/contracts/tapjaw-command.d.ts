@@ -1,9 +1,10 @@
 import { Command, flags } from '@oclif/command';
 import TapjawIterator from './tapjaw-iterator';
 import { TapjawAdapterCallback } from './tapjaw-adapter';
-import { OutputArgs, OutputFlags } from '@oclif/parser';
+import { OutputFlags } from '@oclif/parser';
 import { ParserInput } from '@oclif/parser/lib/parse';
-export declare type TapjawCommandArgs = OutputArgs<ParserInput['args']>[];
+import { IArg } from '@oclif/parser/lib/args';
+export declare type TapjawCommandArgs = IArg[];
 export declare type TapjawCommandFlags = OutputFlags<ParserInput['flags']>;
 export default abstract class TapjawCommand extends Command {
     /**
@@ -11,7 +12,7 @@ export default abstract class TapjawCommand extends Command {
      *
      * @see @oclif/command
      */
-    static args: never[];
+    static args: IArg[];
     /**
      * Default Flags, please use `...TapjawCommand.defaultFlags` in your own `flags` property.
      *
