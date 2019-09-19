@@ -4,7 +4,9 @@ import { TapjawAdapterCallback } from './tapjaw-adapter';
 import { OutputFlags } from '@oclif/parser';
 import { ParserInput } from '@oclif/parser/lib/parse';
 import { IArg } from '@oclif/parser/lib/args';
-export declare type TapjawCommandArgs = IArg[];
+export declare type TapjawCommandArgs = {
+    [key: string]: any;
+};
 export declare type TapjawCommandFlags = OutputFlags<ParserInput['flags']>;
 export default abstract class TapjawCommand extends Command {
     /**

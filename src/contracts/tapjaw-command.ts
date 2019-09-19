@@ -6,7 +6,7 @@ import { ParserInput } from '@oclif/parser/lib/parse';
 import StdoutIterator from '../iterators/stdout-iterator';
 import { IArg } from '@oclif/parser/lib/args';
 
-export type TapjawCommandArgs = IArg[];
+export type TapjawCommandArgs = { [key: string]: any }; //OutputArgs<ParserInput['args']>;
 export type TapjawCommandFlags = OutputFlags<ParserInput['flags']>;
 
 export default abstract class TapjawCommand extends Command {
