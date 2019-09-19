@@ -1,10 +1,23 @@
 /// <reference types="node" />
 import OutputIterator from './output-iterator';
 import TapjawMessage from '../contracts/tapjaw-message';
+/**
+ * Iterate TapjawMessages from implemented adapter, convert each to JSON and write to the STDOUT buffer.
+ */
 export default class StdoutIterator extends OutputIterator {
     protected readonly writeBuffer: NodeJS.WriteStream;
     protected pretty: boolean;
     constructor(writeBuffer: NodeJS.WriteStream);
+    /**
+     * Whether to output the JSON with pretty indentation and newlines.
+     *
+     * @param polarity boolean
+     */
     setPretty(polarity: boolean): void;
-    protected outputMessage(message: TapjawMessage): void;
+    /**
+     * Write message to STDOUT.
+     *
+     * @param message TapjawMessage
+     */
+    protected outputMessage(message: TapjawMessage): Promise<void>;
 }

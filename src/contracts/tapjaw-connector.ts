@@ -2,6 +2,7 @@ export class TapjawConnectorError extends Error {}
 
 export interface TapjawConnectorResponse {}
 
-export default interface TapjawConnector {
-    setAuthenticatorData(authenticatorData: any): void;
-}
+/**
+ * The base TapjawConnector contract.
+ */
+export default interface TapjawConnector {}

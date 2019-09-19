@@ -1,5 +1,4 @@
 import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
-import TapjawConnector from '../contracts/tapjaw-connector';
 
 export default class BearerAuthAuthenticator implements TapjawAuthenticator {
     private authenticated = false;
@@ -15,11 +14,10 @@ export default class BearerAuthAuthenticator implements TapjawAuthenticator {
         return this.authenticated;
     }
 
-    public async authenticate(connector: TapjawConnector): Promise<void> {
+    public async authenticate(): Promise<{ Authorization: string; }> {
         return new Promise(resolve => {
             this.authenticated = true;
-            connector.setAuthenticatorData(this.header);
-            resolve();
+            resolve(this.header);
         });
     }
 }

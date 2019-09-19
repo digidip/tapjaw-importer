@@ -4,7 +4,7 @@ import { encode, decode, encodingExists } from 'iconv-lite';
 import * as querystring from 'querystring';
 import * as zlib from 'zlib';
 import TapjawConnector, { TapjawConnectorResponse, TapjawConnectorError } from '../contracts/tapjaw-connector';
-import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
+import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 
 export interface TapjawHttpHeaders {
     [key: string]: string | undefined;
@@ -25,17 +25,43 @@ export interface TapjawHttpFormParameters {
 
 export type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
 
+/**
+ * The default HTTP and HTTPS API request wrapper.
+ */
 export default abstract class TapjawHttpConnector implements TapjawConnector {
+    /**
+     * Enable/Disable gzip decompressing of API response.
+     */
     abstract enableGzip: boolean;
+
+    /**
+     * Apply a character set encoding to decode the API response buffer.
+     *
+     * This happens prior to encoding, so you can perform a decoding
+     * and encoding in conjunction with TapjawHttpConnector.useEncoding.
+     */
     abstract useDecoding?: string;
+
+    /**
+     * Apply a character set encoding to encode the response prior to returning.
+     *
+     * This happens after decoding the respone buffer, so you
+     * can decode the buffer prior to encoding the buffer. you can
+     * also simply encode the buffer without any prior decoding.
+     */
     abstract useEncoding?: string;
+
+    /**
+     * Abetiary container for authentication data which can be used in
+     * conjunction with a request to an API endpoint.
+     */
     protected authenticatorData: any;
 
     public constructor(
         protected readonly host: string,
         protected readonly port = 80,
         protected readonly enableHttps = true,
-        protected readonly security?: TapjawAuthenticator
+        protected readonly security?: TapjawAuthenticationWrapper
     ) {}
 
     /**
@@ -70,17 +96,6 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         }
 
         this.useEncoding = encoding as string;
-    }
-
-    /**
-     * Set the authenticator response to connector.
-     *
-     * @param authenticatorData any
-     *
-     * @return void
-     */
-    public setAuthenticatorData(authenticatorData: any): void {
-        this.authenticatorData = authenticatorData;
     }
 
     /**
@@ -165,21 +180,20 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     }
 
     /**
-     * Has a security authenticator been configured?
+     * Apply security authentication data to request options.
      *
-     * @return boolean
+     * @param options https.RequestOptions
      */
-    protected securityEnabled(): boolean {
-        return Boolean(this.security);
-    }
+    private applySecurity(options: https.RequestOptions): Promise<https.RequestOptions> {
+        return new Promise(async (resolve, reject) => {
+            if (!this.security) {
+                // No security implemented
+                return resolve(options);
+            }
 
-    /**
-     * Has the security authenticator successfully authenticated.
-     *
-     * @return boolean
-     */
-    protected isAuthenticated(): boolean {
-        return Boolean(this.security && this.security.isAuthenticated());
+            const updatedOptions = await this.security.authenticate(options).catch(reject);
+            resolve(updatedOptions);
+        });
     }
 
     /**
@@ -189,9 +203,10 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param writeBody string|undefined
      */
     private getResponse(options: https.RequestOptions, writeBody?: string): Promise<TapjawConnectorResponse> {
-        return new Promise((resolve, reject) => {
-            const requestImpl = this.enableHttps ? https.request : request;
+        return new Promise(async (resolve, reject) => {
+            options = await this.applySecurity(options);
 
+            const requestImpl = this.enableHttps ? https.request : request;
             const connectorRequest = requestImpl(
                 options,
                 (response: IncomingMessage) => {

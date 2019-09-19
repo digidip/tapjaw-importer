@@ -1,17 +1,22 @@
 {
     "compilerOptions": {
-      "declaration": true,
-      "forceConsistentCasingInFileNames": true,
-      "importHelpers": true,
-      "module": "commonjs",
-      "outDir": "./lib",
-      "rootDirs": [
-        "./src"
-      ],
-      "strict": true,
-      "target": "es2017"
+        "declaration": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "module": "commonjs",
+        "outDir": "./lib",
+        "rootDirs": [
+            "./src"
+        ],
+        "strict": true,
+        "target": "es2017",
+        "typeRoots": ["./node_modules/@types"]
     },
     "include": [
-      "./src/**/*"
+        "./src/**/*"
+    ],
+    "exclude": [
+        "**/__tests__/*",
+        "node_modules"
     ]
-  }
+}

@@ -1,7 +1,11 @@
-import * as https from 'https';
 import * as querystring from 'querystring';
 import TapjawAuthenticator, { TapjawAuthenticatorError } from '../contracts/tapjaw-authenticator';
-import TapjawConnector from '../contracts/tapjaw-connector';
+import request from './support/request';
+
+export type OauthResponse = {
+    [key: string]: any;
+    access_token: string;
+};
 
 export default class OauthAuthenticator implements TapjawAuthenticator {
     private authenticated = false;
@@ -21,8 +25,12 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
         return this.authenticated;
     }
 
-    public async authenticate(connector: TapjawConnector): Promise<void> {
+    public async authenticate(): Promise<OauthResponse> {
         return new Promise(async (resolve, reject) => {
+            if (this.isAuthenticated() && this.getLastResponse()) {
+                return resolve(this.getLastResponse());
+            }
+
             const headers: object = {
                 Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
@@ -38,13 +46,17 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
 
             this.authenticated = false;
             this.lastResponse = null;
-            const oauthResponse = await this.request(params, options).catch(reject);
+            try {
+                const oauthResponse = await request(params, options, this.responseEncoding) as OauthResponse;
 
-            if (oauthResponse) {
-                this.authenticated = true;
-                this.lastResponse = oauthResponse;
-                connector.setAuthenticatorData(oauthResponse);
-                return resolve();
+                if (oauthResponse) {
+                    this.authenticated = true;
+                    this.lastResponse = oauthResponse;
+
+                    return resolve(oauthResponse);
+                }
+            } catch (error) {
+                reject(error);
             }
 
             reject(new TapjawAuthenticatorError('No oauth response was recieved.'));
@@ -53,22 +65,5 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
 
     public getLastResponse(): any {
         return this.lastResponse;
-    }
-
-    private async request(params: string, options: https.RequestOptions): Promise<any> {
-        return new Promise((resolve, reject) => {
-            const authReq = https.request(options, response => {
-                let buffer = '';
-
-                response.setEncoding(this.responseEncoding);
-
-                response.on('data', (data: string) => buffer += data);
-                response.on('end', () => resolve(buffer));
-                response.on('error', (error: Error) => reject(error));
-            });
-
-            authReq.write(params);
-            authReq.end();
-        });
     }
 }

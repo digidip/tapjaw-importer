@@ -1,5 +1,5 @@
 import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-connector';
-import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
+import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 export interface TapjawHttpHeaders {
     [key: string]: string | undefined;
     Accept?: string;
@@ -14,16 +14,39 @@ export interface TapjawHttpFormParameters {
     [key: string]: string;
 }
 export declare type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
+/**
+ * The default HTTP and HTTPS API request wrapper.
+ */
 export default abstract class TapjawHttpConnector implements TapjawConnector {
     protected readonly host: string;
     protected readonly port: number;
     protected readonly enableHttps: boolean;
-    protected readonly security?: TapjawAuthenticator | undefined;
+    protected readonly security?: TapjawAuthenticationWrapper | undefined;
+    /**
+     * Enable/Disable gzip decompressing of API response.
+     */
     abstract enableGzip: boolean;
+    /**
+     * Apply a character set encoding to decode the API response buffer.
+     *
+     * This happens prior to encoding, so you can perform a decoding
+     * and encoding in conjunction with TapjawHttpConnector.useEncoding.
+     */
     abstract useDecoding?: string;
+    /**
+     * Apply a character set encoding to encode the response prior to returning.
+     *
+     * This happens after decoding the respone buffer, so you
+     * can decode the buffer prior to encoding the buffer. you can
+     * also simply encode the buffer without any prior decoding.
+     */
     abstract useEncoding?: string;
+    /**
+     * Abetiary container for authentication data which can be used in
+     * conjunction with a request to an API endpoint.
+     */
     protected authenticatorData: any;
-    constructor(host: string, port?: number, enableHttps?: boolean, security?: TapjawAuthenticator | undefined);
+    constructor(host: string, port?: number, enableHttps?: boolean, security?: TapjawAuthenticationWrapper | undefined);
     /**
      * Set the character set encoding to decode the API response data before encoding or returning.
      *
@@ -36,14 +59,6 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param encoding string|null
      */
     setEncoding(encoding: string | null): void;
-    /**
-     * Set the authenticator response to connector.
-     *
-     * @param authenticatorData any
-     *
-     * @return void
-     */
-    setAuthenticatorData(authenticatorData: any): void;
     /**
      * Send a GET request to the API.
      *
@@ -77,17 +92,11 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      */
     postJson(uri: string, query: TapjawHttpQueryParameters, json: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
     /**
-     * Has a security authenticator been configured?
+     * Apply security authentication data to request options.
      *
-     * @return boolean
+     * @param options https.RequestOptions
      */
-    protected securityEnabled(): boolean;
-    /**
-     * Has the security authenticator successfully authenticated.
-     *
-     * @return boolean
-     */
-    protected isAuthenticated(): boolean;
+    private applySecurity;
     /**
      * http/https request handler
      *
