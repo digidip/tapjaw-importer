@@ -9,6 +9,8 @@ export { default as TapjawHttpConnector } from './connectors/tapjaw-http-connect
 export { default as TapjawBasicAuthenticator } from './authenticators/basic-auth-authenticator';
 export { default as TapjawBearerAuthenticator } from './authenticators/bearer-auth-authenticator';
 export { default as TapjawOauthAuthenticator } from './authenticators/oauth-authenticator';
+export { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
+export { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
 export { default as StdoutIterator } from './iterators/stdout-iterator';
 export { default as OutputIterator } from './iterators/output-iterator';
 export { default as sortObjectArrays } from './support/sort-object-arrays';
