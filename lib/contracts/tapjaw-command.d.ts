@@ -1,6 +1,6 @@
 import { Command, flags } from '@oclif/command';
 import TapjawIterator from './tapjaw-iterator';
-import TapjawAdapter, { TapjawAdapterCallback } from './tapjaw-adapter';
+import { TapjawAdapterCallback } from './tapjaw-adapter';
 import { OutputArgs, OutputFlags } from '@oclif/parser';
 import { Arg } from '@oclif/parser/lib/args';
 import { ParserInput } from '@oclif/parser/lib/parse';
@@ -49,13 +49,6 @@ export default abstract class TapjawCommand extends Command {
      * @see TapjawIterator
      */
     protected iterator: TapjawIterator;
-    /**
-     * The adapter which the command implemenation should use, each command
-     * can only implement a single adapter.
-     *
-     * @see TapjawAdapter
-     */
-    protected abstract adapter: TapjawAdapter;
     /**
      * Run the command the execute the iterator run routine.
      *
