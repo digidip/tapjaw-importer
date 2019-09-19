@@ -48,6 +48,10 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     protected authenticatorData: any;
     constructor(host: string, port?: number, enableHttps?: boolean, security?: TapjawAuthenticationWrapper | undefined);
     /**
+     * Whether a authentication wrapper has been injected into the connector or not.
+     */
+    hasSecurity(): boolean;
+    /**
      * Set the character set encoding to decode the API response data before encoding or returning.
      *
      * @param encoding  string|null

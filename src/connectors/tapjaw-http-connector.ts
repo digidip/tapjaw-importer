@@ -65,6 +65,13 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     ) {}
 
     /**
+     * Whether a authentication wrapper has been injected into the connector or not.
+     */
+    public hasSecurity(): boolean {
+        return Boolean(this.security);
+    }
+
+    /**
      * Set the character set encoding to decode the API response data before encoding or returning.
      *
      * @param encoding  string|null
