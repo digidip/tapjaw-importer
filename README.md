@@ -21,6 +21,8 @@ This is a utility framework which allows you to simply build a command for conne
 API. The API response is then iterated into individual message containers which are piped to the STDOUT
 buffer as individual JSON objects.
 
+![diagram](./resources/diagram.png "Tapjaw Diagram")
+
 # Usage
 
 ```sh
