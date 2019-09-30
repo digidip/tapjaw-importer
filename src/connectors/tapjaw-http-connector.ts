@@ -63,7 +63,11 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         protected readonly port = 80,
         protected readonly enableHttps = true,
         protected readonly security?: TapjawAuthenticationWrapper
-    ) {}
+    ) {
+        if (enableHttps && (port === 80 || !port)) {
+            this.port = 443;
+        }
+    }
 
     /**
      * Whether a authentication wrapper has been injected into the connector or not.
