@@ -7,6 +7,7 @@
   "license": "MIT",
   "devDependencies": {
     "@oclif/tslint": "^3.1.1",
+    "@types/deepmerge": "^2.2.0",
     "@types/iconv-lite": "^0.0.1",
     "@types/jest": "^24.0.18",
     "@types/lodash": "^4.14.138",
@@ -23,6 +24,7 @@
     "@oclif/parser": "^3.8.4",
     "@oclif/plugin-autocomplete": "^0.1.4",
     "@oclif/plugin-help": "^2.2.1",
+    "deepmerge": "^4.0.0",
     "generator-webapp": "^4.0.0-6",
     "globby": "^10.0.1",
     "iconv-lite": "^0.5.0",

@@ -5,6 +5,7 @@ import * as querystring from 'querystring';
 import * as zlib from 'zlib';
 import TapjawConnector, { TapjawConnectorResponse, TapjawConnectorError } from '../contracts/tapjaw-connector';
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
+import * as deepmerge from 'deepmerge';
 
 export interface TapjawHttpHeaders {
     [key: string]: string | undefined;
@@ -199,7 +200,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             }
 
             const updatedOptions = await this.security.authenticate(options).catch(reject);
-            resolve(updatedOptions);
+            resolve(deepmerge(options, updatedOptions));
         });
     }
 
