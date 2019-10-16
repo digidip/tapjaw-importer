@@ -8,7 +8,7 @@ import { TapjawIteratorError } from '../contracts/tapjaw-iterator';
 export default class StdoutIterator extends OutputIterator {
     protected pretty = false;
 
-    constructor(protected readonly writeBuffer: NodeJS.WriteStream) {
+    constructor(protected readonly writeCallback: NodeJS.WritableStream) {
         super();
     }
 
@@ -40,7 +40,7 @@ export default class StdoutIterator extends OutputIterator {
         /**
          * Write JSON to stdout buffer.
          */
-        this.writeBuffer.write(`${json}\n`);
+        this.writeCallback.write(`${json}\n`);
 
         return Promise.resolve();
     }

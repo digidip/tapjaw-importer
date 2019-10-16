@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make sure the iterator operates as expected should output 5 STDOUT calls 1`] = `
+Array [
+  "{\\"signature\\":\\"1de6246c80ed1ff20f94e5b472e53ab6b0e1f545fa6472c87afb5603bcb6b139\\",\\"sourceProviderName\\":\\"test1\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test1\\"}}
+",
+  "{\\"signature\\":\\"97f8394f4ec1f78e2c6fa4e8d0b2cdd0c79d2adfd3c4cf9aef743f3e176c2552\\",\\"sourceProviderName\\":\\"test2\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test2\\"}}
+",
+  "{\\"signature\\":\\"6ac926bfef5c2057f774530ccc408872ceea58ff18753c1c7efab420cbc1dec7\\",\\"sourceProviderName\\":\\"test3\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test3\\"}}
+",
+  "{\\"signature\\":\\"0fbd9928648bb1dbfad54158a3c60d4341bcd947dc21482cd885823f91633060\\",\\"sourceProviderName\\":\\"test4\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test4\\"}}
+",
+  "{\\"signature\\":\\"644aa603f4c4a850b32cd382ea45768456ff0f0d4d6a51e6bbcf0504d62565f4\\",\\"sourceProviderName\\":\\"test5\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test5\\"}}
+",
+]
+`;

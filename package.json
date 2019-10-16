@@ -7,12 +7,15 @@
   "license": "MIT",
   "devDependencies": {
     "@oclif/tslint": "^3.1.1",
+    "@types/camelcase-keys": "^5.1.1",
     "@types/deepmerge": "^2.2.0",
     "@types/iconv-lite": "^0.0.1",
     "@types/jest": "^24.0.18",
     "@types/lodash": "^4.14.138",
     "@types/node": "^12.7.5",
+    "@types/xml2js": "^0.4.5",
     "jest": "^24.9.0",
+    "jest-mock-process": "^1.2.0",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
@@ -24,12 +27,16 @@
     "@oclif/parser": "^3.8.4",
     "@oclif/plugin-autocomplete": "^0.1.4",
     "@oclif/plugin-help": "^2.2.1",
+    "camelcase-keys": "^6.0.1",
+    "csvtojson": "^2.0.10",
     "deepmerge": "^4.0.0",
     "generator-webapp": "^4.0.0-6",
     "globby": "^10.0.1",
     "iconv-lite": "^0.5.0",
     "lodash": "^4.17.15",
-    "tslib": "^1.10.0"
+    "ts-transformer-keys": "^0.3.5",
+    "tslib": "^1.10.0",
+    "xml2js": "^0.4.22"
   },
   "main": "lib/index.js",
   "bin": {

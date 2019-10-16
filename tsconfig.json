@@ -9,8 +9,15 @@
             "./src"
         ],
         "strict": true,
+        "types": [
+            "node",
+            "jest"
+        ],
         "target": "es2017",
-        "typeRoots": ["./node_modules/@types"]
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "esModuleInterop": true
     },
     "include": [
         "./src/**/*"

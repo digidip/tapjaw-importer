@@ -1,3 +1,16 @@
+type Payload = { [key: string]: any; };
+
+const sortObjectsCallback = (a: object, b: object) => {
+    const aJson = JSON.stringify(a);
+    const bJson = JSON.stringify(b);
+
+    if (aJson === bJson) {
+        return 0;
+    }
+
+    return aJson > bJson ? 1 : -1;
+};
+
 /**
  * This support method is used to prevent TapjawMessage
  * signatures incorrectly changing between API responses.
@@ -8,30 +21,31 @@
  *
  * This function supports arrays containing objects or any scalar types.
  *
- * @param payload { [key: string]: any; }
+ * @param payload Payload
  */
-export default <T = object>(payload: { [key: string]: any; }): T => {
+const sortObjevtArrays = <T = object>(payload: Payload): T => {
     const keys = Object.keys(payload);
     const newPayload: { [key: string]: any; } = {};
 
     keys.forEach((key: string) => {
-        if (Array.isArray(payload[key]) && payload[key].length > 0) {
-            const arrayToSort = payload[key];
-            if (typeof arrayToSort[0] === 'object') {
-                // objects containing data.
-                newPayload[key] = arrayToSort.sort((a: any, b: any) => {
-                    const aJson = JSON.stringify(a);
-                    const bJson = JSON.stringify(b);
+        let prop = payload[key];
 
-                    if (aJson === bJson) {
-                        return 0;
-                    }
+        if (Array.isArray(prop) && prop.length > 0) {
+            prop.forEach((value: unknown, index: number) => {
+                if (typeof value === 'object') {
+                    // recurse into child objects
+                    prop[index] = sortObjevtArrays(value as Payload);
+                }
+            });
 
-                    return aJson > bJson ? 1 : -1;
-                });
+            if (typeof prop[0] === 'object') {
+                // first item in the array is an object!
+                newPayload[key] = prop.sort(sortObjectsCallback);
+
             } else {
                 // strings / numbers
-                newPayload[key] = arrayToSort.sort();
+                newPayload[key] = prop.sort();
+
             }
         } else {
             newPayload[key] = payload[key];
@@ -39,4 +53,6 @@ export default <T = object>(payload: { [key: string]: any; }): T => {
     });
 
     return newPayload as T;
-}
+};
+
+export default sortObjevtArrays;

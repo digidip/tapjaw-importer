@@ -5,7 +5,7 @@ import * as querystring from 'querystring';
 import * as zlib from 'zlib';
 import TapjawConnector, { TapjawConnectorResponse, TapjawConnectorError } from '../contracts/tapjaw-connector';
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
-import * as deepmerge from 'deepmerge';
+const deepmerge = require('deepmerge');
 
 export interface TapjawHttpHeaders {
     [key: string]: string | undefined;

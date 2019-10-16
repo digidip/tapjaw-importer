@@ -11,7 +11,7 @@ import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
  * TapjawMessages being passed to the outputMessage() method.
  */
 export default abstract class OutputIterator implements TapjawIterator {
-    public async run(adapterCallback: TapjawAdapterCallback, limit?: number): Promise<any> {
+    public async run(adapterCallback: TapjawAdapterCallback<TapjawMessage>, limit?: number): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
                 const messages = await adapterCallback();
