@@ -9,9 +9,9 @@ import { IncomingMessage } from 'http';
  * @param params string
  * @param options https.RequestOptions
  * @param responseEncoding string
- * @reutrn Promise<any>
+ * @reutrn Promise<T>
  */
-const request = (params: string, options: https.RequestOptions, responseEncoding = 'utf8'): Promise<any> => {
+const request = <T extends string | BinaryType>(params: string, options: https.RequestOptions, responseEncoding = 'utf8'): Promise<T> => {
     return new Promise((resolve, reject) => {
         const authReq = https.request(options, (response: IncomingMessage) => {
             if (response.statusCode !== 200) {
@@ -19,10 +19,10 @@ const request = (params: string, options: https.RequestOptions, responseEncoding
                 return reject(error);
             }
 
-            let buffer = '';
+            let buffer: string | BinaryType = '';
             response.setEncoding(responseEncoding);
-            response.on('data', (data: string) => buffer += data);
-            response.on('end', () => resolve(buffer));
+            response.on('data', (data: string | BinaryType) => buffer += data);
+            response.on('end', () => resolve(buffer as T));
             response.on('error', (error: Error) => reject(error));
         });
 

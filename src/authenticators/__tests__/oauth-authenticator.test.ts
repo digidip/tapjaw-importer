@@ -8,7 +8,7 @@ describe('Make sure the OAuthAuthenticator works as expected', () => {
     it('should return an object with an access token.', async () => {
         // @ts-ignore
         request = jest.fn(async () => {
-            return Promise.resolve({ access_token: 'test-token' });
+            return Promise.resolve(JSON.stringify({ access_token: 'test-token' }));
         });
 
         const instance = new OauthAuthenticator('test', 'test', '127.0.0.1', '/token', {});

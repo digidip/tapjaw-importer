@@ -28,7 +28,7 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
     public async authenticate(): Promise<OauthResponse> {
         return new Promise(async (resolve, reject) => {
             if (this.isAuthenticated() && this.getLastResponse()) {
-                return resolve(this.getLastResponse());
+                return resolve(JSON.parse(this.getLastResponse()) as OauthResponse);
             }
 
             const headers: object = {
@@ -47,13 +47,13 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
             this.authenticated = false;
             this.lastResponse = null;
             try {
-                const oauthResponse = await request(params, options, this.responseEncoding) as OauthResponse;
+                const oauthResponse = await request(params, options, this.responseEncoding);
 
                 if (oauthResponse) {
                     this.authenticated = true;
                     this.lastResponse = oauthResponse;
 
-                    return resolve(oauthResponse);
+                    return resolve(JSON.parse(oauthResponse) as OauthResponse);
                 }
             } catch (error) {
                 reject(error);

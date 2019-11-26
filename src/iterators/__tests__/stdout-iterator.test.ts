@@ -4,8 +4,8 @@ jest.mock('process');
 
 describe('Make sure the iterator operates as expected', () => {
     test('should output 5 STDOUT calls', async () => {
-        let stdoutOutput: string[] = [];
-        const spy = jest.spyOn(process.stdout, 'write').mockImplementation((msg: string) => {
+        let stdoutOutput: (string | Uint8Array)[] = [];
+        const spy = jest.spyOn(process.stdout, 'write').mockImplementation((msg: string | Uint8Array) => {
             stdoutOutput.push(msg);
             return true;
         });

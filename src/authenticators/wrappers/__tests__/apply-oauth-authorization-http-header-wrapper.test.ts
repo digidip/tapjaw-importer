@@ -10,7 +10,7 @@ describe('Test ApplyOauthAuthorizationHttpHeaderWrapper', () => {
         const oauth = new OauthAuthenticator('aclient', 'asecret', '127.0.0.1', '/token', {});
 
         oauth.getLastResponse = jest.fn(() => null);
-        oauth.authenticate = jest.fn(async () => Promise.resolve({ access_token: 'Pancho' }));
+        oauth.authenticate = jest.fn(async () => Promise.resolve(JSON.parse('{"access_token":"Pancho"}')));
         oauth.isAuthenticated = jest.fn(() => false);
 
         const instance = new ApplyOauthAuthorizationHttpHeaderWrapper(oauth);
