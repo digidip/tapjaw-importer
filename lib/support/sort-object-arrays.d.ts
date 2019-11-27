@@ -1,6 +1,6 @@
-declare const _default: <T = object>(payload: {
+declare type Payload = {
     [key: string]: any;
-}) => T;
+};
 /**
  * This support method is used to prevent TapjawMessage
  * signatures incorrectly changing between API responses.
@@ -11,6 +11,7 @@ declare const _default: <T = object>(payload: {
  *
  * This function supports arrays containing objects or any scalar types.
  *
- * @param payload { [key: string]: any; }
+ * @param payload Payload
  */
-export default _default;
+declare const sortObjevtArrays: <T = object>(payload: Payload) => T;
+export default sortObjevtArrays;

@@ -8,7 +8,7 @@ import * as https from 'https';
  * @param params string
  * @param options https.RequestOptions
  * @param responseEncoding string
- * @reutrn Promise<any>
+ * @reutrn Promise<T>
  */
-declare const request: (params: string, options: https.RequestOptions, responseEncoding?: string) => Promise<any>;
+declare const request: <T extends string>(params: string, options: https.RequestOptions, responseEncoding?: string) => Promise<T>;
 export default request;

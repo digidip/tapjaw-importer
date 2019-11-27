@@ -5,9 +5,9 @@ import TapjawMessage from '../contracts/tapjaw-message';
  * Iterate TapjawMessages from implemented adapter, convert each to JSON and write to the STDOUT buffer.
  */
 export default class StdoutIterator extends OutputIterator {
-    protected readonly writeBuffer: NodeJS.WriteStream;
+    protected readonly writeCallback: NodeJS.WritableStream;
     protected pretty: boolean;
-    constructor(writeBuffer: NodeJS.WriteStream);
+    constructor(writeCallback: NodeJS.WritableStream);
     /**
      * Whether to output the JSON with pretty indentation and newlines.
      *
