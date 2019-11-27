@@ -123,7 +123,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         const options: https.RequestOptions = {
             hostname: this.host,
             port: this.port,
-            path: `${uri}?${querystring.stringify(query)}`,
+            path: Object.keys(query).length > 0 ? `${uri}?${querystring.stringify(query)}` : uri,
             method: 'GET',
             headers
         };
@@ -149,7 +149,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         const options: https.RequestOptions = {
             hostname: this.host,
             port: this.port,
-            path: `${uri}?${querystring.stringify(query)}`,
+            path: Object.keys(query).length > 0 ? `${uri}?${querystring.stringify(query)}` : uri,
             method: 'POST',
             headers: {
                 ...headers,
@@ -179,7 +179,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         const options: https.RequestOptions = {
             hostname: this.host,
             port: this.port,
-            path: `${uri}?${querystring.stringify(query)}`,
+            path: Object.keys(query).length > 0 ? `${uri}?${querystring.stringify(query)}` : uri,
             method: 'POST',
             headers: {
                 ...headers,
