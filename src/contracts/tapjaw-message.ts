@@ -1,7 +1,5 @@
 import * as crypto from 'crypto';
-
-// @todo Create a mechanism to import configurations from child project.
-const secret = 'Move me to a configuration!';
+import tapjawMessageConfig from '../configs/tapjaw-message-config';
 
 export type TapjawMessageDigest = string;
 
@@ -49,7 +47,7 @@ export default class TapjawMessage {
      * @param importDate Date           Optional, if _no_ date is provided the current system's date time will be set.
      */
     constructor(sourceProviderName: string, payload: TapjawPayload, importDate?: Date) {
-        this.signature = crypto.createHmac('sha256', secret).update(JSON.stringify(payload)).digest('hex') as TapjawMessageDigest;
+        this.signature = crypto.createHmac('sha256', tapjawMessageConfig.getConfig('secret')).update(JSON.stringify(payload)).digest('hex') as TapjawMessageDigest;
         this.sourceProviderName = sourceProviderName;
         this.import_date = importDate || new Date();
         this.payload = payload;

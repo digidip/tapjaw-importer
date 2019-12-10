@@ -14,7 +14,6 @@ describe('Test ApplyOauthAuthorizationHttpHeaderWrapper', () => {
         oauth.isAuthenticated = jest.fn(() => false);
 
         const instance = new ApplyOauthAuthorizationHttpHeaderWrapper(oauth);
-
         const updatedOptions = await instance.authenticate({
             headers: {
                 'Content-Type': 'application/json',

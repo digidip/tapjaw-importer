@@ -9,7 +9,7 @@ export type OauthResponse = {
 
 export default class OauthAuthenticator implements TapjawAuthenticator {
     private authenticated = false;
-    private lastResponse: any | null;
+    private lastResponse: OauthResponse | null = null;
 
     constructor(
         protected readonly clientId: string,
@@ -27,8 +27,11 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
 
     public async authenticate(): Promise<OauthResponse> {
         return new Promise(async (resolve, reject) => {
-            if (this.isAuthenticated() && this.getLastResponse()) {
-                return resolve(this.getLastResponse());
+            if (this.isAuthenticated()) {
+                const lastResponse = this.getLastResponse();
+                if (lastResponse !== null) {
+                    return resolve(lastResponse);
+                }
             }
 
             const headers: object = {
@@ -70,7 +73,7 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
         });
     }
 
-    public getLastResponse(): OauthResponse {
+    public getLastResponse(): OauthResponse | null {
         return this.lastResponse;
     }
 }

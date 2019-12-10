@@ -2,15 +2,15 @@
 
 exports[`Make sure the iterator operates as expected should output 5 STDOUT calls 1`] = `
 Array [
-  "{\\"signature\\":\\"1de6246c80ed1ff20f94e5b472e53ab6b0e1f545fa6472c87afb5603bcb6b139\\",\\"sourceProviderName\\":\\"test1\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test1\\"}}
+  "{\\"signature\\":\\"bef0fe89d19be845af6e0fd36b32a4ea8502ae49c91bd44f69532709a1ad8b6c\\",\\"sourceProviderName\\":\\"test1\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test1\\"}}
 ",
-  "{\\"signature\\":\\"97f8394f4ec1f78e2c6fa4e8d0b2cdd0c79d2adfd3c4cf9aef743f3e176c2552\\",\\"sourceProviderName\\":\\"test2\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test2\\"}}
+  "{\\"signature\\":\\"72209b2b500e0921114d639de3831cf521f0a23afee11cf5d6e8daa931d83244\\",\\"sourceProviderName\\":\\"test2\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test2\\"}}
 ",
-  "{\\"signature\\":\\"6ac926bfef5c2057f774530ccc408872ceea58ff18753c1c7efab420cbc1dec7\\",\\"sourceProviderName\\":\\"test3\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test3\\"}}
+  "{\\"signature\\":\\"a9ccd7b94cbaf85d6265639ffecbb0675c76a11a6a09d0ab31155c3dcc2229c4\\",\\"sourceProviderName\\":\\"test3\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test3\\"}}
 ",
-  "{\\"signature\\":\\"0fbd9928648bb1dbfad54158a3c60d4341bcd947dc21482cd885823f91633060\\",\\"sourceProviderName\\":\\"test4\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test4\\"}}
+  "{\\"signature\\":\\"d1d4062e258e370078267819d7734e10b2176ce6453f94fae17febe587ec7f27\\",\\"sourceProviderName\\":\\"test4\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test4\\"}}
 ",
-  "{\\"signature\\":\\"644aa603f4c4a850b32cd382ea45768456ff0f0d4d6a51e6bbcf0504d62565f4\\",\\"sourceProviderName\\":\\"test5\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test5\\"}}
+  "{\\"signature\\":\\"a6db819c16ee9967d80c0e1ad808b4ac70ce75aed16c5b4bcecd13bc9f34b2a4\\",\\"sourceProviderName\\":\\"test5\\",\\"import_date\\":\\"2019-01-01T00:00:00.000Z\\",\\"payload\\":{\\"name\\":\\"test5\\"}}
 ",
 ]
 `;

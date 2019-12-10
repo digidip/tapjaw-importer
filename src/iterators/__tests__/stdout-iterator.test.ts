@@ -1,3 +1,6 @@
+// Add custom configs
+process.env.TAPJAW_MESSAGE_SECRET = 'TestingSecet'
+
 import StdoutIterator from '../stdout-iterator';
 import TapjawMessage from '../../contracts/tapjaw-message';
 jest.mock('process');
@@ -34,7 +37,9 @@ describe('Make sure the iterator operates as expected', () => {
             yield new TapjawMessage('test1', { name: 'test1' }, new Date('2019-01-01'));
         }
 
-        expect(iterator.run(callback)).rejects.toThrow('message could not be parsed into JSON.');
+        expect(iterator.run(callback)).rejects.toThrow('message could not be parsed into JSON.').finally(() => {
+            expect(spy).toBeCalled();
+        });
     });
 
     test('should set pretty', async () => {
