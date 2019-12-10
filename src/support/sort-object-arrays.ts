@@ -1,4 +1,4 @@
-type Payload = { [key: string]: any; };
+type Payload = { [key: string]: any };
 
 const sortObjectsCallback = (a: object, b: object) => {
     const aJson = JSON.stringify(a);
@@ -25,7 +25,7 @@ const sortObjectsCallback = (a: object, b: object) => {
  */
 const sortObjevtArrays = <T = object>(payload: Payload): T => {
     const keys = Object.keys(payload);
-    const newPayload: { [key: string]: any; } = {};
+    const newPayload: { [key: string]: any } = {};
 
     keys.forEach((key: string) => {
         let prop = payload[key];
@@ -41,11 +41,9 @@ const sortObjevtArrays = <T = object>(payload: Payload): T => {
             if (typeof prop[0] === 'object') {
                 // first item in the array is an object!
                 newPayload[key] = prop.sort(sortObjectsCallback);
-
             } else {
                 // strings / numbers
                 newPayload[key] = prop.sort();
-
             }
         } else {
             newPayload[key] = payload[key];

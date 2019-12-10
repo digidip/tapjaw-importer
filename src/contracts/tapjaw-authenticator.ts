@@ -1,4 +1,4 @@
-export class TapjawAuthenticatorError extends Error { }
+export class TapjawAuthenticatorError extends Error {}
 
 /**
  * The base authentication contract.

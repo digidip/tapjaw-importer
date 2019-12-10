@@ -27,14 +27,14 @@ export default class StdoutIterator extends OutputIterator {
      * @param message TapjawMessage
      */
     protected async outputMessage(message: TapjawMessage): Promise<void> {
-        const json = JSON.stringify(
-            message,
-            null,
-            this.pretty ? 2 : undefined
-        );
+        const json = JSON.stringify(message, null, this.pretty ? 2 : undefined);
 
         if (!json) {
-            return Promise.reject(new TapjawIteratorError('message could not be parsed into JSON.'));
+            return Promise.reject(
+                new TapjawIteratorError(
+                    'message could not be parsed into JSON.'
+                )
+            );
         }
 
         /**

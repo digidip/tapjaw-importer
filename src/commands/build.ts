@@ -3,12 +3,10 @@ import { Command, flags } from '@oclif/command';
 export default class Build extends Command {
     static description = 'Creata a new tapjaw project';
 
-    static examples = [
-        '$ tapjaw build',
-    ];
+    static examples = ['$ tapjaw build'];
 
     static flags = {
-        help: flags.help({ char: 'h' }),
+        help: flags.help({ char: 'h' })
     };
 
     static args = [

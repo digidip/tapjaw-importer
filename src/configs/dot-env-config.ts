@@ -10,11 +10,12 @@ abstract class DotEnvConfig {
 
     constructor(
         private readonly configName: string,
-        private readonly configKey: string,
+        private readonly configKey: string
     ) {
-        Object
-            .keys(process.env)
-            .filter((envKey: string) => namespaceFilterToken(envKey, this.configKey))
+        Object.keys(process.env)
+            .filter((envKey: string) =>
+                namespaceFilterToken(envKey, this.configKey)
+            )
             .forEach(this.initialiseConfig.bind(this));
     }
 
@@ -22,7 +23,9 @@ abstract class DotEnvConfig {
         const key = configKey.toLowerCase();
 
         if (!this.config[key]) {
-            throw new TapjawConfigError(`${this.configName} key "${key}" does not exist.`);
+            throw new TapjawConfigError(
+                `${this.configName} key "${key}" does not exist.`
+            );
         }
 
         return this.config[key] as string;
@@ -31,10 +34,14 @@ abstract class DotEnvConfig {
     private initialiseConfig(jobsEnvKey: string): void {
         const configStr = process.env[jobsEnvKey] as string | undefined;
         if (!configStr) {
-            throw new TapjawConfigError(`.evn ${this.configName} variable "${jobsEnvKey}" is empty.`);
+            throw new TapjawConfigError(
+                `.evn ${this.configName} variable "${jobsEnvKey}" is empty.`
+            );
         }
 
-        this.config[jobsEnvKey.replace(this.configKey, '').toLowerCase()] = configStr as string;
+        this.config[
+            jobsEnvKey.replace(this.configKey, '').toLowerCase()
+        ] = configStr as string;
     }
 }
 

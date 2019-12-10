@@ -32,18 +32,18 @@ describe('Make sure the csvToJson works as expected', () => {
                     {
                         name: 'Pancho',
                         age: '10',
-                        weight: '4.0',
+                        weight: '4.0'
                     },
                     {
                         name: 'Sasha',
                         age: '11',
-                        weight: '3.7',
+                        weight: '3.7'
                     },
                     {
                         name: 'Biggles',
                         age: '3',
-                        weight: '0.1',
-                    },
+                        weight: '0.1'
+                    }
                 ]
             }
         });

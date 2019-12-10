@@ -3,45 +3,21 @@ import sortObjectArrays from '../sort-object-arrays';
 describe('Make sure sortObjectArrays() works as expected', () => {
     test('should sort a basic array of strings payload', () => {
         const payload = {
-            moo: [
-                'zzz',
-                'aaa',
-                'ddd',
-                'ccc',
-                'jjj'
-            ]
+            moo: ['zzz', 'aaa', 'ddd', 'ccc', 'jjj']
         };
 
         expect(sortObjectArrays(payload)).toEqual({
-            moo: [
-                'aaa',
-                'ccc',
-                'ddd',
-                'jjj',
-                'zzz',
-            ]
+            moo: ['aaa', 'ccc', 'ddd', 'jjj', 'zzz']
         });
     });
 
     test('should sort a basic array of number payload', () => {
         const payload = {
-            moo: [
-                999,
-                111,
-                444,
-                333,
-                777
-            ]
+            moo: [999, 111, 444, 333, 777]
         };
 
         expect(sortObjectArrays(payload)).toEqual({
-            moo: [
-                111,
-                333,
-                444,
-                777,
-                999,
-            ]
+            moo: [111, 333, 444, 777, 999]
         });
     });
 
@@ -66,9 +42,9 @@ describe('Make sure sortObjectArrays() works as expected', () => {
                                 },
                                 {
                                     name: 'moo'
-                                },
+                                }
                             ]
-                        },
+                        }
                     ]
                 },
                 { number: 333 },
@@ -88,12 +64,12 @@ describe('Make sure sortObjectArrays() works as expected', () => {
                                 },
                                 {
                                     name: 'zoo'
-                                },
+                                }
                             ]
                         },
                         {
-                            name: 'zoo',
-                        },
+                            name: 'zoo'
+                        }
                     ]
                 },
                 { number: 111 },
@@ -102,7 +78,7 @@ describe('Make sure sortObjectArrays() works as expected', () => {
                 { number: 777 },
                 { number: 999 },
                 { string: 'moo' },
-                { string: 'zoo' },
+                { string: 'zoo' }
             ]
         });
     });

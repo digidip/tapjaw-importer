@@ -34,7 +34,10 @@ export default abstract class TapjawCommand extends Command {
      */
     static defaultFlags: flags.Input<any> = {
         help: flags.help({ char: 'h' }),
-        limit: flags.integer({ char: 'l', description: 'Limit the number of outputted JSON messages' }),
+        limit: flags.integer({
+            char: 'l',
+            description: 'Limit the number of outputted JSON messages'
+        })
     };
 
     /**
@@ -70,7 +73,9 @@ export default abstract class TapjawCommand extends Command {
 
         await this.iterator.run(
             this.getAdapterCallback(args, flags),
-            flags.limit && Number.isInteger(flags.limit) ? flags.limit : undefined
+            flags.limit && Number.isInteger(flags.limit)
+                ? flags.limit
+                : undefined
         );
     }
 
@@ -104,5 +109,8 @@ export default abstract class TapjawCommand extends Command {
      * @return TapjawAdapterCallback
      * @see TapjawAdapter
      */
-    protected abstract getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): TapjawAdapterCallback<TapjawMessage>;
+    protected abstract getAdapterCallback(
+        args: TapjawCommandArgs,
+        flags: TapjawCommandFlags
+    ): TapjawAdapterCallback<TapjawMessage>;
 }

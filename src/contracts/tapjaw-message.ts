@@ -46,8 +46,15 @@ export default class TapjawMessage {
      * @param payload TapjawPayload
      * @param importDate Date           Optional, if _no_ date is provided the current system's date time will be set.
      */
-    constructor(sourceProviderName: string, payload: TapjawPayload, importDate?: Date) {
-        this.signature = crypto.createHmac('sha256', tapjawMessageConfig.getConfig('secret')).update(JSON.stringify(payload)).digest('hex') as TapjawMessageDigest;
+    constructor(
+        sourceProviderName: string,
+        payload: TapjawPayload,
+        importDate?: Date
+    ) {
+        this.signature = crypto
+            .createHmac('sha256', tapjawMessageConfig.getConfig('secret'))
+            .update(JSON.stringify(payload))
+            .digest('hex') as TapjawMessageDigest;
         this.sourceProviderName = sourceProviderName;
         this.import_date = importDate || new Date();
         this.payload = payload;

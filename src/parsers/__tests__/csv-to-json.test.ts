@@ -2,7 +2,8 @@ import csvToJson from '../csv-to-json';
 
 describe('Make sure the csvToJson works as expected', () => {
     test('should return 3 basic records in an array', async () => {
-        const csv = 'name,age,weight\nPancho,10,4.0\nSasha,11,3.7\nBiggles,3,0.1\n';
+        const csv =
+            'name,age,weight\nPancho,10,4.0\nSasha,11,3.7\nBiggles,3,0.1\n';
         interface AnimalRecord {
             name: string;
             age: string;
@@ -13,18 +14,18 @@ describe('Make sure the csvToJson works as expected', () => {
             {
                 name: 'Pancho',
                 age: '10',
-                weight: '4.0',
+                weight: '4.0'
             },
             {
                 name: 'Sasha',
                 age: '11',
-                weight: '3.7',
+                weight: '3.7'
             },
             {
                 name: 'Biggles',
                 age: '3',
-                weight: '0.1',
-            },
+                weight: '0.1'
+            }
         ]);
     });
 
@@ -40,8 +41,8 @@ describe('Make sure the csvToJson works as expected', () => {
             {
                 namePlease: 'Pancho',
                 age: '10',
-                weightApprox: '4.0',
-            },
+                weightApprox: '4.0'
+            }
         ]);
     });
 
