@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import * as querystring from 'querystring';
-import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
+import * as querystring from "querystring";
+import TapjawAuthenticator from "../contracts/tapjaw-authenticator";
 export declare type OauthResponse = {
     [key: string]: any;
     access_token: string;
@@ -18,5 +18,5 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
     constructor(clientId: string, clientSecret: string, hostname: string, path: string, postParams: querystring.ParsedUrlQueryInput, method?: string, responseEncoding?: string);
     isAuthenticated(): boolean;
     authenticate(): Promise<OauthResponse>;
-    getLastResponse(): OauthResponse;
+    getLastResponse(): OauthResponse | null;
 }

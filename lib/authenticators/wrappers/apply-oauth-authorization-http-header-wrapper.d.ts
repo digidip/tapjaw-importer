@@ -1,7 +1,7 @@
 /// <reference types="node" />
-import TapjawAuthenticator from '../../contracts/tapjaw-authenticator';
-import * as https from 'https';
-import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
+import TapjawAuthenticator from "../../contracts/tapjaw-authenticator";
+import * as https from "https";
+import TapjawAuthenticationWrapper from "../../contracts/tapjaw-authentication-wrapper";
 declare type HttpHeaders = {
     [key: string]: string;
 };

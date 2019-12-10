@@ -24,3 +24,5 @@ export { default as OutputIterator } from './iterators/output-iterator';
 export { default as sortObjectArrays } from './support/sort-object-arrays';
 export { default as xmlToJson } from './parsers/xml-to-json';
 export { default as csvToJson } from './parsers/csv-to-json';
+export { default as DotEnvConfig } from './configs/dot-env-config';
+export { default as TapjawMessageConfig } from './configs/tapjaw-message-config';

@@ -1,4 +1,4 @@
-import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
+import TapjawAuthenticator from "../contracts/tapjaw-authenticator";
 export default class BasicAuthAuthenticator implements TapjawAuthenticator {
     protected readonly username: string;
     protected readonly password: string;

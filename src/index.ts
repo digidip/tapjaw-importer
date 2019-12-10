@@ -20,7 +20,7 @@ import { default as TapjawBasicAuthenticator } from './authenticators/basic-auth
 import { default as TapjawBearerAuthenticator } from './authenticators/bearer-auth-authenticator';
 import { default as TapjawOauthAuthenticator } from './authenticators/oauth-authenticator';
 
-// @deprecate in 0.2.0 release.
+// @deprecate in 0.3.0 release.
 export {
     TapjawBasicAuthenticator,
     TapjawBearerAuthenticator,
@@ -30,7 +30,7 @@ export {
 import { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
 import { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
 
-// @deprecate in 0.2.0 release.
+// @deprecate in 0.3.0 release.
 export {
     TapjawApplyAuthorizationHttpHeaderWrapper,
     TapjawApplyOauthAuthorizationHttpHeaderWrapper
@@ -75,3 +75,7 @@ export { default as sortObjectArrays } from './support/sort-object-arrays';
 // Parsers
 export { default as xmlToJson } from './parsers/xml-to-json';
 export { default as csvToJson } from './parsers/csv-to-json';
+
+// Configs
+export { default as DotEnvConfig } from './configs/dot-env-config';
+export { default as TapjawMessageConfig } from './configs/tapjaw-message-config';
