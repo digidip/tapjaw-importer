@@ -159,11 +159,4 @@ The StdoutIterator is the default configured outputting mechanism, which will ta
 
 # Examples
 
-```typescript
-// command
-
-class ExampleApiCommand extends TapjawCommand {
-    static
-}
-
-```
+Please reference the [TapjawExample](https://github.com/digidip/tapjaw-example/).
