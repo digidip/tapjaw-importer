@@ -1,6 +1,6 @@
 export declare class TapjawConnectorError extends Error {
 }
-export declare type TapjawConnectorResponse = string | BinaryType;
+export declare type TapjawConnectorResponse = string | BinaryType | object;
 /**
  * The base TapjawConnector contract.
  */
