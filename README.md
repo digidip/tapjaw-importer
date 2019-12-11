@@ -19,7 +19,7 @@ Create your own stream of payload messages to STDOUT from any API.
     - [TapjawMessage](#tapjawmessage)
   - [Iterables](#iterables)
     - [StdoutIterator](#stdoutiterator)
-- [Examples](#examples)
+- [Examples &amp; Tutorial](#examples-amp-tutorial)
 <!-- tocstop -->
 
 # Description
@@ -147,7 +147,7 @@ This is where all the interfaces for Connectors and Messages are stored by defau
 
 ### TapjawMessage
 
-Each message (`TapjawMessage`) is composed of a payload without structural constaints, import date, identifier and a signature which is generated from the payload.
+Each message (`TapjawMessage`) is composed of a payload without structural constaints, import date, identifier and a *sha256* signature which is generated from the payload.
 
 ## Iterables
 
@@ -157,6 +157,6 @@ The Tapjaw Iterables primary purpose is to take the messages yielded by the Adap
 
 The StdoutIterator is the default configured outputting mechanism, which will take each yielded message and convert into JSON and write it to the STDOUT buffer followed by a newline (`\n`). Using the STDOUT buffer allows you to pipe the JSON message into another program's STDIN buffer or append to a file.
 
-# Examples
+# Examples & Tutorial
 
 Please reference the [TapjawExample](https://github.com/digidip/tapjaw-example/).
