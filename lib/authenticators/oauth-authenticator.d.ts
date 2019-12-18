@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import * as querystring from "querystring";
-import TapjawAuthenticator from "../contracts/tapjaw-authenticator";
+import * as querystring from 'querystring';
+import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 export declare type OauthResponse = {
     [key: string]: any;
     access_token: string;
