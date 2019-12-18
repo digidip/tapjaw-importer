@@ -64,3 +64,5 @@ typings/
 oclif.manifest.json
 
 .DS_Store
+
+*-test.*
