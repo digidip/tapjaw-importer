@@ -45,13 +45,13 @@ export {
 
 import { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
 import { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
-import { default as ApplyCookieHttpHeaderWrapper } from './authenticators/wrappers/apply-cookie-http-header-wrapper';
+import { default as TpajawApplyCookieHttpHeaderWrapper } from './authenticators/wrappers/apply-cookie-http-header-wrapper';
 
 // @deprecate in 0.3.0 release.
 export {
     TapjawApplyAuthorizationHttpHeaderWrapper,
     TapjawApplyOauthAuthorizationHttpHeaderWrapper,
-    ApplyCookieHttpHeaderWrapper
+    TpajawApplyCookieHttpHeaderWrapper
 };
 
 const createBasicSecurity = (username: string, password: string) =>
@@ -75,7 +75,7 @@ const createSessionSecurity = (
     formSelector: string,
     fillables: Map<FormFieldName, FormFieldValue>
 ) =>
-    new ApplyCookieHttpHeaderWrapper(
+    new TpajawApplyCookieHttpHeaderWrapper(
         new TapjawSessionAuthenticator(
             loginPageUrl,
             new TapjawHtmlFormExtractor(formSelector, loginPageUrl),

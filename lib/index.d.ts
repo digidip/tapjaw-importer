@@ -17,12 +17,12 @@ import { default as TapjawRequestFormBuilder, FormFieldName, FormFieldValue, For
 export { TapjawBasicAuthenticator, TapjawBearerAuthenticator, TapjawOauthAuthenticator, TapjawSessionAuthenticator, TapjawHtmlFormExtractor, InputField, Form, TapjawRequestFormBuilder, FormFieldName, FormFieldValue, FormRequest };
 import { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
 import { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
-import { default as ApplyCookieHttpHeaderWrapper } from './authenticators/wrappers/apply-cookie-http-header-wrapper';
-export { TapjawApplyAuthorizationHttpHeaderWrapper, TapjawApplyOauthAuthorizationHttpHeaderWrapper, ApplyCookieHttpHeaderWrapper };
+import { default as TpajawApplyCookieHttpHeaderWrapper } from './authenticators/wrappers/apply-cookie-http-header-wrapper';
+export { TapjawApplyAuthorizationHttpHeaderWrapper, TapjawApplyOauthAuthorizationHttpHeaderWrapper, TpajawApplyCookieHttpHeaderWrapper };
 declare const createBasicSecurity: (username: string, password: string) => TapjawApplyAuthorizationHttpHeaderWrapper;
 declare const createBearerSecurity: (token: string) => TapjawApplyAuthorizationHttpHeaderWrapper;
 declare const createOAuthSecurity: (clientId: string, clientSecret: string, hostname: string, path: string, postParams: querystring.ParsedUrlQueryInput, method?: string, responseEncoding?: string) => TapjawApplyOauthAuthorizationHttpHeaderWrapper;
-declare const createSessionSecurity: (loginPageUrl: string, formSelector: string, fillables: Map<string, string>) => ApplyCookieHttpHeaderWrapper;
+declare const createSessionSecurity: (loginPageUrl: string, formSelector: string, fillables: Map<string, string>) => TpajawApplyCookieHttpHeaderWrapper;
 export { createBasicSecurity, createBearerSecurity, createOAuthSecurity, createSessionSecurity };
 export { default as StdoutIterator } from './iterators/stdout-iterator';
 export { default as OutputIterator } from './iterators/output-iterator';
