@@ -2,7 +2,7 @@ import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 import axiosCookieJarSupport from 'axios-cookiejar-support';
 import * as https from 'https';
-import { CookieJar, Cookie } from 'tough-cookie';
+import { CookieJar } from 'tough-cookie';
 import HtmlFormExtractor from './support/html-form-extractor';
 import RequestFormBuilder from './support/request-form-builder';
 import puppeteer from 'puppeteer';
@@ -30,7 +30,7 @@ export default class SessionAuthenticator implements TapjawAuthenticator {
             withCredentials: true,
             timeout: 10000,
             headers: {
-                userAgent: 'tapjaw-login/0.2.0',
+                userAgent: 'tapjaw-login',
 
                 // Minimal headers for less errors.
                 Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
