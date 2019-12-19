@@ -40,7 +40,8 @@ export default class SessionAuthenticator implements TapjawAuthenticator {
                 'Accept-Encoding': 'gzip, deflate',
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            validateStatus: (status: number) => (status >= 300 && status < 400) || status === 200
+            validateStatus: (status: number) => (status >= 300 && status < 400) || status === 200,
+            maxRedirects: 25
         };
     }
 
@@ -78,7 +79,6 @@ export default class SessionAuthenticator implements TapjawAuthenticator {
                         'Content-Length': length
                     },
                     data,
-                    maxRedirects: 25
                 });
 
                 this.authenticated = true;
