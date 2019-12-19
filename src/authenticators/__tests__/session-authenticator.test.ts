@@ -3,7 +3,7 @@ import RequestFormBuilder, { FormFieldName, FormFieldValue } from '../support/re
 import HtmlFormExtractor, { Form } from '../support/html-form-extractor';
 import axios, { AxiosRequestConfig } from 'axios';
 import puppeteer, { Browser, Page, Response, Cookie } from 'puppeteer';
-import { CookieJar } from 'jsdom';
+import { CookieJar } from 'tough-cookie';
 
 describe('Make sure SessionAuthenticator works as expected', () => {
     jest.mock('../support/request-form-builder');
