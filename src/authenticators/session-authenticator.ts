@@ -6,6 +6,7 @@ import { CookieJar } from 'tough-cookie';
 import HtmlFormExtractor from './support/html-form-extractor';
 import RequestFormBuilder from './support/request-form-builder';
 import puppeteer from 'puppeteer';
+import { npmPackage } from '../support/npm-package';
 
 export default class SessionAuthenticator implements TapjawAuthenticator {
     private authenticated = false;
@@ -30,7 +31,7 @@ export default class SessionAuthenticator implements TapjawAuthenticator {
             withCredentials: true,
             timeout: 10000,
             headers: {
-                userAgent: 'tapjaw-login',
+                userAgent: `tapjaw-login/${npmPackage().version}`,
 
                 // Minimal headers for less errors.
                 Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
