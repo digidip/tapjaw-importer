@@ -2,7 +2,7 @@ import SessionAuthenticator from '../session-authenticator';
 import RequestFormBuilder, { FormFieldName, FormFieldValue } from '../support/request-form-builder';
 import HtmlFormExtractor, { Form } from '../support/html-form-extractor';
 import axios, { AxiosRequestConfig } from 'axios';
-import puppeteer, { Browser, Page, Response, Cookie } from 'puppeteer';
+import { launch, Browser, Page, Response, Cookie, LaunchOptions } from 'puppeteer'; // { launch, Browser, Page, Response, Cookie }
 import { CookieJar } from 'tough-cookie';
 
 describe('Make sure SessionAuthenticator works as expected', () => {
@@ -11,7 +11,7 @@ describe('Make sure SessionAuthenticator works as expected', () => {
     jest.genMockFromModule('axios');
     jest.genMockFromModule('puppeteer');
 
-    const puppeteerLaunchMock = (body: string, cookies: Cookie[] = []) => (): Promise<jest.Mocked<Browser>> => {
+    const puppeteerLaunchMock = (body: string, cookies: Cookie[] = []) => (options?: LaunchOptions): Promise<jest.Mocked<Browser>> => {
         const response = {
             buffer: jest.fn(() => Promise.resolve(Buffer.from(body))),
         } as jest.Mocked<Pick<Response, 'buffer'>>
@@ -58,7 +58,8 @@ describe('Make sure SessionAuthenticator works as expected', () => {
             ]))
         );
 
-        puppeteer.launch = jest.fn(puppeteerLaunchMock(''));
+        // @ts-ignore
+        launch = jest.fn(puppeteerLaunchMock(''));
         await expect(instance.authenticate()).rejects.toEqual(new Error('No response from login url'));
     });
 
@@ -72,7 +73,8 @@ describe('Make sure SessionAuthenticator works as expected', () => {
             ]))
         );
 
-        puppeteer.launch = jest.fn(puppeteerLaunchMock('<html><body></body></html>'));
+        // @ts-ignore
+        launch = jest.fn(puppeteerLaunchMock('<html><body></body></html>'));
         extractor.getInputFields = jest.fn(() => null);
 
         await expect(instance.authenticate()).rejects.toEqual(new Error('No form found in response'));
@@ -90,7 +92,8 @@ describe('Make sure SessionAuthenticator works as expected', () => {
             ]))
         );
 
-        puppeteer.launch = jest.fn(puppeteerLaunchMock('<html><body><form id="myform" method="post"><input name="test" type="text" value=""/></form></body></html>'));
+        // @ts-ignore
+        launch = jest.fn(puppeteerLaunchMock('<html><body><form id="myform" method="post"><input name="test" type="text" value=""/></form></body></html>'));
         extractor.getInputFields = jest.fn((body: string) => ({
             url: false
         } as Form));
@@ -134,7 +137,8 @@ describe('Make sure SessionAuthenticator works as expected', () => {
                 sameSite: 'Lax',
             }
         ]
-        puppeteer.launch = jest.fn(puppeteerLaunchMock(html, cookies));
+        // @ts-ignore
+        launch = jest.fn(puppeteerLaunchMock(html, cookies));
         // @ts-ignore - not sure how to masquerade <T = any, R = AxiosResponse<T>>
         axios.request = jest.fn(
             (config: AxiosRequestConfig) => {

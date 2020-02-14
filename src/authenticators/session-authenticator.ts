@@ -5,7 +5,7 @@ import * as https from 'https';
 import { CookieJar } from 'tough-cookie';
 import HtmlFormExtractor from './support/html-form-extractor';
 import RequestFormBuilder from './support/request-form-builder';
-import puppeteer from 'puppeteer';
+import { launch, Cookie } from 'puppeteer';
 import { npmPackage } from '../support/npm-package';
 
 export default class SessionAuthenticator implements TapjawAuthenticator {
@@ -91,7 +91,7 @@ export default class SessionAuthenticator implements TapjawAuthenticator {
         });
     }
 
-    protected setCookies(cookies: puppeteer.Cookie[]): void {
+    protected setCookies(cookies: Cookie[]): void {
         const cookieJar = this.createCookieJar();
         cookies.forEach(async cookie => {
             cookieJar.setCookieSync(`${cookie.name}=${cookie.value}`, this.loginPageUrl);
@@ -100,7 +100,7 @@ export default class SessionAuthenticator implements TapjawAuthenticator {
     }
 
     protected async getLoginForm(): Promise<string | false> {
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await launch({ headless: true });
         const page = await browser.newPage();
         const response = await page.goto(this.loginPageUrl, {
             waitUntil: 'networkidle2'
