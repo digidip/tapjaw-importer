@@ -8,8 +8,8 @@ export default class SessionAuthenticator implements TapjawAuthenticator {
     protected readonly formExtractor: HtmlFormExtractor;
     protected readonly requestFormBuilder: RequestFormBuilder;
     private authenticated;
-    private requestor;
-    private defaultRequestConfig;
+    private readonly requestor;
+    private readonly defaultRequestConfig;
     private cookies;
     constructor(loginPageUrl: string, formExtractor: HtmlFormExtractor, requestFormBuilder: RequestFormBuilder);
     isAuthenticated(): boolean;

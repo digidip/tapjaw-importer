@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import * as querystring from 'querystring';
+import querystring from 'querystring';
 import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 export declare type OauthResponse = {
     [key: string]: any;

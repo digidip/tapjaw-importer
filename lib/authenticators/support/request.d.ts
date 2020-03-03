@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import * as https from "https";
+import https from 'https';
 /**
  * Wraps and performs a HTTP/HTTPS request.
  *

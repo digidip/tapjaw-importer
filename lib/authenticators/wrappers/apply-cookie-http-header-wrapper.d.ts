@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import * as https from 'https';
+import https from 'https';
 import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
 import { CookieJar } from 'tough-cookie';
 import SessionAuthenticator from '../session-authenticator';
