@@ -1,9 +1,9 @@
 import TapjawAuthenticator, {
     TapjawAuthenticatorError
-} from "../../contracts/tapjaw-authenticator";
-import * as https from "https";
-import TapjawAuthenticationWrapper from "../../contracts/tapjaw-authentication-wrapper";
-import { OauthResponse } from "../oauth-authenticator";
+} from '../../contracts/tapjaw-authenticator';
+import https from 'https';
+import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
+import { OauthResponse } from '../oauth-authenticator';
 
 type HttpHeaders = { [key: string]: string };
 
@@ -28,7 +28,7 @@ export default class ApplyOauthAuthorizationHttpHeaderWrapper
                     return reject(
                         new TapjawAuthenticatorError(
                             `No "access_token" property provided from authenticator: ${this
-                                .authenticator.constructor.name || "Unknown"}`
+                                .authenticator.constructor.name || 'Unknown'}`
                         )
                     );
                 }
@@ -52,7 +52,7 @@ export default class ApplyOauthAuthorizationHttpHeaderWrapper
                 return reject(
                     new TapjawAuthenticatorError(
                         `No OAuth data recieved from authenticator: ${this
-                            .authenticator.constructor.name || "Unknown"}`
+                            .authenticator.constructor.name || 'Unknown'}`
                     )
                 );
             }
@@ -62,7 +62,7 @@ export default class ApplyOauthAuthorizationHttpHeaderWrapper
                 return reject(
                     new TapjawAuthenticatorError(
                         `No "access_token" property provided from authenticator: ${this
-                            .authenticator.constructor.name || "Unknown"}`
+                            .authenticator.constructor.name || 'Unknown'}`
                     )
                 );
             }

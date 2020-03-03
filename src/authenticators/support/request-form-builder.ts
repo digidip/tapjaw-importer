@@ -41,7 +41,7 @@ export default class RequestFormBuilder {
     private validateForm(form: Form): void | never {
         const properties = new Set(form.inputs.map(input => input.name));
 
-        for (const [ fieldName, fieldValue ] of this.populateFormFields) {
+        for (const [fieldName, fieldValue] of this.populateFormFields) {
             if (!properties.has(fieldName)) {
                 throw new Error(`"${fieldName}" does not exist in form.`);
             }

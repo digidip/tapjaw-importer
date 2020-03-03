@@ -1,4 +1,4 @@
-import TapjawAuthenticator from "../contracts/tapjaw-authenticator";
+import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 
 export default class BearerAuthAuthenticator implements TapjawAuthenticator {
     private authenticated = false;

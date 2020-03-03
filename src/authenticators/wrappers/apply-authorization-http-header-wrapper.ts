@@ -1,8 +1,8 @@
 import TapjawAuthenticator, {
     TapjawAuthenticatorError
-} from "../../contracts/tapjaw-authenticator";
-import * as https from "https";
-import TapjawAuthenticationWrapper from "../../contracts/tapjaw-authentication-wrapper";
+} from '../../contracts/tapjaw-authenticator';
+import https from 'https';
+import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
 
 type HttpHeaders = { [key: string]: string };
 
@@ -32,7 +32,7 @@ export default class ApplyAuthorizationHttpHeaderWrapper
                 return reject(
                     new TapjawAuthenticatorError(
                         `No Authorization header data recieved from authenticator: ${this
-                            .authenticator.constructor.name || "Unknown"}`
+                            .authenticator.constructor.name || 'Unknown'}`
                     )
                 );
             }

@@ -1,4 +1,4 @@
-import * as https from "https";
+import https from "https";
 import request from "../request";
 import { IncomingMessage, RequestOptions } from "http";
 import { EventEmitter } from "events";

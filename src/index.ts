@@ -1,4 +1,4 @@
-import * as querystring from 'querystring';
+import querystring from 'querystring';
 
 export { run } from '@oclif/command';
 
@@ -64,7 +64,7 @@ const createOAuthSecurity = (
     hostname: string,
     path: string,
     postParams: querystring.ParsedUrlQueryInput,
-    method: string = 'POST',
+    method = 'POST',
     responseEncoding = 'utf8'
 ) =>
     new TapjawApplyOauthAuthorizationHttpHeaderWrapper(

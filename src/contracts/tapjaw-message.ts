@@ -1,4 +1,4 @@
-import * as crypto from 'crypto';
+import crypto from 'crypto';
 import tapjawMessageConfig from '../configs/tapjaw-message-config';
 
 export type TapjawMessageDigest = string;

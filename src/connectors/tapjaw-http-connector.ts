@@ -1,8 +1,8 @@
 import { IncomingMessage, request } from 'http';
-import * as https from 'https';
+import https from 'https';
 import { encode, decode, encodingExists } from 'iconv-lite';
-import * as querystring from 'querystring';
-import * as zlib from 'zlib';
+import querystring from 'querystring';
+import zlib from 'zlib';
 import TapjawConnector, {
     TapjawConnectorResponse,
     TapjawConnectorError

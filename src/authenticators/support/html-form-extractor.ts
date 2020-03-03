@@ -30,7 +30,7 @@ export default class HtmlFormExtractor {
         let requestAction = form.attributes?.action || false;
         if (requestAction) {
             if (!requestAction.startsWith('http') && this.baseUrl) {
-                requestAction = this.baseUrl + (requestAction.startsWith('/') ? requestAction : '/' + requestAction)
+                requestAction = this.baseUrl + (requestAction.startsWith('/') ? requestAction : '/' + requestAction);
             }
         }
 

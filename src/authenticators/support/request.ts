@@ -1,5 +1,5 @@
-import * as https from "https";
-import { IncomingMessage } from "http";
+import https from 'https';
+import { IncomingMessage } from 'http';
 
 /**
  * Wraps and performs a HTTP/HTTPS request.
@@ -14,7 +14,7 @@ import { IncomingMessage } from "http";
 const request = <T extends string | BinaryType>(
     params: string,
     options: https.RequestOptions,
-    responseEncoding = "utf8"
+    responseEncoding = 'utf8'
 ): Promise<T> => {
     return new Promise((resolve, reject) => {
         const authReq = https.request(options, (response: IncomingMessage) => {
@@ -25,14 +25,14 @@ const request = <T extends string | BinaryType>(
                 return reject(error);
             }
 
-            let buffer: string | BinaryType = "";
+            let buffer: string | BinaryType = '';
             response.setEncoding(responseEncoding);
             response.on(
-                "data",
+                'data',
                 (data: string | BinaryType) => (buffer += data)
             );
-            response.on("end", () => resolve(buffer as T));
-            response.on("error", (error: Error) => reject(error));
+            response.on('end', () => resolve(buffer as T));
+            response.on('error', (error: Error) => reject(error));
         });
 
         authReq.write(params);

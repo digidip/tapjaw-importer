@@ -39,9 +39,8 @@ abstract class DotEnvConfig {
             );
         }
 
-        this.config[
-            jobsEnvKey.replace(this.configKey, '').toLowerCase()
-        ] = configStr as string;
+        this.config[ jobsEnvKey.replace(this.configKey, '').toLowerCase()
+] = configStr as string;
     }
 }
 

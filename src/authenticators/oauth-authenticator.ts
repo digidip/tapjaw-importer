@@ -1,4 +1,4 @@
-import * as querystring from 'querystring';
+import querystring from 'querystring';
 import TapjawAuthenticator, { TapjawAuthenticatorError } from '../contracts/tapjaw-authenticator';
 import request from './support/request';
 

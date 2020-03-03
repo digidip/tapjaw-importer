@@ -1,7 +1,7 @@
 import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 import axiosCookieJarSupport from 'axios-cookiejar-support';
-import * as https from 'https';
+import https from 'https';
 import { CookieJar } from 'tough-cookie';
 import HtmlFormExtractor from './support/html-form-extractor';
 import RequestFormBuilder from './support/request-form-builder';
@@ -10,8 +10,8 @@ import { npmPackage } from '../support/npm-package';
 
 export default class SessionAuthenticator implements TapjawAuthenticator {
     private authenticated = false;
-    private requestor: AxiosInstance;
-    private defaultRequestConfig: AxiosRequestConfig;
+    private readonly requestor: AxiosInstance;
+    private readonly defaultRequestConfig: AxiosRequestConfig;
     private cookies: CookieJar = this.createCookieJar();
 
     constructor(
@@ -121,7 +121,7 @@ export default class SessionAuthenticator implements TapjawAuthenticator {
         });
 
         // @ts-ignore - forcefully overload setCookie so we can provide ignoreError option.
-        cookieJar.setCookie = function(cookie, url, options, cb) {
+        cookieJar.setCookie = function (cookie, url, options, cb) {
             return CookieJar.prototype.setCookie.apply(
                 cookieJar,
                 // @ts-ignore

@@ -1,4 +1,4 @@
-import TapjawAuthenticator from "../contracts/tapjaw-authenticator";
+import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 
 export default class BasicAuthAuthenticator implements TapjawAuthenticator {
     private authenticated = false;
@@ -11,7 +11,7 @@ export default class BasicAuthAuthenticator implements TapjawAuthenticator {
         this.headers = {
             Authorization: `Basic ${Buffer.from(
                 `${username}:${password}`
-            ).toString("base64")}`
+            ).toString('base64')}`
         };
     }
 
