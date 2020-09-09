@@ -42,7 +42,6 @@
     "jsdom": "^15.2.1",
     "lodash": "^4.17.15",
     "node-html-parser": "^1.1.16",
-    "puppeteer": "^2.0.0",
     "tough-cookie": "^3.0.1",
     "ts-transformer-keys": "^0.3.5",
     "tslib": "^1.10.0",

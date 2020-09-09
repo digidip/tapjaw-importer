@@ -18,7 +18,7 @@ export { default as TapjawHttpConnector } from './connectors/tapjaw-http-connect
 import { default as TapjawBasicAuthenticator } from './authenticators/basic-auth-authenticator';
 import { default as TapjawBearerAuthenticator } from './authenticators/bearer-auth-authenticator';
 import { default as TapjawOauthAuthenticator } from './authenticators/oauth-authenticator';
-import { default as TapjawSessionAuthenticator } from './authenticators/session-authenticator';
+// import { default as TapjawSessionAuthenticator } from './authenticators/session-authenticator';
 
 import { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
 import {
@@ -33,7 +33,7 @@ export {
     TapjawBasicAuthenticator,
     TapjawBearerAuthenticator,
     TapjawOauthAuthenticator,
-    TapjawSessionAuthenticator,
+    // TapjawSessionAuthenticator,
     TapjawHtmlFormExtractor,
     InputField,
     Form,
