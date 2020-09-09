@@ -69,8 +69,6 @@
     "/oclif.manifest.json"
   ],
   "scripts": {
-    "postpack": "rm -f .oclif.manifest.json",
-    "prepack": "rm -rf lib && node_modules/typescript/bin/tsc && oclif-dev manifest",
     "lint": "node_modules/tslint/bin/tslint --project .",
     "test": "node node_modules/jest/bin/jest.js"
   },
