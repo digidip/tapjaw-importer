@@ -45,13 +45,13 @@ export {
 
 import { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
 import { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
-import { default as TpajawApplyCookieHttpHeaderWrapper } from './authenticators/wrappers/apply-cookie-http-header-wrapper';
+// import { default as TpajawApplyCookieHttpHeaderWrapper } from './authenticators/wrappers/apply-cookie-http-header-wrapper';
 
 // @deprecate in 0.3.0 release.
 export {
     TapjawApplyAuthorizationHttpHeaderWrapper,
     TapjawApplyOauthAuthorizationHttpHeaderWrapper,
-    TpajawApplyCookieHttpHeaderWrapper
+    // TpajawApplyCookieHttpHeaderWrapper
 };
 
 const createBasicSecurity = (username: string, password: string) =>
@@ -70,21 +70,21 @@ const createOAuthSecurity = (
     new TapjawApplyOauthAuthorizationHttpHeaderWrapper(
         new TapjawOauthAuthenticator(clientId, clientSecret, hostname, path, postParams, method, responseEncoding)
     );
-const createSessionSecurity = (
-    loginPageUrl: string,
-    formSelector: string,
-    fillables: Map<FormFieldName, FormFieldValue>
-) =>
-    new TpajawApplyCookieHttpHeaderWrapper(
-        new TapjawSessionAuthenticator(
-            loginPageUrl,
-            new TapjawHtmlFormExtractor(formSelector, loginPageUrl),
-            new TapjawRequestFormBuilder(fillables)
-        ),
-        loginPageUrl
-    );
+// const createSessionSecurity = (
+//     loginPageUrl: string,
+//     formSelector: string,
+//     fillables: Map<FormFieldName, FormFieldValue>
+// ) =>
+//     new TpajawApplyCookieHttpHeaderWrapper(
+//         new TapjawSessionAuthenticator(
+//             loginPageUrl,
+//             new TapjawHtmlFormExtractor(formSelector, loginPageUrl),
+//             new TapjawRequestFormBuilder(fillables)
+//         ),
+//         loginPageUrl
+//     );
 
-export { createBasicSecurity, createBearerSecurity, createOAuthSecurity, createSessionSecurity };
+export { createBasicSecurity, createBearerSecurity, createOAuthSecurity }; // , createSessionSecurity
 
 // Iterators
 export { default as StdoutIterator } from './iterators/stdout-iterator';
