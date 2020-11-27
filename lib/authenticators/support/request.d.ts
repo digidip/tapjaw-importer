@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import https from 'https';
 /**
  * Wraps and performs a HTTP/HTTPS request.

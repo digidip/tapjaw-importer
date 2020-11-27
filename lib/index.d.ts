@@ -1,18 +1,17 @@
-/// <reference types="node" />
 import querystring from 'querystring';
 export { default as TapjawAdapter } from './contracts/tapjaw-adapter';
 export { default as TapjawConnector } from './contracts/tapjaw-connector';
 export { default as TapjawAuthenticator } from './contracts/tapjaw-authenticator';
 export { default as TapjawIterator } from './contracts/tapjaw-iterator';
 export { default as TapjawMessage } from './contracts/tapjaw-message';
-export { default as TapjawCommand } from './contracts/tapjaw-command';
+export { default as TapjawCommand, TapjawCommandDefaultFlags, TapjawCommandArgs, TapjawCommandFlags, } from './contracts/tapjaw-command';
 export { default as TapjawHttpConnector } from './connectors/tapjaw-http-connector';
 import { default as TapjawBasicAuthenticator } from './authenticators/basic-auth-authenticator';
 import { default as TapjawBearerAuthenticator } from './authenticators/bearer-auth-authenticator';
 import { default as TapjawOauthAuthenticator } from './authenticators/oauth-authenticator';
 import { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
 import { default as TapjawRequestFormBuilder, FormFieldName, FormFieldValue, FormRequest } from './authenticators/support/request-form-builder';
-export { TapjawBasicAuthenticator, TapjawBearerAuthenticator, TapjawOauthAuthenticator, TapjawHtmlFormExtractor, InputField, Form, TapjawRequestFormBuilder, FormFieldName, FormFieldValue, FormRequest };
+export { TapjawBasicAuthenticator, TapjawBearerAuthenticator, TapjawOauthAuthenticator, TapjawHtmlFormExtractor, InputField, Form, TapjawRequestFormBuilder, FormFieldName, FormFieldValue, FormRequest, };
 import { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
 import { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
 export { TapjawApplyAuthorizationHttpHeaderWrapper, TapjawApplyOauthAuthorizationHttpHeaderWrapper, };

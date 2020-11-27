@@ -51,7 +51,7 @@ export default abstract class OutputIterator implements TapjawIterator {
                 return reject(error);
             }
 
-            resolve();
+            resolve(null);
         });
     }
 
@@ -60,7 +60,7 @@ export default abstract class OutputIterator implements TapjawIterator {
      *
      * @param message TapjawMessage
      */
-    protected abstract async outputMessage(
+    protected abstract outputMessage(
         message: TapjawMessage
     ): Promise<void>;
 }

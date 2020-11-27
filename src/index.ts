@@ -6,7 +6,12 @@ export { default as TapjawConnector } from './contracts/tapjaw-connector';
 export { default as TapjawAuthenticator } from './contracts/tapjaw-authenticator';
 export { default as TapjawIterator } from './contracts/tapjaw-iterator';
 export { default as TapjawMessage } from './contracts/tapjaw-message';
-export { default as TapjawCommand } from './contracts/tapjaw-command';
+export {
+    default as TapjawCommand,
+    TapjawCommandDefaultFlags,
+    TapjawCommandArgs,
+    TapjawCommandFlags,
+} from './contracts/tapjaw-command';
 
 // Connectors
 export { default as TapjawHttpConnector } from './connectors/tapjaw-http-connector';
@@ -23,7 +28,7 @@ import {
     default as TapjawRequestFormBuilder,
     FormFieldName,
     FormFieldValue,
-    FormRequest
+    FormRequest,
 } from './authenticators/support/request-form-builder';
 
 // @deprecate in 0.3.0 release.
@@ -38,7 +43,7 @@ export {
     TapjawRequestFormBuilder,
     FormFieldName,
     FormFieldValue,
-    FormRequest
+    FormRequest,
 };
 
 import { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
