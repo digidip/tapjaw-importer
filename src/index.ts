@@ -1,7 +1,5 @@
 import querystring from 'querystring';
 
-export { run } from '@oclif/command';
-
 // Contracts
 export { default as TapjawAdapter } from './contracts/tapjaw-adapter';
 export { default as TapjawConnector } from './contracts/tapjaw-connector';

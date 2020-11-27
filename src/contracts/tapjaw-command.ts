@@ -1,81 +1,30 @@
-import { Command, flags } from '@oclif/command';
 import TapjawIterator from './tapjaw-iterator';
 import { TapjawAdapterCallback } from './tapjaw-adapter';
-import { OutputFlags } from '@oclif/parser';
-import { ParserInput } from '@oclif/parser/lib/parse';
 import StdoutIterator from '../iterators/stdout-iterator';
-import { IArg } from '@oclif/parser/lib/args';
-import { TapjawMessage } from '..';
+import TapjawMessage from './tapjaw-message';
 
-export type TapjawCommandArgs = { [key: string]: any }; //OutputArgs<ParserInput['args']>;
-export type TapjawCommandFlags = OutputFlags<ParserInput['flags']>;
+export type TapjawCommandArgs = { [key: string]: any };
+export type TapjawCommandFlags = { [key: string]: any };
 
-export default abstract class TapjawCommand extends Command {
-    /**
-     * The command arguments
-     *
-     * @see @oclif/command
-     */
-    static args: IArg[] = [];
+export interface TapjawCommandDefaultFlags {
+    limit: string;
+}
 
-    /**
-     * Default Flags, please use `...TapjawCommand.defaultFlags` in your own `flags` property.
-     *
-     * Example:
-     * ```typescript
-     *     class MyCommand extends TapjawCommand {
-     *         static flags = {
-     *             ...TapjawCommand.defaultFlags,
-     *         }
-     *     }
-     * ```
-     *
-     * @see @oclif/command
-     */
-    static defaultFlags: flags.Input<any> = {
-        help: flags.help({ char: 'h' }),
-        limit: flags.integer({
-            char: 'l',
-            description: 'Limit the number of outputted JSON messages'
-        })
-    };
+export default abstract class TapjawCommand {
+    protected iterator: TapjawIterator;
 
-    /**
-     * The class which extends this abstract class.
-     *
-     * This is required so oclif can determine which Arguments and Flags exist against the command
-     * implementation.
-     *
-     * Example:
-     * ```typescript
-     *     class MyCommand extends TapjawCommand {
-     *        instance = MyCommand;
-     *        // ...
-     *     }
-     * ```
-     */
-    abstract instance: any; // @todo see if we can honour Parser.Input
-
-    /**
-     * The iterator implementation, by default the STDOUT iterator is set.
-     *
-     * @see TapjawIterator
-     */
-    protected iterator: TapjawIterator = new StdoutIterator(process.stdout);
+    public constructor(iterator?: TapjawIterator) {
+        this.iterator = iterator ? iterator : new StdoutIterator(process.stdout);
+    }
 
     /**
      * Run the command the execute the iterator run routine.
      *
-     * @see @oclif/command
      */
-    async run() {
-        const { args, flags } = this.parse(this.instance);
-
+    async run<T extends TapjawCommandFlags>(args: any[], flags: T & TapjawCommandDefaultFlags) {
         await this.iterator.run(
             this.getAdapterCallback(args, flags),
-            flags.limit && Number.isInteger(flags.limit)
-                ? flags.limit
-                : undefined
+            flags.limit ? Number(flags.limit) : undefined
         );
     }
 

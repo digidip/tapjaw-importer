@@ -1,6 +1,5 @@
 /// <reference types="node" />
 import querystring from 'querystring';
-export { run } from '@oclif/command';
 export { default as TapjawAdapter } from './contracts/tapjaw-adapter';
 export { default as TapjawConnector } from './contracts/tapjaw-connector';
 export { default as TapjawAuthenticator } from './contracts/tapjaw-authenticator';
