@@ -21,7 +21,7 @@ export default abstract class TapjawCommand {
      * Run the command the execute the iterator run routine.
      *
      */
-    async run<T extends TapjawCommandFlags>(args: any[], flags: T & TapjawCommandDefaultFlags) {
+    async run<T extends TapjawCommandFlags>(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags) {
         await this.iterator.run(
             this.getAdapterCallback(args, flags),
             flags.limit ? Number(flags.limit) : undefined

@@ -17,7 +17,7 @@ export default abstract class TapjawCommand {
      * Run the command the execute the iterator run routine.
      *
      */
-    run<T extends TapjawCommandFlags>(args: any[], flags: T & TapjawCommandDefaultFlags): Promise<void>;
+    run<T extends TapjawCommandFlags>(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void>;
     /**
      * Implement this function to return a callback that provides the implementation
      * on how to call an adapters method. This allows for arguments and flags from this method to adjust
