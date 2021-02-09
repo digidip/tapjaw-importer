@@ -74,6 +74,16 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      */
     get(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
     /**
+     * Send a DELETE request to the API.
+     *
+     * @param uri       string
+     * @param query     TapjawHttpQueryParameters
+     * @param headers   TapjawHttpHeaders (optional)
+     *
+     * @return TapjawConnectorResponse
+     */
+    delete(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    /**
      * Send a POST request to the API.
      *
      * @param uri       string

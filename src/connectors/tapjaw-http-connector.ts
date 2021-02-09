@@ -141,6 +141,35 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         return this.getResponse(options);
     }
 
+
+    /**
+     * Send a DELETE request to the API.
+     *
+     * @param uri       string
+     * @param query     TapjawHttpQueryParameters
+     * @param headers   TapjawHttpHeaders (optional)
+     *
+     * @return TapjawConnectorResponse
+     */
+    public async delete(
+        uri: string,
+        query: TapjawHttpQueryParameters,
+        headers?: TapjawHttpHeaders
+    ): Promise<TapjawConnectorResponse> {
+        const options: https.RequestOptions = {
+            hostname: this.host,
+            port: this.port,
+            path:
+                Object.keys(query).length > 0
+                    ? `${uri}?${querystring.stringify(query)}`
+                    : uri,
+            method: 'DELETE',
+            headers
+        };
+
+        return this.getResponse(options);
+    }
+
     /**
      * Send a POST request to the API.
      *
