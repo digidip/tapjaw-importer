@@ -25,7 +25,6 @@
     "axios": "^0.21.1",
     "axios-cookiejar-support": "^0.5.1",
     "camelcase-keys": "^6.0.1",
-    "canvas": "^2.6.1",
     "csvtojson": "^2.0.10",
     "deepmerge": "^4.0.0",
     "generator-webapp": "^4.0.0-6",
