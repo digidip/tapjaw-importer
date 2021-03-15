@@ -61,6 +61,11 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      */
     protected authenticatorData: any;
 
+    /**
+     * Containers the response object of the previous request.
+     */
+    protected lastResponse: IncomingMessage | null = null;
+
     public constructor(
         protected readonly host: string,
         protected readonly port = 80,
@@ -77,6 +82,10 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      */
     public hasSecurity(): boolean {
         return Boolean(this.security);
+    }
+
+    public getLastResponse(): IncomingMessage | null {
+        return this.lastResponse;
     }
 
     /**
@@ -284,6 +293,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             const connectorRequest = requestImpl(
                 options,
                 (response: IncomingMessage) => {
+                    this.lastResponse = response;
                     if (response.statusCode !== 200) {
                         const error = new TapjawConnectorError(
                             `HTTP Status code was ${response.statusCode}.`

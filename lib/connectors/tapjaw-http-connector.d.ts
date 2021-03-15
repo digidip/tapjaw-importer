@@ -1,3 +1,5 @@
+/// <reference types="node" />
+import { IncomingMessage } from 'http';
 import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-connector';
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 export interface TapjawHttpHeaders {
@@ -46,11 +48,16 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * conjunction with a request to an API endpoint.
      */
     protected authenticatorData: any;
+    /**
+     * Containers the response object of the previous request.
+     */
+    protected lastResponse: IncomingMessage | null;
     constructor(host: string, port?: number, enableHttps?: boolean, security?: TapjawAuthenticationWrapper | undefined);
     /**
      * Whether a authentication wrapper has been injected into the connector or not.
      */
     hasSecurity(): boolean;
+    getLastResponse(): IncomingMessage | null;
     /**
      * Set the character set encoding to decode the API response data before encoding or returning.
      *
