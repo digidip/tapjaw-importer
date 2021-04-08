@@ -252,7 +252,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             }
         };
 
-        return this.getResponse(options);
+        return this.getResponse(options, json);
     }
 
     /**
