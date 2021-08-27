@@ -1,12 +1,15 @@
 export class TapjawAuthenticatorError extends Error {}
 
+export type HttpHeaders = Record<string, string>;
+export type AuthorizationHeaders = HttpHeaders & Record<'Authorization', string>;
+
 /**
  * The base authentication contract.
  *
  * This is used by Connectors to authenticate a connection prior
  * to perform an API call.
  */
-export default interface TapjawAuthenticator {
+export default interface TapjawAuthenticator<T> {
     /**
      * Whether the authentication has occurred.
      *
@@ -22,5 +25,5 @@ export default interface TapjawAuthenticator {
      *
      * @see TapjawConnector
      */
-    authenticate(): Promise<any>;
+    authenticate(): Promise<T>;
 }

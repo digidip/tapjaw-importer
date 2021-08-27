@@ -55,7 +55,8 @@ describe('Make sure the csvToJson works as expected', () => {
 
         expect(await csvToJson<AnimalRecord[]>('')).toEqual([]);
     });
-    test('should error because first data row has a column missing', async () => {
+
+    test('should recieve empty because first data row has a column missing', async () => {
         const csv = 'name-please,age,weight approx\nPancho,10\n';
         interface AnimalRecord {
             namePlease: string;

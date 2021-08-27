@@ -10,7 +10,7 @@ import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
  * TapjawMessages being passed to the outputMessage() method.
  */
 export default abstract class OutputIterator implements TapjawIterator {
-    run(adapterCallback: TapjawAdapterCallback<TapjawMessage>, limit?: number): Promise<any>;
+    run(adapterCallback: TapjawAdapterCallback<TapjawMessage>, limit?: number): Promise<void>;
     /**
      * Output a message to a specific output mechanism.
      *

@@ -18,6 +18,9 @@
             "./node_modules/@types"
         ],
         "esModuleInterop": true,
+        "strictNullChecks": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
     },
     "include": [
         "./src/**/*"

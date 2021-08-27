@@ -1,9 +1,8 @@
 import fs from 'fs';
 
-interface NPMPackageJSon {
+interface NPMPackageJSon extends Record<string, unknown> {
     name: string;
     version: string;
-    [key: string]: any;
 }
 
 export const npmPackage = (): NPMPackageJSon => {

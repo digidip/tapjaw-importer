@@ -16,10 +16,17 @@
     "@types/puppeteer": "^2.0.0",
     "@types/tough-cookie": "^2.3.6",
     "@types/xml2js": "^0.4.5",
-    "jest": "^24.9.0",
+    "jest": "^27",
     "jest-mock-process": "^1.2.0",
-    "ts-jest": "^24.1.0",
-    "typescript": "^4"
+    "ts-jest": "^27",
+    "typescript": "^4",
+    "@typescript-eslint/eslint-plugin": "^4",
+    "@typescript-eslint/parser": "^4",
+    "eslint": "^7",
+    "eslint-config-standard": "^16",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-node": "^11",
+    "eslint-plugin-promise": "^4"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -45,11 +52,11 @@
   "files": [
     "/bin",
     "/lib",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
+    "/npm-shrinkwrap.json"
   ],
   "scripts": {
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "node node_modules/.bin/jest",
+    "lint": "node node_modules/.bin/eslint ./src --ext .ts"
   },
   "types": "lib/index.d.ts"
 }

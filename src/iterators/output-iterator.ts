@@ -14,45 +14,35 @@ export default abstract class OutputIterator implements TapjawIterator {
     public async run(
         adapterCallback: TapjawAdapterCallback<TapjawMessage>,
         limit?: number
-    ): Promise<any> {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const messages = await adapterCallback();
-                let done = false;
-                let adapterMessage;
-                let messageCount = 0;
-                adapterMessage = await messages.next();
+    ): Promise<void> {
+        const messages = await adapterCallback();
+        let done = false;
+        let adapterMessage;
+        let messageCount = 0;
+        adapterMessage = await messages.next();
 
-                while (!adapterMessage.done && !done) {
-                    /**
-                     * Output the message to an implemented writer mechanism.
-                     */
-                    await this.outputMessage(adapterMessage.value).catch(
-                        reject
-                    );
-                    messageCount++;
+        while (!adapterMessage.done && !done) {
+            /**
+             * Output the message to an implemented writer mechanism.
+             */
+            await this.outputMessage(adapterMessage.value);
+            messageCount++;
 
-                    /**
-                     * Limit the number of messages to output.
-                     */
-                    if (limit) {
-                        if (messageCount >= limit) {
-                            done = true;
-                        }
-                    }
-
-                    /**
-                     * Grab the next TapjawMessage and inform the Adapter if the iteration
-                     * is complete.
-                     */
-                    adapterMessage = await messages.next(done);
+            /**
+             * Limit the number of messages to output.
+             */
+            if (limit) {
+                if (messageCount >= limit) {
+                    done = true;
                 }
-            } catch (error) {
-                return reject(error);
             }
 
-            resolve(null);
-        });
+            /**
+             * Grab the next TapjawMessage and inform the Adapter if the iteration
+             * is complete.
+             */
+            adapterMessage = await messages.next(done);
+        }
     }
 
     /**

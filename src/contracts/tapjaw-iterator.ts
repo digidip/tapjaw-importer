@@ -23,5 +23,5 @@ export default interface TapjawIterator {
     run(
         adapterCallback: TapjawAdapterCallback<TapjawMessage>,
         limit?: number
-    ): Promise<any>;
+    ): Promise<unknown>;
 }

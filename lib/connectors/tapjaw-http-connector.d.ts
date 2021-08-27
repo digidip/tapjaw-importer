@@ -9,8 +9,16 @@ export interface TapjawHttpHeaders {
     Cookie?: string;
     'User-Agent'?: string;
 }
+export declare class ArrayParameter {
+    values: string[];
+    constructor(...values: string[]);
+}
+export declare class DuplicateParameter {
+    values: string[];
+    constructor(...values: string[]);
+}
 export interface TapjawHttpQueryParameters {
-    [key: string]: string;
+    [key: string]: string | ArrayParameter | DuplicateParameter;
 }
 export interface TapjawHttpFormParameters {
     [key: string]: string;
@@ -47,7 +55,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * Abetiary container for authentication data which can be used in
      * conjunction with a request to an API endpoint.
      */
-    protected authenticatorData: any;
+    protected authenticatorData: unknown;
     /**
      * Containers the response object of the previous request.
      */
@@ -112,6 +120,13 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @return TapjawConnectorResponse
      */
     postJson(uri: string, query: TapjawHttpQueryParameters, json: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    /**
+     * Convert a query object into a query string, respecting arrayed and duplicated
+     * keys.
+     *
+     * @param query TapjawHttpQueryParameters
+     */
+    protected stringifyParameters(query: TapjawHttpQueryParameters): string;
     /**
      * Apply security authentication data to request options.
      *

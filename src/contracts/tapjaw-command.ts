@@ -3,8 +3,8 @@ import { TapjawAdapterCallback } from './tapjaw-adapter';
 import StdoutIterator from '../iterators/stdout-iterator';
 import TapjawMessage from './tapjaw-message';
 
-export type TapjawCommandArgs = { [key: string]: any };
-export type TapjawCommandFlags = { [key: string]: any };
+export type TapjawCommandArgs = { [key: string]: unknown };
+export type TapjawCommandFlags = { [key: string]: unknown };
 
 export interface TapjawCommandDefaultFlags {
     limit: string;
@@ -21,7 +21,7 @@ export default abstract class TapjawCommand {
      * Run the command the execute the iterator run routine.
      *
      */
-    async run<T extends TapjawCommandFlags>(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags) {
+    async run<T extends TapjawCommandFlags>(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void> {
         await this.iterator.run(
             this.getAdapterCallback(args, flags),
             flags.limit ? Number(flags.limit) : undefined

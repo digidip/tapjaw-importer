@@ -2,10 +2,10 @@ import TapjawIterator from './tapjaw-iterator';
 import { TapjawAdapterCallback } from './tapjaw-adapter';
 import TapjawMessage from './tapjaw-message';
 export declare type TapjawCommandArgs = {
-    [key: string]: any;
+    [key: string]: unknown;
 };
 export declare type TapjawCommandFlags = {
-    [key: string]: any;
+    [key: string]: unknown;
 };
 export interface TapjawCommandDefaultFlags {
     limit: string;

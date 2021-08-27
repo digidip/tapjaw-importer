@@ -4,5 +4,5 @@
  * based on the outcome from a TapjawAuthenticator.
  */
 export default interface TapjawAuthenticationWrapper {
-    authenticate(requestOptionContainer: any): Promise<any>;
+    authenticate(requestOptionContainer: unknown): Promise<unknown>;
 }

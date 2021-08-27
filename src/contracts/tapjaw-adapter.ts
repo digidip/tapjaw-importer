@@ -3,20 +3,23 @@ import TapjawMessage from './tapjaw-message';
 export class TapjawAdapterError extends Error {}
 
 export interface TapjawAdapterArguments {
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 export type TapjawAdapterCallback<
     T extends TapjawMessage
 > = () => AsyncGenerator<T>;
 
+export type GenericMethod = () => unknown;
+
 type TapjawAdapter<T, U extends TapjawMessage> = {
     [P in keyof T]:
         | TapjawAdapterCallback<U>
+        | GenericMethod
         | number
         | boolean
         | string
-        | any[];
+        | unknown[];
 };
 
 export default TapjawAdapter;
