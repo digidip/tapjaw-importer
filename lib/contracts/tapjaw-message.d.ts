@@ -3,7 +3,7 @@ export declare type TapjawMessageDigest = string;
  * Payload schema
  */
 export interface TapjawPayload {
-    [key: string]: any;
+    [key: string]: unknown;
 }
 /**
  * Base data-interchange message container.

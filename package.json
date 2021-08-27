@@ -6,7 +6,6 @@
   "author": "Jeramy Wenserit <jeramy@digidip.net>",
   "license": "MIT",
   "devDependencies": {
-    "@oclif/tslint": "^3.1.1",
     "@types/camelcase-keys": "^5.1.1",
     "@types/deepmerge": "^2.2.0",
     "@types/iconv-lite": "^0.0.1",
@@ -17,23 +16,22 @@
     "@types/puppeteer": "^2.0.0",
     "@types/tough-cookie": "^2.3.6",
     "@types/xml2js": "^0.4.5",
-    "jest": "^24.9.0",
+    "jest": "^27",
     "jest-mock-process": "^1.2.0",
-    "ts-jest": "^24.1.0",
-    "ts-node": "^8.4.1",
-    "tslint": "^5.20.0",
-    "typescript": "^3.7.0"
+    "ts-jest": "^27",
+    "typescript": "^4",
+    "@typescript-eslint/eslint-plugin": "^4",
+    "@typescript-eslint/parser": "^4",
+    "eslint": "^7",
+    "eslint-config-standard": "^16",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-node": "^11",
+    "eslint-plugin-promise": "^4"
   },
   "dependencies": {
-    "@oclif/command": "^1.5.19",
-    "@oclif/config": "^1.13.3",
-    "@oclif/parser": "^3.8.4",
-    "@oclif/plugin-autocomplete": "^0.1.4",
-    "@oclif/plugin-help": "^2.2.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "axios-cookiejar-support": "^0.5.1",
     "camelcase-keys": "^6.0.1",
-    "canvas": "^2.6.1",
     "csvtojson": "^2.0.10",
     "deepmerge": "^4.0.0",
     "generator-webapp": "^4.0.0-6",
@@ -48,29 +46,17 @@
     "xml2js": "^0.4.22"
   },
   "main": "lib/index.js",
-  "bin": {
-    "tapjaw": "./bin/tapjaw"
-  },
   "engines": {
-    "node": ">=10.0.0"
-  },
-  "oclif": {
-    "commands": "./lib/commands",
-    "bin": "tapjaw",
-    "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-autocomplete"
-    ]
+    "node": ">=12.0.0"
   },
   "files": [
     "/bin",
     "/lib",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
+    "/npm-shrinkwrap.json"
   ],
   "scripts": {
-    "lint": "node_modules/tslint/bin/tslint --project .",
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "node node_modules/.bin/jest",
+    "lint": "node node_modules/.bin/eslint ./src --ext .ts"
   },
   "types": "lib/index.d.ts"
 }

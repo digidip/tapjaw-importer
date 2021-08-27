@@ -1,3 +1,5 @@
+/// <reference types="node" />
+import { IncomingMessage } from 'http';
 import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-connector';
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 export interface TapjawHttpHeaders {
@@ -7,8 +9,16 @@ export interface TapjawHttpHeaders {
     Cookie?: string;
     'User-Agent'?: string;
 }
+export declare class ArrayParameter {
+    values: string[];
+    constructor(...values: string[]);
+}
+export declare class DuplicateParameter {
+    values: string[];
+    constructor(...values: string[]);
+}
 export interface TapjawHttpQueryParameters {
-    [key: string]: string;
+    [key: string]: string | ArrayParameter | DuplicateParameter;
 }
 export interface TapjawHttpFormParameters {
     [key: string]: string;
@@ -45,12 +55,17 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * Abetiary container for authentication data which can be used in
      * conjunction with a request to an API endpoint.
      */
-    protected authenticatorData: any;
+    protected authenticatorData: unknown;
+    /**
+     * Containers the response object of the previous request.
+     */
+    protected lastResponse: IncomingMessage | null;
     constructor(host: string, port?: number, enableHttps?: boolean, security?: TapjawAuthenticationWrapper | undefined);
     /**
      * Whether a authentication wrapper has been injected into the connector or not.
      */
     hasSecurity(): boolean;
+    getLastResponse(): IncomingMessage | null;
     /**
      * Set the character set encoding to decode the API response data before encoding or returning.
      *
@@ -74,6 +89,16 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      */
     get(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
     /**
+     * Send a DELETE request to the API.
+     *
+     * @param uri       string
+     * @param query     TapjawHttpQueryParameters
+     * @param headers   TapjawHttpHeaders (optional)
+     *
+     * @return TapjawConnectorResponse
+     */
+    delete(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    /**
      * Send a POST request to the API.
      *
      * @param uri       string
@@ -95,6 +120,13 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @return TapjawConnectorResponse
      */
     postJson(uri: string, query: TapjawHttpQueryParameters, json: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    /**
+     * Convert a query object into a query string, respecting arrayed and duplicated
+     * keys.
+     *
+     * @param query TapjawHttpQueryParameters
+     */
+    protected stringifyParameters(query: TapjawHttpQueryParameters): string;
     /**
      * Apply security authentication data to request options.
      *

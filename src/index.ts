@@ -1,96 +1,38 @@
-import querystring from 'querystring';
-
-export { run } from '@oclif/command';
-
 // Contracts
 export { default as TapjawAdapter } from './contracts/tapjaw-adapter';
 export { default as TapjawConnector } from './contracts/tapjaw-connector';
 export { default as TapjawAuthenticator } from './contracts/tapjaw-authenticator';
 export { default as TapjawIterator } from './contracts/tapjaw-iterator';
 export { default as TapjawMessage } from './contracts/tapjaw-message';
-export { default as TapjawCommand } from './contracts/tapjaw-command';
+export {
+    default as TapjawCommand,
+    TapjawCommandDefaultFlags,
+    TapjawCommandArgs,
+    TapjawCommandFlags,
+} from './contracts/tapjaw-command';
 
 // Connectors
 export { default as TapjawHttpConnector } from './connectors/tapjaw-http-connector';
-// export { default as TapjawSoapConnector } from './connectors/tapjaw-soap-connector';
 
-// Authenticators
-import { default as TapjawBasicAuthenticator } from './authenticators/basic-auth-authenticator';
-import { default as TapjawBearerAuthenticator } from './authenticators/bearer-auth-authenticator';
-import { default as TapjawOauthAuthenticator } from './authenticators/oauth-authenticator';
-// import { default as TapjawSessionAuthenticator } from './authenticators/session-authenticator';
-
-import { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
-import {
+export { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
+export {
     default as TapjawRequestFormBuilder,
     FormFieldName,
     FormFieldValue,
-    FormRequest
+    FormRequest,
 } from './authenticators/support/request-form-builder';
 
-// @deprecate in 0.3.0 release.
-export {
-    TapjawBasicAuthenticator,
-    TapjawBearerAuthenticator,
-    TapjawOauthAuthenticator,
-    // TapjawSessionAuthenticator,
-    TapjawHtmlFormExtractor,
-    InputField,
-    Form,
-    TapjawRequestFormBuilder,
-    FormFieldName,
-    FormFieldValue,
-    FormRequest
-};
-
-import { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
-import { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
+export { default as TapjawAuthenticationWrapper } from './contracts/tapjaw-authentication-wrapper';
+// export { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
+// export { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
 // import { default as TpajawApplyCookieHttpHeaderWrapper } from './authenticators/wrappers/apply-cookie-http-header-wrapper';
-
-// @deprecate in 0.3.0 release.
-export {
-    TapjawApplyAuthorizationHttpHeaderWrapper,
-    TapjawApplyOauthAuthorizationHttpHeaderWrapper,
-    // TpajawApplyCookieHttpHeaderWrapper
-};
-
-const createBasicSecurity = (username: string, password: string) =>
-    new TapjawApplyAuthorizationHttpHeaderWrapper(new TapjawBasicAuthenticator(username, password));
-const createBearerSecurity = (token: string) =>
-    new TapjawApplyAuthorizationHttpHeaderWrapper(new TapjawBearerAuthenticator(token));
-const createOAuthSecurity = (
-    clientId: string,
-    clientSecret: string,
-    hostname: string,
-    path: string,
-    postParams: querystring.ParsedUrlQueryInput,
-    method = 'POST',
-    responseEncoding = 'utf8'
-) =>
-    new TapjawApplyOauthAuthorizationHttpHeaderWrapper(
-        new TapjawOauthAuthenticator(clientId, clientSecret, hostname, path, postParams, method, responseEncoding)
-    );
-// const createSessionSecurity = (
-//     loginPageUrl: string,
-//     formSelector: string,
-//     fillables: Map<FormFieldName, FormFieldValue>
-// ) =>
-//     new TpajawApplyCookieHttpHeaderWrapper(
-//         new TapjawSessionAuthenticator(
-//             loginPageUrl,
-//             new TapjawHtmlFormExtractor(formSelector, loginPageUrl),
-//             new TapjawRequestFormBuilder(fillables)
-//         ),
-//         loginPageUrl
-//     );
-
-export { createBasicSecurity, createBearerSecurity, createOAuthSecurity }; // , createSessionSecurity
 
 // Iterators
 export { default as StdoutIterator } from './iterators/stdout-iterator';
 export { default as OutputIterator } from './iterators/output-iterator';
 
 // Support
+export { createBasicSecurity, createBearerSecurity, createOAuthSecurity } from './support/create-security'; // , createSessionSecurity
 export { default as sortObjectArrays } from './support/sort-object-arrays';
 
 // Parsers

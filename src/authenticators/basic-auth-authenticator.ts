@@ -1,17 +1,14 @@
-import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
+import TapjawAuthenticator, { AuthorizationHeaders } from '../contracts/tapjaw-authenticator';
 
-export default class BasicAuthAuthenticator implements TapjawAuthenticator {
+export type BasicAuthResponse = AuthorizationHeaders;
+
+export default class BasicAuthAuthenticator implements TapjawAuthenticator<BasicAuthResponse> {
     private authenticated = false;
-    private readonly headers: { Authorization: string };
+    private readonly headers: BasicAuthResponse;
 
-    constructor(
-        protected readonly username: string,
-        protected readonly password: string
-    ) {
+    constructor(protected readonly username: string, protected readonly password: string) {
         this.headers = {
-            Authorization: `Basic ${Buffer.from(
-                `${username}:${password}`
-            ).toString('base64')}`
+            Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`,
         };
     }
 
@@ -19,10 +16,8 @@ export default class BasicAuthAuthenticator implements TapjawAuthenticator {
         return this.authenticated;
     }
 
-    public async authenticate(): Promise<{ Authorization: string }> {
-        return new Promise(resolve => {
-            this.authenticated = true;
-            resolve(this.headers);
-        });
+    public async authenticate(): Promise<BasicAuthResponse> {
+        this.authenticated = true;
+        return Promise.resolve(this.headers);
     }
 }

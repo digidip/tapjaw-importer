@@ -1,4 +1,4 @@
-import OauthAuthenticator from '../oauth-authenticator';
+import OauthAuthenticator, { isOauthResponse } from '../oauth-authenticator';
 import request from '../support/request';
 import { TapjawAuthenticatorError } from '../../contracts/tapjaw-authenticator';
 
@@ -57,5 +57,14 @@ describe('Make sure the OAuthAuthenticator works as expected', () => {
             new TapjawAuthenticatorError('No oauth response was recieved.')
         );
         expect(instance.isAuthenticated()).toBeFalsy();
+    });
+
+    it('should make sure isOauthResponse works as expected', () => {
+        expect(isOauthResponse({})).toStrictEqual(false);
+        expect(isOauthResponse(undefined)).toStrictEqual(false);
+        expect(isOauthResponse(null)).toStrictEqual(false);
+        expect(isOauthResponse({
+            access_token: 'test'
+        })).toStrictEqual(true);
     });
 });

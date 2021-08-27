@@ -1,4 +1,5 @@
-// import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
+// @todo
+//import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 // import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 // import axiosCookieJarSupport from 'axios-cookiejar-support';
 // import https from 'https';

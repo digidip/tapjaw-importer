@@ -1,25 +1,20 @@
-const csvToJsonConverter = require('csvtojson');
-const camelcaseKeys = require('camelcase-keys');
+import csvToJsonConverter from 'csvtojson';
+import camelcaseKeys from 'camelcase-keys';
 
-type CsvObjects =
-    | { [key: string]: any }
-    | ReadonlyArray<{ [key: string]: any }>;
+type CsvObjects = Record<string, unknown> | ReadonlyArray<Record<string, unknown>>;
 
-export default <T>(csv: string, quote = '"'): Promise<T> => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let results = (await csvToJsonConverter({
-                quote,
-                checkColumn: true
-            }).fromString(csv)) as CsvObjects;
-
-            results = camelcaseKeys(results, {
-                deep: true
-            });
-
-            return resolve(results as T);
-        } catch (e) {
-            reject(new Error(e));
-        }
+export default async <T>(csv: string, quote = '"'): Promise<T> => {
+    const service = csvToJsonConverter({
+        quote,
+        checkColumn: true,
     });
+
+    const results = await service.fromString(csv) as CsvObjects;
+    if (results.length === 0) {
+        return results as T;
+    }
+
+    return camelcaseKeys(results, {
+        deep: true
+    }) as T;
 };
