@@ -1,6 +1,6 @@
-type Payload = { [key: string]: any };
+type Payload = Record<string, unknown>;
 
-const sortObjectsCallback = (a: object, b: object) => {
+const sortObjectsCallback = (a: Record<string, unknown>, b: Record<string, unknown>) => {
     const aJson = JSON.stringify(a);
     const bJson = JSON.stringify(b);
 
@@ -23,12 +23,12 @@ const sortObjectsCallback = (a: object, b: object) => {
  *
  * @param payload Payload
  */
-const sortObjevtArrays = <T = object>(payload: Payload): T => {
+const sortObjevtArrays = <T = Record<string, unknown>>(payload: Payload): T => {
     const keys = Object.keys(payload);
-    const newPayload: { [key: string]: any } = {};
+    const newPayload: Record<string, unknown> = {};
 
     keys.forEach((key: string) => {
-        let prop = payload[key];
+        const prop = payload[key];
 
         if (Array.isArray(prop) && prop.length > 0) {
             prop.forEach((value: unknown, index: number) => {

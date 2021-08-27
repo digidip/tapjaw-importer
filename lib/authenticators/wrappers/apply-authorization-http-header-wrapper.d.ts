@@ -1,15 +1,11 @@
 /// <reference types="node" />
-import TapjawAuthenticator from '../../contracts/tapjaw-authenticator';
+import TapjawAuthenticator, { AuthorizationHeaders } from '../../contracts/tapjaw-authenticator';
 import https from 'https';
 import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
-declare type HttpHeaders = {
-    [key: string]: string;
-};
 export default class ApplyAuthorizationHttpHeaderWrapper implements TapjawAuthenticationWrapper {
     private readonly authenticator;
-    protected authenticationData: HttpHeaders | undefined;
-    constructor(authenticator: TapjawAuthenticator);
+    protected authenticationData?: AuthorizationHeaders;
+    constructor(authenticator: TapjawAuthenticator<AuthorizationHeaders>);
     authenticate(requestOptionContainer: https.RequestOptions): Promise<https.RequestOptions>;
     private applyAuthorizationHeader;
 }
-export {};

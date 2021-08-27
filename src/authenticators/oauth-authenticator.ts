@@ -1,13 +1,14 @@
 import querystring from 'querystring';
-import TapjawAuthenticator, { TapjawAuthenticatorError } from '../contracts/tapjaw-authenticator';
+import TapjawAuthenticator, { HttpHeaders, TapjawAuthenticatorError } from '../contracts/tapjaw-authenticator';
 import request from './support/request';
 
-export type OauthResponse = {
-    [key: string]: any;
-    access_token: string;
-};
+export type OauthResponse = HttpHeaders & Record<'access_token', string>;
 
-export default class OauthAuthenticator implements TapjawAuthenticator {
+export const isOauthResponse = (obj: unknown): obj is OauthResponse => {
+    return Boolean(obj && typeof obj === 'object' && 'access_token' in (obj as HttpHeaders));
+}
+
+export default class OauthAuthenticator implements TapjawAuthenticator<OauthResponse> {
     private authenticated = false;
     private lastResponse: OauthResponse | null = null;
 
@@ -26,51 +27,43 @@ export default class OauthAuthenticator implements TapjawAuthenticator {
     }
 
     public async authenticate(): Promise<OauthResponse> {
-        return new Promise(async (resolve, reject) => {
-            if (this.isAuthenticated()) {
-                const lastResponse = this.getLastResponse();
-                if (lastResponse !== null) {
-                    return resolve(lastResponse);
-                }
+        if (this.isAuthenticated()) {
+            const lastResponse = this.getLastResponse();
+            if (lastResponse !== null) {
+                return lastResponse;
             }
+        }
 
-            const headers: object = {
-                Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-            };
+        const headers = {
+            Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        };
 
-            const params: string = querystring.stringify(this.postParams);
-            const options: object = {
-                hostname: this.hostname,
-                path: this.path,
-                method: this.method,
-                headers
-            };
+        const params: string = querystring.stringify(this.postParams);
+        const options = {
+            hostname: this.hostname,
+            path: this.path,
+            method: this.method,
+            headers,
+        };
 
-            this.authenticated = false;
-            this.lastResponse = null;
-            try {
-                const oauthResponse = await request(params, options, this.responseEncoding);
+        this.authenticated = false;
+        this.lastResponse = null;
 
-                if (!oauthResponse) {
-                    throw new TapjawAuthenticatorError('No oauth response was recieved.');
-                }
-                const oauthJson = JSON.parse(oauthResponse) as OauthResponse;
+        const oauthResponse = await request(params, options, this.responseEncoding);
+        if (!oauthResponse) {
+            throw new TapjawAuthenticatorError('No oauth response was recieved.');
+        }
+        const oauthJson = JSON.parse(oauthResponse) as OauthResponse;
 
-                if (!oauthJson) {
-                    throw new TapjawAuthenticatorError('Invalid OAuth JSON');
-                }
+        if (!oauthJson) {
+            throw new TapjawAuthenticatorError('Invalid OAuth JSON');
+        }
 
-                this.authenticated = true;
-                this.lastResponse = oauthJson;
+        this.authenticated = true;
+        this.lastResponse = oauthJson;
 
-                return resolve(oauthJson);
-            } catch (error) {
-                reject(error);
-            }
-
-            reject(new TapjawAuthenticatorError('No oauth response was recieved.'));
-        });
+        return oauthJson;
     }
 
     public getLastResponse(): OauthResponse | null {

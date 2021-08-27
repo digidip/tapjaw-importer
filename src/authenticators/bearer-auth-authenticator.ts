@@ -1,12 +1,14 @@
-import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
+import TapjawAuthenticator, { AuthorizationHeaders } from '../contracts/tapjaw-authenticator';
 
-export default class BearerAuthAuthenticator implements TapjawAuthenticator {
+export type BearerResponse = AuthorizationHeaders;
+
+export default class BearerAuthAuthenticator implements TapjawAuthenticator<BearerResponse> {
     private authenticated = false;
-    private readonly header: { Authorization: string };
+    private readonly header: BearerResponse;
 
     constructor(protected readonly bearerToken: string) {
         this.header = {
-            Authorization: `Bearer ${bearerToken}`
+            Authorization: `Bearer ${bearerToken}`,
         };
     }
 
@@ -14,10 +16,8 @@ export default class BearerAuthAuthenticator implements TapjawAuthenticator {
         return this.authenticated;
     }
 
-    public async authenticate(): Promise<{ Authorization: string }> {
-        return new Promise(resolve => {
-            this.authenticated = true;
-            resolve(this.header);
-        });
+    public async authenticate(): Promise<BearerResponse> {
+        this.authenticated = true;
+        return Promise.resolve(this.header);
     }
 }

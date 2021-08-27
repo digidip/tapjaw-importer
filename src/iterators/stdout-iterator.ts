@@ -30,18 +30,12 @@ export default class StdoutIterator extends OutputIterator {
         const json = JSON.stringify(message, null, this.pretty ? 2 : undefined);
 
         if (!json) {
-            return Promise.reject(
-                new TapjawIteratorError(
-                    'message could not be parsed into JSON.'
-                )
-            );
+            throw new TapjawIteratorError('message could not be parsed into JSON.');
         }
 
         /**
          * Write JSON to stdout buffer.
          */
         this.writeCallback.write(`${json}\n`);
-
-        return Promise.resolve();
     }
 }

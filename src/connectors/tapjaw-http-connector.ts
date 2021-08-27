@@ -1,14 +1,11 @@
-import { IncomingMessage, request } from 'http';
+import http, { IncomingMessage } from 'http';
 import https from 'https';
 import { encode, decode, encodingExists } from 'iconv-lite';
 import querystring from 'querystring';
 import zlib from 'zlib';
-import TapjawConnector, {
-    TapjawConnectorResponse,
-    TapjawConnectorError
-} from '../contracts/tapjaw-connector';
+import TapjawConnector, { TapjawConnectorResponse, TapjawConnectorError } from '../contracts/tapjaw-connector';
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
-const deepmerge = require('deepmerge');
+import deepmerge from 'deepmerge';
 
 export interface TapjawHttpHeaders {
     [key: string]: string | undefined;
@@ -19,8 +16,22 @@ export interface TapjawHttpHeaders {
     'User-Agent'?: string;
 }
 
+export class ArrayParameter {
+    public values: string[];
+    constructor(...values: string[]) {
+        this.values = values;
+    }
+}
+
+export class DuplicateParameter {
+    public values: string[];
+    constructor(...values: string[]) {
+        this.values = values;
+    }
+}
+
 export interface TapjawHttpQueryParameters {
-    [key: string]: string;
+    [key: string]: string | ArrayParameter | DuplicateParameter;
 }
 
 export interface TapjawHttpFormParameters {
@@ -59,7 +70,12 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * Abetiary container for authentication data which can be used in
      * conjunction with a request to an API endpoint.
      */
-    protected authenticatorData: any;
+    protected authenticatorData: unknown;
+
+    /**
+     * Containers the response object of the previous request.
+     */
+    protected lastResponse: IncomingMessage | null = null;
 
     public constructor(
         protected readonly host: string,
@@ -77,6 +93,10 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      */
     public hasSecurity(): boolean {
         return Boolean(this.security);
+    }
+
+    public getLastResponse(): IncomingMessage | null {
+        return this.lastResponse;
     }
 
     /**
@@ -130,12 +150,34 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         const options: https.RequestOptions = {
             hostname: this.host,
             port: this.port,
-            path:
-                Object.keys(query).length > 0
-                    ? `${uri}?${querystring.stringify(query)}`
-                    : uri,
+            path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
             method: 'GET',
-            headers
+            headers,
+        };
+
+        return this.getResponse(options);
+    }
+
+    /**
+     * Send a DELETE request to the API.
+     *
+     * @param uri       string
+     * @param query     TapjawHttpQueryParameters
+     * @param headers   TapjawHttpHeaders (optional)
+     *
+     * @return TapjawConnectorResponse
+     */
+    public async delete(
+        uri: string,
+        query: TapjawHttpQueryParameters,
+        headers?: TapjawHttpHeaders
+    ): Promise<TapjawConnectorResponse> {
+        const options: https.RequestOptions = {
+            hostname: this.host,
+            port: this.port,
+            path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
+            method: 'DELETE',
+            headers,
         };
 
         return this.getResponse(options);
@@ -164,16 +206,13 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         const options: https.RequestOptions = {
             hostname: this.host,
             port: this.port,
-            path:
-                Object.keys(query).length > 0
-                    ? `${uri}?${querystring.stringify(query)}`
-                    : uri,
+            path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
             method: 'POST',
             headers: {
                 ...headers,
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Content-Length': Buffer.byteLength(body)
-            }
+                'Content-Length': Buffer.byteLength(body),
+            },
         };
 
         return this.getResponse(options, body);
@@ -202,19 +241,41 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         const options: https.RequestOptions = {
             hostname: this.host,
             port: this.port,
-            path:
-                Object.keys(query).length > 0
-                    ? `${uri}?${querystring.stringify(query)}`
-                    : uri,
+            path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
             method: 'POST',
             headers: {
                 ...headers,
                 'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(json)
-            }
+                'Content-Length': Buffer.byteLength(json),
+            },
         };
 
-        return this.getResponse(options);
+        return this.getResponse(options, json);
+    }
+
+    /**
+     * Convert a query object into a query string, respecting arrayed and duplicated
+     * keys.
+     *
+     * @param query TapjawHttpQueryParameters
+     */
+    protected stringifyParameters(query: TapjawHttpQueryParameters): string {
+        const queryParams = [];
+        for (const [key, value] of Object.entries(query)) {
+            if (value instanceof ArrayParameter) {
+                for (const item of value.values) {
+                    queryParams.push(`${key}[]=${querystring.escape(item)}`);
+                }
+            } else if (value instanceof DuplicateParameter) {
+                for (const item of value.values) {
+                    queryParams.push(`${key}=${querystring.escape(item)}`);
+                }
+            } else {
+                queryParams.push(`${key}=${querystring.escape(value)}`);
+            }
+        }
+
+        return queryParams.join('&');
     }
 
     /**
@@ -222,20 +283,14 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      *
      * @param options https.RequestOptions
      */
-    private applySecurity(
-        options: https.RequestOptions
-    ): Promise<https.RequestOptions> {
-        return new Promise(async (resolve, reject) => {
-            if (!this.security) {
-                // No security implemented
-                return resolve(options);
-            }
+    private async applySecurity(options: https.RequestOptions): Promise<https.RequestOptions> {
+        if (!this.security) {
+            // No security implemented
+            return options;
+        }
 
-            const updatedOptions = await this.security
-                .authenticate(options)
-                .catch(reject);
-            resolve(deepmerge(options, updatedOptions));
-        });
+        const updatedOptions = await this.security.authenticate(options) as Record<string, unknown>;
+        return deepmerge(options, updatedOptions);
     }
 
     /**
@@ -244,61 +299,46 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param options https.RequestOptions
      * @param writeBody string|undefined
      */
-    private getResponse(
-        options: https.RequestOptions,
-        writeBody?: string
-    ): Promise<TapjawConnectorResponse> {
-        return new Promise(async (resolve, reject) => {
-            options = await this.applySecurity(options);
+    private async getResponse(options: https.RequestOptions, writeBody?: string): Promise<TapjawConnectorResponse> {
+        options = await this.applySecurity(options);
 
-            const requestImpl = this.enableHttps ? https.request : request;
-            const connectorRequest = requestImpl(
-                options,
-                (response: IncomingMessage) => {
-                    if (response.statusCode !== 200) {
-                        const error = new TapjawConnectorError(
-                            `HTTP Status code was ${response.statusCode}.`
-                        );
-                        reject(error);
+        return new Promise((resolve, reject) => {
+            const requestImpl = this.enableHttps ? https.request : http.request;
+            const connectorRequest = requestImpl(options, (response: IncomingMessage) => {
+                this.lastResponse = response;
+                if (response.statusCode !== 200) {
+                    const error = new TapjawConnectorError(`HTTP Status code was ${response.statusCode}.`);
+                    reject(error);
+                }
+
+                const buffer: Buffer[] = [];
+                response.on('data', (data: string) => buffer.push(Buffer.from(data, 'binary')));
+                response.on('end', async () => {
+                    let contentBuffer = Buffer.concat(buffer);
+
+                    if (!contentBuffer) {
+                        reject(new TapjawConnectorError('Empty content buffer'));
                     }
 
-                    let buffer: Buffer[] = [];
-                    response.on('data', (data: string) =>
-                        buffer.push(Buffer.from(data, 'binary'))
+                    if (this.enableGzip) {
+                        contentBuffer = zlib.gunzipSync(contentBuffer);
+                    }
+
+                    if (this.useDecoding) {
+                        contentBuffer = Buffer.from(decode(contentBuffer, this.useDecoding));
+                    }
+
+                    // return raw string buffer.
+                    resolve(
+                        this.useEncoding
+                            ? encode(contentBuffer.toString(), this.useEncoding).toString()
+                            : contentBuffer.toString()
                     );
-                    response.on('end', async () => {
-                        let contentBuffer = Buffer.concat(buffer);
+                });
+                response.on('error', reject);
+            });
 
-                        if (!contentBuffer) {
-                            reject(
-                                new TapjawConnectorError('Empty content buffer')
-                            );
-                        }
-
-                        if (this.enableGzip) {
-                            contentBuffer = zlib.gunzipSync(contentBuffer);
-                        }
-
-                        if (this.useDecoding) {
-                            contentBuffer = Buffer.from(
-                                decode(contentBuffer, this.useDecoding)
-                            );
-                        }
-
-                        // return raw string buffer.
-                        resolve(
-                            this.useEncoding
-                                ? encode(
-                                      contentBuffer.toString(),
-                                      this.useEncoding
-                                  ).toString()
-                                : contentBuffer.toString()
-                        );
-                    });
-                    response.on('error', reject);
-                }
-            );
-
+            connectorRequest.on('error', reject);
             if (writeBody) {
                 connectorRequest.write(writeBody);
             }

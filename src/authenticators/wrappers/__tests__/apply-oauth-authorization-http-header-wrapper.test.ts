@@ -2,7 +2,7 @@ import ApplyOauthAuthorizationHttpHeaderWrapper from '../apply-oauth-authorizati
 import OauthAuthenticator from '../../oauth-authenticator';
 
 // We need to mock the OAuthAuthenticator as it attempts network communications.
-jest.mock('../../oauth-authenticator');
+// jest.mock('../../oauth-authenticator');
 
 describe('Test ApplyOauthAuthorizationHttpHeaderWrapper', () => {
     test('Make sure the "Authorization: Basic XXX" header is provided from OAuth authenticator', async () => {

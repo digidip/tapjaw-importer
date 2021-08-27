@@ -1,6 +1,4 @@
-declare type Payload = {
-    [key: string]: any;
-};
+declare type Payload = Record<string, unknown>;
 /**
  * This support method is used to prevent TapjawMessage
  * signatures incorrectly changing between API responses.
@@ -13,5 +11,5 @@ declare type Payload = {
  *
  * @param payload Payload
  */
-declare const sortObjevtArrays: <T = object>(payload: Payload) => T;
+declare const sortObjevtArrays: <T = Record<string, unknown>>(payload: Payload) => T;
 export default sortObjevtArrays;
