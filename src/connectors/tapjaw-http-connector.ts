@@ -19,8 +19,22 @@ export interface TapjawHttpHeaders {
     'User-Agent'?: string;
 }
 
+export class ArrayParameter {
+    public values: string[];
+    constructor(...values: string[]) {
+        this.values = values;
+    }
+}
+
+export class DuplicateParameter {
+    public values: string[];
+    constructor(...values: string[]) {
+        this.values = values;
+    }
+}
+
 export interface TapjawHttpQueryParameters {
-    [key: string]: string;
+    [key: string]: string | ArrayParameter | DuplicateParameter;
 }
 
 export interface TapjawHttpFormParameters {
@@ -141,7 +155,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             port: this.port,
             path:
                 Object.keys(query).length > 0
-                    ? `${uri}?${querystring.stringify(query)}`
+                    ? `${uri}?${this.stringifyParameters(query)}`
                     : uri,
             method: 'GET',
             headers
@@ -149,7 +163,6 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
 
         return this.getResponse(options);
     }
-
 
     /**
      * Send a DELETE request to the API.
@@ -170,7 +183,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             port: this.port,
             path:
                 Object.keys(query).length > 0
-                    ? `${uri}?${querystring.stringify(query)}`
+                    ? `${uri}?${this.stringifyParameters(query)}`
                     : uri,
             method: 'DELETE',
             headers
@@ -204,7 +217,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             port: this.port,
             path:
                 Object.keys(query).length > 0
-                    ? `${uri}?${querystring.stringify(query)}`
+                    ? `${uri}?${this.stringifyParameters(query)}`
                     : uri,
             method: 'POST',
             headers: {
@@ -242,7 +255,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             port: this.port,
             path:
                 Object.keys(query).length > 0
-                    ? `${uri}?${querystring.stringify(query)}`
+                    ? `${uri}?${this.stringifyParameters(query)}`
                     : uri,
             method: 'POST',
             headers: {
@@ -253,6 +266,31 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         };
 
         return this.getResponse(options, json);
+    }
+
+    /**
+     * Convert a query object into a query string, respecting arrayed and duplicated
+     * keys.
+     *
+     * @param query TapjawHttpQueryParameters
+     */
+    protected stringifyParameters(query: TapjawHttpQueryParameters): string {
+        const queryParams = [];
+        for (const [ key, value ] of Object.entries(query)) {
+            if (value instanceof ArrayParameter) {
+                for (const item of value.values) {
+                    queryParams.push(`${key}[]=${querystring.escape(item)}`);
+                }
+            } else if (value instanceof DuplicateParameter) {
+                for (const item of value.values) {
+                    queryParams.push(`${key}=${querystring.escape(item)}`);
+                }
+            } else {
+                queryParams.push(`${key}=${querystring.escape(value)}`);
+            }
+        }
+
+        return queryParams.join('&');
     }
 
     /**
