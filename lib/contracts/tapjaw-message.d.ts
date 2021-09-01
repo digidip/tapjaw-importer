@@ -2,9 +2,7 @@ export declare type TapjawMessageDigest = string;
 /**
  * Payload schema
  */
-export interface TapjawPayload {
-    [key: string]: unknown;
-}
+export declare type TapjawPayload = Record<string, unknown>;
 /**
  * Base data-interchange message container.
  *

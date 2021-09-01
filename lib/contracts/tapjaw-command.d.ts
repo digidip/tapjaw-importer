@@ -1,13 +1,9 @@
 import TapjawIterator from './tapjaw-iterator';
 import { TapjawAdapterCallback } from './tapjaw-adapter';
 import TapjawMessage from './tapjaw-message';
-export declare type TapjawCommandArgs = {
-    [key: string]: unknown;
-};
-export declare type TapjawCommandFlags = {
-    [key: string]: unknown;
-};
-export interface TapjawCommandDefaultFlags {
+export declare type TapjawCommandArgs<T = unknown> = Record<string, T>;
+export declare type TapjawCommandFlags<T = unknown> = Record<string, T>;
+export interface TapjawCommandDefaultFlags extends TapjawCommandFlags<string> {
     limit: string;
 }
 export default abstract class TapjawCommand {
