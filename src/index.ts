@@ -12,7 +12,7 @@ export {
 } from './contracts/tapjaw-command';
 
 // Connectors
-export { default as TapjawHttpConnector } from './connectors/tapjaw-http-connector';
+export { default as TapjawHttpConnector, ArrayParameter, DuplicateParameter } from './connectors/tapjaw-http-connector';
 
 export { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
 export {

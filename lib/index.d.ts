@@ -4,7 +4,7 @@ export { default as TapjawAuthenticator } from './contracts/tapjaw-authenticator
 export { default as TapjawIterator } from './contracts/tapjaw-iterator';
 export { default as TapjawMessage, TapjawPayload } from './contracts/tapjaw-message';
 export { default as TapjawCommand, TapjawCommandDefaultFlags, TapjawCommandArgs, TapjawCommandFlags, } from './contracts/tapjaw-command';
-export { default as TapjawHttpConnector } from './connectors/tapjaw-http-connector';
+export { default as TapjawHttpConnector, ArrayParameter, DuplicateParameter } from './connectors/tapjaw-http-connector';
 export { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
 export { default as TapjawRequestFormBuilder, FormFieldName, FormFieldValue, FormRequest, } from './authenticators/support/request-form-builder';
 export { default as TapjawAuthenticationWrapper } from './contracts/tapjaw-authentication-wrapper';
