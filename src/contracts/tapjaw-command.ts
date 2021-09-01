@@ -3,10 +3,10 @@ import { TapjawAdapterCallback } from './tapjaw-adapter';
 import StdoutIterator from '../iterators/stdout-iterator';
 import TapjawMessage from './tapjaw-message';
 
-export type TapjawCommandArgs = { [key: string]: unknown };
-export type TapjawCommandFlags = { [key: string]: unknown };
+export type TapjawCommandArgs<T = unknown> = Record<string, T>;
+export type TapjawCommandFlags<T = unknown> = Record<string, T>;
 
-export interface TapjawCommandDefaultFlags {
+export interface TapjawCommandDefaultFlags extends TapjawCommandFlags<string> {
     limit: string;
 }
 
