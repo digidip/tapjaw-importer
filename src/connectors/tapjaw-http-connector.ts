@@ -7,9 +7,7 @@ import TapjawConnector, { TapjawConnectorResponse, TapjawConnectorError } from '
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 import deepmerge from 'deepmerge';
 
-export interface TapjawHttpHeaders {
-    [key: string]: string | undefined;
-
+export interface TapjawHttpHeaders extends Record<string, string | undefined> {
     Accept?: string;
     'Accept-Encoding'?: string;
     Cookie?: string;
@@ -30,13 +28,9 @@ export class DuplicateParameter {
     }
 }
 
-export interface TapjawHttpQueryParameters {
-    [key: string]: string | ArrayParameter | DuplicateParameter;
-}
+export type TapjawHttpQueryParameters = Record<string, string | ArrayParameter | DuplicateParameter>;
 
-export interface TapjawHttpFormParameters {
-    [key: string]: string;
-}
+export type TapjawHttpFormParameters = Record<string, string>;
 
 export type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
 

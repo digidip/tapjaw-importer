@@ -2,9 +2,7 @@ import TapjawMessage from './tapjaw-message';
 
 export class TapjawAdapterError extends Error {}
 
-export interface TapjawAdapterArguments {
-    [key: string]: unknown;
-}
+export type TapjawAdapterArguments = Record<string, unknown>;
 
 export type TapjawAdapterCallback<
     T extends TapjawMessage

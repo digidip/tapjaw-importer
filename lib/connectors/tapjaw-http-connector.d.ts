@@ -2,8 +2,7 @@
 import { IncomingMessage } from 'http';
 import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-connector';
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
-export interface TapjawHttpHeaders {
-    [key: string]: string | undefined;
+export interface TapjawHttpHeaders extends Record<string, string | undefined> {
     Accept?: string;
     'Accept-Encoding'?: string;
     Cookie?: string;
@@ -17,12 +16,8 @@ export declare class DuplicateParameter {
     values: string[];
     constructor(...values: string[]);
 }
-export interface TapjawHttpQueryParameters {
-    [key: string]: string | ArrayParameter | DuplicateParameter;
-}
-export interface TapjawHttpFormParameters {
-    [key: string]: string;
-}
+export declare type TapjawHttpQueryParameters = Record<string, string | ArrayParameter | DuplicateParameter>;
+export declare type TapjawHttpFormParameters = Record<string, string>;
 export declare type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
 /**
  * The default HTTP and HTTPS API request wrapper.
