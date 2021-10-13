@@ -3,9 +3,10 @@ import camelcaseKeys from 'camelcase-keys';
 
 type CsvObjects = Record<string, unknown> | ReadonlyArray<Record<string, unknown>>;
 
-export default async <T>(csv: string, quote = '"'): Promise<T> => {
+export default async <T>(csv: string, quote = '"', delimiter = ','): Promise<T> => {
     const service = csvToJsonConverter({
         quote,
+        delimiter,
         checkColumn: true,
     });
 

@@ -29,6 +29,34 @@ describe('Make sure the csvToJson works as expected', () => {
         ]);
     });
 
+    test('should return 3 basic records in an array with custom delimiter', async () => {
+        const csv =
+            'name;age;weight\nPancho;10;4.0\nSasha;11;3.7\nBiggles;3;0.1\n';
+        interface AnimalRecord {
+            name: string;
+            age: string;
+            weight: string;
+        }
+
+        expect(await csvToJson<AnimalRecord[]>(csv, undefined, ';')).toEqual([
+            {
+                name: 'Pancho',
+                age: '10',
+                weight: '4.0'
+            },
+            {
+                name: 'Sasha',
+                age: '11',
+                weight: '3.7'
+            },
+            {
+                name: 'Biggles',
+                age: '3',
+                weight: '0.1'
+            }
+        ]);
+    });
+
     test('should camelcase the keys', async () => {
         const csv = 'name-please,age,weight approx\nPancho,10,4.0\n';
         interface AnimalRecord {
