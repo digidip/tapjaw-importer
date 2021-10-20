@@ -82,7 +82,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      *
      * @return TapjawConnectorResponse
      */
-    get(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    get(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders, timeout?: number): Promise<TapjawConnectorResponse>;
     /**
      * Send a DELETE request to the API.
      *
@@ -92,7 +92,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      *
      * @return TapjawConnectorResponse
      */
-    delete(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    delete(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders, timeout?: number): Promise<TapjawConnectorResponse>;
     /**
      * Send a POST request to the API.
      *
@@ -103,7 +103,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      *
      * @return TapjawConnectorResponse
      */
-    post(uri: string, query: TapjawHttpQueryParameters, body: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    post(uri: string, query: TapjawHttpQueryParameters, body: TapjawHttpRequestBody, headers?: TapjawHttpHeaders, timeout?: number): Promise<TapjawConnectorResponse>;
     /**
      * Send a POST request to the API.
      *
@@ -114,7 +114,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      *
      * @return TapjawConnectorResponse
      */
-    postJson(uri: string, query: TapjawHttpQueryParameters, json: TapjawHttpRequestBody, headers?: TapjawHttpHeaders): Promise<TapjawConnectorResponse>;
+    postJson(uri: string, query: TapjawHttpQueryParameters, json: TapjawHttpRequestBody, headers?: TapjawHttpHeaders, timeout?: number): Promise<TapjawConnectorResponse>;
     /**
      * Convert a query object into a query string, respecting arrayed and duplicated
      * keys.

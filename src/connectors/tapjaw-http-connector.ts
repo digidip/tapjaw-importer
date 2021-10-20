@@ -34,6 +34,8 @@ export type TapjawHttpFormParameters = Record<string, string>;
 
 export type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
 
+const DEFAULT_TIMEOUT = 30000;
+
 /**
  * The default HTTP and HTTPS API request wrapper.
  */
@@ -139,7 +141,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     public async get(
         uri: string,
         query: TapjawHttpQueryParameters,
-        headers?: TapjawHttpHeaders
+        headers?: TapjawHttpHeaders,
+        timeout = DEFAULT_TIMEOUT
     ): Promise<TapjawConnectorResponse> {
         const options: https.RequestOptions = {
             hostname: this.host,
@@ -147,6 +150,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
             method: 'GET',
             headers,
+            timeout,
         };
 
         return this.getResponse(options);
@@ -164,7 +168,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     public async delete(
         uri: string,
         query: TapjawHttpQueryParameters,
-        headers?: TapjawHttpHeaders
+        headers?: TapjawHttpHeaders,
+        timeout = DEFAULT_TIMEOUT
     ): Promise<TapjawConnectorResponse> {
         const options: https.RequestOptions = {
             hostname: this.host,
@@ -172,6 +177,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
             method: 'DELETE',
             headers,
+            timeout,
         };
 
         return this.getResponse(options);
@@ -191,7 +197,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         uri: string,
         query: TapjawHttpQueryParameters,
         body: TapjawHttpRequestBody,
-        headers?: TapjawHttpHeaders
+        headers?: TapjawHttpHeaders,
+        timeout = DEFAULT_TIMEOUT
     ): Promise<TapjawConnectorResponse> {
         if (typeof body === 'object') {
             body = querystring.stringify(body);
@@ -207,6 +214,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Content-Length': Buffer.byteLength(body),
             },
+            timeout,
         };
 
         return this.getResponse(options, body);
@@ -226,7 +234,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         uri: string,
         query: TapjawHttpQueryParameters,
         json: TapjawHttpRequestBody,
-        headers?: TapjawHttpHeaders
+        headers?: TapjawHttpHeaders,
+        timeout = DEFAULT_TIMEOUT
     ): Promise<TapjawConnectorResponse> {
         if (typeof json !== 'string') {
             json = JSON.stringify(json);
@@ -242,6 +251,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                 'Content-Type': 'application/json',
                 'Content-Length': Buffer.byteLength(json),
             },
+            timeout,
         };
 
         return this.getResponse(options, json);
@@ -332,7 +342,14 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                 response.on('error', reject);
             });
 
-            connectorRequest.on('error', reject);
+
+            connectorRequest
+                .on('timeout', () => {
+                    connectorRequest.abort();
+                    reject(new TapjawConnectorError(`${options.hostname} Timed out after ${options.timeout}ms`));
+                })
+                .on('error', reject);
+
             if (writeBody) {
                 connectorRequest.write(writeBody);
             }
