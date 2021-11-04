@@ -5,6 +5,6 @@ export default interface BaseTapjawCommand {
 export type TapjawCommandArgs<T = unknown> = Record<string, T>;
 export type TapjawCommandFlags<T = unknown> = Record<string, T>;
 
-export interface TapjawCommandDefaultFlags extends TapjawCommandFlags<string> {
+export interface TapjawCommandDefaultFlags<T = unknown> extends TapjawCommandFlags<T | string> {
     limit: string;
 }
