@@ -43,7 +43,11 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
 
                         if (isTapjawMessage(message)) {
                             this.onMessageFilter(message, args, flags)
-                                .then(this.emit.bind(this))
+                                .then((msg: M | null) => {
+                                    if (msg !== null) {
+                                        this.emit(message);
+                                    }
+                                })
                                 .catch(TapjawFilterCommand.getLogger().error);
                         }
                     })
@@ -61,7 +65,7 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
         message: M,
         args: TapjawCommandArgs,
         flags: T & TapjawCommandDefaultFlags
-    ): Promise<M>;
+    ): Promise<M | null>;
 
     protected onBeforeExit(): Promise<void> {
         return Promise.resolve();

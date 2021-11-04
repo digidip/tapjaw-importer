@@ -14,7 +14,7 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
      */
     run(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void>;
     protected emit(message: M): void;
-    protected abstract onMessageFilter(message: M, args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<M>;
+    protected abstract onMessageFilter(message: M, args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<M | null>;
     protected onBeforeExit(): Promise<void>;
     static register(program: Command): void;
     protected static getLogger(): TapjawLogger;
