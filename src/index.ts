@@ -32,3 +32,6 @@ export { default as TapjawMessageConfig } from './configs/tapjaw-message-config'
 
 // dates
 export * from './date';
+
+// Errors
+export * from './errors';
