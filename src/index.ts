@@ -35,3 +35,6 @@ export * from './date';
 
 // Errors
 export * from './errors';
+
+// Typeguards
+export { default as isTapjawMessage } from './typeguards/is-tapjaw-message';

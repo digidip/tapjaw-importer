@@ -12,3 +12,4 @@ export { default as DotEnvConfig } from './configs/dot-env-config';
 export { default as TapjawMessageConfig } from './configs/tapjaw-message-config';
 export * from './date';
 export * from './errors';
+export { default as isTapjawMessage } from './typeguards/is-tapjaw-message';
