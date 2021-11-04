@@ -25,21 +25,29 @@ export default abstract class TapjawStoreCommand<T extends TapjawCommandFlags, M
      *
      */
     public async run(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void> {
-        process.on('beforeExit', () => {
-            this.onBeforeExit().catch((error: Error) => TapjawStoreCommand.getLogger().error(error));
+        return new Promise((resolve, reject) => {
+            process.on('beforeExit', () => {
+                this.onBeforeExit().catch((error: Error) => TapjawStoreCommand.getLogger().error(error));
+            });
+
+            this.stdin
+                .pipe(split2())
+                .pipe(
+                    through((line: string): void => {
+                        const message = jsonMessageParser<M>(
+                            line,
+                            this.displayJsonParseErrors,
+                            TapjawStoreCommand.getLogger()
+                        );
+
+                        if (isTapjawMessage(message)) {
+                            this.onStoreMessage(message, args, flags).catch(TapjawStoreCommand.getLogger().error);
+                        }
+                    })
+                )
+                .on('end', resolve)
+                .on('error', reject);
         });
-
-        this.stdin.pipe(split2()).pipe(
-            through((line: string): void => {
-                const message = jsonMessageParser<M>(line, this.displayJsonParseErrors, TapjawStoreCommand.getLogger());
-
-                if (isTapjawMessage(message)) {
-                    this.onStoreMessage(message, args, flags).catch(TapjawStoreCommand.getLogger().error);
-                }
-            })
-        );
-
-        return Promise.resolve();
     }
 
     protected abstract onStoreMessage(
