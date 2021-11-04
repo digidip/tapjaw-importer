@@ -10,6 +10,7 @@ import { Command } from 'commander';
 import TapjawLogger from '../tapjaw-logger';
 import ConsoleLogger from '../../support/console-logger';
 import jsonMessageParser from '../../parsers/json-message-parser';
+import { isTapjawMessage } from '../..';
 
 export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, M extends TapjawMessage>
     implements BaseTapjawCommand
@@ -37,7 +38,7 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
                     TapjawFilterCommand.getLogger()
                 );
 
-                if (message instanceof TapjawMessage) {
+                if (isTapjawMessage(message)) {
                     this.onMessageFilter(message, args, flags)
                         .then(this.emit.bind(this))
                         .catch(TapjawFilterCommand.getLogger().error);

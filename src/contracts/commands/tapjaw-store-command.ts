@@ -10,6 +10,7 @@ import { Command } from 'commander';
 import TapjawLogger from '../tapjaw-logger';
 import ConsoleLogger from '../../support/console-logger';
 import jsonMessageParser from '../../parsers/json-message-parser';
+import { isTapjawMessage } from '../..';
 
 export default abstract class TapjawStoreCommand<T extends TapjawCommandFlags, M extends TapjawMessage>
     implements BaseTapjawCommand
@@ -32,7 +33,7 @@ export default abstract class TapjawStoreCommand<T extends TapjawCommandFlags, M
             through((line: string): void => {
                 const message = jsonMessageParser<M>(line, this.displayJsonParseErrors, TapjawStoreCommand.getLogger());
 
-                if (message instanceof TapjawMessage) {
+                if (isTapjawMessage(message)) {
                     this.onStoreMessage(message, args, flags).catch(TapjawStoreCommand.getLogger().error);
                 }
             })
