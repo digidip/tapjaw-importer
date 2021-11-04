@@ -26,27 +26,31 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
      *
      */
     public async run(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void> {
-        process.on('beforeExit', () => {
-            this.onBeforeExit().catch((error: Error) => TapjawFilterCommand.getLogger().error(error));
+        return new Promise((resolve, reject) => {
+            process.on('beforeExit', () => {
+                this.onBeforeExit().catch((error: Error) => TapjawFilterCommand.getLogger().error(error));
+            });
+
+            this.stdin
+                .pipe(split2())
+                .pipe(
+                    through((line: string): void => {
+                        const message = jsonMessageParser<M>(
+                            line,
+                            this.displayJsonParseErrors,
+                            TapjawFilterCommand.getLogger()
+                        );
+
+                        if (isTapjawMessage(message)) {
+                            this.onMessageFilter(message, args, flags)
+                                .then(this.emit.bind(this))
+                                .catch(TapjawFilterCommand.getLogger().error);
+                        }
+                    })
+                )
+                .on('end', resolve)
+                .on('error', reject);
         });
-
-        this.stdin.pipe(split2()).pipe(
-            through((line: string): void => {
-                const message = jsonMessageParser<M>(
-                    line,
-                    this.displayJsonParseErrors,
-                    TapjawFilterCommand.getLogger()
-                );
-
-                if (isTapjawMessage(message)) {
-                    this.onMessageFilter(message, args, flags)
-                        .then(this.emit.bind(this))
-                        .catch(TapjawFilterCommand.getLogger().error);
-                }
-            })
-        );
-
-        return Promise.resolve();
     }
 
     protected emit(message: M): void {
