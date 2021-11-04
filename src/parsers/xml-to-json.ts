@@ -2,13 +2,13 @@ import { parseStringPromise } from 'xml2js';
 import camelcaseKeys from 'camelcase-keys';
 
 export default async <T>(xml: string): Promise<T> => {
-    const result = await parseStringPromise(xml, {
+    const result = (await parseStringPromise(xml, {
         trim: true,
         explicitArray: false,
-        attrkey: 'attributes'
-    });
+        attrkey: 'attributes',
+    })) as Record<string, unknown>;
 
     return camelcaseKeys(result, {
-        deep: true
+        deep: true,
     }) as T;
 };

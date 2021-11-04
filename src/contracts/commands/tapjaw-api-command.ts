@@ -1,16 +1,17 @@
-import TapjawIterator from './tapjaw-iterator';
-import { TapjawAdapterCallback } from './tapjaw-adapter';
-import StdoutIterator from '../iterators/stdout-iterator';
-import TapjawMessage from './tapjaw-message';
+import TapjawIterator from '../tapjaw-iterator';
+import { TapjawAdapterCallback } from '../tapjaw-adapter';
+import StdoutIterator from '../../iterators/stdout-iterator';
+import TapjawMessage from '../tapjaw-message';
+import { Command } from 'commander';
+import BaseTapjawCommand, {
+    TapjawCommandArgs,
+    TapjawCommandDefaultFlags,
+    TapjawCommandFlags,
+} from './base-tapjaw-command';
+import ConsoleLogger from '../../support/console-logger';
+import TapjawLogger from '../tapjaw-logger';
 
-export type TapjawCommandArgs<T = unknown> = Record<string, T>;
-export type TapjawCommandFlags<T = unknown> = Record<string, T>;
-
-export interface TapjawCommandDefaultFlags extends TapjawCommandFlags<string> {
-    limit: string;
-}
-
-export default abstract class TapjawCommand {
+export default abstract class TapjawApiCommand implements BaseTapjawCommand {
     protected iterator: TapjawIterator;
 
     public constructor(iterator?: TapjawIterator) {
@@ -21,11 +22,11 @@ export default abstract class TapjawCommand {
      * Run the command the execute the iterator run routine.
      *
      */
-    async run<T extends TapjawCommandFlags>(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void> {
-        await this.iterator.run(
-            this.getAdapterCallback(args, flags),
-            flags.limit ? Number(flags.limit) : undefined
-        );
+    async run<T extends TapjawCommandFlags>(
+        args: TapjawCommandArgs,
+        flags: T & TapjawCommandDefaultFlags
+    ): Promise<void> {
+        await this.iterator.run(this.getAdapterCallback(args, flags), flags.limit ? Number(flags.limit) : undefined);
     }
 
     /**
@@ -62,4 +63,13 @@ export default abstract class TapjawCommand {
         args: TapjawCommandArgs,
         flags: TapjawCommandFlags
     ): TapjawAdapterCallback<TapjawMessage>;
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public static register(program: Command): void {
+        throw new Error('static register() method not overloaded.');
+    }
+
+    protected static getLogger(): TapjawLogger {
+        return new ConsoleLogger();
+    }
 }

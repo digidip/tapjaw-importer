@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import { createHmac } from 'crypto';
 import tapjawMessageConfig from '../configs/tapjaw-message-config';
 
 export type TapjawMessageDigest = string;
@@ -44,17 +44,20 @@ export default class TapjawMessage {
      * @param payload TapjawPayload
      * @param importDate Date           Optional, if _no_ date is provided the current system's date time will be set.
      */
-    constructor(
-        sourceProviderName: string,
-        payload: TapjawPayload,
-        importDate?: Date
-    ) {
-        this.signature = crypto
-            .createHmac('sha256', tapjawMessageConfig.getConfig('secret'))
-            .update(JSON.stringify(payload))
-            .digest('hex') as TapjawMessageDigest;
+    constructor(sourceProviderName: string, payload: TapjawPayload, importDate?: Date) {
+        this.signature = createHmac('sha256', this.getSha256Secret()).update(JSON.stringify(payload)).digest('hex');
         this.sourceProviderName = sourceProviderName;
         this.import_date = importDate || new Date();
         this.payload = payload;
+    }
+
+    /**
+     * Secret to salt sha256.
+     *
+     * @note configured with tapjawMessageConfig by default.
+     * @returns string
+     */
+    protected getSha256Secret(): string {
+        return tapjawMessageConfig.getConfig('secret');
     }
 }

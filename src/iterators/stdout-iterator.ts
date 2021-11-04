@@ -37,5 +37,7 @@ export default class StdoutIterator extends OutputIterator {
          * Write JSON to stdout buffer.
          */
         this.writeCallback.write(`${json}\n`);
+
+        return Promise.resolve();
     }
 }

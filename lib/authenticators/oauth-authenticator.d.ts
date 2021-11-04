@@ -10,10 +10,10 @@ export default class OauthAuthenticator implements TapjawAuthenticator<OauthResp
     protected readonly path: string;
     protected readonly postParams: querystring.ParsedUrlQueryInput;
     protected readonly method: string;
-    protected readonly responseEncoding: string;
+    protected readonly responseEncoding: BufferEncoding;
     private authenticated;
     private lastResponse;
-    constructor(clientId: string, clientSecret: string, hostname: string, path: string, postParams: querystring.ParsedUrlQueryInput, method?: string, responseEncoding?: string);
+    constructor(clientId: string, clientSecret: string, hostname: string, path: string, postParams: querystring.ParsedUrlQueryInput, method?: string, responseEncoding?: BufferEncoding);
     isAuthenticated(): boolean;
     authenticate(): Promise<OauthResponse>;
     getLastResponse(): OauthResponse | null;

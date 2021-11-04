@@ -4,7 +4,8 @@ import { IncomingMessage } from 'http';
 /**
  * Wraps and performs a HTTP/HTTPS request.
  *
- * @todo Move into global support to make it more reusable and abstract away the HTTP/HTTPS node library from existing code.
+ * @todo Move into global support to make it more reusable and abstract away the
+ *       HTTP/HTTPS node library from existing code.
  *
  * @param params string
  * @param options https.RequestOptions
@@ -14,23 +15,18 @@ import { IncomingMessage } from 'http';
 const request = <T extends string | BinaryType>(
     params: string,
     options: https.RequestOptions,
-    responseEncoding = 'utf8'
+    responseEncoding: BufferEncoding = 'utf8'
 ): Promise<T> => {
     return new Promise((resolve, reject) => {
         const authReq = https.request(options, (response: IncomingMessage) => {
-            if (response.statusCode !== 200) {
-                const error = new Error(
-                    `HTTP Status code was ${response.statusCode}.`
-                );
+            if (response?.statusCode !== 200) {
+                const error = new Error(`HTTP Status code was ${response?.statusCode || 'not set'}.`);
                 return reject(error);
             }
 
             let buffer: string | BinaryType = '';
             response.setEncoding(responseEncoding);
-            response.on(
-                'data',
-                (data: string | BinaryType) => (buffer += data)
-            );
+            response.on('data', (data: string | BinaryType) => (buffer += data));
             response.on('end', () => resolve(buffer as T));
             response.on('error', (error: Error) => reject(error));
         });

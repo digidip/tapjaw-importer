@@ -36,4 +36,11 @@ export default class TapjawMessage {
      * @param importDate Date           Optional, if _no_ date is provided the current system's date time will be set.
      */
     constructor(sourceProviderName: string, payload: TapjawPayload, importDate?: Date);
+    /**
+     * Secret to salt sha256.
+     *
+     * @note configured with tapjawMessageConfig by default.
+     * @returns string
+     */
+    protected getSha256Secret(): string;
 }

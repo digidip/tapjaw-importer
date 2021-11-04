@@ -17,12 +17,11 @@ export const createOAuthSecurity = (
     path: string,
     postParams: querystring.ParsedUrlQueryInput,
     method = 'POST',
-    responseEncoding = 'utf8'
+    responseEncoding: BufferEncoding = 'utf8'
 ): TapjawAuthenticationWrapper =>
     new TapjawApplyOauthAuthorizationHttpHeaderWrapper(
         new TapjawOauthAuthenticator(clientId, clientSecret, hostname, path, postParams, method, responseEncoding)
     );
-
 
 // const createSessionSecurity = (
 //     loginPageUrl: string,

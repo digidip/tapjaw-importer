@@ -28,11 +28,11 @@ abstract class DotEnvConfig {
             );
         }
 
-        return this.config[key] as string;
+        return this.config[key] ;
     }
 
     private initialiseConfig(jobsEnvKey: string): void {
-        const configStr = process.env[jobsEnvKey] as string | undefined;
+        const configStr = process.env[jobsEnvKey] ;
         if (!configStr) {
             throw new TapjawConfigError(
                 `.evn ${this.configName} variable "${jobsEnvKey}" is empty.`
@@ -40,7 +40,7 @@ abstract class DotEnvConfig {
         }
 
         this.config[ jobsEnvKey.replace(this.configKey, '').toLowerCase()
-] = configStr as string;
+] = configStr ;
     }
 }
 

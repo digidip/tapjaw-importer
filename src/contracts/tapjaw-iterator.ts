@@ -1,5 +1,5 @@
 import { TapjawAdapterCallback } from './tapjaw-adapter';
-import { TapjawMessage } from '..';
+import TapjawMessage from './tapjaw-message';
 
 export class TapjawIteratorError extends Error {}
 
@@ -17,11 +17,9 @@ export default interface TapjawIterator {
      * Adapter's generator yield response and push the individual
      * TapjawMessage from the adapter to an output interface.
      *
-     * @param adapterCallback CallableFunction      A callback which contains the routine on how to execute the Adapter method.
+     * @param adapterCallback CallableFunction      A callback which contains the routine on how to execute the
+     *                                              Adapter method.
      * @param limit number|undefined                Limit the number of TapjawMessage that should be processed.
      */
-    run(
-        adapterCallback: TapjawAdapterCallback<TapjawMessage>,
-        limit?: number
-    ): Promise<unknown>;
+    run(adapterCallback: TapjawAdapterCallback<TapjawMessage>, limit?: number): Promise<unknown>;
 }

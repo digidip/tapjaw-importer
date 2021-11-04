@@ -6,10 +6,8 @@ Create your own stream of payload messages to STDOUT from any API.
 <!-- toc -->
 - [Tapjaw Importer](#tapjaw-importer)
 - [Description](#description)
-- [Install &amp; Usage](#install-amp-usage)
-  - [1: Install Yeoman](#1-install-yeoman)
-  - [2: Install Tapjaw Generator](#2-install-tapjaw-generator)
-  - [3: Setup a new project](#3-setup-a-new-project)
+- [Install & Usage](#install--usage)
+  - [1: Setup a new project](#1-setup-a-new-project)
 - [Components](#components)
   - [Commands](#commands)
   - [Adapters](#adapters)
@@ -19,7 +17,7 @@ Create your own stream of payload messages to STDOUT from any API.
     - [TapjawMessage](#tapjawmessage)
   - [Iterables](#iterables)
     - [StdoutIterator](#stdoutiterator)
-- [Examples &amp; Tutorial](#examples-amp-tutorial)
+- [Examples & Tutorial](#examples--tutorial)
 <!-- tocstop -->
 
 # Description
@@ -32,36 +30,7 @@ API responses, database records and other web service responses. The response is
 
 # Install & Usage
 
-TapjawImporter is a library package which is used in conjunction with a project, if you wish to create a project and start using the TapjawImporter, you will need to install [Yeoman](https://github.com/yeoman/yo) and the [Tapjaw Generator](https://github.com/digidip/generator-tapjaw).
-
-Before we start, it's recommended you [install yarn](https://yarnpkg.com/en/docs/install) in your development environment.
-
-## 1: Install Yeoman
-
-```bash
-~ $> yarn global add yo
-```
-
-## 2: Install Tapjaw Generator
-
-```bash
-~ $> yarn global add generator-tapjaw
-```
-
-To make sure the TapjawGenerator is working, execute the following command to see if the help output is displayed.
-
-```bash
-~ $> yo tapjaw
-Tapjaw Project Generator
-$ yo tapjaw:adapter         Create a new adapter
-$ yo tapjaw:config          Create a new configuration scope
-$ yo tapjaw:command         Create a new command
-$ yo tapjaw:connector       Create a new connector
-$ yo tapjaw:message         Create a new message
-$ yo tapjaw:new-project     Create a new project tree
-```
-
-## 3: Setup a new project
+## 1: Setup a new project
 
 Firstly `cd` to your workspace or development directory.
 
@@ -114,8 +83,6 @@ The basic flow of a command is as follows:
         - **StdoutIterator** *(Convert the entity to JSON and output to STDOUT buffer)*
 
 ## Commands
-
-Tapjaw proudly embraces [OCLIF](https://github.com/oclif/oclif) for the implementation of commands.
 
 The basic `TapjawCommand` abstracts a number of the command's behaviours away from the developer, since Tapjaw operates in a predefined flow.
 

@@ -106,7 +106,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         }
 
         if (encodingExists(encoding as string)) {
-            throw new TapjawConnectorError(`Unsupported decoding: ${encoding}`);
+            throw new TapjawConnectorError(`Unsupported decoding: ${encoding || 'not set'}`);
         }
 
         this.useDecoding = encoding as string;
@@ -123,7 +123,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         }
 
         if (!encodingExists(encoding as string)) {
-            throw new TapjawConnectorError(`Unsupported encoding: ${encoding}`);
+            throw new TapjawConnectorError(`Unsupported encoding: ${encoding || 'not set'}`);
         }
 
         this.useEncoding = encoding as string;
@@ -293,7 +293,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             return options;
         }
 
-        const updatedOptions = await this.security.authenticate(options) as Record<string, unknown>;
+        const updatedOptions = (await this.security.authenticate(options)) as Record<string, unknown>;
         return deepmerge(options, updatedOptions);
     }
 
@@ -311,13 +311,15 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             const connectorRequest = requestImpl(options, (response: IncomingMessage) => {
                 this.lastResponse = response;
                 if (response.statusCode !== 200) {
-                    const error = new TapjawConnectorError(`HTTP Status code was ${response.statusCode}.`);
+                    const error = new TapjawConnectorError(
+                        `HTTP Status code was ${response?.statusCode || 'not set'}.`
+                    );
                     reject(error);
                 }
 
                 const buffer: Buffer[] = [];
                 response.on('data', (data: string) => buffer.push(Buffer.from(data, 'binary')));
-                response.on('end', async () => {
+                response.on('end', () => {
                     let contentBuffer = Buffer.concat(buffer);
 
                     if (!contentBuffer) {
@@ -342,11 +344,14 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                 response.on('error', reject);
             });
 
-
             connectorRequest
                 .on('timeout', () => {
                     connectorRequest.abort();
-                    reject(new TapjawConnectorError(`${options.hostname} Timed out after ${options.timeout}ms`));
+                    reject(
+                        new TapjawConnectorError(
+                            `${options.hostname || 'not set'} Timed out after ${options.timeout || '(not set)'}ms`
+                        )
+                    );
                 })
                 .on('error', reject);
 
