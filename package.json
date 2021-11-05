@@ -54,9 +54,13 @@
         "node": ">=16"
     },
     "files": [
-        "/bin",
         "/lib",
-        "/npm-shrinkwrap.json"
+        "/tsconfig.json",
+        "/tsconfig.build.json",
+        "/default.env",
+        "/LICENSE",
+        "/README.md",
+        "/docs"
     ],
     "scripts": {
         "test": "node node_modules/.bin/jest",

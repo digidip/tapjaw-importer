@@ -23,7 +23,8 @@ Create your own stream of payload messages to STDOUT from any API.
 - [Examples & Tutorial](#examples--tutorial)
 - [Changelog](#changelog)
   - [v2.0.0](#v200)
-  - [v1.2.0 (no longer supported)](#v120-no-longer-supported)
+  - [v1.2.0 *(no longer supported)*](#v120-no-longer-supported)
+  - [Previous version](#previous-version)
 <!-- tocstop -->
 
 # Description
@@ -196,6 +197,8 @@ Please reference the [Tapjaw Example v2.0](https://github.com/digidip/tapjaw-exa
 
 # Changelog
 
+The project employs the [semver](https://semver.org/) specification on versioning.
+
 ## v2.0.0
 - Add date helper functions.
 - Add standard Connector and Adapter errors.
@@ -208,6 +211,9 @@ Please reference the [Tapjaw Example v2.0](https://github.com/digidip/tapjaw-exa
 - Documentation.
 - Implement npm package.
 
-## v1.2.0 (no longer supported)
+## v1.2.0 *(no longer supported)*
 - Convert from OCLIF to commander.
 - Upgrade to Typescript 4.
+
+## Previous version
+- No details will be provided as the project was still in it's infancy.
