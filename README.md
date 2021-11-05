@@ -3,7 +3,7 @@ Tapjaw Importer - v2.0.0
 
 ![diagram](./resources/diagram.png "Tapjaw Diagram")
 
-Create your own stream of payload messages to STDOUT from any API.
+Create a stream of payload messages to STDOUT from any API.
 
 <!-- toc -->
 - [Tapjaw Importer - v2.0.0](#tapjaw-importer---v200)
@@ -29,73 +29,77 @@ Create your own stream of payload messages to STDOUT from any API.
 
 # Description
 
-Tapjaw Importer is written in Typescript as a JSON-based utility framework which has been purposefully designed to simplify the development of useful commands which can be chained together to consolidate data for persistance or further processing in the cloud or on your own infrastructure.
+Tapjaw Importer is a Typescript JSON-based utility framework purposefully designed to simplify the development of commands that chain together to consolidate data for persistence or further processing in the cloud or on your infrastructure.
 
-The chained commands communicate with JSON over a STDIO stream using a pre-defined class called a `TapjawMessage`, containsing some default metadata and a payload properties, allowing for easy extending from the `TapjawMessage` class based on the business rules of an implementation.
+The chained commands communicate with JSON over an STDIO stream using a pre-defined class called a `TapjawMessage`, containing some default metadata and payload properties, allowing for easy extending from the `TapjawMessage` Class based on the business rules of implementation.
 
-The `TapjawMessage` schema enables the creation of a standardised streaming paradigm with JSON delimited by newlines, using the Unix pipe syntax, e.g:-
+The `TapjawMessage` schema enables the creation of a standardised streaming paradigm with JSON delimited by newlines, using the Unix pipe syntax, e.g.:-
 
 ```bash
 $ bin/run apis my-network | bin/run filters remove-duplicates | bin/run stores s3 s3://my-bucket
 ```
 
-In practice you would use one API command in conjunction with multiple filter commands, finishing with a store command to persist the result in an external location. If you wish to output to multiple store commands, you can employ a Tools command to boot up multiple child processes which can fan out to a number of store commands, please refer the example below for a psudo-example:
+In practice, you would use one API command in conjunction with multiple filter commands, finishing with a store command to persist the result in an external location. If you wish to output to various store commands, you can employ a Tools command to boot up multiple child processes and fan out to several store commands. Please refer to the example below for a pseudo-example:
 
 ```bash
 $ bin/run apis my-network | bin/run filters remove-duplicates | bin/run filters clean | bin/run tools fan "stores s3 s3://my-bucket" "stores sqs sqs://sqs-server/my-queue"
 ```
 
-The project provides a number of additional useful features to decrease the complexity of:
+The project provides several additional useful features to decrease the complexity of:
 - Access HTTP/API endpoints with Connectors (`TapjawConnector` & `TapjawHttpConnector`).
-  - Security implementations for Bearer, Basic and OAuth authentication *(Session based authentication in the works!)*.
-- Iterate seemlessly over multiple pages of response data using Adapters (`TapjawAdapter`).
+  - Security implementations for Bearer, Basic and OAuth authentication *(Session-based authentication in the works!)*.
+- Iterate seamlessly over multiple pages of response data using Adapters (`TapjawAdapter`).
 - Parser tools to convert XML or CSV to JSON (`xmlToJson` & `csvToJson`).
-- Strong focus on Typescript data typing, employing contracted interfaces through out the framework.
-- Rate limiting of messages being pushed through a stream, from the API command.
-- Each command type is has a base class designed for it's purpose, meaning you only need to write a minimal ammount of code.
-- Date helper functions, providing a common toolkit which we've had to use in previous projects (using Luxon).
+- Strong focus on Typescript data typing, employing contracted interfaces throughout the framework.
+- Rate limiting of messages getting pushed through a stream from the API command.
+- Each command type is has a base class designed for its purpose, meaning you only need to write a minimal amount of code.
+- Date helper functions, providing a common toolkit that we've had to use in previous projects (using Luxon).
 - A quick and simple .env configuration loading strategy (`DotEnvConfig`, *ref: `TapjawMessageConfig` for implementation*).
-- Base `TapjawLogger` interface to allow easy implementation of your own logging library, the project includes two basic implementations, `ConsoleLogger` and `NullLogger`, which `NullLogger` is generally used in testing.
+- Base `TapjawLogger` interface to allow easy implementation of your logging library. The project includes two basic implementations, `ConsoleLogger` and `NullLogger`, which `NullLogger` is generally used in testing.
 
 # History
 
-This project was first devised in 2019 due to a requirement of needing to import data from across dozens of APIs,
-each with unique data schemas, varied security infrastructures, request/responce strategies and general differences in appraoch.
+Tapjaw Importer started life in 2019 due to a requirement of needing to import data from across dozens of APIs into a consistent internal schema,
+each API has unique data schemas, various security infrastructures, request/response strategies and general differences in approach.
 
-We where initially inspired by the singer.io approach, which provides many API taps and targets, although as an Affiliate Marketing company we couldn't rely on singer.io to have all the APIs we needed, so instead it was decided to create a framework which provides a more diverse approach to extracting data and doing something useful with it.
+Tapjaw Importer's inspiration comes from the singer.io approach, which provides many API taps and targets. However, as an Affiliate Marketing company, we couldn't rely on singer.io to have all the APIs we needed. Instead, we created this framework that provides a more diverse approach to extracting data and doing something useful with it.
 
-This project provides an abstract approach compared to singer.io, by employing customisable, api, filter, store and tool commands to chain as the developer or business sees fit in accomplishing the consolidation of data, you as the developer do not really need to concern your self on how data is transferred through the commands.
+Tapjaw Importer provides a more abstract approach than singer.io by employing customisable API, filter, store and tool commands.
 
-We've successfully written and deployed four separate internal projects into production using this framework, which allowed us to experience thhe complexities of such a process. Through this process we've attempted to provide the necassary components to easily setup your own commands and data stream.
+You as a developer can chain together as many commands as required as your business model sees fit in accomplishing the consolidation of data. You, as the developer, do not need to concern yourself with how data traverses through the commands.
+
+We've successfully written and deployed four separate internal projects into production using this framework, allowing us to experience such a process's complexities. We've attempted to provide the necessary components to quickly set up your commands and data stream through this process.
 
 # Why use Tapjaw Importer?
 
-1. You want a Typescript/Javascript framework for easily importing and consolidating data into your existing infrastructure.
-2. Want to be able to easily create api, filter, store or tool commands to stream JSON-based messages from various APIs into your infrastructure.
-3. Be able to mix and match commands for your business purposes, removing code duplications by having strong layers between the specific command domains.
-4. Want to be able to stream data to any other third party commands using STDIO or third party infrastructures, enabling to use of any other programming langauge to fill any missing gaps or limitations.
-5. Not having to rely on a continous living process which manages communication with a third party API.
-6. Easy to create or using existing infrastructure to configure and manage the running of commands.
-7. Easy to implement data consolidation for cloud based serverless projects.
+1. You want a Typescript/Javascript framework for quickly importing and consolidating data into your existing infrastructure.
+2. Want to easily create API, filter, store or tool commands to stream JSON-based messages from various APIs into your infrastructure.
+3. Be able to mix and match commands for your business purposes, removing code duplications with strong layers between the specific command domains.
+4. Want to stream data to any other third party commands using STDIO or third party infrastructures, enabling the use of any different programming language to fill any missing gaps or limitations.
+5. Not having to rely on a continuous living process that manages communication with a third party API.
+6. Easy to create or use existing infrastructure to configure and manage the running of commands.
+7. Easy to implement data consolidation for cloud-based serverless projects.
 8. Easy to test individual commands separately.
 9. An simple interface for creating streams of data between commands.
 
 # Dependancies
 
 - Node JS v16
--
+- Commander.js
+- Typescript 4
+- Unix based operating system (it might work in Windows, although we provide no certainty)
 
 # Setup a new project
 
-Firstly `cd` to your workspace or development directory.
+Firstly, execute `cd` to your workspace or development directory.
 
 ```bash
 ~/workspace $> git clone "https://github.com/digidip/tapjaw-example.git#semver^2" my-project
 ```
 
-> **Cauton**: Please make sue you're using Node version 16, you may use [`nvm`](https://github.com/nvm-sh/nvm) for managing your node versions.
+> **Caution**: Please make sure you're using Node version 16. You may use [`nvm`](https://github.com/nvm-sh/nvm) for managing your node versions.
 
-Now install all the frameworks dependancies, if you're not using node 16, you will get encounter an error.
+Now install all the frameworks dependencies. If you're not using node 16, you will get encounter an error.
 
 ```bash
 ~/workspace/my-project $> yarn install
@@ -107,7 +111,7 @@ Build the project with:
 ~/workspace/my-project $> yarn tsc
 ```
 
-To make sure the project has been setup correctly, issue the following command:
+To validate the project, issue the following command:
 
 ```bash
 ~/workspace/my-project $> bin/run
@@ -130,57 +134,57 @@ Commands:
   help [command]    display help for command
 ```
 
-You are now ready to start working on your project, refer to the `digidip/tapjaw-example`'s [README.md](https://github.com/digidip/tapjaw-example/blob/v2.0.0/README.md) for a tutorial on how to get get started.
+You are now ready to start working on your project. Refer to the `digidip/tapjaw-example`'s [README.md](https://github.com/digidip/tapjaw-example/blob/v2.0.0/README.md) for a tutorial on how to get get started.
 
 # Components
 
-An explination of all the components used by the Tapjaw Importer and hints on how to implement their usage correctly.
+An overview of each component is available in Tapjaw Importer, focusing on each element with corresponding documentation in how to implement, extend and use correctly.
 
 ## Commands
 
 Commands consist of four distinct types:
-- [APIs](docs/api-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
+- [APIs](docs/API-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
 - [Filters](docs/filter-commands.md) - Filter out stdin stream messages, mutate a message, or forward messages to the stdout stream based on rules.
-- [Stores](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as dbms, s3 or a queue.
-- [Tools](docs/tool-commands.md) - Additional useful commands which do not fit within the specification of previous three categories.
+- [Stores](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
+- [Tools](docs/tool-commands.md) - Additional useful commands which do not fit within the specification of the previous three categories.
 
 ## Adapters
 
-Adapters are used as an agnostic link between an API command and a connector, where the adapter implements the business logic on how to manage the responses from the connector and provide a `TapjawMessage` to the commmand to then be written to an output buffer.
+Adapters are the agnostic link between an API command and a connector. The adapter implements the business logic on managing the responses from the connector and yields a `TapjawMessage` to the command to then be written to an output buffer.
 
 Please refer to [Adapter documentation](./docs/adapters.md).
 
 ## Configs
 
-By default Tapjaw Importer will use the `.env` ([dotenv](https://github.com/motdotla/dotenv)) approach towards configuration. This allows for the creation of a `.env` file in your project directory, or the possibility to inject environment variables with an alternative method which then can still be read by your project without a `.env` file.  It's recommended to use the `.env` approach during development and then use an external setter of environmental variable in production.
+By default Tapjaw Importer will use the `.env` ([dotenv](https://github.com/motdotla/dotenv)) approach towards configuration. Dotenv allows for creating a `.env` file in your project directory or the possibility to inject environment variables with an alternative method that your project can still read without a `.env` file. Ideally, you would use the `.env` approach during development and then use an external setter of environmental variables in production.
 
 For more details please refer to [Configurations documentation](docs/configurations.md).
 
 ## Connectors
 
-The purpose of a connector is to allow an adapter to use different external services, for example some third party APIs will have a RESTful or SOAP API. The _Connector Pattern_ allows us to create a two implementations with the same method signatures for the adapter to use. The developer then has the choice to switch between either connector and expect the adapter to operate seemlessly regardless of which ever connector is used.
+The purpose of a connector is to allow an adapter to use different external services. For example, some third party APIs will have a RESTful or SOAP API. The _Connector Pattern_ will enable us to create two implementations with identical method signatures for the adapter to use. The developer then chooses to switch between either connector and expect the adapter to operate seamlessly regardless of whichever connector is in use.
 
 Please refer to [Connectors documentation](./docs/connectors.md).
 
 ## Contracts
 
-This is where all the interfaces for Connectors and Messages are stored by default, you can also extend from this directory for specifying types and interfaces for your own project.
+The interfaces for Connectors, Adapters, Commands and Messages exist by default, and you can also extend from this directory for specifying types and interfaces for your project.
 
 Please refer to [Contracts documentation](./docs/contracts.md).
 
 ### TapjawMessage
 
-Each message (`TapjawMessage`) is composed of a payload without structural constaints, import date, identifier and a *sha256* signature which is generated from the payload.
+Each message (`TapjawMessage`) is composed of a payload without structural constraints, import date, identifier and a *sha256* signature generated from the Payload.
 
 ## Iterators
 
-Tapjaw Iterators designed purpose is to iterate over the yielded messages provided by an Adapter and output each message to an external interface, tapjaw tends to write to the [standard output](https://en.wikipedia.org/wiki/Standard_streams) (stdout) stream. This can be overriden by extending the `OutputIterator` class or `TapjawIterator` interface.
+Tapjaw Iterators designed purpose is to iterate over the yielded messages provided by an Adapter and output each to an external interface. Tapjaw Importer tends to write to the [standard output](https://en.wikipedia.org/wiki/Standard_streams) (stdout) stream. You can override by extending the `OutputIterator` class or the `TapjawIterator` interface.
 
 Please refer to [Iterators documentation](./docs/iterators.md).
 
 
 
-The reason Tapjaw Importer writes the STDOUT buffer, due to the Unix feature of chaining of commands. This can be achieved by "piping" commands together, for example:
+Tapjaw Importer writes the STDOUT buffer due to the Unix feature of chaining of commands. In Unix derived systems, "piping" can be accomplished with the following example:
 
 ```bash
 $ cat /etc/hosts | grep localhost
@@ -188,12 +192,11 @@ $ cat /etc/hosts | grep localhost
 ::1             localhost
 ```
 
-Tapjaw Importer is shipped with two pre-implemented Iterators, both are detailed before:-
-
+Tapjaw Importer provides two pre-implemented Iterators. Both are detailed before:-
 
 # Examples & Tutorial
 
-Please reference the [Tapjaw Example v2.0](https://github.com/digidip/tapjaw-example/blob/v2.0.0).
+Reference the [Tapjaw Example v2.0](https://github.com/digidip/tapjaw-example/blob/v2.0.0) for an example on implementing a project.
 
 # Changelog
 
@@ -203,17 +206,17 @@ The project employs the [semver](https://semver.org/) specification on versionin
 - Add date helper functions.
 - Add standard Connector and Adapter errors.
 - Typeguards.
-- Update dependancies, ESLint and prettier.
+- Update dependencies, ESLint and prettier.
 - Add command contracts for APIs, Filters, Stores and Tools.
 - Fix legacy typescript issues.
 - Standardise the JSON parsing of `TapjawMessage`.
 - Abstract streaming management in filter/store command contracts.
 - Documentation.
-- Implement npm package.
+- Implements the npm package.
 
 ## v1.2.0 *(no longer supported)*
-- Convert from OCLIF to commander.
+- Convert from OCLIF to Commander.js.
 - Upgrade to Typescript 4.
 
 ## Previous version
-- No details will be provided as the project was still in it's infancy.
+- The project was still in its infancy.
