@@ -24,7 +24,7 @@ Create a stream of payload messages to STDOUT from any API.
 - [Changelog](#changelog)
   - [v2.0.0](#v200)
   - [v1.2.0 *(no longer supported)*](#v120-no-longer-supported)
-  - [Previous version](#previous-version)
+  - [Previous versions](#previous-versions)
 <!-- tocstop -->
 
 # Description
@@ -218,5 +218,5 @@ The project employs the [semver](https://semver.org/) specification on versionin
 - Convert from OCLIF to Commander.js.
 - Upgrade to Typescript 4.
 
-## Previous version
+## Previous versions
 - The project was still in its infancy.
