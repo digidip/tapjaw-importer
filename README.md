@@ -1,4 +1,5 @@
-# Tapjaw Importer - v2.0.0
+Tapjaw Importer - v2.0.0
+=========================
 
 Create your own stream of payload messages to STDOUT from any API.
 
@@ -16,8 +17,6 @@ Create your own stream of payload messages to STDOUT from any API.
   - [Contracts](#contracts)
     - [TapjawMessage](#tapjawmessage)
   - [Iterators](#iterators)
-    - [StdoutIterator](#stdoutiterator)
-    - [RateLimitedStdoutIterator](#ratelimitedstdoutiterator)
 - [Examples & Tutorial](#examples--tutorial)
 <!-- tocstop -->
 
@@ -32,12 +31,6 @@ The `TapjawMessage` schema enables the creation of a standardised streaming para
 ```bash
 $ bin/run apis my-network | bin/run filters remove-duplicates | bin/run stores s3 s3://my-bucket
 ```
-
-Commands consist of four distinct types:
-- **APIs** - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
-- **Filters** - Filter out stdin stream messages, mutate a message, or forward messages to the stdout stream based on rules.
-- **Stores** - Persist incoming stdin messages to an external service, such as dbms, s3 or a queue.
-- **Tools** - Additional useful commands which do not fit within the specification of previous three categories.
 
 In practice you would use one API command in conjunction with multiple filter commands, finishing with a store command to persist the result in an external location. If you wish to output to multiple store commands, you can employ a Tools command to boot up multiple child processes which can fan out to a number of store commands, please refer the example below for a psudo-example:
 
@@ -152,33 +145,35 @@ The basic flow of a command is as follows:
 
 ## Commands
 
-The basic `TapjawCommand` abstracts a number of the command's behaviours away from the developer, since Tapjaw operates in a predefined flow.
-
-Scope:
-* Command name
-* Arguments
-* Options
-* Defining Adapters and Connectors
-* Use command Options & Arguments to alter the parameters required for adapter calls.
+Commands consist of four distinct types:
+- [APIs](docs/api-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
+- [Filters](docs/filter-commands.md) - Filter out stdin stream messages, mutate a message, or forward messages to the stdout stream based on rules.
+- [Stores](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as dbms, s3 or a queue.
+- [Tools](docs/tool-commands.md) - Additional useful commands which do not fit within the specification of previous three categories.
 
 ## Adapters
 
-Scope:
-* Yielding a single TapjawMessage object.
-* Interfaces with connectors.
-* Manages pagination/cursor iterations in conjunction with the connector, connectors must be dumb and only perform a single request based on arguments which are prepared by the adapter.
+Adapters are used as an agnostic link between an API command and a connector, where the adapter implements the business logic on how to manage the responses from the connector and provide a `TapjawMessage` to the commmand to then be written to an output buffer.
+
+Please refer to [Adapter documentation](./docs/adapters.md).
 
 ## Configs
 
 By default TapjawImporter will use the `.env` ([dotenv](https://github.com/motdotla/dotenv)) approach towards configuration. This allows for the creation of a `.env` file in your project directory, or the possibility to inject environment variables with an alternative method which then can still be read by your project without a `.env` file.  It's recommended to use the `.env` approach during development and then use an external setter of environmental variable in production.
 
+For more details please refer to [Configurations documentation](docs/configurations.md).
+
 ## Connectors
 
-The purpose of a connector is to allow an adapter to use different external services, so for example some third party APIs will have a RESTful or SOAP API. The _Connector Pattern_ allows us to create a two implementations with the same method signatures for the adapter to use. The developer then has the choice to switch between either connector and expect the adapter to operate seemlessly regardless of which connector is used.
+The purpose of a connector is to allow an adapter to use different external services, for example some third party APIs will have a RESTful or SOAP API. The _Connector Pattern_ allows us to create a two implementations with the same method signatures for the adapter to use. The developer then has the choice to switch between either connector and expect the adapter to operate seemlessly regardless of which ever connector is used.
+
+Please refer to [Connectors documentation](./docs/connectors.md).
 
 ## Contracts
 
-This is where all the interfaces for Connectors and Messages are stored by default, you can also use this directory for specifying types and interfaces for your own logic.
+This is where all the interfaces for Connectors and Messages are stored by default, you can also extend from this directory for specifying types and interfaces for your own project.
+
+Please refer to [Contracts documentation](./docs/contracts.md).
 
 ### TapjawMessage
 
@@ -188,7 +183,11 @@ Each message (`TapjawMessage`) is composed of a payload without structural const
 
 Tapjaw Iterators designed purpose is to iterate over the yielded messages provided by an Adapter and output each message to an external interface, tapjaw tends to write to the [standard output](https://en.wikipedia.org/wiki/Standard_streams) (stdout) stream. This can be overriden by extending the `OutputIterator` class or `TapjawIterator` interface.
 
-The reason TapjawImporter writes the STDOUT buffer, is that Unix based operating systems allow for chaining of commands. This can be achieved by "piping" commands together, for example:
+Please refer to [Iterators documentation](./docs/iterators.md).
+
+
+
+The reason TapjawImporter writes the STDOUT buffer, due to the Unix feature of chaining of commands. This can be achieved by "piping" commands together, for example:
 
 ```bash
 $ cat /etc/hosts | grep localhost
@@ -197,15 +196,6 @@ $ cat /etc/hosts | grep localhost
 ```
 
 TapjawImporter is shipped with two pre-implemented Iterators, both are detailed before:-
-
-### StdoutIterator
-
-The StdoutIterator is the most basic mechanism, which will take each yielded `TapjawMessage` and parsed into a JSON string, then written  to the STDOUT buffer followed by a newline (`\n`), completely referred to as a `JSONL` stream.
-
-Using the STDOUT buffer allows you to pipe the JSON message into another program's STDIN buffer or append to a file.
-
-### RateLimitedStdoutIterator
-
 
 
 # Examples & Tutorial
