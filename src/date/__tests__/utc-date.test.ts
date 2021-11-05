@@ -1,5 +1,5 @@
-import { DATE_TIME, YYYY_MM_DD, YYYY_MM_DD_T_TIME } from "..";
-import utcDate from "../utc-date";
+import { DATE_TIME, YYYY_MM_DD, YYYY_MM_DD_T_TIME } from '../constants';
+import utcDate from '../utc-date';
 
 describe('Make sure utcDate() creates the dates we want.', () => {
     it('should create a UTC date with 00:00:00 timestamp', () => {

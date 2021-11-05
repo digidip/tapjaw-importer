@@ -31,7 +31,7 @@ export { default as DotEnvConfig } from './configs/dot-env-config';
 export { default as TapjawConfig } from './configs/tapjaw-config';
 
 // dates
-export * from './date';
+export { default as TapjawDates } from './date';
 
 // Errors
 export * from './errors';

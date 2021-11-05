@@ -1,5 +1,15 @@
-import { DATE_TIME, UNIX_TIMESTAMP, USA_MM_DD_YYYY_DATE, USA_MM_DD_YYYY_DATE_TIME, YYYY_MM_DD, YYYY_MM_DD_TIME_OFFSET, YYYY_MM_DD_T_TIME, YYYY_MM_DD_T_TIME_OFFSET, YYYY_MM_DD_T_TIME_Z } from "../index";
-import formatDate from "../format-date";
+import {
+    DATE_TIME,
+    UNIX_TIMESTAMP,
+    USA_MM_DD_YYYY_DATE,
+    USA_MM_DD_YYYY_DATE_TIME,
+    YYYY_MM_DD,
+    YYYY_MM_DD_TIME_OFFSET,
+    YYYY_MM_DD_T_TIME,
+    YYYY_MM_DD_T_TIME_OFFSET,
+    YYYY_MM_DD_T_TIME_Z,
+} from '../constants';
+import formatDate from '../format-date';
 
 describe('formatDate() should work as expected', () => {
     it('should output expected Year, Day and month string values', async () => {
