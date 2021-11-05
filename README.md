@@ -1,6 +1,8 @@
 Tapjaw Importer - v2.0.0
 =========================
 
+![diagram](./resources/diagram.png "Tapjaw Diagram")
+
 Create your own stream of payload messages to STDOUT from any API.
 
 <!-- toc -->
@@ -18,6 +20,9 @@ Create your own stream of payload messages to STDOUT from any API.
     - [TapjawMessage](#tapjawmessage)
   - [Iterators](#iterators)
 - [Examples & Tutorial](#examples--tutorial)
+- [Changelog](#changelog)
+  - [v2.0.0](#v200)
+  - [v1.2.0 (no longer supported)](#v120-no-longer-supported)
 <!-- tocstop -->
 
 # Description
@@ -49,8 +54,6 @@ The project provides a number of additional useful features to decrease the comp
 - Date helper functions, providing a common toolkit which we've had to use in previous projects (using Luxon).
 - A quick and simple .env configuration loading strategy (`DotEnvConfig`, *ref: `TapjawMessageConfig` for implementation*).
 - Base `TapjawLogger` interface to allow easy implementation of your own logging library, the project includes two basic implementations, `ConsoleLogger` and `NullLogger`, which `NullLogger` is generally used in testing.
-
-![diagram](./resources/diagram.png "Tapjaw Diagram")
 
 # History
 
@@ -126,22 +129,11 @@ Commands:
   help [command]    display help for command
 ```
 
-You are now ready to start working on your project, refer to the `digidip/tapjaw-example`'s README.md for a tutorial on how to get get started.
+You are now ready to start working on your project, refer to the `digidip/tapjaw-example`'s [README.md](https://github.com/digidip/tapjaw-example/blob/v2.0.0/README.md) for a tutorial on how to get get started.
 
 # Components
 
-An explination of all the components used by the TapjawImporter and hints on how to implement their usage correctly.
-
-The basic flow of a command is as follows:
-
-- API command *(`bin/run apis <my-command>`)*
-    - **Command** *(Configure Adapter & Connectors, executes Adapter with required arguments)*
-        - **Adapter** *(Executes injected Connector with necassary arguments for a single payload)*
-            - **Connector** *(Queries/Requests response)*
-                - Third Party API/DB/Service (Recieves a payload)
-            - **Connector** *(Deliver payload to Adapter, optionally with features to convert from XML/CSV into JSON for `TapjawMessage.payload`)*
-        - **Adapter** *(Decode and yield each `TapjawMessage`)*
-        - **StdoutIterator** *(Convert the `TapjawMessage` to JSON and output to STDOUT buffer)*
+An explination of all the components used by the Tapjaw Importer and hints on how to implement their usage correctly.
 
 ## Commands
 
@@ -159,7 +151,7 @@ Please refer to [Adapter documentation](./docs/adapters.md).
 
 ## Configs
 
-By default TapjawImporter will use the `.env` ([dotenv](https://github.com/motdotla/dotenv)) approach towards configuration. This allows for the creation of a `.env` file in your project directory, or the possibility to inject environment variables with an alternative method which then can still be read by your project without a `.env` file.  It's recommended to use the `.env` approach during development and then use an external setter of environmental variable in production.
+By default Tapjaw Importer will use the `.env` ([dotenv](https://github.com/motdotla/dotenv)) approach towards configuration. This allows for the creation of a `.env` file in your project directory, or the possibility to inject environment variables with an alternative method which then can still be read by your project without a `.env` file.  It's recommended to use the `.env` approach during development and then use an external setter of environmental variable in production.
 
 For more details please refer to [Configurations documentation](docs/configurations.md).
 
@@ -187,7 +179,7 @@ Please refer to [Iterators documentation](./docs/iterators.md).
 
 
 
-The reason TapjawImporter writes the STDOUT buffer, due to the Unix feature of chaining of commands. This can be achieved by "piping" commands together, for example:
+The reason Tapjaw Importer writes the STDOUT buffer, due to the Unix feature of chaining of commands. This can be achieved by "piping" commands together, for example:
 
 ```bash
 $ cat /etc/hosts | grep localhost
@@ -195,9 +187,23 @@ $ cat /etc/hosts | grep localhost
 ::1             localhost
 ```
 
-TapjawImporter is shipped with two pre-implemented Iterators, both are detailed before:-
+Tapjaw Importer is shipped with two pre-implemented Iterators, both are detailed before:-
 
 
 # Examples & Tutorial
 
 Please reference the [TapjawExample](https://github.com/digidip/tapjaw-example/).
+
+# Changelog
+
+## v2.0.0
+- Add date helper functions.
+- Add standard Connector and Adapter errors.
+- Typeguards.
+- Update dependancies, ESLint and prettier.
+- Add command (Commander) contracts for APIs, Filters, Stores and Tools.
+-
+
+## v1.2.0 (no longer supported)
+- Convert from OCLIF to commander.
+- Upgrade to Typescript 4.
