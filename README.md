@@ -10,6 +10,7 @@ Create your own stream of payload messages to STDOUT from any API.
 - [Description](#description)
 - [History](#history)
 - [Why use Tapjaw Importer?](#why-use-tapjaw-importer)
+- [Dependancies](#dependancies)
 - [Setup a new project](#setup-a-new-project)
 - [Components](#components)
   - [Commands](#commands)
@@ -60,29 +61,28 @@ The project provides a number of additional useful features to decrease the comp
 This project was first devised in 2019 due to a requirement of needing to import data from across dozens of APIs,
 each with unique data schemas, varied security infrastructures, request/responce strategies and general differences in appraoch.
 
-We where initially inspired by the singer.io appraoch, which provides many API taps, although as an Affiliate Marketing company we couldn't rely on singer.io to have all the APIs we needed, so instead it was decided to create a framework which allows a powerful approach to extracting data and doing something useful with it.
+We where initially inspired by the singer.io approach, which provides many API taps and targets, although as an Affiliate Marketing company we couldn't rely on singer.io to have all the APIs we needed, so instead it was decided to create a framework which provides a more diverse approach to extracting data and doing something useful with it.
 
-We have now gone beyond what singer.io is designed to do, by employing filter and tool commands to chain as the developer or business sees fit in accomplishing the consolidation of data into minimal usable form for further processing.
+This project provides an abstract approach compared to singer.io, by employing customisable, api, filter, store and tool commands to chain as the developer or business sees fit in accomplishing the consolidation of data, you as the developer do not really need to concern your self on how data is transferred through the commands.
 
-We've successfully written and deployed into production four separate internal projects using this framework.
-
-
-allowing for scalability horizontally, by allowing the developers to customise their.
-
-
- learned a lot of and are for ever striving to improve the framework
+We've successfully written and deployed four separate internal projects into production using this framework, which allowed us to experience thhe complexities of such a process. Through this process we've attempted to provide the necassary components to easily setup your own commands and data stream.
 
 # Why use Tapjaw Importer?
 
 1. You want a Typescript/Javascript framework for easily importing and consolidating data into your existing infrastructure.
-2. Want to be able to easily create api, filter, store or tool commands to stream JSON-based messages from various APIs.
-3. You need to be able to mix and match commands for your business purposes, removing code duplications by having strong layers between the specific command domains.
-4. Want to be able to stream data to any other third party commands using STDIO, enabling to use of any other programming langauge to fill any missing gaps or limitations.
+2. Want to be able to easily create api, filter, store or tool commands to stream JSON-based messages from various APIs into your infrastructure.
+3. Be able to mix and match commands for your business purposes, removing code duplications by having strong layers between the specific command domains.
+4. Want to be able to stream data to any other third party commands using STDIO or third party infrastructures, enabling to use of any other programming langauge to fill any missing gaps or limitations.
 5. Not having to rely on a continous living process which manages communication with a third party API.
-6. Easy to create or using existing infrastructure to configure and manage the running of importation commands.
+6. Easy to create or using existing infrastructure to configure and manage the running of commands.
 7. Easy to implement data consolidation for cloud based serverless projects.
 8. Easy to test individual commands separately.
 9. An simple interface for creating streams of data between commands.
+
+# Dependancies
+
+- Node JS v16
+-
 
 # Setup a new project
 
@@ -192,7 +192,7 @@ Tapjaw Importer is shipped with two pre-implemented Iterators, both are detailed
 
 # Examples & Tutorial
 
-Please reference the [Tapjaw Example v2.0](https://github.com/digidip/tapjaw-example/).
+Please reference the [Tapjaw Example v2.0](https://github.com/digidip/tapjaw-example/blob/v2.0.0).
 
 # Changelog
 
@@ -206,6 +206,7 @@ Please reference the [Tapjaw Example v2.0](https://github.com/digidip/tapjaw-exa
 - Standardise the JSON parsing of `TapjawMessage`.
 - Abstract streaming management in filter/store command contracts.
 - Documentation.
+- Implement npm package.
 
 ## v1.2.0 (no longer supported)
 - Convert from OCLIF to commander.
