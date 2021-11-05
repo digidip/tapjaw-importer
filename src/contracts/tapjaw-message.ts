@@ -1,5 +1,5 @@
 import { createHmac } from 'crypto';
-import tapjawMessageConfig from '../configs/tapjaw-message-config';
+import tapjawConfig from '../configs/tapjaw-config';
 
 export type TapjawMessageDigest = string;
 
@@ -54,10 +54,10 @@ export default class TapjawMessage {
     /**
      * Secret to salt sha256.
      *
-     * @note configured with tapjawMessageConfig by default.
+     * @note configured with tapjawConfig by default.
      * @returns string
      */
     protected getSha256Secret(): string {
-        return tapjawMessageConfig.getConfig('secret');
+        return tapjawConfig.getConfig('MESSAGE_SHA256_SECRET');
     }
 }

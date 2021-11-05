@@ -28,7 +28,7 @@ export * from './parsers';
 
 // Configs
 export { default as DotEnvConfig } from './configs/dot-env-config';
-export { default as TapjawMessageConfig } from './configs/tapjaw-message-config';
+export { default as TapjawConfig } from './configs/tapjaw-config';
 
 // dates
 export * from './date';

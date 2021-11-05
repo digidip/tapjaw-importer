@@ -5,6 +5,10 @@
     },
     "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 150,
-    "editor.rulers": [80, 120],
-    "editor.formatOnSave": true
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.formatOnSave": true,
+    "jest.jestCommandLine": "node_modules/.bin/jest"
 }

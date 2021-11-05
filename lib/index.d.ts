@@ -9,7 +9,7 @@ export { createBasicSecurity, createBearerSecurity, createOAuthSecurity } from '
 export { default as sortObjectArrays } from './support/sort-object-arrays';
 export * from './parsers';
 export { default as DotEnvConfig } from './configs/dot-env-config';
-export { default as TapjawMessageConfig } from './configs/tapjaw-message-config';
+export { default as TapjawConfig } from './configs/tapjaw-config';
 export * from './date';
 export * from './errors';
 export { default as isTapjawMessage } from './typeguards/is-tapjaw-message';

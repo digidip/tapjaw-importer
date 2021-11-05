@@ -60,7 +60,9 @@
     ],
     "scripts": {
         "test": "node node_modules/.bin/jest",
-        "lint": "node node_modules/.bin/eslint ./src --ext .ts"
+        "lint": "node node_modules/.bin/eslint ./src --ext .ts",
+        "build": "node node_modules/.bin/tsc -p ./tsconfig.build.json",
+        "watch": "node node_modules/.bin/tsc -w"
     },
     "types": "lib/index.d.ts"
 }

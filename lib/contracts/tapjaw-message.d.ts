@@ -39,7 +39,7 @@ export default class TapjawMessage {
     /**
      * Secret to salt sha256.
      *
-     * @note configured with tapjawMessageConfig by default.
+     * @note configured with tapjawConfig by default.
      * @returns string
      */
     protected getSha256Secret(): string;
