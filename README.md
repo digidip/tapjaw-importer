@@ -192,7 +192,7 @@ Tapjaw Importer is shipped with two pre-implemented Iterators, both are detailed
 
 # Examples & Tutorial
 
-Please reference the [TapjawExample](https://github.com/digidip/tapjaw-example/).
+Please reference the [Tapjaw Example v2.0](https://github.com/digidip/tapjaw-example/).
 
 # Changelog
 
@@ -201,8 +201,11 @@ Please reference the [TapjawExample](https://github.com/digidip/tapjaw-example/)
 - Add standard Connector and Adapter errors.
 - Typeguards.
 - Update dependancies, ESLint and prettier.
-- Add command (Commander) contracts for APIs, Filters, Stores and Tools.
--
+- Add command contracts for APIs, Filters, Stores and Tools.
+- Fix legacy typescript issues.
+- Standardise the JSON parsing of `TapjawMessage`.
+- Abstract streaming management in filter/store command contracts.
+- Documentation.
 
 ## v1.2.0 (no longer supported)
 - Convert from OCLIF to commander.
