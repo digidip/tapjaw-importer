@@ -1,5 +1,5 @@
 import { Argument, Command } from 'commander';
-import { BaseTapjawCommand, CommandAction } from '../contracts/commands';
+import { BaseTapjawCommand, CommandAction, CommandOption } from '../contracts/commands';
 import displayExample from '../support/display-example';
 
 export default function (this: BaseTapjawCommand, program: Command) {
@@ -27,6 +27,19 @@ export default function (this: BaseTapjawCommand, program: Command) {
     if (Reflect.hasMetadata('tapjaw:command:arguments', this)) {
         for (const argument of Reflect.getMetadata('tapjaw:command:arguments', this) as Argument[]) {
             command.addArgument(argument);
+        }
+    }
+
+    if (Reflect.hasMetadata('tapjaw:command:options', this)) {
+        for (const { required, flags, description, defaultValue } of Reflect.getMetadata(
+            'tapjaw:command:options',
+            this
+        ) as CommandOption[]) {
+            if (required) {
+                command.requiredOption(flags, description, defaultValue);
+            } else {
+                command.option(flags, description, defaultValue);
+            }
         }
     }
 }

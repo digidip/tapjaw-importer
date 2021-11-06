@@ -13,3 +13,10 @@ export interface TapjawCommandDefaultFlags<T = unknown> extends TapjawCommandFla
 export type ActionArgs = any[];
 
 export type CommandAction = (...args: ActionArgs) => void | Promise<void>;
+
+export type CommandOption = {
+    flags: string;
+    description?: string;
+    defaultValue?: string | boolean;
+    required?: boolean;
+};

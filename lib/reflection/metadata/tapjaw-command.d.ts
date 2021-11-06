@@ -1,5 +1,5 @@
 import { Argument } from 'commander';
-import { CommandAction } from '../../contracts/commands/base-tapjaw-command';
+import { CommandAction, CommandOption } from '../../contracts/commands/base-tapjaw-command';
 declare const _default: {
     Name: (type: string) => {
         (target: Function): void;
@@ -14,6 +14,10 @@ declare const _default: {
         (target: Object, propertyKey: string | symbol): void;
     };
     Arguments: (...args: Argument[]) => {
+        (target: Function): void;
+        (target: Object, propertyKey: string | symbol): void;
+    };
+    Options: (...args: CommandOption[]) => {
         (target: Function): void;
         (target: Object, propertyKey: string | symbol): void;
     };
