@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 // Contracts
 export * from './contracts';
 export * from './contracts/commands';
@@ -38,3 +40,5 @@ export * from './errors';
 
 // Typeguards
 export { default as isTapjawMessage } from './typeguards/is-tapjaw-message';
+
+export * from './reflection/metadata';

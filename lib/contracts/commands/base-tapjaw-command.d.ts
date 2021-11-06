@@ -6,3 +6,5 @@ export declare type TapjawCommandFlags<T = unknown> = Record<string, T>;
 export interface TapjawCommandDefaultFlags<T = unknown> extends TapjawCommandFlags<T | string> {
     limit: string;
 }
+export declare type ActionArgs = any[];
+export declare type CommandAction = (...args: ActionArgs) => void | Promise<void>;

@@ -42,6 +42,7 @@
         "jsdom": "^18",
         "luxon": "^2.0.2",
         "node-html-parser": "^1.1.16",
+        "reflect-metadata": "^0.1.13",
         "split2": "^4.1.0",
         "through": "^2.3.8",
         "tough-cookie": "^4",

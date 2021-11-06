@@ -2,7 +2,7 @@ import TapjawIterator from '../tapjaw-iterator';
 import { TapjawAdapterCallback } from '../tapjaw-adapter';
 import StdoutIterator from '../../iterators/stdout-iterator';
 import TapjawMessage from '../tapjaw-message';
-import { Command } from 'commander';
+import { Argument, Command } from 'commander';
 import BaseTapjawCommand, {
     TapjawCommandArgs,
     TapjawCommandDefaultFlags,
@@ -10,6 +10,9 @@ import BaseTapjawCommand, {
 } from './base-tapjaw-command';
 import ConsoleLogger from '../../support/console-logger';
 import TapjawLogger from '../tapjaw-logger';
+import { CommandAction } from '.';
+import displayExample from '../../support/display-example';
+import commandRegister from './command-register';
 
 export default abstract class TapjawApiCommand implements BaseTapjawCommand {
     protected iterator: TapjawIterator;
@@ -64,9 +67,8 @@ export default abstract class TapjawApiCommand implements BaseTapjawCommand {
         flags: TapjawCommandFlags
     ): TapjawAdapterCallback<TapjawMessage>;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public static register(program: Command): void {
-        throw new Error('static register() method not overloaded.');
+        commandRegister.bind(this as unknown as BaseTapjawCommand, program);
     }
 
     protected static getLogger(): TapjawLogger {

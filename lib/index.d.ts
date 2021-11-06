@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 export * from './contracts';
 export * from './contracts/commands';
 export { default as TapjawHttpConnector, ArrayParameter, DuplicateParameter } from './connectors/tapjaw-http-connector';
@@ -13,3 +14,4 @@ export { default as TapjawConfig } from './configs/tapjaw-config';
 export { default as TapjawDates } from './date';
 export * from './errors';
 export { default as isTapjawMessage } from './typeguards/is-tapjaw-message';
+export * from './reflection/metadata';
