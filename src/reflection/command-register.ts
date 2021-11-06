@@ -1,6 +1,6 @@
 import { Argument, Command } from 'commander';
-import { BaseTapjawCommand, CommandAction } from '.';
-import displayExample from '../../support/display-example';
+import { BaseTapjawCommand, CommandAction } from '../contracts/commands';
+import displayExample from '../support/display-example';
 
 export default function (this: BaseTapjawCommand, program: Command) {
     if (!Reflect.hasMetadata('tapjaw:command:name', this)) {

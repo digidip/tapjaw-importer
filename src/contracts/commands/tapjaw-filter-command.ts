@@ -11,6 +11,7 @@ import TapjawLogger from '../tapjaw-logger';
 import ConsoleLogger from '../../support/console-logger';
 import jsonMessageParser from '../../parsers/json-message-parser';
 import { isTapjawMessage } from '../..';
+import commandRegister from '../../reflection/command-register';
 
 export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, M extends TapjawMessage>
     implements BaseTapjawCommand
@@ -71,9 +72,8 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
         return Promise.resolve();
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public static register(program: Command): void {
-        throw new Error('static register() method not overloaded.');
+        commandRegister.call(this as unknown as BaseTapjawCommand, program);
     }
 
     protected static getLogger(): TapjawLogger {

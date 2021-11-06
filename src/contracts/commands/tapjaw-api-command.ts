@@ -2,7 +2,7 @@ import TapjawIterator from '../tapjaw-iterator';
 import { TapjawAdapterCallback } from '../tapjaw-adapter';
 import StdoutIterator from '../../iterators/stdout-iterator';
 import TapjawMessage from '../tapjaw-message';
-import { Argument, Command } from 'commander';
+import { Command } from 'commander';
 import BaseTapjawCommand, {
     TapjawCommandArgs,
     TapjawCommandDefaultFlags,
@@ -10,9 +10,7 @@ import BaseTapjawCommand, {
 } from './base-tapjaw-command';
 import ConsoleLogger from '../../support/console-logger';
 import TapjawLogger from '../tapjaw-logger';
-import { CommandAction } from '.';
-import displayExample from '../../support/display-example';
-import commandRegister from './command-register';
+import commandRegister from '../../reflection/command-register';
 
 export default abstract class TapjawApiCommand implements BaseTapjawCommand {
     protected iterator: TapjawIterator;

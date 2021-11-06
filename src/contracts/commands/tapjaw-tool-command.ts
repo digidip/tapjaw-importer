@@ -6,6 +6,7 @@ import BaseTapjawCommand, {
 import { Command } from 'commander';
 import ConsoleLogger from '../../support/console-logger';
 import TapjawLogger from '../tapjaw-logger';
+import commandRegister from '../../reflection/command-register';
 
 export default abstract class TapjawToolCommand<T extends TapjawCommandFlags> implements BaseTapjawCommand {
     /**
@@ -14,9 +15,8 @@ export default abstract class TapjawToolCommand<T extends TapjawCommandFlags> im
      */
     public abstract run(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void>;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public static register(program: Command): void {
-        throw new Error('static register() method not overloaded.');
+        commandRegister.call(this as unknown as BaseTapjawCommand, program);
     }
 
     protected static getLogger(): TapjawLogger {

@@ -86,6 +86,7 @@ We've successfully written and deployed four separate internal projects into pro
 
 - Node JS v16
 - Commander.js
+- reflect-metadata
 - Typescript 4
 - Unix based operating system (it might work in Windows, although we provide no certainty)
 
@@ -213,6 +214,7 @@ The project employs the [semver](https://semver.org/) specification on versionin
 - Abstract streaming management in filter/store command contracts.
 - Documentation.
 - Implements the npm package.
+- Implements reflect-metadata and TapjawCommand.* decorator methods for registering a command.
 
 ## v1.2.0 *(no longer supported)*
 - Convert from OCLIF to Commander.js.
