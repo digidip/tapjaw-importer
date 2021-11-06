@@ -66,7 +66,9 @@ export default abstract class TapjawApiCommand implements BaseTapjawCommand {
     ): TapjawAdapterCallback<TapjawMessage>;
 
     public static register(program: Command): void {
-        commandRegister.call(this as unknown as BaseTapjawCommand, program);
+        commandRegister
+            .call(this as unknown as BaseTapjawCommand, program)
+            .requiredOption('-i, --import-id <importId>', 'The unique Import ID');
     }
 
     protected static getLogger(): TapjawLogger {

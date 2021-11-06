@@ -2,7 +2,7 @@ import { Argument, Command } from 'commander';
 import { BaseTapjawCommand, CommandAction, CommandOption } from '../contracts/commands';
 import displayExample from '../support/display-example';
 
-export default function (this: BaseTapjawCommand, program: Command) {
+export default function (this: BaseTapjawCommand, program: Command): Command {
     if (!Reflect.hasMetadata('tapjaw:command:name', this)) {
         throw new Error('@TapjawCommand.Name(string) not found.');
     }
@@ -19,7 +19,6 @@ export default function (this: BaseTapjawCommand, program: Command) {
     command
         .description(String(Reflect.getMetadata('tapjaw:command:description', this)))
         .storeOptionsAsProperties(false)
-        .requiredOption('-i, --import-id <importId>', 'The unique Import ID')
         .option('-l, --limit', 'Limit the number of messages emitted to STDOUT')
         .action(action.bind(this))
         .on('--help', displayExample(String(Reflect.getMetadata('tapjaw:command:example', this))));
@@ -42,4 +41,6 @@ export default function (this: BaseTapjawCommand, program: Command) {
             }
         }
     }
+
+    return command;
 }
