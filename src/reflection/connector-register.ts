@@ -4,42 +4,42 @@ import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../conn
 import { TapjawConnectorError } from '../errors/tapjaw-connector-error';
 
 export default function (this: TapjawDefaultConnector): TapjawDefaultConnector {
-    if (!Reflect.hasMetadata('tapjaw:connector:host', this)) {
+    if (!Reflect.hasMetadata('tapjaw:connector:host', this, 'class')) {
         throw new TapjawConnectorError(`@TapjawMetadata.Connector.Host(string) is required!`, this);
     }
-    if (!Reflect.hasMetadata('tapjaw:connector:protocol', this)) {
+    if (!Reflect.hasMetadata('tapjaw:connector:protocol', this, 'class')) {
         throw new TapjawConnectorError(
             '@TapjawMetadata.Connector.Protocol(TapjawHttpConnectorProtocol) is required.',
             this
         );
     }
 
-    this.host = Reflect.getMetadata('tapjaw:connector:host', this) as string;
-    this.protocol = Reflect.getMetadata('tapjaw:connector:protocol', this) as TapjawHttpConnectorProtocol;
+    this.host = Reflect.getMetadata('tapjaw:connector:host', this, 'class') as string;
+    this.protocol = Reflect.getMetadata('tapjaw:connector:protocol', this, 'class') as TapjawHttpConnectorProtocol;
 
-    if (Reflect.hasMetadata('tapjaw:connector:port', this)) {
-        this.port = Reflect.getMetadata('tapjaw:connector:port', this) as number;
+    if (Reflect.hasMetadata('tapjaw:connector:port', this, 'class')) {
+        this.port = Reflect.getMetadata('tapjaw:connector:port', this, 'class') as number;
     } else {
         this.port = this.protocol === TapjawHttpConnectorProtocol.HTTPS ? 443 : 80;
     }
 
     if (
-        Reflect.hasMetadata('tapjaw:connector:enable-gzip', this) &&
-        Reflect.getMetadata('tapjaw:connector:enable-gzip', this) === true
+        Reflect.hasMetadata('tapjaw:connector:enable-gzip', this, 'class') &&
+        Reflect.getMetadata('tapjaw:connector:enable-gzip', this, 'class') === true
     ) {
         this.enableGzip = true;
     }
 
-    if (Reflect.hasMetadata('tapjaw:connector:decode', this)) {
-        this.setDecoding(Reflect.getMetadata('tapjaw:connector:decode', this) as TapjawHttpConnectorCharSet);
+    if (Reflect.hasMetadata('tapjaw:connector:decode', this, 'class')) {
+        this.setDecoding(Reflect.getMetadata('tapjaw:connector:decode', this, 'class') as TapjawHttpConnectorCharSet);
     }
 
-    if (Reflect.hasMetadata('tapjaw:connector:encode', this)) {
-        this.setEncoding(Reflect.getMetadata('tapjaw:connector:encode', this) as TapjawHttpConnectorCharSet);
+    if (Reflect.hasMetadata('tapjaw:connector:encode', this, 'class')) {
+        this.setEncoding(Reflect.getMetadata('tapjaw:connector:encode', this, 'class') as TapjawHttpConnectorCharSet);
     }
 
-    if (Reflect.hasMetadata('tapjaw:connector:security', this)) {
-        this.security = Reflect.getMetadata('tapjaw:connector:security', this) as TapjawAuthenticationWrapper;
+    if (Reflect.hasMetadata('tapjaw:connector:security', this, 'class')) {
+        this.security = Reflect.getMetadata('tapjaw:connector:security', this, 'class') as TapjawAuthenticationWrapper;
     }
 
     return this;
