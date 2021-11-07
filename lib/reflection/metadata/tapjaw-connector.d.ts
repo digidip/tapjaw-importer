@@ -1,4 +1,4 @@
-import { TapjawAuthenticationWrapper } from '../..';
+import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
 import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../../connectors/tapjaw-http-connector';
 declare const _default: {
     EnableGzip: () => {

@@ -3,10 +3,11 @@ import https from 'https';
 import { encode, decode, encodingExists } from 'iconv-lite';
 import querystring from 'querystring';
 import zlib from 'zlib';
-import TapjawConnector, { TapjawConnectorResponse, TapjawConnectorError } from '../contracts/tapjaw-connector';
+import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-connector';
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 import deepmerge from 'deepmerge';
 import { URLSearchParams } from 'url';
+import { TapjawConnectorError } from '../errors/tapjaw-connector-error';
 
 export interface TapjawHttpHeaders extends Record<string, string | undefined> {
     Accept?: string;
@@ -120,7 +121,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         }
 
         if (!encodingExists(encoding)) {
-            throw new TapjawConnectorError(`Unsupported decoding: ${encoding || 'not set'}`);
+            throw new TapjawConnectorError(`Unsupported decoding: ${encoding || 'not set'}`, this);
         }
 
         this.useDecoding = encoding;
@@ -138,7 +139,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         }
 
         if (!encodingExists(encoding)) {
-            throw new TapjawConnectorError(`Unsupported encoding: ${encoding || 'not set'}`);
+            throw new TapjawConnectorError(`Unsupported encoding: ${encoding || 'not set'}`, this);
         }
 
         this.useEncoding = encoding;
@@ -320,7 +321,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             case this.protocol === TapjawHttpConnectorProtocol.HTTP:
                 return http.request;
             default:
-                throw new TapjawConnectorError(`Invalid protocol: ${String(this.protocol)}`);
+                throw new TapjawConnectorError(`Invalid protocol: ${String(this.protocol)}`, this);
         }
     }
 
@@ -338,7 +339,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                 this.lastResponse = response;
                 if (response.statusCode !== 200) {
                     const error = new TapjawConnectorError(
-                        `HTTP Status code was ${response?.statusCode || 'not set'}.`
+                        `HTTP Status code was ${response?.statusCode || 'not set'}.`,
+                        this
                     );
                     reject(error);
                 }
@@ -349,7 +351,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                     let contentBuffer = Buffer.concat(buffer);
 
                     if (!contentBuffer) {
-                        reject(new TapjawConnectorError('Empty content buffer'));
+                        reject(new TapjawConnectorError('Empty content buffer', this));
                     }
 
                     if (this.enableGzip) {
@@ -375,7 +377,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                     connectorRequest.abort();
                     reject(
                         new TapjawConnectorError(
-                            `${options.hostname || 'not set'} Timed out after ${options.timeout || '(not set)'}ms`
+                            `${options.hostname || 'not set'} Timed out after ${options.timeout || '(not set)'}ms`,
+                            this
                         )
                     );
                 })

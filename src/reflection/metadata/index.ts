@@ -16,6 +16,6 @@ export default {
     // @TapjawConfigure.Connector.Encode()
     // @TapjawConfigure.Connector.Host()
     // @TapjawConfigure.Connector.Port()
-    // @TapjawConfigure.Connector.Protocal()
+    // @TapjawConfigure.Connector.protocol()
     // @TapjawConfigure.Connector.Security()
 };

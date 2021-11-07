@@ -1,5 +1,3 @@
-export class TapjawConnectorError extends Error {}
-
 export type TapjawConnectorResponse = string | BinaryType | Record<string, unknown>;
 
 /**

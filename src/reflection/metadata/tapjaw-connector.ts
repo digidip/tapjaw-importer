@@ -1,4 +1,4 @@
-import { TapjawAuthenticationWrapper } from '../..';
+import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
 import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../../connectors/tapjaw-http-connector';
 
 export default {
@@ -30,5 +30,5 @@ export default {
 // @TapjawConfigure.Connector.Encode(TapjawHttpConnectorConfig.CHARSET_UTF8)
 // @TapjawConfigure.Connector.Host('tapjaw.free.beeceptor.com')
 // @TapjawConfigure.Connector.Port(443)
-// @TapjawConfigure.Connector.Protocal(TapjawHttpConnectorConfig.PROTOCAL_HTTPS)
+// @TapjawConfigure.Connector.protocol(TapjawHttpConnectorConfig.protocol_HTTPS)
 // @TapjawConfigure.Connector.Security(createBearerSecurity('xxxx'))

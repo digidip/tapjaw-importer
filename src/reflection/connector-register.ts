@@ -1,13 +1,17 @@
-import { TapjawAuthenticationWrapper } from '..';
+import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 import TapjawDefaultConnector from '../connectors/tapjaw-default-connector';
 import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../connectors/tapjaw-http-connector';
+import { TapjawConnectorError } from '../errors/tapjaw-connector-error';
 
 export default function (this: TapjawDefaultConnector): TapjawDefaultConnector {
     if (!Reflect.hasMetadata('tapjaw:connector:host', this)) {
-        throw new Error(`@TapjawMetadata.Connector.Host(string) is required!`);
+        throw new TapjawConnectorError(`@TapjawMetadata.Connector.Host(string) is required!`, this);
     }
-    if (!Reflect.hasMetadata('tapjaw:connector:protocal', this)) {
-        throw new Error('@TapjawMetadata.Connector.Protocol(TapjawHttpConnectorProtocol) is required.');
+    if (!Reflect.hasMetadata('tapjaw:connector:protocol', this)) {
+        throw new TapjawConnectorError(
+            '@TapjawMetadata.Connector.Protocol(TapjawHttpConnectorProtocol) is required.',
+            this
+        );
     }
 
     this.host = Reflect.getMetadata('tapjaw:connector:host', this) as string;
