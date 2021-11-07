@@ -1,4 +1,4 @@
-process.env['TAPJAW_MESSAGE_SECRET'] = 'test';
+process.env['TAPJAW_MESSAGE_SHA256_SECRET'] = 'test';
 
 import TapjawMessage from '../../contracts/tapjaw-message';
 import jsonMessageParser from '../json-message-parser';
