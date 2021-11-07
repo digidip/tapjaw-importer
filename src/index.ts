@@ -6,7 +6,7 @@ export * from './contracts/commands';
 
 // Connectors
 export { default as TapjawHttpConnector, ArrayParameter, DuplicateParameter } from './connectors/tapjaw-http-connector';
-
+export { default as TapjawDefaultConnector } from './connectors/tapjaw-default-connector';
 export { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
 export {
     default as TapjawRequestFormBuilder,
@@ -41,4 +41,4 @@ export * from './errors';
 // Typeguards
 export { default as isTapjawMessage } from './typeguards/is-tapjaw-message';
 
-export * from './reflection/metadata';
+export { default as TapjawMetadata } from './reflection/metadata';
