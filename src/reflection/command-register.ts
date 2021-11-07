@@ -48,7 +48,8 @@ to manually configure the command.`
     if (Reflect.hasMetadata('tapjaw:command:options', this.prototype, 'class')) {
         for (const { required, flags, description, defaultValue } of Reflect.getMetadata(
             'tapjaw:command:options',
-            this
+            this.prototype,
+            'class'
         ) as CommandOption[]) {
             if (required) {
                 command.requiredOption(flags, description, defaultValue);
