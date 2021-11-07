@@ -7,7 +7,7 @@ export default function (this: BaseTapjawCommand & { prototype?: object }, progr
         throw new Error(`${this.constructor.name}.prototype missing.`);
     }
 
-    if (!Reflect.hasMetadata('tapjaw:command:name', this)) {
+    if (!Reflect.hasMetadata('tapjaw:command:name', this.prototype, 'class')) {
         throw new Error(
             `@TapjawMetadata.Command.Name(string) is required!
 TapjawMetadata loading is enabled, please overload "public async ${this.constructor.name}.register(...)"
