@@ -1,33 +1,12 @@
 import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
 import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../../connectors/tapjaw-http-connector';
 declare const _default: {
-    EnableGzip: () => {
-        (target: Function): void;
-        (target: Object, propertyKey: string | symbol): void;
-    };
-    Decode: (type: TapjawHttpConnectorCharSet) => {
-        (target: Function): void;
-        (target: Object, propertyKey: string | symbol): void;
-    };
-    Encode: (type: TapjawHttpConnectorCharSet) => {
-        (target: Function): void;
-        (target: Object, propertyKey: string | symbol): void;
-    };
-    Host: (host: string) => {
-        (target: Function): void;
-        (target: Object, propertyKey: string | symbol): void;
-    };
-    Port: (port: number) => {
-        (target: Function): void;
-        (target: Object, propertyKey: string | symbol): void;
-    };
-    Protocol: (protocol: TapjawHttpConnectorProtocol) => {
-        (target: Function): void;
-        (target: Object, propertyKey: string | symbol): void;
-    };
-    Security: (security: TapjawAuthenticationWrapper) => {
-        (target: Function): void;
-        (target: Object, propertyKey: string | symbol): void;
-    };
+    EnableGzip: () => (target: object) => void;
+    Decode: (type: TapjawHttpConnectorCharSet) => (target: object) => void;
+    Encode: (type: TapjawHttpConnectorCharSet) => (target: object) => void;
+    Host: (host: string) => (target: object) => void;
+    Port: (port: number) => (target: object) => void;
+    Protocol: (protocol: TapjawHttpConnectorProtocol) => (target: object) => void;
+    Security: (security: TapjawAuthenticationWrapper) => (target: object) => void;
 };
 export default _default;

@@ -3,25 +3,25 @@ import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../../c
 
 export default {
     EnableGzip: () => {
-        return Reflect.metadata('tapjaw:connector:enable-gzip', true);
+        return (target: object) => Reflect.defineMetadata('tapjaw:connector:enable-gzip', true, target);
     },
     Decode: (type: TapjawHttpConnectorCharSet) => {
-        return Reflect.metadata('tapjaw:connector:decode', type);
+        return (target: object) => Reflect.defineMetadata('tapjaw:connector:decode', type, target);
     },
     Encode: (type: TapjawHttpConnectorCharSet) => {
-        return Reflect.metadata('tapjaw:connector:encode', type);
+        return (target: object) => Reflect.defineMetadata('tapjaw:connector:encode', type, target);
     },
     Host: (host: string) => {
-        return Reflect.metadata('tapjaw:connector:host', host);
+        return (target: object) => Reflect.defineMetadata('tapjaw:connector:host', host, target);
     },
     Port: (port: number) => {
-        return Reflect.metadata('tapjaw:connector:port', port);
+        return (target: object) => Reflect.defineMetadata('tapjaw:connector:port', port, target);
     },
     Protocol: (protocol: TapjawHttpConnectorProtocol) => {
-        return Reflect.metadata('tapjaw:connector:protocol', protocol);
+        return (target: object) => Reflect.defineMetadata('tapjaw:connector:protocol', protocol, target);
     },
     Security: (security: TapjawAuthenticationWrapper) => {
-        return Reflect.metadata('tapjaw:connector:security', security);
+        return (target: object) => Reflect.defineMetadata('tapjaw:connector:security', security, target);
     },
 };
 
