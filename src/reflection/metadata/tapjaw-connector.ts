@@ -1,40 +1,41 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
 import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../../connectors/tapjaw-http-connector';
 
 export default {
     EnableGzip: () => {
-        return (target: object) => {
-            Reflect.defineMetadata('tapjaw:connector:enable-gzip', true, target);
+        return (target: Function) => {
+            Reflect.defineMetadata('tapjaw:connector:enable-gzip', true, target.prototype as object, 'class');
         };
     },
     Decode: (type: TapjawHttpConnectorCharSet) => {
-        return (target: object) => {
-            Reflect.defineMetadata('tapjaw:connector:decode', type, target);
+        return (target: Function) => {
+            Reflect.defineMetadata('tapjaw:connector:decode', type, target.prototype as object, 'class');
         };
     },
     Encode: (type: TapjawHttpConnectorCharSet) => {
-        return (target: object) => {
-            Reflect.defineMetadata('tapjaw:connector:encode', type, target);
+        return (target: Function) => {
+            Reflect.defineMetadata('tapjaw:connector:encode', type, target.prototype as object, 'class');
         };
     },
     Host: (host: string) => {
-        return (target: object) => {
-            Reflect.defineMetadata('tapjaw:connector:host', host, target);
+        return (target: Function) => {
+            Reflect.defineMetadata('tapjaw:connector:host', host, target.prototype as object, 'class');
         };
     },
     Port: (port: number) => {
-        return (target: object) => {
-            Reflect.defineMetadata('tapjaw:connector:port', port, target);
+        return (target: Function) => {
+            Reflect.defineMetadata('tapjaw:connector:port', port, target.prototype as object, 'class');
         };
     },
     Protocol: (protocol: TapjawHttpConnectorProtocol) => {
-        return (target: object) => {
-            Reflect.defineMetadata('tapjaw:connector:protocol', protocol, target);
+        return (target: Function) => {
+            Reflect.defineMetadata('tapjaw:connector:protocol', protocol, target.prototype as object, 'class');
         };
     },
     Security: (security: TapjawAuthenticationWrapper) => {
-        return (target: object) => {
-            Reflect.defineMetadata('tapjaw:connector:security', security, target);
+        return (target: Function) => {
+            Reflect.defineMetadata('tapjaw:connector:security', security, target.prototype as object, 'class');
         };
     },
 };
