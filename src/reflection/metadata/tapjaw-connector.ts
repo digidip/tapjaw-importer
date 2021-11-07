@@ -3,25 +3,39 @@ import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../../c
 
 export default {
     EnableGzip: () => {
-        return (target: object) => Reflect.defineMetadata('tapjaw:connector:enable-gzip', true, target);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:connector:enable-gzip', true, target);
+        };
     },
     Decode: (type: TapjawHttpConnectorCharSet) => {
-        return (target: object) => Reflect.defineMetadata('tapjaw:connector:decode', type, target);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:connector:decode', type, target);
+        };
     },
     Encode: (type: TapjawHttpConnectorCharSet) => {
-        return (target: object) => Reflect.defineMetadata('tapjaw:connector:encode', type, target);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:connector:encode', type, target);
+        };
     },
     Host: (host: string) => {
-        return (target: object) => Reflect.defineMetadata('tapjaw:connector:host', host, target);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:connector:host', host, target);
+        };
     },
     Port: (port: number) => {
-        return (target: object) => Reflect.defineMetadata('tapjaw:connector:port', port, target);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:connector:port', port, target);
+        };
     },
     Protocol: (protocol: TapjawHttpConnectorProtocol) => {
-        return (target: object) => Reflect.defineMetadata('tapjaw:connector:protocol', protocol, target);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:connector:protocol', protocol, target);
+        };
     },
     Security: (security: TapjawAuthenticationWrapper) => {
-        return (target: object) => Reflect.defineMetadata('tapjaw:connector:security', security, target);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:connector:security', security, target);
+        };
     },
 };
 

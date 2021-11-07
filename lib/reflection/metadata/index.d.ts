@@ -1,29 +1,11 @@
 declare const _default: {
     Command: {
-        Name: (type: string) => {
-            (target: Function): void;
-            (target: Object, propertyKey: string | symbol): void;
-        };
-        Description: (type: string) => {
-            (target: Function): void;
-            (target: Object, propertyKey: string | symbol): void;
-        };
-        Example: (type: string) => {
-            (target: Function): void;
-            (target: Object, propertyKey: string | symbol): void;
-        };
-        Arguments: (...args: import("commander").Argument[]) => {
-            (target: Function): void;
-            (target: Object, propertyKey: string | symbol): void;
-        };
-        Options: (...args: import("../..").CommandOption[]) => {
-            (target: Function): void;
-            (target: Object, propertyKey: string | symbol): void;
-        };
-        Action: (action: import("../..").CommandAction) => {
-            (target: Function): void;
-            (target: Object, propertyKey: string | symbol): void;
-        };
+        Name: (type: string) => (target: object) => void;
+        Description: (type: string) => (target: object) => void;
+        Example: (type: string) => (target: object) => void;
+        Arguments: (...args: import("commander").Argument[]) => (target: object) => void;
+        Options: (...args: import("../..").CommandOption[]) => (target: object) => void;
+        Action: (action: import("../..").CommandAction) => (target: object) => void;
     };
     Connector: {
         EnableGzip: () => (target: object) => void;

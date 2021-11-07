@@ -3,21 +3,33 @@ import { CommandAction, CommandOption } from '../../contracts/commands/base-tapj
 
 export default {
     Name: (type: string) => {
-        return Reflect.metadata('tapjaw:command:name', type);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:command:name', type, target);
+        };
     },
     Description: (type: string) => {
-        return Reflect.metadata('tapjaw:command:description', type);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:command:description', type, target);
+        };
     },
     Example: (type: string) => {
-        return Reflect.metadata('tapjaw:command:example', type);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:command:example', type, target);
+        };
     },
     Arguments: (...args: Argument[]) => {
-        return Reflect.metadata('tapjaw:command:arguments', args);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:command:arguments', args, target);
+        };
     },
     Options: (...args: CommandOption[]) => {
-        return Reflect.metadata('tapjaw:command:options', args);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:command:options', args, target);
+        };
     },
     Action: (action: CommandAction) => {
-        return Reflect.metadata('tapjaw:command:action', action);
+        return (target: object) => {
+            Reflect.defineMetadata('tapjaw:command:action', action, target);
+        };
     },
 };
