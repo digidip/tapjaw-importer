@@ -31,7 +31,9 @@ Additional models can be put in place to circumvent this issue. For example, if 
 
 The store command will need a subscribing handler function to read from the stack. The handler can then write to the slower MySQL server without creating backpressure to the preceding piped commands.
 
-> Warning: Beware that memory is always a limitation.
+> ⛔️ **Warning**
+>
+> Beware that memory is always a limitation.
 
 Generally, the lesson to take away with stream backpressure is to experiment and adjust the settings until the stream runs smoothly.
 
