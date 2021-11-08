@@ -21,7 +21,7 @@ In low data volume payloads, the default `StdoutIterator` should suffice.
 
 An adapter configured to perform pagination with a more significant number of items per response payload will likely cause back pressure down the stream.
 
-For situations where a substantial quantity of messages will need to get piped, Tapjaw Importer provides a useful iterator called `RateLimitedStdoutIterator` to reduce the likelihood of these issues occurring. Please see to [Iterators](./iterators.md) for more details.
+For situations where a substantial quantity of messages will need to get piped, Tapjaw Importer provides a useful iterator called `RateLimitedStdoutIterator` to reduce the likelihood of these issues occurring. Please see [Iterators](./iterators.md) for more details.
 
 ### Back pressure prevention on Filter, Tool and Store commands
 
