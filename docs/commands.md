@@ -35,7 +35,7 @@ The store command will need a subscribing handler function to read from the stac
 
 Generally, the lesson to take away with stream backpressure is to experiment and adjust the settings until the stream runs smoothly.
 
-More about backpreassuring in streams can be found (here)[https://nodejs.org/en/docs/guides/backpressuring-in-streams/].
+More about backpreassuring in streams can be found [here](https://nodejs.org/en/docs/guides/backpressuring-in-streams/).
 
 ## Tapjaw Metadata Command Decorators
 
