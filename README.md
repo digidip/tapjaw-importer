@@ -47,7 +47,7 @@ $ bin/run apis my-network | bin/run filters remove-duplicates | bin/run filters 
 
 The project provides several additional useful features to decrease the complexity of:
 - Access HTTP/API endpoints with Connectors (`TapjawConnector` & `TapjawHttpConnector`).
-  - Security implementations for Bearer, Basic and OAuth authentication *(Session-based authentication in the works!)*.
+  - Security implementations for Bearer, Basic and OAuth authentication.
 - Iterate seamlessly over multiple pages of response data using Adapters (`TapjawAdapter`).
 - Parser tools to convert XML or CSV to JSON (`xmlToJson` & `csvToJson`).
 - Strong focus on Typescript data typing, employing contracted interfaces throughout the framework.
@@ -215,8 +215,8 @@ The project employs the [semver](https://semver.org/) specification on versionin
 - Standardise the JSON parsing of `TapjawMessage`.
 - Abstract streaming management in filter/store command contracts.
 - Documentation.
-- Implements the npm package.
-- Implements reflect-metadata and TapjawCommand.* decorator methods for registering a command.
+- Implement the npm package publishing (#TODO).
+- Implements reflect-metadata, added `@TapjawMetadata.Command.*` and `@TapjawMetadata.Connector.*` decorator methods for configuring commands and connectors, [read more](docs/commands.md#tapjaw-metadata-command-decorators).
 
 ## v1.2.0 *(no longer supported)*
 - Convert from OCLIF to Commander.js.
