@@ -60,9 +60,8 @@ Additionally the contract for each command variant type **must** also get fulfil
 - [Store commands](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
 - [Tool commands](docs/tool-commands.md) - Additional commands which do not fit within the specification of the previous three categories, for example mutating a message.
 
----
 ### ＠TapjawMetadata.Command.***Name***(*string*) - **Required**
-
+---
 Specify the name of the command.
 The name **must** not contain any spaces.
 
@@ -73,8 +72,8 @@ Generally, kebab case names are most common. For example: `my-api-name` will con
 @TapjawMetadata.Command.Name('my-command')
 export default class MyCommand extends ... {
 ```
----
 ### ＠TapjawMetadata.Command.***Description***(*string*) - **Required**
+---
 
 Specify the description displayed in the commands help.
 
@@ -83,8 +82,8 @@ Specify the description displayed in the commands help.
 @TapjawMetadata.Command.Description('my-command description')
 export default class MyCommand extends ... {
 ```
----
 ### ＠TapjawMetadata.Command.***Action***(*callback*) - **Required**
+---
 
 Specify the action's closure function to run when a user executes the command.
 
@@ -114,8 +113,8 @@ default export class MyCommand extends ... {
     constructor(private readonly adapter: MyAdapter) {}
 }
 ```
----
 ### ＠TapjawMetadata.Command.***Example***(*string*) - **Optional**
+---
 
 Optionally, specify the example string to appear when a user provides the `--help` option to the command.
 
@@ -134,8 +133,8 @@ My API command.
 Examples:
   $ bin/importer apis my-api-command MyCaption -i uuid
 ```
----
 ### ＠TapjawMetadata.Command.***Arguments***(*Argument*, ..) - **Optional**
+---
 
 Specify arguments the user can input with the command. Multiple arguments are allowed.
 
@@ -163,8 +162,8 @@ default export class MyCommand extends ... {
 
 > ℹ️  Please refer to Commander.js's [Argument](https://github.com/tj/commander.js/blob/v8.3.0/typings/index.d.ts#L34) contract for further details.
 
----
 ### ＠TapjawMetadata.Command.***Options***(*Option*, ...) - **Optional**
+---
 
 Specify options the user can use with the command. Multiple options are allowed, but the flag values must be unique.
 
@@ -196,8 +195,8 @@ default export class MyCommand extends ... {
     constructor(private readonly adapter: MyAdapter) {}
 }
 ```
----
 ## Decorator based command example
+---
 
 ```typescript
 // -- src/commands/apis/tapjaw-example.ts
@@ -244,8 +243,8 @@ export default class TapjawExample extends BaseApiCommand {
 }
 
 ```
----
 ## Non-decorator based command example
+---
 
 ```typescript
 // -- src/commands/tools/non-reflect-hello.ts
