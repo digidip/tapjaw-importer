@@ -143,11 +143,13 @@ An overview of each component is available in Tapjaw Importer, focusing on each 
 
 ## Commands
 
-Commands consist of four distinct types:
-- [APIs](docs/API-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
-- [Filters](docs/filter-commands.md) - Filter out stdin stream messages, mutate a message, or forward messages to the stdout stream based on rules.
-- [Stores](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
-- [Tools](docs/tool-commands.md) - Additional useful commands which do not fit within the specification of the previous three categories.
+Commands are the defined set of entrypoints in a project, commands consist of four distict types in Tapjaw Importer, each with a specific domain. Read the documentation links below to get an overview on how commands are configured and which command is used, for what purpose.
+
+- [Commands overivew](docs/commands.md) - Overview of what is necessary to create a command.
+- [API commands](docs/API-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
+- [Filter commands](docs/filter-commands.md) - Filter out stdin stream messages, mutate a message, or forward messages to the stdout stream based on rules.
+- [Store commands](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
+- [Tool commands](docs/tool-commands.md) - Additional commands which do not fit within the specification of the previous three categories.
 
 ## Adapters
 
