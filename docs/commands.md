@@ -29,7 +29,7 @@ Latency in filter, tool and store commands should also get taken seriously. For 
 
 Additional models can be put in place to circumvent this issue. For example, if a store command took a more extended amount of time to write each record to a remote MySQL server. An internal asynchronous buffer can get written to an internal array called a stack, and all the messages are read from the STDIN buffer and pushed onto the stack.
 
-The store command would need a subscribing handler read from to the stack. The handler can then write to the slower MySQL server without creating backpressure to the preceding piped commands.
+The store command will need a subscribing handler function to read from to the stack. The handler can then write to the slower MySQL server without creating backpressure to the preceding piped commands.
 
 > Warning: Beware that memory is always a limitation.
 
