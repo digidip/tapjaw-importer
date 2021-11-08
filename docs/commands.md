@@ -52,9 +52,9 @@ export default class MyCommand extends ... {
 ```
 
 Every decorator configured command **must** specify three required configurations, they are:
-- `TapjawMetadata.Command.Name()`
-- `TapjawMetadata.Command.Description()`
-- `TapjawMetadata.Command.Action()`
+- `@TapjawMetadata.Command.Name()`
+- `@TapjawMetadata.Command.Description()`
+- `@TapjawMetadata.Command.Action()`
 
 Additionally the contract for each command variant type **must** also get fulfilled to work correctly, read the requirements for each command variant:
 - [API commands](docs/api-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
