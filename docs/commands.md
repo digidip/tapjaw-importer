@@ -7,7 +7,7 @@ Commands in Tapjaw Importer have three distinct approaches when it comes to stre
    2. Tool based commands can use either buffer for any number of reasons, such as message mutators, data loggers, or a more complex or specific filter command. *(import from `TapjawToolCommand`)*
 3. `[STDIN]` Store commands only read the STDIN buffer. All messages received from the STDIN buffer must get written to an external interface. *(import from `TapjawStoreCommand`)*
 
-## Backpreassuring in streams 
+## Backpreassuring in streams
 
 Backpreassuring in streams is a common problem when piped commands are joined together, the STDIO buffers are designed to take data from a source and provide it to the destination as soon as possible.
 
@@ -39,7 +39,7 @@ More about backpreassuring in streams can be found [here](https://nodejs.org/en/
 
 ## Tapjaw Metadata Command Decorators
 
-Tapjaw metadata cmmand decorators define the properties required to register a command. Below is a list of available decorator methods.
+Tapjaw metadata command decorators define the properties required to register a command. Below is a list of available decorator methods.
 
 Write each ***required*** and any ***optional*** methods on the lines prior to the class definition. For example:
 ```typescript
@@ -49,8 +49,19 @@ Write each ***required*** and any ***optional*** methods on the lines prior to t
 export default class MyCommand extends ... {
 ```
 
+Every decorator configured command **must** specify three required configurations, they are:
+- `TapjawMetadata.Command.Name()`
+- `TapjawMetadata.Command.Description()`
+- `TapjawMetadata.Command.Action()`
 
-### @TapjawMetadata.Command.***Name***(*string*) - **Required**
+Additionally the contract for each command variant type **must** also get fulfilled to work correctly, read the requirements for each command variant:
+- [API commands](docs/api-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
+- [Filter commands](docs/filter-commands.md) - Filter out stdin stream messages or forward messages to the stdout stream based on rules.
+- [Store commands](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
+- [Tool commands](docs/tool-commands.md) - Additional commands which do not fit within the specification of the previous three categories, for example mutating a message.
+
+---
+### ＠TapjawMetadata.Command.***Name***(*string*) - **Required**
 
 Specify the name of the command.
 The name **must** not contain any spaces.
@@ -62,8 +73,8 @@ Generally, kebab case names are most common. For example: `my-api-name` will con
 @TapjawMetadata.Command.Name('my-command')
 export default class MyCommand extends ... {
 ```
-
-### @TapjawMetadata.Command.***Description***(*string*) - **Required**
+---
+### ＠TapjawMetadata.Command.***Description***(*string*) - **Required**
 
 Specify the description displayed in the commands help.
 
@@ -72,8 +83,8 @@ Specify the description displayed in the commands help.
 @TapjawMetadata.Command.Description('my-command description')
 export default class MyCommand extends ... {
 ```
-
-### @TapjawMetadata.Command.***Action***(*callback*) - **Required**
+---
+### ＠TapjawMetadata.Command.***Action***(*callback*) - **Required**
 
 Specify the action's closure function to run when a user executes the command.
 
@@ -103,10 +114,8 @@ default export class MyCommand extends ... {
     constructor(private readonly adapter: MyAdapter) {}
 }
 ```
-
-
-
-### @TapjawMetadata.Command.***Example***(*string*) - **Optional**
+---
+### ＠TapjawMetadata.Command.***Example***(*string*) - **Optional**
 
 Optionally, specify the example string to appear when a user provides the `--help` option to the command.
 
@@ -125,13 +134,12 @@ My API command.
 Examples:
   $ bin/importer apis my-api-command MyCaption -i uuid
 ```
-
-
-### @TapjawMetadata.Command.***Arguments***(*Argument*, ..) - **Optional**
+---
+### ＠TapjawMetadata.Command.***Arguments***(*Argument*, ..) - **Optional**
 
 Specify arguments the user can input with the command. Multiple arguments are allowed.
 
-> **Important**:
+> **⚠️ Important**
 >
 > The order of the arguments **must** match between the `@TapjawMetadata.Command.Arguments(...)` declaration and the `@TapjawMetadata.Command.Action(...)` closure parameters signature.
 
@@ -153,13 +161,10 @@ default export class MyCommand extends ... {
 }
 ```
 
-> **Note**:
->
-> Please refer to Commander.js's Argument contract for further details.
+> ℹ️  Please refer to Commander.js's [Argument](https://github.com/tj/commander.js/blob/v8.3.0/typings/index.d.ts#L34) contract for further details.
 
-
-
-### @TapjawMetadata.Command.***Options***(*Option*, ...) - **Optional**
+---
+### ＠TapjawMetadata.Command.***Options***(*Option*, ...) - **Optional**
 
 Specify options the user can use with the command. Multiple options are allowed, but the flag values must be unique.
 
@@ -191,9 +196,7 @@ default export class MyCommand extends ... {
     constructor(private readonly adapter: MyAdapter) {}
 }
 ```
-
-
-
+---
 ## Decorator based command example
 
 ```typescript
@@ -241,7 +244,7 @@ export default class TapjawExample extends BaseApiCommand {
 }
 
 ```
-
+---
 ## Non-decorator based command example
 
 ```typescript

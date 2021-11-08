@@ -17,7 +17,7 @@ The `dot-env-config` Class will **only** read all the available configurations s
 
 ## Brief overview
 
-When setting up a project, copy the `tapjaw-importer/default.env` from Tapjaw Importer and place it into your project. If you're using the `tapjaw-example`, the file will already exist.
+When setting up a project, copy the `tapjaw-importer/default.env` from Tapjaw Importer and place it into your project. If you are using the `tapjaw-example`, the file will already exist.
 
 You will see that the `default.env` contains two predefined configurations:
 - `TAPJAW_MESSAGE_SHA256_SECRET=<string>`
@@ -65,8 +65,7 @@ export default new ExampleConfig();
 
 ## Production usage
 
-Generally, in production, we do not use the `.env` approach. Instead, we make sure that the Unix `env` already has the values stored. With AWS services or Docker containers, you can provide the values directly via their corresponding configurations or user interface inputs.
+Generally, in production, we do not use the .env approach. Instead, we make sure that the Unix env already has the values stored. When using AWS services or Docker containers, provide the values directly in their corresponding configurations or user interface inputs.
+Please refer to the appropriate infrastructure documentation on how to inject environmental variables safely.
 
-Please refer to your relevant infrastructure documentation on how to inject environmental variables safely.
-
-Of course, you can also use the `.env` approach in production. However, it's **not recommended** as it potentially allows sensitive data to be accessible on the file system where the project gets hosted. Such behaviour could be considered a severe security breach in some situations.
+Of course, the .env file can get used in production. However, it is recommended against, as it potentially allows sensitive data to be accessible on the file system where the project gets hosted. Such behaviour could be considered a severe security breach in some situations.

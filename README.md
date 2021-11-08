@@ -147,9 +147,9 @@ Commands are the defined set of entrypoints in a project, commands consist of fo
 
 - [Commands overivew](docs/commands.md) - Overview of what is necessary to create a command.
 - [API commands](docs/api-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
-- [Filter commands](docs/filter-commands.md) - Filter out stdin stream messages, mutate a message, or forward messages to the stdout stream based on rules.
+- [Filter commands](docs/filter-commands.md) - Filter out stdin stream messages or forward messages to the stdout stream based on rules.
 - [Store commands](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
-- [Tool commands](docs/tool-commands.md) - Additional commands which do not fit within the specification of the previous three categories.
+- [Tool commands](docs/tool-commands.md) - Additional commands which do not fit within the specification of the previous three categories, for example mutating a message.
 
 ## Adapters
 
