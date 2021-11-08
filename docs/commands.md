@@ -7,9 +7,9 @@ Commands in Tapjaw Importer have three distinct approaches when it comes to stre
    2. Tool based commands can use either buffer for any number of reasons, such as message mutators, data loggers, or a more complex or specific filter command. *(import from `TapjawToolCommand`)*
 3. `[STDIN]` Store commands only read the STDIN buffer. All messages received from the STDIN buffer must get written to an external interface. *(import from `TapjawStoreCommand`)*
 
-## Stream back pressure
+## Backpreassuring in streams 
 
-Back preassure is a common problem when piped commands are joined together, the STDIO buffers are designed to take data from a source and provide it to the destination as soon as possible.
+Backpreassuring in streams is a common problem when piped commands are joined together, the STDIO buffers are designed to take data from a source and provide it to the destination as soon as possible.
 
 If STDIN buffer in reciever command cannot handle the volume quickly enough, it will cause the buffer to overflow and crash the entire pipe, resulting in all commands terminating.
 
