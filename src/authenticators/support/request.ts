@@ -1,4 +1,4 @@
-import https from 'https';
+import { RequestOptions, request as httpsRequest } from 'https';
 import { IncomingMessage } from 'http';
 
 /**
@@ -14,11 +14,11 @@ import { IncomingMessage } from 'http';
  */
 const request = <T extends string | BinaryType>(
     params: string,
-    options: https.RequestOptions,
+    options: RequestOptions,
     responseEncoding: BufferEncoding = 'utf8'
 ): Promise<T> => {
     return new Promise((resolve, reject) => {
-        const authReq = https.request(options, (response: IncomingMessage) => {
+        const authReq = httpsRequest(options, (response: IncomingMessage) => {
             if (response?.statusCode !== 200) {
                 const error = new Error(`HTTP Status code was ${response?.statusCode || 'not set'}.`);
                 return reject(error);

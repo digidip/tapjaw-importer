@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import https from 'https';
+import { RequestOptions } from 'https';
 /**
  * Wraps and performs a HTTP/HTTPS request.
  *
@@ -11,5 +11,5 @@ import https from 'https';
  * @param responseEncoding string
  * @reutrn Promise<T>
  */
-declare const request: <T extends string>(params: string, options: https.RequestOptions, responseEncoding?: BufferEncoding) => Promise<T>;
+declare const request: <T extends string>(params: string, options: RequestOptions, responseEncoding?: BufferEncoding) => Promise<T>;
 export default request;

@@ -8,6 +8,7 @@
     "devDependencies": {
         "@types/jest": "^27",
         "@types/jsdom": "^16",
+        "@types/jsonwebtoken": "^8.5.5",
         "@types/luxon": "^2.0.5",
         "@types/node": "^16",
         "@types/puppeteer": "^2.0.0",
@@ -40,6 +41,7 @@
         "globby": "^12",
         "iconv-lite": "^0.6",
         "jsdom": "^18",
+        "jsonwebtoken": "^8.5.1",
         "luxon": "^2.0.2",
         "node-html-parser": "^1.1.16",
         "reflect-metadata": "^0.1.13",
