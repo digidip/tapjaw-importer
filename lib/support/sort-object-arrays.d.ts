@@ -10,4 +10,4 @@
  *
  * @param payload Payload
  */
-export default function sortObjevtArrays<T = Record<string, unknown>>(payload: Record<string, unknown>): T;
+export default function sortObjectArrays<T = Record<string, unknown>>(payload: Record<string, unknown>): T;
