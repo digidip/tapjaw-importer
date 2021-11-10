@@ -1,4 +1,3 @@
-declare type Payload = Record<string, unknown>;
 /**
  * This support method is used to prevent TapjawMessage
  * signatures incorrectly changing between API responses.
@@ -11,5 +10,4 @@ declare type Payload = Record<string, unknown>;
  *
  * @param payload Payload
  */
-export default function sortObjevtArrays<T = Record<string, unknown>>(payload: Payload): T;
-export {};
+export default function sortObjevtArrays<T = Record<string, unknown>>(payload: Record<string, unknown>): T;
