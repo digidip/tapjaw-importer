@@ -2,19 +2,19 @@ import 'reflect-metadata';
 /**
  * @namespace TapjawContract
  */
-export * as TapjawContracts from './contracts';
+export * as TapjawContract from './contracts';
 /**
  * @namespace TapjawCommand
  */
-export * as TapjawCommands from './contracts/commands';
+export * as TapjawCommand from './contracts/commands';
 /**
  * @namespace TapjawConnector
  */
-export * as TapjawConnectors from './connectors';
+export * as TapjawConnector from './connectors';
 /**
  * @namespace TapjawIterator
  */
-export * as TapjawIterators from './iterators';
+export * as TapjawIterator from './iterators';
 /**
  * @namespace TapjawAuthenticator
  */
@@ -26,7 +26,7 @@ export * as TapjawParser from './parsers';
 /**
  * @namespace TapjawConfig
  */
-export * as TapjawConfigs from './configs';
+export * as TapjawConfig from './configs';
 /**
  * @namespace TapjawDate
  */
@@ -36,7 +36,7 @@ export * as TapjawDate from './date';
  */
 export * as TapjawError from './errors';
 /**
- * @namespace TapjawTypeguards
+ * @namespace TapjawTypeguard
  */
 export * as TapjawTypeguard from './typeguards';
 /**
