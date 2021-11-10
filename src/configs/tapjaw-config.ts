@@ -1,9 +1,18 @@
+/**
+ * @module TapjawConfigs
+ */
 import DotEnvConfig from './dot-env-config';
 
-class TapjawConfig extends DotEnvConfig {
+/**
+ * Tawjaw Importer default configuration loader, responsible for providing
+ * all configuration values with a namespace key of `TAPJAW_`.
+ */
+export class TapjawConfig extends DotEnvConfig {
     constructor() {
         super('Default Tapjaw Config', 'TAPJAW_');
     }
 }
 
-export default new TapjawConfig();
+const config = new TapjawConfig();
+
+export default config;

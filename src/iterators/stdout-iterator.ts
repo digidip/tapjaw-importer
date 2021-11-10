@@ -1,5 +1,5 @@
 import OutputIterator from './output-iterator';
-import TapjawMessage from '../contracts/tapjaw-message';
+import TapjawMessage from '../messages/tapjaw-message';
 import { TapjawIteratorError } from '../contracts/tapjaw-iterator';
 
 /**

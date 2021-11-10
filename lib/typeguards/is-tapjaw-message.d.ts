@@ -1,3 +1,2 @@
-import TapjawMessage from '../contracts/tapjaw-message';
-declare const _default: (message: unknown) => message is TapjawMessage;
-export default _default;
+import TapjawMessage from '../messages/tapjaw-message';
+export default function (message: unknown): message is TapjawMessage;

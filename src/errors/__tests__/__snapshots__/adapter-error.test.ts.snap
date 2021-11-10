@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Make sure AdapterError works as expected should return a AdapterError with a String as Error 1`] = `[AdapterError:MockAdapter: test error]`;
-
-exports[`Make sure AdapterError works as expected should return a AdapterError with an Error instance as Error 1`] = `[AdapterError:MockAdapter: Error: test error]`;

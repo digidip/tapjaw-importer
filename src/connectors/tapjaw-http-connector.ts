@@ -38,20 +38,29 @@ export type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
 
 const DEFAULT_TIMEOUT = 30000;
 
+/**
+ * Known supported character sets used by {@link TapjawHttpConnector}, {@link TapjawMetadata.Connector.Encode}
+ * and {@link TapjawMetadata.Connector.Encode}.
+ * @enum
+ */
 export enum TapjawHttpConnectorCharSet {
-    // character sets
     UTF8 = 'utf-8',
     LATIN1 = 'iso-8859-1',
 }
 
+/**
+ * Supported protocols for HTTP based connectors.
+ * @enum
+ */
 export enum TapjawHttpConnectorProtocol {
-    // protocols
     HTTPS = 'https',
     HTTP = 'http',
 }
 
 /**
- * HTTP and HTTPS API request wrapper.
+ * @module TapjawConnector
+ *
+ * The default HTTP and HTTPS API connector.
  */
 export default abstract class TapjawHttpConnector implements TapjawConnector {
     /**
@@ -130,7 +139,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     /**
      * Set the character set encoding on the response data.
      *
-     * @param encoding TapjawHttpConnectorProtocol|string|null
+     * @param encoding {@link TapjawHttpConnectorProtocol}|string|null
      */
     public setEncoding(encoding: TapjawHttpConnectorCharSet | string | null): void {
         if (encoding === null || !encoding) {
@@ -149,10 +158,10 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * Send a GET request to the API.
      *
      * @param uri       string
-     * @param query     TapjawHttpQueryParameters
-     * @param headers   TapjawHttpHeaders (optional)
+     * @param query     {@link TapjawHttpQueryParameters}
+     * @param headers   {@link TapjawHttpHeaders} (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     public async get(
         uri: string,
@@ -179,7 +188,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param query     TapjawHttpQueryParameters
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     public async delete(
         uri: string,
@@ -207,7 +216,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param body      TapjawHttpRequestBody
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     public async post(
         uri: string,
@@ -245,7 +254,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param json      TapjawHttpRequestBody
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     public async postJson(
         uri: string,

@@ -1,10 +1,9 @@
 import { DateTime, DateTimeUnit } from 'luxon';
 
-const startOf = (date: Date, period: DateTimeUnit): Date =>
-    DateTime.fromJSDate(date, {
+export default function (date: Date, period: DateTimeUnit): Date {
+    return DateTime.fromJSDate(date, {
         zone: 'UTC',
     })
         .startOf(period)
         .toJSDate();
-
-export default startOf;
+}

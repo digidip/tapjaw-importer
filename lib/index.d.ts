@@ -1,18 +1,49 @@
 import 'reflect-metadata';
-export * from './contracts';
-export * from './contracts/commands';
-export { default as TapjawHttpConnector, ArrayParameter, DuplicateParameter } from './connectors/tapjaw-http-connector';
-export { default as TapjawDefaultConnector } from './connectors/tapjaw-default-connector';
-export { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
-export { default as TapjawRequestFormBuilder, FormFieldName, FormFieldValue, FormRequest, } from './authenticators/support/request-form-builder';
-export { default as TapjawAuthenticationWrapper } from './contracts/tapjaw-authentication-wrapper';
-export * from './iterators';
-export { createBasicSecurity, createBearerSecurity, createOAuthSecurity } from './support/create-security';
-export { default as sortObjectArrays } from './support/sort-object-arrays';
-export * from './parsers';
-export { default as DotEnvConfig } from './configs/dot-env-config';
-export { default as TapjawConfig } from './configs/tapjaw-config';
-export { default as TapjawDates } from './date';
-export * from './errors';
-export { default as isTapjawMessage } from './typeguards/is-tapjaw-message';
-export { default as TapjawMetadata } from './reflection/metadata';
+/**
+ * @namespace TapjawContract
+ */
+export * as TapjawContracts from './contracts';
+/**
+ * @namespace TapjawCommand
+ */
+export * as TapjawCommands from './contracts/commands';
+/**
+ * @namespace TapjawConnector
+ */
+export * as TapjawConnectors from './connectors';
+/**
+ * @namespace TapjawIterator
+ */
+export * as TapjawIterators from './iterators';
+/**
+ * @namespace TapjawAuthenticator
+ */
+export * as TapjawAuthenticator from './authenticators';
+/**
+ * @namespace TapjawParser
+ */
+export * as TapjawParser from './parsers';
+/**
+ * @namespace TapjawConfig
+ */
+export * as TapjawConfigs from './configs';
+/**
+ * @namespace TapjawDate
+ */
+export * as TapjawDate from './date';
+/**
+ * @namespace TapjawError
+ */
+export * as TapjawError from './errors';
+/**
+ * @namespace TapjawTypeguards
+ */
+export * as TapjawTypeguard from './typeguards';
+/**
+ * @namespace TapjawMetadata
+ */
+export * as TapjawMetadata from './reflection';
+/**
+ * @namespace TapjawMessage
+ */
+export * as TapjawMessage from './messages';

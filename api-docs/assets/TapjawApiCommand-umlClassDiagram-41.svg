@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="246px" preserveAspectRatio="none" style="width:838px;height:246px;background:#00000000;" version="1.1" viewBox="0 0 838 246" width="838px" zoomAndPan="magnify"><defs><filter height="300%" id="f155vsio393syd" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[780ffde38834e662f62a5d646d249416]
+class TapjawApiCommand--><rect codeLine="4" fill="#FEFECE" filter="url(#f155vsio393syd)" height="112.7754" id="TapjawApiCommand" style="stroke:#A80036;stroke-width:1.5;" width="815" x="9" y="120"/><ellipse cx="351.75" cy="136" fill="#A9DCDF" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M351.6133,131.3481 L350.4595,136.4199 L352.7754,136.4199 Z M350.1191,129.1069 L353.1157,129.1069 L356.4609,141.5 L354.0122,141.5 L353.2485,138.437 L349.9697,138.437 L349.2227,141.5 L346.7739,141.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="121" x="372.25" y="140.5352">TapjawApiCommand</text><line style="stroke:#A80036;stroke-width:1.5;" x1="10" x2="823" y1="152" y2="152"/><polygon fill="none" points="20,158,24,162,20,166,16,162" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="126" x="29" y="166.6348">iterator : TapjawIterator</text><line style="stroke:#A80036;stroke-width:1.5;" x1="10" x2="823" y1="172.9551" y2="172.9551"/><ellipse cx="20" cy="183.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="190" x="29" y="187.5898">register(program: Command) : void</text><ellipse cx="20" cy="196.9102" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="644" x="29" y="200.5449">run&lt;T&gt;(args: TapjawCommandArgs&lt;unknown&gt;, flags: T &amp; TapjawCommandDefaultFlags&lt;unknown&gt;) : Promise&lt;void&gt;</text><polygon fill="#FFFF44" points="20,204.8652,24,208.8652,20,212.8652,16,208.8652" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-style="italic" lengthAdjust="spacing" textLength="789" x="29" y="213.5">getAdapterCallback(args: TapjawCommandArgs&lt;unknown&gt;, flags: TapjawCommandFlags&lt;unknown&gt;) : TapjawAdapterCallback&lt;DefaultMessage&gt;</text><polygon fill="#FFFF44" points="20,217.8203,24,221.8203,20,225.8203,16,221.8203" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="147" x="29" y="226.4551">getLogger() : TapjawLogger</text><!--MD5=[bed868222db9f07a2f48f4d1edb3754e]
+class BaseTapjawCommand--><rect codeLine="11" fill="#FEFECE" filter="url(#f155vsio393syd)" height="52.9551" id="BaseTapjawCommand" style="stroke:#A80036;stroke-width:1.5;" width="233" x="300" y="7"/><ellipse cx="347.75" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M344.1777,19.2651 L344.1777,17.1069 L351.5571,17.1069 L351.5571,19.2651 L349.0918,19.2651 L349.0918,27.3418 L351.5571,27.3418 L351.5571,29.5 L344.1777,29.5 L344.1777,27.3418 L346.6431,27.3418 L346.6431,19.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="129" x="368.25" y="27.5352">BaseTapjawCommand</text><line style="stroke:#A80036;stroke-width:1.5;" x1="301" x2="532" y1="39" y2="39"/><ellipse cx="311" cy="50" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="207" x="320" y="53.6348">run(args: unknown[]) : Promise&lt;void&gt;</text><!--MD5=[b6fbe16fa2d04d26d802a666c79619c5]
+reverse link BaseTapjawCommand to TapjawApiCommand--><path codeLine="14" d="M416.5,80.35 C416.5,92.93 416.5,106.7 416.5,119.77 " fill="none" id="BaseTapjawCommand-backto-TapjawApiCommand" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="409.5,80.03,416.5,60.03,423.5,80.03,409.5,80.03" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[3fd37095122db96c8d8f189262a81896]
+@startuml
+skinparam BackgroundColor transparent
+hide empty methods
+hide empty fields
+abstract class "TapjawApiCommand" {
+    #iterator : TapjawIterator
+    {static} +register(program: Command) : void
+    +run<T>(args: TapjawCommandArgs<unknown>, flags: T & TapjawCommandDefaultFlags<unknown>) : Promise<void>
+    {abstract} #getAdapterCallback(args: TapjawCommandArgs<unknown>, flags: TapjawCommandFlags<unknown>) : TapjawAdapterCallback<DefaultMessage>
+    {static} #getLogger() : TapjawLogger
+}
+interface "BaseTapjawCommand" {
+    +run(args: unknown[]) : Promise<void>
+}
+"BaseTapjawCommand" <|.. "TapjawApiCommand"
+@enduml
+
+PlantUML version 1.2021.6(Fri May 14 09:09:51 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

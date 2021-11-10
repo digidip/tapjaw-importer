@@ -1,4 +1,4 @@
-import { TapjawHttpConnector } from '..';
+import TapjawHttpConnector from './tapjaw-http-connector';
 /**
  * Reflection based configurable HTTP and HTTPS API request wrapper.
  */

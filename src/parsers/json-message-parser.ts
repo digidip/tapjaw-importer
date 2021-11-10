@@ -1,11 +1,11 @@
 import TapjawLogger from '../contracts/tapjaw-logger';
-import TapjawMessage from '../contracts/tapjaw-message';
+import TapjawMessage from '../messages/tapjaw-message';
 
-export default <M extends TapjawMessage>(
+export default function jsonMessageParser<M extends TapjawMessage>(
     line: string,
     displayJsonParseErrors: boolean,
     logger: TapjawLogger
-): M | null => {
+): M | null {
     let message: M | null = null;
 
     try {
@@ -17,4 +17,4 @@ export default <M extends TapjawMessage>(
     }
 
     return message;
-};
+}

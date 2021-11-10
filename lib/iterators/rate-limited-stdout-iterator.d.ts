@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import TapjawMessage from '../contracts/tapjaw-message';
+import TapjawMessage from '../messages/tapjaw-message';
 import TapjawIterator from '../contracts/tapjaw-iterator';
 import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
 /**

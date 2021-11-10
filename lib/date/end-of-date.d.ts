@@ -1,2 +1,1 @@
-declare const endOfDate: (date: Date) => Date;
-export default endOfDate;
+export default function endOfDate(date: Date): Date;

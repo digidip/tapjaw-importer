@@ -11,5 +11,5 @@ declare type Payload = Record<string, unknown>;
  *
  * @param payload Payload
  */
-declare const sortObjevtArrays: <T = Record<string, unknown>>(payload: Payload) => T;
-export default sortObjevtArrays;
+export default function sortObjevtArrays<T = Record<string, unknown>>(payload: Payload): T;
+export {};

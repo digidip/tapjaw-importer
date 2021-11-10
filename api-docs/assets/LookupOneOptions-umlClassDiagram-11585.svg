@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="264px" preserveAspectRatio="none" style="width:162px;height:264px;background:#00000000;" version="1.1" viewBox="0 0 162 264" width="162px" zoomAndPan="magnify"><defs><filter height="300%" id="f1vx7iljafjl47" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[5c969f0fa586f8ee4c7d8945ec2ba965]
+class LookupOneOptions--><rect codeLine="4" fill="#FEFECE" filter="url(#f1vx7iljafjl47)" height="91.8203" id="LookupOneOptions" style="stroke:#A80036;stroke-width:1.5;" width="141" x="7" y="159"/><ellipse cx="22" cy="175" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M18.4277,171.2651 L18.4277,169.1069 L25.8071,169.1069 L25.8071,171.2651 L23.3418,171.2651 L23.3418,179.3418 L25.8071,179.3418 L25.8071,181.5 L18.4277,181.5 L18.4277,179.3418 L20.8931,179.3418 L20.8931,171.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="109" x="36" y="179.5352">LookupOneOptions</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="147" y1="191" y2="191"/><ellipse cx="18" cy="202" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="46" x="27" y="205.6348">all : false</text><ellipse cx="18" cy="214.9551" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="83" x="27" y="218.5898">family : number</text><ellipse cx="18" cy="227.9102" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="27" y="231.5449">hints : number</text><ellipse cx="18" cy="240.8652" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="99" x="27" y="244.5">verbatim : boolean</text><!--MD5=[71985cc1ec7e795e33d5b1bccba8ed96]
+class LookupOptions--><rect codeLine="10" fill="#FEFECE" filter="url(#f1vx7iljafjl47)" height="91.8203" id="LookupOptions" style="stroke:#A80036;stroke-width:1.5;" width="125" x="15" y="7"/><ellipse cx="33.15" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M29.5777,19.2651 L29.5777,17.1069 L36.9571,17.1069 L36.9571,19.2651 L34.4918,19.2651 L34.4918,27.3418 L36.9571,27.3418 L36.9571,29.5 L29.5777,29.5 L29.5777,27.3418 L32.0431,27.3418 L32.0431,19.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="86" x="47.85" y="27.5352">LookupOptions</text><line style="stroke:#A80036;stroke-width:1.5;" x1="16" x2="139" y1="39" y2="39"/><ellipse cx="26" cy="50" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="64" x="35" y="53.6348">all : boolean</text><ellipse cx="26" cy="62.9551" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="83" x="35" y="66.5898">family : number</text><ellipse cx="26" cy="75.9102" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="35" y="79.5449">hints : number</text><ellipse cx="26" cy="88.8652" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="99" x="35" y="92.5">verbatim : boolean</text><!--MD5=[23e87a99261d4dde655b24ff7556ae21]
+reverse link LookupOptions to LookupOneOptions--><path codeLine="16" d="M77.5,119.33 C77.5,132.63 77.5,146.35 77.5,158.77 " fill="none" id="LookupOptions-backto-LookupOneOptions" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="70.5,119,77.5,99,84.5,119,70.5,119" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[242bf91baa808fd8deacc55ff688a3b2]
+@startuml
+skinparam BackgroundColor transparent
+hide empty methods
+hide empty fields
+interface "LookupOneOptions" {
+    +all : false
+    +family : number
+    +hints : number
+    +verbatim : boolean
+}
+interface "LookupOptions" {
+    +all : boolean
+    +family : number
+    +hints : number
+    +verbatim : boolean
+}
+"LookupOptions" <|- - "LookupOneOptions"
+@enduml
+
+PlantUML version 1.2021.6(Fri May 14 09:09:51 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

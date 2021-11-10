@@ -1,0 +1,12 @@
+{
+    "entryPoints": [
+        "./src/index.ts"
+    ],
+    "out": "api-docs",
+    "umlClassDiagram": {
+        "type": "detailed",
+        "location": "local",
+        "format": "svg"
+    },
+    "tsconfig": "tsconfig.build.json"
+}

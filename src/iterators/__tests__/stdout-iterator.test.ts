@@ -2,7 +2,7 @@
 process.env.TAPJAW_MESSAGE_SHA256_SECRET = 'TestingSecet';
 
 import StdoutIterator from '../stdout-iterator';
-import TapjawMessage from '../../contracts/tapjaw-message';
+import TapjawMessage from '../../messages/tapjaw-message';
 jest.mock('process');
 
 describe('Make sure the iterator operates as expected', () => {

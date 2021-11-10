@@ -1,9 +1,11 @@
 import { DateTime } from 'luxon';
 import { REGEX_DATE_ISO8601, REGEX_DATE_YYYY_MM_DD } from './constants';
 
-const utcDate = (date: string, time = '00:00:00'): Date => new Date(`${date} ${time} UTC`);
+export function utcDate(date: string, time = '00:00:00'): Date {
+    return new Date(`${date} ${time} UTC`);
+}
 
-utcDate.fromDateTime = (dateTime: string): Date => {
+export function fromDateTime(dateTime: string): Date {
     switch (true) {
         case REGEX_DATE_YYYY_MM_DD.test(dateTime):
             return new Date(`${dateTime} 00:00:00 UTC`);
@@ -18,16 +20,33 @@ utcDate.fromDateTime = (dateTime: string): Date => {
         default:
             return new Date(`${dateTime} UTC`);
     }
-};
+}
 
-utcDate.fromFormat = (dateTime: string, format: string): Date => {
+export function fromFormat(dateTime: string, format: string): Date {
     return DateTime.fromFormat(dateTime, format, { zone: 'UTC' }).toJSDate();
-};
+}
 
-utcDate.now = () => new Date();
+export function now() {
+    return new Date();
+}
 
-utcDate.fromMillis = (ms: number | string): Date => DateTime.fromMillis(Number(ms)).toJSDate();
-utcDate.fromUnix = (secs: number | string): Date => DateTime.fromSeconds(Number(secs)).toJSDate();
-utcDate.fromEpoch = utcDate.fromUnix;
+export function fromMillis(ms: number | string): Date {
+    return DateTime.fromMillis(Number(ms)).toJSDate();
+}
+
+export function fromUnix(secs: number | string): Date {
+    return DateTime.fromSeconds(Number(secs)).toJSDate();
+}
+
+export function fromEpoch(secs: number | string): Date {
+    return fromUnix(secs);
+}
+
+utcDate.fromDateTime = fromDateTime;
+utcDate.fromFormat = fromFormat;
+utcDate.now = now;
+utcDate.fromMillis = fromMillis;
+utcDate.fromUnix = fromUnix;
+utcDate.fromEpoch = fromEpoch;
 
 export default utcDate;

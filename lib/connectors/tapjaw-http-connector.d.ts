@@ -19,16 +19,27 @@ export declare class DuplicateParameter {
 export declare type TapjawHttpQueryParameters = Record<string, string | ArrayParameter | DuplicateParameter>;
 export declare type TapjawHttpFormParameters = Record<string, string>;
 export declare type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
+/**
+ * Known supported character sets used by {@link TapjawHttpConnector}, {@link TapjawMetadata.Connector.Encode}
+ * and {@link TapjawMetadata.Connector.Encode}.
+ * @enum
+ */
 export declare enum TapjawHttpConnectorCharSet {
     UTF8 = "utf-8",
     LATIN1 = "iso-8859-1"
 }
+/**
+ * Supported protocols for HTTP based connectors.
+ * @enum
+ */
 export declare enum TapjawHttpConnectorProtocol {
     HTTPS = "https",
     HTTP = "http"
 }
 /**
- * HTTP and HTTPS API request wrapper.
+ * @module TapjawConnector
+ *
+ * The default HTTP and HTTPS API connector.
  */
 export default abstract class TapjawHttpConnector implements TapjawConnector {
     protected host: string;
@@ -78,17 +89,17 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     /**
      * Set the character set encoding on the response data.
      *
-     * @param encoding TapjawHttpConnectorProtocol|string|null
+     * @param encoding {@link TapjawHttpConnectorProtocol}|string|null
      */
     setEncoding(encoding: TapjawHttpConnectorCharSet | string | null): void;
     /**
      * Send a GET request to the API.
      *
      * @param uri       string
-     * @param query     TapjawHttpQueryParameters
-     * @param headers   TapjawHttpHeaders (optional)
+     * @param query     {@link TapjawHttpQueryParameters}
+     * @param headers   {@link TapjawHttpHeaders} (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     get(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders, timeout?: number): Promise<TapjawConnectorResponse>;
     /**
@@ -98,7 +109,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param query     TapjawHttpQueryParameters
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     delete(uri: string, query: TapjawHttpQueryParameters, headers?: TapjawHttpHeaders, timeout?: number): Promise<TapjawConnectorResponse>;
     /**
@@ -109,7 +120,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param body      TapjawHttpRequestBody
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     post(uri: string, query: TapjawHttpQueryParameters, body: TapjawHttpRequestBody, headers?: TapjawHttpHeaders, timeout?: number): Promise<TapjawConnectorResponse>;
     /**
@@ -120,7 +131,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param json      TapjawHttpRequestBody
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     postJson(uri: string, query: TapjawHttpQueryParameters, json: TapjawHttpRequestBody, headers?: TapjawHttpHeaders, timeout?: number): Promise<TapjawConnectorResponse>;
     /**

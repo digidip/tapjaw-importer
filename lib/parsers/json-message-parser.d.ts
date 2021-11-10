@@ -1,4 +1,3 @@
 import TapjawLogger from '../contracts/tapjaw-logger';
-import TapjawMessage from '../contracts/tapjaw-message';
-declare const _default: <M extends TapjawMessage>(line: string, displayJsonParseErrors: boolean, logger: TapjawLogger) => M | null;
-export default _default;
+import TapjawMessage from '../messages/tapjaw-message';
+export default function jsonMessageParser<M extends TapjawMessage>(line: string, displayJsonParseErrors: boolean, logger: TapjawLogger): M | null;

@@ -1,3 +1,6 @@
+/**
+ * @module TapjawCommand
+ */
 export default interface BaseTapjawCommand {
     run(...args: unknown[]): Promise<void>;
 }

@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import TapjawMessage from '../tapjaw-message';
+import TapjawMessage from '../../messages/tapjaw-message';
 import BaseTapjawCommand, { TapjawCommandArgs, TapjawCommandDefaultFlags, TapjawCommandFlags } from './base-tapjaw-command';
 import { Command } from 'commander';
 import TapjawLogger from '../tapjaw-logger';

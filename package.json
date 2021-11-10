@@ -29,6 +29,9 @@
         "jest-mock-process": "^1",
         "prettier": "^2.4.1",
         "ts-jest": "^27",
+        "typedoc": "^0.22.8",
+        "typedoc-plugin-missing-exports": "^0.22.4",
+        "typedoc-umlclass": "^0.6.0",
         "typescript": "^4"
     },
     "dependencies": {
@@ -69,7 +72,8 @@
         "test": "node node_modules/.bin/jest",
         "lint": "node node_modules/.bin/eslint ./src --ext .ts",
         "build": "node node_modules/.bin/tsc -p ./tsconfig.build.json",
-        "watch": "node node_modules/.bin/tsc -w"
+        "watch": "node node_modules/.bin/tsc -w",
+        "api-docs": "node node_modules/.bin/typedoc"
     },
     "types": "lib/index.d.ts"
 }

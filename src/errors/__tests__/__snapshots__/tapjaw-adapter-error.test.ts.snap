@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make sure TapjawAdapterError works as expected should return a TapjawAdapterError with a String as Error 1`] = `[TapjawAdapterError:MockAdapter: test error]`;
+
+exports[`Make sure TapjawAdapterError works as expected should return a TapjawAdapterError with an Error instance as Error 1`] = `[TapjawAdapterError:MockAdapter: Error: test error]`;

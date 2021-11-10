@@ -1,4 +1,4 @@
-import TapjawMessage from '../tapjaw-message';
+import TapjawMessage from '../../messages/tapjaw-message';
 import BaseTapjawCommand, {
     TapjawCommandArgs,
     TapjawCommandDefaultFlags,
@@ -10,7 +10,7 @@ import { Command } from 'commander';
 import TapjawLogger from '../tapjaw-logger';
 import ConsoleLogger from '../../support/console-logger';
 import jsonMessageParser from '../../parsers/json-message-parser';
-import { isTapjawMessage } from '../..';
+import { isTapjawMessage } from '../../typeguards';
 import commandRegister from '../../reflection/command-register';
 
 export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, M extends TapjawMessage>

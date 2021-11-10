@@ -85,14 +85,12 @@ const inboundMonths = function* (segmentSize: number, dateRange: DateRange): Gen
     }
 };
 
-export default {
-    inbound: function* (segmentSize: number, period: UnitOfTime, dateRange: DateRange): Generator<[Date, Date]> {
-        if (period === 'days' || period === 'day') {
-            yield* inboundDays(segmentSize, dateRange);
-        }
+export function* inbound(segmentSize: number, period: UnitOfTime, dateRange: DateRange): Generator<[Date, Date]> {
+    if (period === 'days' || period === 'day') {
+        yield* inboundDays(segmentSize, dateRange);
+    }
 
-        if (period === 'months' || period === 'month') {
-            yield* inboundMonths(segmentSize, dateRange);
-        }
-    },
-};
+    if (period === 'months' || period === 'month') {
+        yield* inboundMonths(segmentSize, dateRange);
+    }
+}

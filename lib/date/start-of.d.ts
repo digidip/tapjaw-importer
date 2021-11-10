@@ -1,3 +1,2 @@
 import { DateTimeUnit } from 'luxon';
-declare const startOf: (date: Date, period: DateTimeUnit) => Date;
-export default startOf;
+export default function (date: Date, period: DateTimeUnit): Date;

@@ -1,5 +1,5 @@
 import endOf from './end-of';
 
-const endOfDate = (date: Date): Date => endOf(date, 'day');
-
-export default endOfDate;
+export default function endOfDate(date: Date): Date {
+    return endOf(date, 'day');
+}

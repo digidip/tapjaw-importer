@@ -1,7 +1,7 @@
 import TapjawIterator from '../tapjaw-iterator';
 import { TapjawAdapterCallback } from '../tapjaw-adapter';
 import StdoutIterator from '../../iterators/stdout-iterator';
-import TapjawMessage from '../tapjaw-message';
+import TapjawMessage from '../../messages/tapjaw-message';
 import { Command } from 'commander';
 import BaseTapjawCommand, {
     TapjawCommandArgs,
@@ -12,6 +12,38 @@ import ConsoleLogger from '../../support/console-logger';
 import TapjawLogger from '../tapjaw-logger';
 import commandRegister from '../../reflection/command-register';
 
+/**
+ * @module TapjawCommand
+ *
+ * Default TapjawApiCommand, used in conjunction with a {@link TapjawAdapter} to quickly iterate over
+ * messages and output to a {@link TapjawIterator}.
+ *
+ * Example:
+ * ```typescript
+ * @TapjawMetadata.Command.Name('my-command')
+ * @TapjawMetadata.Command.Description('my-command desc')
+ * @TapjawMetadata.Command.Action(async (options: MyCommandOptions) => {
+ *     try {
+ *         await new MyCommand(new MyAdapter(new MyConnector(...))).run({}, options);
+ *     } catch (error) {
+ *         MyCommand.getLogger().error(String(error));
+ *     }
+ * })
+ * class MyCommand extends TapjawApiCommand {
+ *     protected async getAdapterCallback(
+ *         args: TapjawCommandArgs,
+ *         flags: TapjawCommandFlags
+ *     ): TapjawAdapterCallback<TapjawMessage> {
+ *         const implementedAdapter = this.adapter;
+ *
+ *         // Return a callback to emit messages to a TapjawIterator.
+ *         return (async function* (): AsyncGenerator<TapjawMessage> {
+ *             yield* implementedAdapter.myMethodToExecute(flags.onlyActiveItems, category);
+ *         });
+ *     }
+ * }
+ * ```
+ */
 export default abstract class TapjawApiCommand implements BaseTapjawCommand {
     protected iterator: TapjawIterator;
 

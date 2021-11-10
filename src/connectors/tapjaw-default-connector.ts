@@ -1,4 +1,4 @@
-import { TapjawHttpConnector } from '..';
+import TapjawHttpConnector from './tapjaw-http-connector';
 import connectorRegister from '../reflection/connector-register';
 
 /**

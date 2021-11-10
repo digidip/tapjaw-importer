@@ -1,7 +1,7 @@
 import { parseStringPromise } from 'xml2js';
 import camelcaseKeys from 'camelcase-keys';
 
-export default async <T>(xml: string): Promise<T> => {
+export default async function xmlToJson<T>(xml: string): Promise<T> {
     const result = (await parseStringPromise(xml, {
         trim: true,
         explicitArray: false,
@@ -11,4 +11,4 @@ export default async <T>(xml: string): Promise<T> => {
     return camelcaseKeys(result, {
         deep: true,
     }) as T;
-};
+}

@@ -1,2 +1,1 @@
-declare const startOfDate: (date: Date) => Date;
-export default startOfDate;
+export default function startOfDate(date: Date): Date;

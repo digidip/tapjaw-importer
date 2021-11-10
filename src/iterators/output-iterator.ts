@@ -1,5 +1,5 @@
 import TapjawIterator from '../contracts/tapjaw-iterator';
-import TapjawMessage from '../contracts/tapjaw-message';
+import TapjawMessage from '../messages/tapjaw-message';
 import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
 
 /**
