@@ -11,7 +11,7 @@ import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../../c
  * Enable gzip inflation of the response body for a Connector.
  *
  * @returns CallableFunction
- * @function **@TapjawConfigure.Connector.EnableGzip()**
+ * @function **@TapjawMetadata.Connector.EnableGzip()**
  */
 export function EnableGzip(): CallableFunction {
     return (target: Function) => {
@@ -24,7 +24,7 @@ export function EnableGzip(): CallableFunction {
  *
  * @param type TapjawHttpConnectorCharSet
  * @returns CallableFunction
- * @function **@TapjawConfigure.Connector.Decode({@link TapjawHttpConnectorCharSet})**
+ * @function **@TapjawMetadata.Connector.Decode({@link TapjawHttpConnectorCharSet})**
  */
 export function Decode(type: TapjawHttpConnectorCharSet): CallableFunction {
     return (target: Function) => {
@@ -37,7 +37,7 @@ export function Decode(type: TapjawHttpConnectorCharSet): CallableFunction {
  *
  * @param type TapjawHttpConnectorCharSet
  * @returns CallableFunction
- * @function **@TapjawConfigure.Connector.Encode({@link TapjawHttpConnectorCharSet})**
+ * @function **@TapjawMetadata.Connector.Encode({@link TapjawHttpConnectorCharSet})**
  */
 export function Encode(type: TapjawHttpConnectorCharSet): CallableFunction {
     return (target: Function) => {
@@ -50,7 +50,7 @@ export function Encode(type: TapjawHttpConnectorCharSet): CallableFunction {
  *
  * @param host string
  * @returns CallableFunction
- * @function **@TapjawConfigure.Connector.Host(string)**
+ * @function **@TapjawMetadata.Connector.Host(string)**
  */
 export function Host(host: string): CallableFunction {
     return (target: Function) => {
@@ -63,7 +63,7 @@ export function Host(host: string): CallableFunction {
  *
  * @param port number
  * @returns CallableFunction
- * @function **@TapjawConfigure.Connector.port(number)**
+ * @function **@TapjawMetadata.Connector.port(number)**
  */
 export function Port(port: number): CallableFunction {
     return (target: Function) => {
@@ -78,7 +78,7 @@ export function Port(port: number): CallableFunction {
  *
  * @param protocol TapjawHttpConnectorProtocol
  * @returns CallableFunction
- * @function **@TapjawConfigure.Connector.Protocol({@link TapjawHttpConnectorProtocol)**
+ * @function **@TapjawMetadata.Connector.Protocol({@link TapjawHttpConnectorProtocol})**
  */
 export function Protocol(protocol: TapjawHttpConnectorProtocol): CallableFunction {
     return (target: Function) => {
@@ -99,7 +99,7 @@ export function Protocol(protocol: TapjawHttpConnectorProtocol): CallableFunctio
  *
  * @param protocol TapjawHttpConnectorProtocol
  * @returns CallableFunction
- * @function **@TapjawConfigure.Connector.Protocol(TapjawHttpConnectorProtocol)**
+ * @function **@TapjawMetadata.Connector.Security({@link TapjawAuthenticationWrapper})**
  */
 export function Security(security: TapjawAuthenticationWrapper): CallableFunction {
     return (target: Function) => {

@@ -1,4 +1,4 @@
-import isError from './typeguards/is-error';
+import isError from '../typeguards/is-error';
 import TapjawConnector from '../contracts/tapjaw-connector';
 
 export default class TapjawConnectorError extends Error {

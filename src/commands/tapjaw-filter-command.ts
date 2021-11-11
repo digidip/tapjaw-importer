@@ -1,9 +1,9 @@
 import TapjawMessage from '../messages/tapjaw-message';
-import BaseTapjawCommand, {
+import TapjawCommand, {
     TapjawCommandArgs,
     TapjawCommandDefaultFlags,
     TapjawCommandFlags,
-} from '../contracts/base-tapjaw-command';
+} from '../contracts/tapjaw-command';
 import split2 from 'split2';
 import through from 'through';
 import { Command } from 'commander';
@@ -14,7 +14,7 @@ import { isTapjawMessage } from '../typeguards';
 import commandRegister from '../reflection/command-register';
 
 export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, M extends TapjawMessage>
-    implements BaseTapjawCommand
+    implements TapjawCommand
 {
     public constructor(
         protected readonly stdin: NodeJS.ReadableStream,
@@ -73,7 +73,7 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
     }
 
     public static register(program: Command): void {
-        commandRegister.call(this as unknown as BaseTapjawCommand, program);
+        commandRegister.call(this as unknown as TapjawCommand, program);
     }
 
     protected static getLogger(): TapjawLogger {

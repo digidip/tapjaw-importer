@@ -1,9 +1,9 @@
 /// <reference types="node" />
 import TapjawMessage from '../messages/tapjaw-message';
-import BaseTapjawCommand, { TapjawCommandArgs, TapjawCommandDefaultFlags, TapjawCommandFlags } from '../contracts/base-tapjaw-command';
+import TapjawCommand, { TapjawCommandArgs, TapjawCommandDefaultFlags, TapjawCommandFlags } from '../contracts/tapjaw-command';
 import { Command } from 'commander';
 import TapjawLogger from '../contracts/tapjaw-logger';
-export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, M extends TapjawMessage> implements BaseTapjawCommand {
+export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, M extends TapjawMessage> implements TapjawCommand {
     protected readonly stdin: NodeJS.ReadableStream;
     protected readonly stdout: NodeJS.WritableStream;
     protected readonly displayJsonParseErrors: boolean;

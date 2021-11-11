@@ -51,7 +51,33 @@ export * as TapjawError from './errors';
 export * as TapjawTypeguard from './typeguards';
 
 /**
- * @namespace TapjawMetadata
+ * # TapjawMetadata
+ *
+ * TapjawMetadata.Command and TapjawMetadata.Connector are reflect-metadata decorator methods used to set options on
+ * {@link TapjawApiCommand}, {@link TapjawFilterCommand}, {@link TapjawStoreCommand}, {@link TapjawToolCommand}
+ * and {@link TapjawDefaultConnector} instances.
+ *
+ * ### Connector metadata decorator methods:
+ * ```typescript
+ * @TapjawMetadata.Connector.EnableGzip()
+ * @TapjawMetadata.Connector.Decode(charset: TapjawHttpConnectorCharSet)
+ * @TapjawMetadata.Connector.Encode(charset: TapjawHttpConnectorCharSet)
+ * @TapjawMetadata.Connector.Host(host: string)
+ * @TapjawMetadata.Connector.port(port: number)
+ * @TapjawMetadata.Connector.Protocol(protocol: TapjawHttpConnectorProtocol)
+ * @TapjawMetadata.Connector.Security(protocol: TapjawAuthenticationWrapper)
+ * ```
+ *
+ * ### Command metadata decorator methods:
+ * ```typescript
+ * @TapjawMetadata.Command.Name(name: string)
+ * @TapjawMetadata.Command.Description(desc: string)
+ * @TapjawMetadata.Command.Example(example: string)
+ * @TapjawMetadata.Command.Arguments(args: Argument[])
+ * @TapjawMetadata.Command.Options(opts: CommandOption[])
+ * @TapjawMetadata.Command.Action(action: CommandAction)
+ * ```
+ * @packageDescription
  */
 export * as TapjawMetadata from './reflection';
 

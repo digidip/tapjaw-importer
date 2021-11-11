@@ -2,9 +2,9 @@ import TapjawAuthenticator, { AuthorizationHeaders } from '../contracts/tapjaw-a
 import JWTBuilder from './jwt/jwt-builder';
 export declare type JWTBearerResponse = AuthorizationHeaders;
 export default class JWTBearerAuthAuthenticator implements TapjawAuthenticator<JWTBearerResponse> {
-    protected readonly jwtGenerator: JWTBuilder;
+    protected readonly jwtBuilder: JWTBuilder;
     private authenticated;
-    constructor(jwtGenerator: JWTBuilder);
+    constructor(jwtBuilder: JWTBuilder);
     isAuthenticated(): boolean;
     authenticate(): Promise<JWTBearerResponse>;
 }

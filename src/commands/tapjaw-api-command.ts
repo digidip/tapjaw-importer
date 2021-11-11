@@ -1,22 +1,6 @@
-import TapjawIterator from '../contracts/tapjaw-iterator';
-import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
-import StdoutIterator from '../iterators/stdout-iterator';
-import TapjawMessage from '../messages/tapjaw-message';
-import { Command } from 'commander';
-import BaseTapjawCommand, {
-    TapjawCommandArgs,
-    TapjawCommandDefaultFlags,
-    TapjawCommandFlags,
-} from '../contracts/base-tapjaw-command';
-import ConsoleLogger from '../support/console-logger';
-import TapjawLogger from '../contracts/tapjaw-logger';
-import commandRegister from '../reflection/command-register';
-
 /**
- * @module TapjawCommand
- *
  * Default TapjawApiCommand, used in conjunction with a {@link TapjawAdapter} to quickly iterate over
- * messages and output to a {@link TapjawIterator}.
+ * messages and output to a {@link TapjawIterator} - tapjaw-api-command.ts.
  *
  * Example:
  * ```typescript
@@ -43,8 +27,24 @@ import commandRegister from '../reflection/command-register';
  *     }
  * }
  * ```
+ * @packageDocumentation
  */
-export default abstract class TapjawApiCommand implements BaseTapjawCommand {
+
+import TapjawIterator from '../contracts/tapjaw-iterator';
+import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
+import StdoutIterator from '../iterators/stdout-iterator';
+import TapjawMessage from '../messages/tapjaw-message';
+import { Command } from 'commander';
+import TapjawCommand, {
+    TapjawCommandArgs,
+    TapjawCommandDefaultFlags,
+    TapjawCommandFlags,
+} from '../contracts/tapjaw-command';
+import ConsoleLogger from '../support/console-logger';
+import TapjawLogger from '../contracts/tapjaw-logger';
+import commandRegister from '../reflection/command-register';
+
+export default abstract class TapjawApiCommand implements TapjawCommand {
     protected iterator: TapjawIterator;
 
     public constructor(iterator?: TapjawIterator) {
@@ -99,7 +99,7 @@ export default abstract class TapjawApiCommand implements BaseTapjawCommand {
 
     public static register(program: Command): void {
         commandRegister
-            .call(this as unknown as BaseTapjawCommand, program)
+            .call(this as unknown as TapjawCommand, program)
             .requiredOption('-i, --import-id <importId>', 'The unique Import ID');
     }
 

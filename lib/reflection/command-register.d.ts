@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { BaseTapjawCommand } from '../commands';
-export default function (this: BaseTapjawCommand & {
+import { TapjawCommand } from '../commands';
+export default function (this: TapjawCommand & {
     prototype?: object;
 }, program: Command): Command;

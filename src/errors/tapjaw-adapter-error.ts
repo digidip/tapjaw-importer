@@ -1,6 +1,6 @@
 import TapjawAdapter from '../contracts/tapjaw-adapter';
 import TapjawMessage from '../messages/tapjaw-message';
-import isError from './typeguards/is-error';
+import isError from '../typeguards/is-error';
 
 export default class TapjawAdapterError extends Error {
     public parentStack?: string;

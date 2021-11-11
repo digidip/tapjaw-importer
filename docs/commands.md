@@ -31,7 +31,7 @@ Additional models can be put in place to circumvent this issue. For example, if 
 
 The store command will need a subscribing handler function to read from the stack. The handler can then write to the slower MySQL server without creating backpressure to the preceding piped commands.
 
-> ⛔️ **Warning**
+> ⚠️  **Warning**
 >
 > Beware that memory is always a limitation.
 
@@ -111,7 +111,7 @@ In the example below, a single Argument gets set as `<caption>`, meaning that th
     }
 })
 @TapjawMetadata.Command.Arguments(new Argument('<caption>', 'A caption')
-default export class MyCommand extends ... {
+default export class MyCommand extends TapjawCommand.<command class> {
     constructor(private readonly adapter: MyAdapter) {}
 }
 ```
@@ -140,7 +140,7 @@ Examples:
 
 Specify arguments the user can input with the command. Multiple arguments are allowed.
 
-> **⚠️ Important**
+> ⚠️  **Important**
 >
 > The order of the arguments **must** match between the `@TapjawMetadata.Command.Arguments(...)` declaration and the `@TapjawMetadata.Command.Action(...)` closure parameters signature.
 
@@ -157,7 +157,7 @@ Specify arguments the user can input with the command. Multiple arguments are al
     // Optional [...]
     new Argument('[matches]', 'The property value that should be matched'),
 )
-default export class MyCommand extends ... {
+default export class MyCommand extends TapjawCommand.<command class> {
     constructor(private readonly adapter: MyAdapter) {}
 }
 ```
@@ -193,7 +193,7 @@ Specify options the user can use with the command. Multiple options are allowed,
     },
     // ... more can be added
 )
-default export class MyCommand extends ... {
+default export class MyCommand extends TapjawCommand.<command class> {
     constructor(private readonly adapter: MyAdapter) {}
 }
 ```
@@ -206,7 +206,7 @@ default export class MyCommand extends ... {
 import TapjawExampleAdapter from '../../adapters/tapjaw-example-adapter';
 import ExampleTapjawMessage from '../../contracts/messages/example-tapjaw-message';
 import BaseCommandFlags from '../../contracts/base-command-flags';
-import { TapjawAdapterCallback, TapjawCommand, TapjawCommandArgs } from 'tapjaw-importer';
+import { TapjawContract, TapjawCommand } from 'tapjaw-importer';
 import BaseApiCommand from '../../contracts/base-api-command';
 import { Argument } from 'commander';
 
@@ -233,9 +233,9 @@ export default class TapjawExample extends BaseApiCommand {
     }
 
     protected getAdapterCallback(
-        args: TapjawCommandArgs<string>,
+        args: TapjawCommand.TapjawCommandArgs<string>,
         { importId }: TapjawExampleOptions
-    ): TapjawAdapterCallback<ExampleTapjawMessage> {
+    ): TapjawContract.TapjawAdapterCallback<ExampleTapjawMessage> {
         const adapter = this.adapter;
 
         return async function* (): AsyncGenerator<ExampleTapjawMessage> {
@@ -253,14 +253,14 @@ export default class TapjawExample extends BaseApiCommand {
 
 import { Argument, Command } from 'commander';
 import displayExample from '../../modules/commander/display-example';
-import { TapjawCommandArgs, TapjawToolCommand } from 'tapjaw-importer';
+import { TapjawCommand } from 'tapjaw-importer';
 import BaseCommandFlags from '../../contracts/base-command-flags';
 
 interface NonReflectHelloOptions extends BaseCommandFlags {
     name: string;
 }
 
-export default class NonReflectHello extends TapjawToolCommand<NonReflectHelloOptions> {
+export default class NonReflectHello extends TapjawCommand.TapjawToolCommand<NonReflectHelloOptions> {
     constructor(private readonly stdout: NodeJS.WritableStream) {
         super();
     }
@@ -277,7 +277,7 @@ export default class NonReflectHello extends TapjawToolCommand<NonReflectHelloOp
                 try {
                     // @Note Perform light validation prior to running .run().
                     await new NonReflectHello(process.stdout).run(
-                        { caption } as TapjawCommandArgs<string>,
+                        { caption } as TapjawCommand.TapjawCommandArgs<string>,
                         options
                     );
                 } catch (error) {
@@ -286,7 +286,7 @@ export default class NonReflectHello extends TapjawToolCommand<NonReflectHelloOp
             });
     }
 
-    async run({ caption }: TapjawCommandArgs<string>, { name }: NonReflectHelloOptions): Promise<void> {
+    async run({ caption }: TapjawCommand.TapjawCommandArgs<string>, { name }: NonReflectHelloOptions): Promise<void> {
         this.stdout.write('Hello World...');
 
         if (name) {

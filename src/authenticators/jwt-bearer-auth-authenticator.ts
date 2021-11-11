@@ -7,14 +7,14 @@ export type JWTBearerResponse = AuthorizationHeaders;
 export default class JWTBearerAuthAuthenticator implements TapjawAuthenticator<JWTBearerResponse> {
     private authenticated = false;
 
-    constructor(protected readonly jwtGenerator: JWTBuilder) {}
+    constructor(protected readonly jwtBuilder: JWTBuilder) {}
 
     public isAuthenticated(): boolean {
         return this.authenticated;
     }
 
     public async authenticate(): Promise<JWTBearerResponse> {
-        const bearer = new BearerAuthAuthenticator(await this.jwtGenerator.getToken());
+        const bearer = new BearerAuthAuthenticator(await this.jwtBuilder.getToken());
         this.authenticated = true;
         return bearer.authenticate();
     }

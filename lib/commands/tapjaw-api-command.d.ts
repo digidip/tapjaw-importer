@@ -1,14 +1,6 @@
-import TapjawIterator from '../contracts/tapjaw-iterator';
-import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
-import TapjawMessage from '../messages/tapjaw-message';
-import { Command } from 'commander';
-import BaseTapjawCommand, { TapjawCommandArgs, TapjawCommandDefaultFlags, TapjawCommandFlags } from '../contracts/base-tapjaw-command';
-import TapjawLogger from '../contracts/tapjaw-logger';
 /**
- * @module TapjawCommand
- *
  * Default TapjawApiCommand, used in conjunction with a {@link TapjawAdapter} to quickly iterate over
- * messages and output to a {@link TapjawIterator}.
+ * messages and output to a {@link TapjawIterator} - tapjaw-api-command.ts.
  *
  * Example:
  * ```typescript
@@ -35,8 +27,15 @@ import TapjawLogger from '../contracts/tapjaw-logger';
  *     }
  * }
  * ```
+ * @packageDocumentation
  */
-export default abstract class TapjawApiCommand implements BaseTapjawCommand {
+import TapjawIterator from '../contracts/tapjaw-iterator';
+import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
+import TapjawMessage from '../messages/tapjaw-message';
+import { Command } from 'commander';
+import TapjawCommand, { TapjawCommandArgs, TapjawCommandDefaultFlags, TapjawCommandFlags } from '../contracts/tapjaw-command';
+import TapjawLogger from '../contracts/tapjaw-logger';
+export default abstract class TapjawApiCommand implements TapjawCommand {
     protected iterator: TapjawIterator;
     constructor(iterator?: TapjawIterator);
     /**

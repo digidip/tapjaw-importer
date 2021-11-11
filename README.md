@@ -8,7 +8,7 @@ Create a stream of payload messages to STDOUT from any API.
 <!-- toc -->
 - [Tapjaw Importer - v2.0.0](#tapjaw-importer---v200)
 - [Description](#description)
-- [History](#history)
+- [Purpose](#purpose)
 - [Why use Tapjaw Importer?](#why-use-tapjaw-importer)
 - [Dependancies](#dependancies)
 - [Setup a new project](#setup-a-new-project)
@@ -57,7 +57,7 @@ The project provides several additional useful features to decrease the complexi
 - A quick and simple .env configuration loading strategy (`DotEnvConfig`, *ref: `TapjawMessageConfig` for implementation*).
 - Base `TapjawLogger` interface to allow easy implementation of your logging library. The project includes two basic implementations, `ConsoleLogger` and `NullLogger`, which `NullLogger` is generally used in testing.
 
-# History
+# Purpose
 
 Tapjaw Importer started life in 2019 due to a requirement of needing to import data from across dozens of APIs into a consistent internal schema,
 each API has unique data schemas, various security infrastructures, request/response strategies and general differences in approach.
