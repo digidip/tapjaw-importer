@@ -215,7 +215,11 @@ The project employs the [semver](https://semver.org/) specification on versionin
 - Documentation.
 - Implement the npm package publishing (#TODO).
 - Implements reflect-metadata, added `@TapjawMetadata.Command.*` and `@TapjawMetadata.Connector.*` decorator methods for configuring commands and connectors, [read more](docs/commands.md#tapjaw-metadata-command-decorators).
-- Renamed AdapterError to TapjawAdapterError (breaking change).
+- Renamed AdapterError to TapjawAdapterError.
+- Renamed ConnectorError to TapjawConnectorError.
+- Namespaced each module of the framework, src/index.ts export interface improved.
+- Move TapjawMessage out of contracts into src/messages.
+- Move TapjawCommand derived classes moved out of contracts into src/commands.
 
 ## v1.2.0 *(no longer supported)*
 - Convert from OCLIF to Commander.js.
