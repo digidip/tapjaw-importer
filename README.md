@@ -32,7 +32,7 @@ Create a stream of payload messages to STDOUT from any API.
 
 # Description
 
-[![Node.js Package](https://github.com/digidip/tapjaw-importer/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/digidip/tapjaw-importer/actions/workflows/npm-publish.yml)
+[![NPM Package](https://github.com/digidip/tapjaw-importer/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/digidip/tapjaw-importer/actions/workflows/npm-publish.yml) [![Test Tapjaw Importer](https://github.com/digidip/tapjaw-importer/actions/workflows/test.yml/badge.svg)](https://github.com/digidip/tapjaw-importer/actions/workflows/test.yml) [![Lint Tapjaw Importer](https://github.com/digidip/tapjaw-importer/actions/workflows/lint.yml/badge.svg)](https://github.com/digidip/tapjaw-importer/actions/workflows/lint.yml)
 
 Tapjaw Importer is a Typescript JSON-based utility framework purposefully designed to simplify the development of commands that get chained together to consolidate data for persistence or further processing in the cloud or on existing system infrastructure.
 
