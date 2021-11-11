@@ -8,5 +8,8 @@
         "location": "local",
         "format": "svg"
     },
-    "tsconfig": "tsconfig.build.json"
+    "tsconfig": "./tsconfig.build.json",
+    "name": "Tapjaw Importer API documentation",
+    "includeVersion": true,
+    "readme": "none"
 }
