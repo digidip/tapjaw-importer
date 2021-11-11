@@ -1,3 +1,7 @@
+/**
+ * @module TapjawConfig
+ * @see {@file ../../../default.env}
+ */
 export * from './base-tapjaw-command';
 export { default as BaseTapjawCommand } from './base-tapjaw-command';
 export { default as TapjawApiCommand } from './tapjaw-api-command';

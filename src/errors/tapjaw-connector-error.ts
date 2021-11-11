@@ -1,7 +1,7 @@
 import isError from './typeguards/is-error';
 import TapjawConnector from '../contracts/tapjaw-connector';
 
-export class TapjawConnectorError extends Error {
+export default class TapjawConnectorError extends Error {
     public parentStack?: string;
 
     constructor(message: unknown, adapter: TapjawConnector) {

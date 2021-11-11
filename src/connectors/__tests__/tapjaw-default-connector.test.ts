@@ -1,14 +1,7 @@
 import 'reflect-metadata';
-import { createBearerSecurity, TapjawMetadata } from '../..';
-import { TapjawConnectorError } from '../../errors/tapjaw-connector-error';
+import { TapjawAuthenticator, TapjawMetadata, TapjawError } from '../..';
 import TapjawDefaultConnector from '../tapjaw-default-connector';
-import TapjawHttpConnector, {
-    TapjawHttpQueryParameters,
-    ArrayParameter,
-    DuplicateParameter,
-    TapjawHttpConnectorCharSet,
-    TapjawHttpConnectorProtocol,
-} from '../tapjaw-http-connector';
+import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../tapjaw-http-connector';
 
 describe('Make sure TapjawDefaultConnector works as expected.', () => {
     it('should container all the configured metadata values', () => {
@@ -18,7 +11,7 @@ describe('Make sure TapjawDefaultConnector works as expected.', () => {
         @TapjawMetadata.Connector.Protocol(TapjawHttpConnectorProtocol.HTTPS)
         @TapjawMetadata.Connector.Port(123)
         @TapjawMetadata.Connector.EnableGzip()
-        @TapjawMetadata.Connector.Security(createBearerSecurity('xxx'))
+        @TapjawMetadata.Connector.Security(TapjawAuthenticator.createBearerSecurity('xxx'))
         class TestConnector extends TapjawDefaultConnector {}
         const connector = new TestConnector();
 
@@ -66,7 +59,7 @@ describe('Make sure TapjawDefaultConnector works as expected.', () => {
         class TestConnector extends TapjawDefaultConnector {}
 
         expect(() => new TestConnector()).toThrowError(
-            new TapjawConnectorError(`@TapjawMetadata.Connector.Host(string) is required!`, {
+            new TapjawError.TapjawConnectorError(`@TapjawMetadata.Connector.Host(string) is required!`, {
                 constructor: { name: 'TapjawConnectorError' },
             } as unknown as TestConnector)
         );
@@ -79,9 +72,12 @@ describe('Make sure TapjawDefaultConnector works as expected.', () => {
         class TestConnector extends TapjawDefaultConnector {}
 
         expect(() => new TestConnector()).toThrowError(
-            new TapjawConnectorError(`@TapjawMetadata.Connector.Protocol(TapjawHttpConnectorProtocol) is required.`, {
-                constructor: { name: 'TapjawConnectorError' },
-            } as unknown as TestConnector)
+            new TapjawError.TapjawConnectorError(
+                `@TapjawMetadata.Connector.Protocol(TapjawHttpConnectorProtocol) is required.`,
+                {
+                    constructor: { name: 'TapjawConnectorError' },
+                } as unknown as TestConnector
+            )
         );
     });
 

@@ -1,3 +1,6 @@
+/**
+ * @ignore
+ */
 const sortObjectsCallback = (a: Record<string, unknown>, b: Record<string, unknown>) => {
     const aJson = JSON.stringify(a);
     const bJson = JSON.stringify(b);

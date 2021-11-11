@@ -87,6 +87,6 @@ export default class TapjawMessage {
      * @returns string
      */
     protected getSha256Secret(): string {
-        return tapjawConfig.getConfig('MESSAGE_SHA256_SECRET');
+        return tapjawConfig('MESSAGE_SHA256_SECRET');
     }
 }

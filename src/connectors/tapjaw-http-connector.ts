@@ -7,7 +7,7 @@ import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-co
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 import deepmerge from 'deepmerge';
 import { URLSearchParams } from 'url';
-import { TapjawConnectorError } from '../errors/tapjaw-connector-error';
+import TapjawConnectorError from '../errors/tapjaw-connector-error';
 
 export interface TapjawHttpHeaders extends Record<string, string | undefined> {
     Accept?: string;

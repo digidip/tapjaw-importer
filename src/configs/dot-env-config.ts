@@ -1,6 +1,3 @@
-/**
- * @module TapjawConfigs
- */
 import TapjawConfigError from '../errors/tapjaw-config-error';
 import namespaceFilterToken from './support/namespace-filter-token';
 

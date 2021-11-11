@@ -1,7 +1,7 @@
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 import TapjawDefaultConnector from '../connectors/tapjaw-default-connector';
 import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../connectors/tapjaw-http-connector';
-import { TapjawConnectorError } from '../errors/tapjaw-connector-error';
+import TapjawConnectorError from '../errors/tapjaw-connector-error';
 
 export default function (this: TapjawDefaultConnector): TapjawDefaultConnector {
     if (!Reflect.hasMetadata('tapjaw:connector:host', this, 'class')) {

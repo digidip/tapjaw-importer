@@ -1,6 +1,3 @@
-/**
- * @module TapjawConfigs
- */
 import DotEnvConfig from './dot-env-config';
 /**
  * Tawjaw Importer default configuration loader, responsible for providing
@@ -9,5 +6,17 @@ import DotEnvConfig from './dot-env-config';
 export declare class TapjawConfig extends DotEnvConfig {
     constructor();
 }
-declare const config: TapjawConfig;
-export default config;
+/**
+ * Tapjaw default configuration instance, managing all configurations with namespace: `TAPJAW_`.
+ *
+ * @function TapjawConfig.getConfig(string)
+ * @see {@link TapjawConfig}
+ * @param   string  configKey   Configuration key.
+ * @returns string
+ */
+declare function getTapjawConfig(configKey: string): string;
+declare namespace getTapjawConfig {
+    var toNumber: (configKey: string) => number;
+    var toBoolean: (configKey: string) => boolean;
+}
+export default getTapjawConfig;

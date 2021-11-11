@@ -6,5 +6,5 @@ interface NPMPackageJSon extends Record<string, unknown> {
 }
 
 export const npmPackage = (): NPMPackageJSon => {
-    return JSON.parse(fs.readFileSync(__dirname + '/../../package.json').toString());
+    return JSON.parse(fs.readFileSync(__dirname + '/../../package.json').toString()) as NPMPackageJSon;
 };
