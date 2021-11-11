@@ -14,13 +14,15 @@ Create a stream of payload messages to STDOUT from any API.
 - [Dependancies](#dependancies)
 - [Setup a new project](#setup-a-new-project)
 - [Components](#components)
-  - [Commands](#commands)
-  - [Adapters](#adapters)
-  - [Configs](#configs)
-  - [Connectors](#connectors)
-  - [Contracts](#contracts)
-    - [TapjawMessage](#tapjawmessage)
-  - [Iterators](#iterators)
+  - [Commands `TapjawCommand`](#commands-tapjawcommand)
+  - [Adapters `TapjawContract.TapjawAdapter`](#adapters-tapjawcontracttapjawadapter)
+  - [Authenticators `TapjawAuthenticator`](#authenticators-tapjawauthenticator)
+  - [Configs `TapjawConfig`](#configs-tapjawconfig)
+  - [Connectors `TapjawConnector`](#connectors-tapjawconnector)
+  - [Contracts `TapjawContract`](#contracts-tapjawcontract)
+    - [TapjawMessage `TapjawMessage`](#tapjawmessage-tapjawmessage)
+  - [Iterators `TapjawIterator`](#iterators-tapjawiterator)
+  - [Dates `TapjawDate`](#dates-tapjawdate)
 - [Examples & Tutorial](#examples--tutorial)
 - [Changelog](#changelog)
   - [v2.0.0](#v200)
@@ -73,7 +75,8 @@ We've successfully written and deployed four separate internal projects into pro
 
 # Documentation
 
-You can find the overview documentation in the `docs/markdown/` directory, additionally [API documentation]() is also available.
+You can find the overview documentation in the `docs/markdown/` directory, additionally the latest [API documentation](https://digidip.github.io/tapjaw-importer/) is also available.
+
 
 # Why use Tapjaw Importer?
 
@@ -144,7 +147,7 @@ You are now ready to start working on your project. Refer to the `digidip/tapjaw
 
 An overview of each component available in Tapjaw Importer, focusing on each element with corresponding documentation in how to implement, extend and use correctly.
 
-## Commands
+## Commands `TapjawCommand`
 
 Commands are the defined set of entrypoints in a project, commands consist of four distict types in Tapjaw Importer, each with a specific domain. Read the documentation links below to get an overview on how commands are configured and which command is used, for what purpose.
 
@@ -154,51 +157,63 @@ Commands are the defined set of entrypoints in a project, commands consist of fo
 - [Store commands](docs/markdown/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
 - [Tool commands](docs/markdown/tool-commands.md) - Additional commands which do not fit within the specification of the previous three categories, for example mutating a message.
 
-## Adapters
+## Adapters `TapjawContract.TapjawAdapter`
 
 Adapters are the agnostic link between an API command and a connector. The adapter implements the business logic on managing the responses from the connector and yields a `TapjawMessage` to the command to then be written to an output buffer.
 
-Please refer to [Adapter documentation](./docs/markdown/adapters.md).
+Please refer to [Adapter documentation](./docs/markdown/adapters.md) or [API documentation](https://digidip.github.io/tapjaw-importer/modules/TapjawContract.html#TapjawAdapter) for further details.
 
-## Configs
+## Authenticators `TapjawAuthenticator`
+
+Tapjaw Importer supplies four widely used authentication approaches, these authenticators are commonly injected into the constructor of any `TapjawConnector` extend class.
+
+The Basic, Bearer and optionally JWT authenticators use specific string values to function.
+The OAuth and optionally the JWT authenticators perform requests to an initial login API to gain their respective access tokens.
+
+Currently supported Authenticators:
+- Basic Authentication.
+- Bearer Authentication.
+- OAuth Authentication.
+- JWT Authentication.
+
+Please refer to [Authenticator documentation](./docs/markdown/authenticators.md) or [API documentation](https://digidip.github.io/tapjaw-importer/modules/TapjawAuthenticator.html) for further details.
+
+## Configs `TapjawConfig`
 
 By default Tapjaw Importer will use the `.env` ([dotenv](https://github.com/motdotla/dotenv)) approach towards configuration. Dotenv allows for creating a `.env` file in your project directory or the possibility to inject environment variables with an alternative method that your project can still read without a `.env` file. Ideally, you would use the `.env` approach during development and then use an external setter of environmental variables in production.
 
-For more details please refer to [Configurations documentation](docs/markdown/configurations.md).
+Please refer to [Configurations documentation](./docs/markdown/configurations.md) or [API documentation](https://digidip.github.io/tapjaw-importer/modules/TapjawConfig.html) for further details.
 
-## Connectors
+## Connectors `TapjawConnector`
 
 The purpose of a connector is to allow an adapter to use different external services. For example, some third party APIs will have a RESTful or SOAP API. The _Connector Pattern_ will enable us to create two implementations with identical method signatures for the adapter to use. The developer then chooses to switch between either connector and expect the adapter to operate seamlessly regardless of whichever connector is in use.
 
-Please refer to [Connectors documentation](./docs/markdown/connectors.md).
+Please refer to [Connectors documentation](./docs/markdown/connectors.md) or [API documentation](https://digidip.github.io/tapjaw-importer/modules/TapjawConnector.html) for further details.
 
-## Contracts
+## Contracts `TapjawContract`
 
 The interfaces for Connectors, Adapters, Commands and Messages exist by default, and you can also extend from this directory for specifying types and interfaces for your project.
 
-Please refer to [Contracts documentation](./docs/markdown/contracts.md).
+Please refer to [Contracts documentation](./docs/markdown/contracts.md) or [API documentation](https://digidip.github.io/tapjaw-importer/modules/TapjawContract.html) for further details.
 
-### TapjawMessage
+### TapjawMessage `TapjawMessage`
 
 Each message (`TapjawMessage`) is composed of a payload without structural constraints, import date, identifier and a *sha256* signature generated from the Payload.
 
-## Iterators
+Please refer to [TapjawMessage documentation](./docs/markdown/messages.md) or [API documentation](https://digidip.github.io/tapjaw-importer/modules/TapjawMessage.html) for further details.
+
+## Iterators `TapjawIterator`
 
 Tapjaw Iterators designed purpose is to iterate over the yielded messages provided by an Adapter and output each to an external interface. Tapjaw Importer tends to write to the [standard output](https://en.wikipedia.org/wiki/Standard_streams) (stdout) stream. You can override by extending the `OutputIterator` class or the `TapjawIterator` interface.
 
-Please refer to [Iterators documentation](./docs/markdown/iterators.md).
+Please refer to [Iterators documentation](./docs/markdown/iterators.md) or [API documentation](https://digidip.github.io/tapjaw-importer/modules/TapjawIterator.html) for further details.
 
 
+## Dates `TapjawDate`
 
-Tapjaw Importer writes the STDOUT buffer due to the Unix feature of chaining of commands. In Unix derived systems, "piping" can be accomplished with the following example:
+Tapjaw Importer provides a supporting Date/Time toolkit, containing methods and constants aimed at making the most commonly used methods available for quickly formatting or parsing dates and times.
 
-```bash
-$ cat /etc/hosts | grep localhost
-127.0.0.1       localhost digidip.local
-::1             localhost
-```
-
-Tapjaw Importer provides two pre-implemented Iterators. Both are detailed before:-
+More details on the available methods and constants can be found in the [TapjawDate API documentation](https://digidip.github.io/tapjaw-importer/modules/TapjawDate.html).
 
 # Examples & Tutorial
 
