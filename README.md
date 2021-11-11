@@ -32,6 +32,8 @@ Create a stream of payload messages to STDOUT from any API.
 
 # Description
 
+[![Node.js Package](https://github.com/digidip/tapjaw-importer/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/digidip/tapjaw-importer/actions/workflows/npm-publish.yml)
+
 Tapjaw Importer is a Typescript JSON-based utility framework purposefully designed to simplify the development of commands that get chained together to consolidate data for persistence or further processing in the cloud or on existing system infrastructure.
 
 The chained commands communicate with JSON over an STDIO stream using a pre-defined class called a `TapjawMessage.TapjawMessage`, containing some default metadata and payload properties, allowing for easy extending from the `TapjawMessage.TapjawMessage` Class based on the business rules of implementation.
