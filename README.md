@@ -72,15 +72,13 @@ We've successfully written and deployed four separate internal projects into pro
 
 # Why use Tapjaw Importer?
 
-1. You want a Typescript/Javascript framework for quickly importing and consolidating data into your existing infrastructure.
-2. Want to easily create API, filter, store or tool commands to stream JSON-based messages from various APIs into your infrastructure.
-3. Be able to mix and match commands for your business purposes, removing code duplications with strong layers between the specific command domains.
-4. Want to stream data to any other third party commands using STDIO or third party infrastructures, enabling the use of any different programming language to fill any missing gaps or limitations.
-5. Not having to rely on a continuous living process that manages communication with a third party API.
-6. Easy to create or use existing infrastructure to configure and manage the running of commands.
-7. Easy to implement data consolidation for cloud-based serverless projects.
-8. Easy to test individual commands separately.
-9. An simple interface for creating streams of data between commands.
+1. You use node.js with Typescript or Javascript.
+2. Require a framework which allows you to quickly create API commands that streams each record to a STDOUT buffer.
+3. Be able to quickly mix and match commands for your business purposes.
+4. Slots in easily into existing system infrastructure.
+5. The ability to create a custom toolkit of bespoke scalable commands.
+6. Easy to implement data consolidation for cloud-based serverless projects.
+7. An simple interface for creating streams of data between commands.
 
 # Dependancies
 
@@ -88,7 +86,7 @@ We've successfully written and deployed four separate internal projects into pro
 - Commander.js
 - reflect-metadata
 - Typescript 4
-- Unix based operating system (it might work in Windows, although we provide no certainty)
+- Unix based operating system (it might work in Windows, but no certainty can be provided)
 
 # Setup a new project
 
@@ -139,7 +137,7 @@ You are now ready to start working on your project. Refer to the `digidip/tapjaw
 
 # Components
 
-An overview of each component is available in Tapjaw Importer, focusing on each element with corresponding documentation in how to implement, extend and use correctly.
+An overview of each component available in Tapjaw Importer, focusing on each element with corresponding documentation in how to implement, extend and use correctly.
 
 ## Commands
 
