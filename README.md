@@ -9,6 +9,7 @@ Create a stream of payload messages to STDOUT from any API.
 - [Tapjaw Importer - v2.0.0](#tapjaw-importer---v200)
 - [Description](#description)
 - [Purpose](#purpose)
+- [Documentation](#documentation)
 - [Why use Tapjaw Importer?](#why-use-tapjaw-importer)
 - [Dependancies](#dependancies)
 - [Setup a new project](#setup-a-new-project)
@@ -69,6 +70,10 @@ Tapjaw Importer provides a more abstract approach than singer.io by employing cu
 You as a developer can chain together as many commands as required as your business model sees fit in accomplishing the consolidation of data. You, as the developer, do not need to concern yourself with how data traverses through the commands.
 
 We've successfully written and deployed four separate internal projects into production using this framework, allowing us to experience such a process's complexities. We've attempted to provide the necessary components to quickly set up your commands and data stream through this process.
+
+# Documentation
+
+You can find the overview documentation in the `docs/markdown/` directory, additionally [API documentation]() is also available.
 
 # Why use Tapjaw Importer?
 
@@ -143,35 +148,35 @@ An overview of each component available in Tapjaw Importer, focusing on each ele
 
 Commands are the defined set of entrypoints in a project, commands consist of four distict types in Tapjaw Importer, each with a specific domain. Read the documentation links below to get an overview on how commands are configured and which command is used, for what purpose.
 
-- [Commands overivew](docs/commands.md) - Overview of what is necessary to create a command.
-- [API commands](docs/api-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
-- [Filter commands](docs/filter-commands.md) - Filter out stdin stream messages or forward messages to the stdout stream based on rules.
-- [Store commands](docs/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
-- [Tool commands](docs/tool-commands.md) - Additional commands which do not fit within the specification of the previous three categories, for example mutating a message.
+- [Commands overivew](docs/markdown/commands.md) - Overview of what is necessary to create a command.
+- [API commands](docs/markdown/api-commands.md) - Pull data using connectors & adapters, converting each record into a `TapjawMessage` and write to the stdout stream.
+- [Filter commands](docs/markdown/filter-commands.md) - Filter out stdin stream messages or forward messages to the stdout stream based on rules.
+- [Store commands](docs/markdown/store-commands.md) - Persist incoming stdin messages to an external service, such as DBMS, s3 or a queue.
+- [Tool commands](docs/markdown/tool-commands.md) - Additional commands which do not fit within the specification of the previous three categories, for example mutating a message.
 
 ## Adapters
 
 Adapters are the agnostic link between an API command and a connector. The adapter implements the business logic on managing the responses from the connector and yields a `TapjawMessage` to the command to then be written to an output buffer.
 
-Please refer to [Adapter documentation](./docs/adapters.md).
+Please refer to [Adapter documentation](./docs/markdown/adapters.md).
 
 ## Configs
 
 By default Tapjaw Importer will use the `.env` ([dotenv](https://github.com/motdotla/dotenv)) approach towards configuration. Dotenv allows for creating a `.env` file in your project directory or the possibility to inject environment variables with an alternative method that your project can still read without a `.env` file. Ideally, you would use the `.env` approach during development and then use an external setter of environmental variables in production.
 
-For more details please refer to [Configurations documentation](docs/configurations.md).
+For more details please refer to [Configurations documentation](docs/markdown/configurations.md).
 
 ## Connectors
 
 The purpose of a connector is to allow an adapter to use different external services. For example, some third party APIs will have a RESTful or SOAP API. The _Connector Pattern_ will enable us to create two implementations with identical method signatures for the adapter to use. The developer then chooses to switch between either connector and expect the adapter to operate seamlessly regardless of whichever connector is in use.
 
-Please refer to [Connectors documentation](./docs/connectors.md).
+Please refer to [Connectors documentation](./docs/markdown/connectors.md).
 
 ## Contracts
 
 The interfaces for Connectors, Adapters, Commands and Messages exist by default, and you can also extend from this directory for specifying types and interfaces for your project.
 
-Please refer to [Contracts documentation](./docs/contracts.md).
+Please refer to [Contracts documentation](./docs/markdown/contracts.md).
 
 ### TapjawMessage
 
@@ -181,7 +186,7 @@ Each message (`TapjawMessage`) is composed of a payload without structural const
 
 Tapjaw Iterators designed purpose is to iterate over the yielded messages provided by an Adapter and output each to an external interface. Tapjaw Importer tends to write to the [standard output](https://en.wikipedia.org/wiki/Standard_streams) (stdout) stream. You can override by extending the `OutputIterator` class or the `TapjawIterator` interface.
 
-Please refer to [Iterators documentation](./docs/iterators.md).
+Please refer to [Iterators documentation](./docs/markdown/iterators.md).
 
 
 
@@ -214,7 +219,7 @@ The project employs the [semver](https://semver.org/) specification on versionin
 - Abstract streaming management in filter/store command contracts.
 - Documentation.
 - Implement the npm package publishing (#TODO).
-- Implements reflect-metadata, added `@TapjawMetadata.Command.*` and `@TapjawMetadata.Connector.*` decorator methods for configuring commands and connectors, [read more](docs/commands.md#tapjaw-metadata-command-decorators).
+- Implements reflect-metadata, added `@TapjawMetadata.Command.*` and `@TapjawMetadata.Connector.*` decorator methods for configuring commands and connectors, [read more](docs/markdown/commands.md#tapjaw-metadata-command-decorators).
 - Renamed AdapterError to TapjawAdapterError.
 - Renamed ConnectorError to TapjawConnectorError.
 - Namespaced each module of the framework, src/index.ts export interface improved.

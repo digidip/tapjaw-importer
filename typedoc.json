@@ -2,7 +2,7 @@
     "entryPoints": [
         "./src/index.ts"
     ],
-    "out": "api-docs",
+    "out": "docs",
     "umlClassDiagram": {
         "type": "detailed",
         "location": "local",
@@ -11,5 +11,6 @@
     "tsconfig": "./tsconfig.build.json",
     "name": "Tapjaw Importer API documentation",
     "includeVersion": true,
-    "readme": "none"
+    "readme": "none",
+    "cleanOutputDir": false
 }

@@ -76,7 +76,8 @@
         "build": "node node_modules/.bin/tsc -p ./tsconfig.build.json",
         "clean-build": "rm -rf ./lib && node node_modules/.bin/tsc -p ./tsconfig.build.json",
         "watch": "node node_modules/.bin/tsc -w",
-        "api-docs": "node node_modules/.bin/typedoc"
+        "api-docs": "rm -rf docs/assets docs/classes docs/enums docs/interfaces docs/modules index.html && node node_modules/.bin/typedoc",
+        "watch-api-docs": "node node_modules/.bin/typedoc --watch"
     },
     "types": "lib/index.d.ts"
 }
