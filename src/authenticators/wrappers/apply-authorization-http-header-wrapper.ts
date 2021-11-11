@@ -1,5 +1,8 @@
-import TapjawAuthenticator, { AuthorizationHeaders, TapjawAuthenticatorError } from '../../contracts/tapjaw-authenticator';
-import https from 'https';
+import TapjawAuthenticator, {
+    AuthorizationHeaders,
+    TapjawAuthenticatorError,
+} from '../../contracts/tapjaw-authenticator';
+import { RequestOptions } from 'https';
 import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
 
 export default class ApplyAuthorizationHttpHeaderWrapper implements TapjawAuthenticationWrapper {
@@ -7,7 +10,7 @@ export default class ApplyAuthorizationHttpHeaderWrapper implements TapjawAuthen
 
     constructor(private readonly authenticator: TapjawAuthenticator<AuthorizationHeaders>) {}
 
-    public async authenticate(requestOptionContainer: https.RequestOptions): Promise<https.RequestOptions> {
+    public async authenticate(requestOptionContainer: RequestOptions): Promise<RequestOptions> {
         if (this.authenticator.isAuthenticated()) {
             // Apply Authorization header.
             return this.applyAuthorizationHeader(requestOptionContainer);
@@ -26,7 +29,7 @@ export default class ApplyAuthorizationHttpHeaderWrapper implements TapjawAuthen
         return this.applyAuthorizationHeader(requestOptionContainer);
     }
 
-    private applyAuthorizationHeader(options: https.RequestOptions): https.RequestOptions {
+    private applyAuthorizationHeader(options: RequestOptions): RequestOptions {
         return {
             ...options,
             headers: {

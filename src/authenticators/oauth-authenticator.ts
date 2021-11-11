@@ -6,7 +6,7 @@ export type OauthResponse = HttpHeaders & Record<'access_token', string>;
 
 export const isOauthResponse = (obj: unknown): obj is OauthResponse => {
     return Boolean(obj && typeof obj === 'object' && 'access_token' in (obj as HttpHeaders));
-}
+};
 
 export default class OauthAuthenticator implements TapjawAuthenticator<OauthResponse> {
     private authenticated = false;
@@ -19,7 +19,7 @@ export default class OauthAuthenticator implements TapjawAuthenticator<OauthResp
         protected readonly path: string,
         protected readonly postParams: querystring.ParsedUrlQueryInput,
         protected readonly method: string = 'POST',
-        protected readonly responseEncoding = 'utf8'
+        protected readonly responseEncoding: BufferEncoding = 'utf8'
     ) {}
 
     public isAuthenticated(): boolean {
@@ -39,6 +39,7 @@ export default class OauthAuthenticator implements TapjawAuthenticator<OauthResp
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         };
 
+        // @todo migrate to URLSearchParams in future.
         const params: string = querystring.stringify(this.postParams);
         const options = {
             hostname: this.hostname,

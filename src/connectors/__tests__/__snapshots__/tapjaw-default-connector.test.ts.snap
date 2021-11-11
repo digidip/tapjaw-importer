@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Make sure TapjawDefaultConnector works as expected. should acquire port 443 since HTTPS enabled but no port is specified 1`] = `
+TestConnector {
+  "enableGzip": false,
+  "host": "my.moo.com",
+  "lastResponse": null,
+  "port": 443,
+  "protocol": "https",
+  "security": undefined,
+  "useDecoding": "iso-8859-1",
+  "useEncoding": "utf-8",
+}
+`;
+
+exports[`Make sure TapjawDefaultConnector works as expected. should container all the configured metadata values 1`] = `
+TestConnector {
+  "enableGzip": true,
+  "host": "my.testing.com",
+  "lastResponse": null,
+  "port": 123,
+  "protocol": "https",
+  "security": ApplyAuthorizationHttpHeaderWrapper {
+    "authenticator": BearerAuthAuthenticator {
+      "authenticated": false,
+      "bearerToken": "xxx",
+      "header": Object {
+        "Authorization": "Bearer xxx",
+      },
+    },
+  },
+  "useDecoding": "utf-8",
+  "useEncoding": "utf-8",
+}
+`;
+
+exports[`Make sure TapjawDefaultConnector works as expected. should override https port check, since .Port(80) is set, also check for latin1 1`] = `
+TestConnector {
+  "enableGzip": false,
+  "host": "my.moo.com",
+  "lastResponse": null,
+  "port": 80,
+  "protocol": "https",
+  "security": undefined,
+  "useDecoding": "iso-8859-1",
+  "useEncoding": "iso-8859-1",
+}
+`;
+
+exports[`Make sure TapjawDefaultConnector works as expected. should simple HTTP connector 1`] = `
+TestConnector {
+  "enableGzip": false,
+  "host": "my.moo.com",
+  "lastResponse": null,
+  "port": 80,
+  "protocol": "http",
+  "security": undefined,
+  "useDecoding": "iso-8859-1",
+  "useEncoding": "utf-8",
+}
+`;
+
+exports[`Make sure TapjawDefaultConnector works as expected. should work with minimal metadata configuration: host (HTTP) + protocol 1`] = `
+TestConnector {
+  "enableGzip": false,
+  "host": "my.moo.com",
+  "lastResponse": null,
+  "port": 80,
+  "protocol": "http",
+  "security": undefined,
+  "useDecoding": undefined,
+  "useEncoding": undefined,
+}
+`;
+
+exports[`Make sure TapjawDefaultConnector works as expected. should work with minimal metadata configuration: host (HTTPS) + protocol 1`] = `
+TestConnector {
+  "enableGzip": false,
+  "host": "my.moo.com",
+  "lastResponse": null,
+  "port": 443,
+  "protocol": "https",
+  "security": undefined,
+  "useDecoding": undefined,
+  "useEncoding": undefined,
+}
+`;

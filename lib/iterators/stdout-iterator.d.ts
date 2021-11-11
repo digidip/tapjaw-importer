@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import OutputIterator from './output-iterator';
-import TapjawMessage from '../contracts/tapjaw-message';
+import TapjawMessage from '../messages/tapjaw-message';
 /**
  * Iterate TapjawMessages from implemented adapter, convert each to JSON and write to the STDOUT buffer.
  */

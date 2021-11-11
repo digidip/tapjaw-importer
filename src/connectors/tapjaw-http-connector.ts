@@ -3,9 +3,11 @@ import https from 'https';
 import { encode, decode, encodingExists } from 'iconv-lite';
 import querystring from 'querystring';
 import zlib from 'zlib';
-import TapjawConnector, { TapjawConnectorResponse, TapjawConnectorError } from '../contracts/tapjaw-connector';
+import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-connector';
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 import deepmerge from 'deepmerge';
+import { URLSearchParams } from 'url';
+import TapjawConnectorError from '../errors/tapjaw-connector-error';
 
 export interface TapjawHttpHeaders extends Record<string, string | undefined> {
     Accept?: string;
@@ -37,7 +39,28 @@ export type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
 const DEFAULT_TIMEOUT = 30000;
 
 /**
- * The default HTTP and HTTPS API request wrapper.
+ * Known supported character sets used by {@link TapjawHttpConnector}, {@link TapjawMetadata.Connector.Encode}
+ * and {@link TapjawMetadata.Connector.Encode}.
+ * @enum
+ */
+export enum TapjawHttpConnectorCharSet {
+    UTF8 = 'utf-8',
+    LATIN1 = 'iso-8859-1',
+}
+
+/**
+ * Supported protocols for HTTP based connectors.
+ * @enum
+ */
+export enum TapjawHttpConnectorProtocol {
+    HTTPS = 'https',
+    HTTP = 'http',
+}
+
+/**
+ * @module TapjawConnector
+ *
+ * The default HTTP and HTTPS API connector.
  */
 export default abstract class TapjawHttpConnector implements TapjawConnector {
     /**
@@ -51,7 +74,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * This happens prior to encoding, so you can perform a decoding
      * and encoding in conjunction with TapjawHttpConnector.useEncoding.
      */
-    abstract useDecoding?: string;
+    abstract useDecoding?: TapjawHttpConnectorCharSet | string;
 
     /**
      * Apply a character set encoding to encode the response prior to returning.
@@ -60,7 +83,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * can decode the buffer prior to encoding the buffer. you can
      * also simply encode the buffer without any prior decoding.
      */
-    abstract useEncoding?: string;
+    abstract useEncoding?: TapjawHttpConnectorCharSet | string;
 
     /**
      * Abetiary container for authentication data which can be used in
@@ -74,12 +97,12 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     protected lastResponse: IncomingMessage | null = null;
 
     public constructor(
-        protected readonly host: string,
-        protected readonly port = 80,
-        protected readonly enableHttps = true,
-        protected readonly security?: TapjawAuthenticationWrapper
+        protected host: string,
+        protected port = 80,
+        protected protocol = TapjawHttpConnectorProtocol.HTTPS,
+        protected security?: TapjawAuthenticationWrapper
     ) {
-        if (enableHttps && (port === 80 || !port)) {
+        if (protocol === TapjawHttpConnectorProtocol.HTTPS && (port === 80 || !port)) {
             this.port = 443;
         }
     }
@@ -98,45 +121,47 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
     /**
      * Set the character set encoding to decode the API response data before encoding or returning.
      *
-     * @param encoding  string|null
+     * @param encoding  TapjawHttpConnectorProtocol|string|null
      */
-    public setDecoding(encoding: string | null): void {
-        if (!encoding) {
-            delete this.useDecoding;
+    public setDecoding(encoding: TapjawHttpConnectorCharSet | string | null): void {
+        if (encoding === null || !encoding) {
+            this.useDecoding = void 0;
+            return;
         }
 
-        if (encodingExists(encoding as string)) {
-            throw new TapjawConnectorError(`Unsupported decoding: ${encoding}`);
+        if (!encodingExists(encoding)) {
+            throw new TapjawConnectorError(`Unsupported decoding: ${encoding || 'not set'}`, this);
         }
 
-        this.useDecoding = encoding as string;
+        this.useDecoding = encoding;
     }
 
     /**
      * Set the character set encoding on the response data.
      *
-     * @param encoding string|null
+     * @param encoding {@link TapjawHttpConnectorProtocol}|string|null
      */
-    public setEncoding(encoding: string | null): void {
-        if (!encoding) {
-            delete this.useEncoding;
+    public setEncoding(encoding: TapjawHttpConnectorCharSet | string | null): void {
+        if (encoding === null || !encoding) {
+            this.useEncoding = void 0;
+            return;
         }
 
-        if (!encodingExists(encoding as string)) {
-            throw new TapjawConnectorError(`Unsupported encoding: ${encoding}`);
+        if (!encodingExists(encoding)) {
+            throw new TapjawConnectorError(`Unsupported encoding: ${encoding || 'not set'}`, this);
         }
 
-        this.useEncoding = encoding as string;
+        this.useEncoding = encoding;
     }
 
     /**
      * Send a GET request to the API.
      *
      * @param uri       string
-     * @param query     TapjawHttpQueryParameters
-     * @param headers   TapjawHttpHeaders (optional)
+     * @param query     {@link TapjawHttpQueryParameters}
+     * @param headers   {@link TapjawHttpHeaders} (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     public async get(
         uri: string,
@@ -163,7 +188,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param query     TapjawHttpQueryParameters
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     public async delete(
         uri: string,
@@ -191,7 +216,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param body      TapjawHttpRequestBody
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     public async post(
         uri: string,
@@ -201,7 +226,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         timeout = DEFAULT_TIMEOUT
     ): Promise<TapjawConnectorResponse> {
         if (typeof body === 'object') {
-            body = querystring.stringify(body);
+            body = new URLSearchParams(body).toString();
+            // body = querystring.stringify(body);
         }
 
         const options: https.RequestOptions = {
@@ -228,7 +254,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
      * @param json      TapjawHttpRequestBody
      * @param headers   TapjawHttpHeaders (optional)
      *
-     * @return TapjawConnectorResponse
+     * @returns {@link TapjawConnectorResponse}
      */
     public async postJson(
         uri: string,
@@ -293,8 +319,19 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             return options;
         }
 
-        const updatedOptions = await this.security.authenticate(options) as Record<string, unknown>;
+        const updatedOptions = (await this.security.authenticate(options)) as Record<string, unknown>;
         return deepmerge(options, updatedOptions);
+    }
+
+    private getProtocolRequest() {
+        switch (true) {
+            case this.protocol === TapjawHttpConnectorProtocol.HTTPS:
+                return https.request;
+            case this.protocol === TapjawHttpConnectorProtocol.HTTP:
+                return http.request;
+            default:
+                throw new TapjawConnectorError(`Invalid protocol: ${String(this.protocol)}`, this);
+        }
     }
 
     /**
@@ -307,21 +344,23 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         options = await this.applySecurity(options);
 
         return new Promise((resolve, reject) => {
-            const requestImpl = this.enableHttps ? https.request : http.request;
-            const connectorRequest = requestImpl(options, (response: IncomingMessage) => {
+            const connectorRequest = this.getProtocolRequest()(options, (response: IncomingMessage) => {
                 this.lastResponse = response;
                 if (response.statusCode !== 200) {
-                    const error = new TapjawConnectorError(`HTTP Status code was ${response.statusCode}.`);
+                    const error = new TapjawConnectorError(
+                        `HTTP Status code was ${response?.statusCode || 'not set'}.`,
+                        this
+                    );
                     reject(error);
                 }
 
                 const buffer: Buffer[] = [];
                 response.on('data', (data: string) => buffer.push(Buffer.from(data, 'binary')));
-                response.on('end', async () => {
+                response.on('end', () => {
                     let contentBuffer = Buffer.concat(buffer);
 
                     if (!contentBuffer) {
-                        reject(new TapjawConnectorError('Empty content buffer'));
+                        reject(new TapjawConnectorError('Empty content buffer', this));
                     }
 
                     if (this.enableGzip) {
@@ -342,11 +381,15 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                 response.on('error', reject);
             });
 
-
             connectorRequest
                 .on('timeout', () => {
                     connectorRequest.abort();
-                    reject(new TapjawConnectorError(`${options.hostname} Timed out after ${options.timeout}ms`));
+                    reject(
+                        new TapjawConnectorError(
+                            `${options.hostname || 'not set'} Timed out after ${options.timeout || '(not set)'}ms`,
+                            this
+                        )
+                    );
                 })
                 .on('error', reject);
 

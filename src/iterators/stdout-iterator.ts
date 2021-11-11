@@ -1,5 +1,5 @@
 import OutputIterator from './output-iterator';
-import TapjawMessage from '../contracts/tapjaw-message';
+import TapjawMessage from '../messages/tapjaw-message';
 import { TapjawIteratorError } from '../contracts/tapjaw-iterator';
 
 /**
@@ -37,5 +37,7 @@ export default class StdoutIterator extends OutputIterator {
          * Write JSON to stdout buffer.
          */
         this.writeCallback.write(`${json}\n`);
+
+        return Promise.resolve();
     }
 }

@@ -1,5 +1,6 @@
-type Payload = Record<string, unknown>;
-
+/**
+ * @ignore
+ */
 const sortObjectsCallback = (a: Record<string, unknown>, b: Record<string, unknown>) => {
     const aJson = JSON.stringify(a);
     const bJson = JSON.stringify(b);
@@ -23,7 +24,7 @@ const sortObjectsCallback = (a: Record<string, unknown>, b: Record<string, unkno
  *
  * @param payload Payload
  */
-const sortObjevtArrays = <T = Record<string, unknown>>(payload: Payload): T => {
+export default function sortObjectArrays<T = Record<string, unknown>>(payload: Record<string, unknown>): T {
     const keys = Object.keys(payload);
     const newPayload: Record<string, unknown> = {};
 
@@ -34,7 +35,7 @@ const sortObjevtArrays = <T = Record<string, unknown>>(payload: Payload): T => {
             prop.forEach((value: unknown, index: number) => {
                 if (typeof value === 'object') {
                     // recurse into child objects
-                    prop[index] = sortObjevtArrays(value as Payload);
+                    prop[index] = sortObjectArrays<T>(value as Record<string, unknown>);
                 }
             });
 
@@ -51,6 +52,4 @@ const sortObjevtArrays = <T = Record<string, unknown>>(payload: Payload): T => {
     });
 
     return newPayload as T;
-};
-
-export default sortObjevtArrays;
+}

@@ -1,65 +1,25 @@
-import TapjawIterator from './tapjaw-iterator';
-import { TapjawAdapterCallback } from './tapjaw-adapter';
-import StdoutIterator from '../iterators/stdout-iterator';
-import TapjawMessage from './tapjaw-message';
+/**
+ * @module TapjawCommand
+ */
+export default interface TapjawCommand {
+    run(...args: unknown[]): Promise<void>;
+}
 
 export type TapjawCommandArgs<T = unknown> = Record<string, T>;
 export type TapjawCommandFlags<T = unknown> = Record<string, T>;
 
-export interface TapjawCommandDefaultFlags extends TapjawCommandFlags<string> {
+export interface TapjawCommandDefaultFlags<T = unknown> extends TapjawCommandFlags<T | string> {
     limit: string;
 }
 
-export default abstract class TapjawCommand {
-    protected iterator: TapjawIterator;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type ActionArgs = any[];
 
-    public constructor(iterator?: TapjawIterator) {
-        this.iterator = iterator ? iterator : new StdoutIterator(process.stdout);
-    }
+export type CommandAction = (...args: ActionArgs) => void | Promise<void>;
 
-    /**
-     * Run the command the execute the iterator run routine.
-     *
-     */
-    async run<T extends TapjawCommandFlags>(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void> {
-        await this.iterator.run(
-            this.getAdapterCallback(args, flags),
-            flags.limit ? Number(flags.limit) : undefined
-        );
-    }
-
-    /**
-     * Implement this function to return a callback that provides the implementation
-     * on how to call an adapters method. This allows for arguments and flags from this method to adjust
-     * the behaviour from the Adapter's method.
-     *
-     * Basic Example:
-     * ```typescript
-     *   getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): TapjawAdapterCallback {
-     *      return (async function* (): AsyncGenerator<TapjawMessage> {
-     *          yield* implementedAdapter.myMethodToExecute();
-     *      });
-     *   }
-     * ```
-     *
-     * Broader Example:
-     * ```typescript
-     *   getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): TapjawAdapterCallback {
-     *      const category = args.category || undefined;
-     *
-     *      return (async function* (): AsyncGenerator<TapjawMessage> {
-     *          yield* implementedAdapter.myMethodToExecute(flags.onlyActiveItems, category);
-     *      });
-     *   }
-     * ```
-     *
-     * @param args TapjawCommandArgs
-     * @param flags TapjawCommandFlags
-     * @return TapjawAdapterCallback
-     * @see TapjawAdapter
-     */
-    protected abstract getAdapterCallback(
-        args: TapjawCommandArgs,
-        flags: TapjawCommandFlags
-    ): TapjawAdapterCallback<TapjawMessage>;
-}
+export type CommandOption = {
+    flags: string;
+    description?: string;
+    defaultValue?: string | boolean;
+    required?: boolean;
+};

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="254px" preserveAspectRatio="none" style="width:356px;height:254px;background:#00000000;" version="1.1" viewBox="0 0 356 254" width="356px" zoomAndPan="magnify"><defs><filter height="300%" id="f3po3dwagd5mz" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[bac2c0e5a8519d4dc8294f276ee9dd4b]
+class ReadableStreamDefaultReader<R>--><rect codeLine="4" fill="#FEFECE" filter="url(#f3po3dwagd5mz)" height="99.8203" id="ReadableStreamDefaultReader&lt;R&gt;" style="stroke:#A80036;stroke-width:1.5;" width="335" x="7" y="141"/><ellipse cx="67.25" cy="157" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M63.6777,153.2651 L63.6777,151.1069 L71.0571,151.1069 L71.0571,153.2651 L68.5918,153.2651 L68.5918,161.3418 L71.0571,161.3418 L71.0571,163.5 L63.6777,163.5 L63.6777,161.3418 L66.1431,161.3418 L66.1431,153.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="206" x="87.75" y="161.5352">ReadableStreamDefaultReader&lt;R&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="341" y1="173" y2="173"/><ellipse cx="18" cy="184" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="159" x="27" y="187.6348">closed : Promise&lt;undefined&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="341" y1="193.9551" y2="193.9551"/><ellipse cx="18" cy="204.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="197" x="27" y="208.5898">cancel(reason: any) : Promise&lt;void&gt;</text><ellipse cx="18" cy="217.9102" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="309" x="27" y="221.5449">read() : Promise&lt;ReadableStreamDefaultReadResult&lt;R&gt;&gt;</text><ellipse cx="18" cy="230.8652" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="103" x="27" y="234.5">releaseLock() : void</text><!--MD5=[50a54eb3002964d98d7ddf8ef81a60b3]
+class ReadableStreamGenericReader--><rect codeLine="10" fill="#FEFECE" filter="url(#f3po3dwagd5mz)" height="73.9102" id="ReadableStreamGenericReader" style="stroke:#A80036;stroke-width:1.5;" width="223" x="63" y="7"/><ellipse cx="82.5" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M78.9277,19.2651 L78.9277,17.1069 L86.3071,17.1069 L86.3071,19.2651 L83.8418,19.2651 L83.8418,27.3418 L86.3071,27.3418 L86.3071,29.5 L78.9277,29.5 L78.9277,27.3418 L81.3931,27.3418 L81.3931,19.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="181" x="97.5" y="27.5352">ReadableStreamGenericReader</text><line style="stroke:#A80036;stroke-width:1.5;" x1="64" x2="285" y1="39" y2="39"/><ellipse cx="74" cy="50" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="159" x="83" y="53.6348">closed : Promise&lt;undefined&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="64" x2="285" y1="59.9551" y2="59.9551"/><ellipse cx="74" cy="70.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="197" x="83" y="74.5898">cancel(reason: any) : Promise&lt;void&gt;</text><!--MD5=[ac29da91709865e2a7eec4649992d53f]
+reverse link ReadableStreamGenericReader to ReadableStreamDefaultReader<R>--><path codeLine="14" d="M174.5,101.45 C174.5,114.46 174.5,128.19 174.5,140.86 " fill="none" id="ReadableStreamGenericReader-backto-ReadableStreamDefaultReader&lt;R&gt;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="167.5,101.22,174.5,81.22,181.5,101.22,167.5,101.22" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[919a700db3e1c99c3601f5f81a3aff8a]
+@startuml
+skinparam BackgroundColor transparent
+hide empty methods
+hide empty fields
+interface "ReadableStreamDefaultReader<R>" {
+    +closed : Promise<undefined>
+    +cancel(reason: any) : Promise<void>
+    +read() : Promise<ReadableStreamDefaultReadResult<R>>
+    +releaseLock() : void
+}
+interface "ReadableStreamGenericReader" {
+    +closed : Promise<undefined>
+    +cancel(reason: any) : Promise<void>
+}
+"ReadableStreamGenericReader" <|- - "ReadableStreamDefaultReader<R>"
+@enduml
+
+PlantUML version 1.2021.6(Fri May 14 09:09:51 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

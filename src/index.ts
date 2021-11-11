@@ -1,44 +1,87 @@
-// Contracts
-export { default as TapjawAdapter } from './contracts/tapjaw-adapter';
-export { default as TapjawConnector } from './contracts/tapjaw-connector';
-export { default as TapjawAuthenticator } from './contracts/tapjaw-authenticator';
-export { default as TapjawIterator } from './contracts/tapjaw-iterator';
-export { default as TapjawMessage, TapjawPayload } from './contracts/tapjaw-message';
-export {
-    default as TapjawCommand,
-    TapjawCommandDefaultFlags,
-    TapjawCommandArgs,
-    TapjawCommandFlags,
-} from './contracts/tapjaw-command';
+import 'reflect-metadata';
 
-// Connectors
-export { default as TapjawHttpConnector, ArrayParameter, DuplicateParameter } from './connectors/tapjaw-http-connector';
+/**
+ * @namespace TapjawContract
+ */
+export * as TapjawContract from './contracts';
 
-export { default as TapjawHtmlFormExtractor, InputField, Form } from './authenticators/support/html-form-extractor';
-export {
-    default as TapjawRequestFormBuilder,
-    FormFieldName,
-    FormFieldValue,
-    FormRequest,
-} from './authenticators/support/request-form-builder';
+/**
+ * @namespace TapjawCommand
+ */
+export * as TapjawCommand from './commands';
 
-export { default as TapjawAuthenticationWrapper } from './contracts/tapjaw-authentication-wrapper';
-// export { default as TapjawApplyAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-authorization-http-header-wrapper';
-// export { default as TapjawApplyOauthAuthorizationHttpHeaderWrapper } from './authenticators/wrappers/apply-oauth-authorization-http-header-wrapper';
-// import { default as TpajawApplyCookieHttpHeaderWrapper } from './authenticators/wrappers/apply-cookie-http-header-wrapper';
+/**
+ * @namespace TapjawConnector
+ */
+export * as TapjawConnector from './connectors';
 
-// Iterators
-export { default as StdoutIterator } from './iterators/stdout-iterator';
-export { default as OutputIterator } from './iterators/output-iterator';
+/**
+ * @namespace TapjawIterator
+ */
+export * as TapjawIterator from './iterators';
 
-// Support
-export { createBasicSecurity, createBearerSecurity, createOAuthSecurity } from './support/create-security'; // , createSessionSecurity
-export { default as sortObjectArrays } from './support/sort-object-arrays';
+/**
+ * @namespace TapjawAuthenticator
+ */
+export * as TapjawAuthenticator from './authenticators';
 
-// Parsers
-export { default as xmlToJson } from './parsers/xml-to-json';
-export { default as csvToJson } from './parsers/csv-to-json';
+/**
+ * @namespace TapjawParser
+ */
+export * as TapjawParser from './parsers';
 
-// Configs
-export { default as DotEnvConfig } from './configs/dot-env-config';
-export { default as TapjawMessageConfig } from './configs/tapjaw-message-config';
+/**
+ * @namespace TapjawConfig
+ */
+export * as TapjawConfig from './configs';
+
+/**
+ * @namespace TapjawDate
+ */
+export * as TapjawDate from './date';
+
+/**
+ * @namespace TapjawError
+ */
+export * as TapjawError from './errors';
+
+/**
+ * @namespace TapjawTypeguard
+ */
+export * as TapjawTypeguard from './typeguards';
+
+/**
+ * # TapjawMetadata
+ *
+ * TapjawMetadata.Command and TapjawMetadata.Connector are reflect-metadata decorator methods used to set options on
+ * {@link TapjawApiCommand}, {@link TapjawFilterCommand}, {@link TapjawStoreCommand}, {@link TapjawToolCommand}
+ * and {@link TapjawDefaultConnector} instances.
+ *
+ * ### Connector metadata decorator methods:
+ * ```typescript
+ * @TapjawMetadata.Connector.EnableGzip()
+ * @TapjawMetadata.Connector.Decode(charset: TapjawHttpConnectorCharSet)
+ * @TapjawMetadata.Connector.Encode(charset: TapjawHttpConnectorCharSet)
+ * @TapjawMetadata.Connector.Host(host: string)
+ * @TapjawMetadata.Connector.port(port: number)
+ * @TapjawMetadata.Connector.Protocol(protocol: TapjawHttpConnectorProtocol)
+ * @TapjawMetadata.Connector.Security(protocol: TapjawAuthenticationWrapper)
+ * ```
+ *
+ * ### Command metadata decorator methods:
+ * ```typescript
+ * @TapjawMetadata.Command.Name(name: string)
+ * @TapjawMetadata.Command.Description(desc: string)
+ * @TapjawMetadata.Command.Example(example: string)
+ * @TapjawMetadata.Command.Arguments(args: Argument[])
+ * @TapjawMetadata.Command.Options(opts: CommandOption[])
+ * @TapjawMetadata.Command.Action(action: CommandAction)
+ * ```
+ * @packageDescription
+ */
+export * as TapjawMetadata from './reflection';
+
+/**
+ * @namespace TapjawMessage
+ */
+export * as TapjawMessage from './messages';

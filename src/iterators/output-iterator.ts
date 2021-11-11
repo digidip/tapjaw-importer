@@ -1,5 +1,5 @@
 import TapjawIterator from '../contracts/tapjaw-iterator';
-import TapjawMessage from '../contracts/tapjaw-message';
+import TapjawMessage from '../messages/tapjaw-message';
 import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
 
 /**
@@ -11,11 +11,8 @@ import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
  * TapjawMessages being passed to the outputMessage() method.
  */
 export default abstract class OutputIterator implements TapjawIterator {
-    public async run(
-        adapterCallback: TapjawAdapterCallback<TapjawMessage>,
-        limit?: number
-    ): Promise<void> {
-        const messages = await adapterCallback();
+    public async run(adapterCallback: TapjawAdapterCallback<TapjawMessage>, limit?: number): Promise<void> {
+        const messages = adapterCallback();
         let done = false;
         let adapterMessage;
         let messageCount = 0;
@@ -50,7 +47,5 @@ export default abstract class OutputIterator implements TapjawIterator {
      *
      * @param message TapjawMessage
      */
-    protected abstract outputMessage(
-        message: TapjawMessage
-    ): Promise<void>;
+    protected abstract outputMessage(message: TapjawMessage): Promise<void>;
 }

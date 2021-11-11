@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="243px" preserveAspectRatio="none" style="width:435px;height:243px;background:#00000000;" version="1.1" viewBox="0 0 435 243" width="435px" zoomAndPan="magnify"><defs><filter height="300%" id="f1vgt1crbc9bz" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[e383a28d639cee68312ee00a2e3fda7a]
+class TapjawAdapterError--><rect codeLine="4" fill="#FEFECE" filter="url(#f1vgt1crbc9bz)" height="138.6855" id="TapjawAdapterError" style="stroke:#A80036;stroke-width:1.5;" width="414" x="7" y="91"/><ellipse cx="150.25" cy="107" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M152.7231,113.1431 Q152.1421,113.4419 151.5029,113.5913 Q150.8638,113.7407 150.1582,113.7407 Q147.6514,113.7407 146.3315,112.0889 Q145.0117,110.437 145.0117,107.3159 Q145.0117,104.1865 146.3315,102.5347 Q147.6514,100.8828 150.1582,100.8828 Q150.8638,100.8828 151.5112,101.0322 Q152.1587,101.1816 152.7231,101.4805 L152.7231,104.2031 Q152.0923,103.6221 151.4988,103.3523 Q150.9053,103.0825 150.2744,103.0825 Q148.9297,103.0825 148.2449,104.1492 Q147.5601,105.2158 147.5601,107.3159 Q147.5601,109.4077 148.2449,110.4744 Q148.9297,111.541 150.2744,111.541 Q150.9053,111.541 151.4988,111.2712 Q152.0923,111.0015 152.7231,110.4204 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="119" x="170.75" y="111.5352">TapjawAdapterError</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="420" y1="123" y2="123"/><ellipse cx="18" cy="134" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="27" y="137.6348">message : string</text><ellipse cx="18" cy="146.9551" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="70" x="27" y="150.5898">name : string</text><ellipse cx="18" cy="159.9102" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="27" y="163.5449">parentStack : string</text><ellipse cx="18" cy="172.8652" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="156" x="27" y="176.5">prepareStackTrace : Function</text><ellipse cx="18" cy="185.8203" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="69" x="27" y="189.4551">stack : string</text><ellipse cx="18" cy="198.7754" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="135" x="27" y="202.4102">stackTraceLimit : number</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="420" y1="208.7305" y2="208.7305"/><ellipse cx="18" cy="219.7305" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" text-decoration="underline" textLength="388" x="27" y="223.3652">captureStackTrace(targetObject: object, constructorOpt: Function) : void</text><!--MD5=[b8cfd8c4119a3b0a7a46bfc5fc780f85]
+class Error--><rect codeLine="13" fill="#FEFECE" filter="url(#f1vgt1crbc9bz)" height="24.1328" id="Error" style="stroke:#A80036;stroke-width:1.5;" width="35" x="196.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="199.5" y="23.6016">Error</text><!--MD5=[0b866fd662b8f780356c1f6dd1f1607a]
+reverse link Error to TapjawAdapterError--><path codeLine="15" d="M214,51.42 C214,63.21 214,77.12 214,90.96 " fill="none" id="Error-backto-TapjawAdapterError" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="207,51.42,214,31.42,221,51.42,207,51.42" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bda2baac4a5e2c7b8725b79d90508d0a]
+@startuml
+skinparam BackgroundColor transparent
+hide empty methods
+hide empty fields
+class "TapjawAdapterError" {
+    +message : string
+    +name : string
+    +parentStack : string
+    {static} +prepareStackTrace : Function
+    +stack : string
+    {static} +stackTraceLimit : number
+    {static} +captureStackTrace(targetObject: object, constructorOpt: Function) : void
+}
+class "Error"
+hide "Error" circle
+"Error" <|- - "TapjawAdapterError"
+@enduml
+
+PlantUML version 1.2021.6(Fri May 14 09:09:51 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>
