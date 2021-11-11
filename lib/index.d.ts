@@ -6,7 +6,7 @@ export * as TapjawContract from './contracts';
 /**
  * @namespace TapjawCommand
  */
-export * as TapjawCommand from './contracts/commands';
+export * as TapjawCommand from './commands';
 /**
  * @namespace TapjawConnector
  */

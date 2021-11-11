@@ -2,11 +2,11 @@ import BaseTapjawCommand, {
     TapjawCommandArgs,
     TapjawCommandDefaultFlags,
     TapjawCommandFlags,
-} from './base-tapjaw-command';
+} from '../contracts/base-tapjaw-command';
 import { Command } from 'commander';
-import ConsoleLogger from '../../support/console-logger';
-import TapjawLogger from '../tapjaw-logger';
-import commandRegister from '../../reflection/command-register';
+import ConsoleLogger from '../support/console-logger';
+import TapjawLogger from '../contracts/tapjaw-logger';
+import commandRegister from '../reflection/command-register';
 
 export default abstract class TapjawToolCommand<T extends TapjawCommandFlags> implements BaseTapjawCommand {
     /**

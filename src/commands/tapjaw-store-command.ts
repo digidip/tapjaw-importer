@@ -1,24 +1,23 @@
-import TapjawMessage from '../../messages/tapjaw-message';
+import TapjawMessage from '../messages/tapjaw-message';
 import BaseTapjawCommand, {
     TapjawCommandArgs,
     TapjawCommandDefaultFlags,
     TapjawCommandFlags,
-} from './base-tapjaw-command';
+} from '../contracts/base-tapjaw-command';
 import split2 from 'split2';
 import through from 'through';
 import { Command } from 'commander';
-import TapjawLogger from '../tapjaw-logger';
-import ConsoleLogger from '../../support/console-logger';
-import jsonMessageParser from '../../parsers/json-message-parser';
-import { isTapjawMessage } from '../../typeguards';
-import commandRegister from '../../reflection/command-register';
+import TapjawLogger from '../contracts/tapjaw-logger';
+import ConsoleLogger from '../support/console-logger';
+import jsonMessageParser from '../parsers/json-message-parser';
+import { isTapjawMessage } from '../typeguards';
+import commandRegister from '../reflection/command-register';
 
-export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, M extends TapjawMessage>
+export default abstract class TapjawStoreCommand<T extends TapjawCommandFlags, M extends TapjawMessage>
     implements BaseTapjawCommand
 {
     public constructor(
         protected readonly stdin: NodeJS.ReadableStream,
-        protected readonly stdout: NodeJS.WritableStream,
         protected readonly displayJsonParseErrors = false
     ) {}
 
@@ -29,7 +28,7 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
     public async run(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void> {
         return new Promise((resolve, reject) => {
             process.on('beforeExit', () => {
-                this.onBeforeExit().catch((error: Error) => TapjawFilterCommand.getLogger().error(error));
+                this.onBeforeExit().catch((error: Error) => TapjawStoreCommand.getLogger().error(error));
             });
 
             this.stdin
@@ -39,17 +38,11 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
                         const message = jsonMessageParser<M>(
                             line,
                             this.displayJsonParseErrors,
-                            TapjawFilterCommand.getLogger()
+                            TapjawStoreCommand.getLogger()
                         );
 
                         if (isTapjawMessage(message)) {
-                            this.onMessageFilter(message, args, flags)
-                                .then((msg: M | null) => {
-                                    if (msg !== null) {
-                                        this.emit(message);
-                                    }
-                                })
-                                .catch(TapjawFilterCommand.getLogger().error);
+                            this.onStoreMessage(message, args, flags).catch(TapjawStoreCommand.getLogger().error);
                         }
                     })
                 )
@@ -58,15 +51,11 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
         });
     }
 
-    protected emit(message: M): void {
-        this.stdout.write(JSON.stringify(message) + '\n');
-    }
-
-    protected abstract onMessageFilter(
+    protected abstract onStoreMessage(
         message: M,
         args: TapjawCommandArgs,
         flags: T & TapjawCommandDefaultFlags
-    ): Promise<M | null>;
+    ): Promise<void>;
 
     protected onBeforeExit(): Promise<void> {
         return Promise.resolve();

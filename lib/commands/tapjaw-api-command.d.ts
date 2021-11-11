@@ -1,17 +1,9 @@
-import TapjawIterator from '../tapjaw-iterator';
-import { TapjawAdapterCallback } from '../tapjaw-adapter';
-import StdoutIterator from '../../iterators/stdout-iterator';
-import TapjawMessage from '../../messages/tapjaw-message';
+import TapjawIterator from '../contracts/tapjaw-iterator';
+import { TapjawAdapterCallback } from '../contracts/tapjaw-adapter';
+import TapjawMessage from '../messages/tapjaw-message';
 import { Command } from 'commander';
-import BaseTapjawCommand, {
-    TapjawCommandArgs,
-    TapjawCommandDefaultFlags,
-    TapjawCommandFlags,
-} from './base-tapjaw-command';
-import ConsoleLogger from '../../support/console-logger';
-import TapjawLogger from '../tapjaw-logger';
-import commandRegister from '../../reflection/command-register';
-
+import BaseTapjawCommand, { TapjawCommandArgs, TapjawCommandDefaultFlags, TapjawCommandFlags } from '../contracts/base-tapjaw-command';
+import TapjawLogger from '../contracts/tapjaw-logger';
 /**
  * @module TapjawCommand
  *
@@ -46,22 +38,12 @@ import commandRegister from '../../reflection/command-register';
  */
 export default abstract class TapjawApiCommand implements BaseTapjawCommand {
     protected iterator: TapjawIterator;
-
-    public constructor(iterator?: TapjawIterator) {
-        this.iterator = iterator ? iterator : new StdoutIterator(process.stdout);
-    }
-
+    constructor(iterator?: TapjawIterator);
     /**
      * Run the command the execute the iterator run routine.
      *
      */
-    async run<T extends TapjawCommandFlags>(
-        args: TapjawCommandArgs,
-        flags: T & TapjawCommandDefaultFlags
-    ): Promise<void> {
-        await this.iterator.run(this.getAdapterCallback(args, flags), flags.limit ? Number(flags.limit) : undefined);
-    }
-
+    run<T extends TapjawCommandFlags>(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void>;
     /**
      * Implement this function to return a callback that provides the implementation
      * on how to call an adapters method. This allows for arguments and flags from this method to adjust
@@ -92,18 +74,7 @@ export default abstract class TapjawApiCommand implements BaseTapjawCommand {
      * @return TapjawAdapterCallback
      * @see TapjawAdapter
      */
-    protected abstract getAdapterCallback(
-        args: TapjawCommandArgs,
-        flags: TapjawCommandFlags
-    ): TapjawAdapterCallback<TapjawMessage>;
-
-    public static register(program: Command): void {
-        commandRegister
-            .call(this as unknown as BaseTapjawCommand, program)
-            .requiredOption('-i, --import-id <importId>', 'The unique Import ID');
-    }
-
-    protected static getLogger(): TapjawLogger {
-        return new ConsoleLogger();
-    }
+    protected abstract getAdapterCallback(args: TapjawCommandArgs, flags: TapjawCommandFlags): TapjawAdapterCallback<TapjawMessage>;
+    static register(program: Command): void;
+    protected static getLogger(): TapjawLogger;
 }

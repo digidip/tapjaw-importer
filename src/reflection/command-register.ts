@@ -1,5 +1,5 @@
 import { Argument, Command } from 'commander';
-import { BaseTapjawCommand, CommandAction, CommandOption } from '../contracts/commands';
+import { BaseTapjawCommand, CommandAction, CommandOption } from '../commands';
 import displayExample from '../support/display-example';
 
 export default function (this: BaseTapjawCommand & { prototype?: object }, program: Command): Command {

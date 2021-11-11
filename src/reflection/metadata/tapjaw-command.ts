@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Argument } from 'commander';
-import { CommandAction, CommandOption } from '../../contracts/commands/base-tapjaw-command';
+import { CommandAction, CommandOption } from '../../contracts/base-tapjaw-command';
 /**
  * @param  string type
  * @returns CallableFunction
