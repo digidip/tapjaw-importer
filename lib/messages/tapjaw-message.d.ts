@@ -4,8 +4,6 @@ export declare type TapjawMessageDigest = string;
  */
 export declare type TapjawPayload = Record<string, unknown>;
 /**
- * @module TapjawMessage
- *
  * Default Tapjaw Importer data-interchange message container
  *
  * The primary feature of the class is to contain an arbitrary key=>value styled payload and associated metadata
