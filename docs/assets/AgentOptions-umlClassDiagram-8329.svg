@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="339px" preserveAspectRatio="none" style="width:215px;height:339px;background:#00000000;" version="1.1" viewBox="0 0 215 339" width="215px" zoomAndPan="magnify"><defs><filter height="300%" id="fxko9t3u80f49" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[226de8b44e07689997d172e1d2706981]
+class AgentOptions--><rect codeLine="4" fill="#FEFECE" filter="url(#fxko9t3u80f49)" height="234.3262" id="AgentOptions" style="stroke:#A80036;stroke-width:1.5;" width="168" x="20" y="91"/><ellipse cx="61.55" cy="107" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M57.9777,103.2651 L57.9777,101.1069 L65.3571,101.1069 L65.3571,103.2651 L62.8918,103.2651 L62.8918,111.3418 L65.3571,111.3418 L65.3571,113.5 L57.9777,113.5 L57.9777,111.3418 L60.4431,111.3418 L60.4431,103.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="77" x="81.45" y="111.5352">AgentOptions</text><line style="stroke:#A80036;stroke-width:1.5;" x1="21" x2="187" y1="123" y2="123"/><ellipse cx="31" cy="134" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="83" x="40" y="137.6348">family : number</text><ellipse cx="31" cy="146.9551" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="40" y="150.5898">hints : number</text><ellipse cx="31" cy="159.9102" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="65" x="40" y="163.5449">host : string</text><ellipse cx="31" cy="172.8652" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="103" x="40" y="176.5">keepAlive : boolean</text><ellipse cx="31" cy="185.8203" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="135" x="40" y="189.4551">keepAliveMsecs : number</text><ellipse cx="31" cy="198.7754" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="111" x="40" y="202.4102">localAddress : string</text><ellipse cx="31" cy="211.7305" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="98" x="40" y="215.3652">localPort : number</text><ellipse cx="31" cy="224.6855" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="133" x="40" y="228.3203">lookup : LookupFunction</text><ellipse cx="31" cy="237.6406" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="138" x="40" y="241.2754">maxFreeSockets : number</text><ellipse cx="31" cy="250.5957" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="115" x="40" y="254.2305">maxSockets : number</text><ellipse cx="31" cy="263.5508" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="142" x="40" y="267.1855">maxTotalSockets : number</text><ellipse cx="31" cy="276.5059" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="115" x="40" y="280.1406">onread : OnReadOpts</text><ellipse cx="31" cy="289.4609" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="74" x="40" y="293.0957">port : number</text><ellipse cx="31" cy="302.416" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="129" x="40" y="306.0508">scheduling : "fifo" | "lifo"</text><ellipse cx="31" cy="315.3711" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="92" x="40" y="319.0059">timeout : number</text><!--MD5=[647247b9abb011bef7c935061374dd19]
+class Partial<TcpSocketConnectOpts>--><rect codeLine="21" fill="#FEFECE" filter="url(#fxko9t3u80f49)" height="24.1328" id="Partial&lt;TcpSocketConnectOpts&gt;" style="stroke:#A80036;stroke-width:1.5;" width="194" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="188" x="10" y="23.6016">Partial&lt;TcpSocketConnectOpts&gt;</text><!--MD5=[ebc94731095f1aa36856bf9db6fc176f]
+reverse link Partial<TcpSocketConnectOpts> to AgentOptions--><path codeLine="23" d="M104,51.35 C104,62.71 104,76.31 104,90.67 " fill="none" id="Partial&lt;TcpSocketConnectOpts&gt;-backto-AgentOptions" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="97,51.14,104,31.14,111,51.14,97,51.14" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[101694f457888b706a035a62cdd6f9cd]
+@startuml
+skinparam BackgroundColor transparent
+hide empty methods
+hide empty fields
+interface "AgentOptions" {
+    +family : number
+    +hints : number
+    +host : string
+    +keepAlive : boolean
+    +keepAliveMsecs : number
+    +localAddress : string
+    +localPort : number
+    +lookup : LookupFunction
+    +maxFreeSockets : number
+    +maxSockets : number
+    +maxTotalSockets : number
+    +onread : OnReadOpts
+    +port : number
+    +scheduling : "fifo" | "lifo"
+    +timeout : number
+}
+class "Partial<TcpSocketConnectOpts>"
+hide "Partial<TcpSocketConnectOpts>" circle
+"Partial<TcpSocketConnectOpts>" <|- - "AgentOptions"
+@enduml
+
+PlantUML version 1.2021.6(Fri May 14 09:09:51 CEST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="272px" preserveAspectRatio="none" style="width:322px;height:272px;background:#00000000;" version="1.1" viewBox="0 0 322 272" width="322px" zoomAndPan="magnify"><defs><filter height="300%" id="f1nvhxuonhg745" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[1e10edcb77e28f9ea12bdc3fdb61c4c5]
+class StreamOptions<T>--><rect codeLine="4" fill="#FEFECE" filter="url(#f1nvhxuonhg745)" height="138.6855" id="StreamOptions&lt;T&gt;" style="stroke:#A80036;stroke-width:1.5;" width="301" x="7" y="120"/><ellipse cx="97.25" cy="136" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M93.6777,132.2651 L93.6777,130.1069 L101.0571,130.1069 L101.0571,132.2651 L98.5918,132.2651 L98.5918,140.3418 L101.0571,140.3418 L101.0571,142.5 L93.6777,142.5 L93.6777,140.3418 L96.1431,140.3418 L96.1431,132.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="112" x="117.75" y="140.5352">StreamOptions&lt;T&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="307" y1="152" y2="152"/><ellipse cx="18" cy="163" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="118" x="27" y="166.6348">autoDestroy : boolean</text><ellipse cx="18" cy="175.9551" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="105" x="27" y="179.5898">emitClose : boolean</text><ellipse cx="18" cy="188.9102" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="131" x="27" y="192.5449">highWaterMark : number</text><ellipse cx="18" cy="201.8652" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="114" x="27" y="205.5">objectMode : boolean</text><ellipse cx="18" cy="214.8203" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="27" y="218.4551">signal : AbortSignal</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="307" y1="224.7754" y2="224.7754"/><ellipse cx="18" cy="235.7754" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="188" x="27" y="239.4102">construct(callback: Function) : void</text><ellipse cx="18" cy="248.7305" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="275" x="27" y="252.3652">destroy(error: null | Error, callback: Function) : void</text><!--MD5=[6495451319b5a6ef5a9033a80b2559f9]
+class Abortable--><rect codeLine="13" fill="#FEFECE" filter="url(#f1nvhxuonhg745)" height="52.9551" id="Abortable" style="stroke:#A80036;stroke-width:1.5;" width="130" x="92.5" y="7"/><ellipse cx="125.95" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M122.3777,19.2651 L122.3777,17.1069 L129.7571,17.1069 L129.7571,19.2651 L127.2918,19.2651 L127.2918,27.3418 L129.7571,27.3418 L129.7571,29.5 L122.3777,29.5 L122.3777,27.3418 L124.8431,27.3418 L124.8431,19.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="57" x="144.05" y="27.5352">Abortable</text><line style="stroke:#A80036;stroke-width:1.5;" x1="93.5" x2="221.5" y1="39" y2="39"/><ellipse cx="103.5" cy="50" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="112.5" y="53.6348">signal : AbortSignal</text><!--MD5=[355e0b3da4149e72528a52d003ed9466]
+reverse link Abortable to StreamOptions<T>--><path codeLine="16" d="M157.5,80.71 C157.5,93.01 157.5,106.56 157.5,119.78 " fill="none" id="Abortable-backto-StreamOptions&lt;T&gt;" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="150.5,80.28,157.5,60.28,164.5,80.28,150.5,80.28" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b5fcdfa8f1e67f5c7b72288556fa9985]
+@startuml
+skinparam BackgroundColor transparent
+hide empty methods
+hide empty fields
+interface "StreamOptions<T>" {
+    +autoDestroy : boolean
+    +emitClose : boolean
+    +highWaterMark : number
+    +objectMode : boolean
+    +signal : AbortSignal
+    +construct(callback: Function) : void
+    +destroy(error: null | Error, callback: Function) : void
+}
+interface "Abortable" {
+    +signal : AbortSignal
+}
+"Abortable" <|- - "StreamOptions<T>"
+@enduml
+
+PlantUML version 1.2021.6(Fri May 14 09:09:51 CEST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

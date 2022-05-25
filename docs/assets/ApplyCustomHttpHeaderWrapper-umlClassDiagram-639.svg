@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="220px" preserveAspectRatio="none" style="width:502px;height:220px;background:#00000000;" version="1.1" viewBox="0 0 502 220" width="502px" zoomAndPan="magnify"><defs><filter height="300%" id="f1hegh9hbbzt4m" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[11549db587acf5048fc424b12d062ae0]
+class ApplyCustomHttpHeaderWrapper--><rect codeLine="4" fill="#FEFECE" filter="url(#f1hegh9hbbzt4m)" height="86.8652" id="ApplyCustomHttpHeaderWrapper" style="stroke:#A80036;stroke-width:1.5;" width="479" x="9" y="120"/><ellipse cx="147.25" cy="136" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M149.7231,142.1431 Q149.1421,142.4419 148.5029,142.5913 Q147.8638,142.7407 147.1582,142.7407 Q144.6514,142.7407 143.3315,141.0889 Q142.0117,139.437 142.0117,136.3159 Q142.0117,133.1865 143.3315,131.5347 Q144.6514,129.8828 147.1582,129.8828 Q147.8638,129.8828 148.5112,130.0322 Q149.1587,130.1816 149.7231,130.4805 L149.7231,133.2031 Q149.0923,132.6221 148.4988,132.3523 Q147.9053,132.0825 147.2744,132.0825 Q145.9297,132.0825 145.2449,133.1492 Q144.5601,134.2158 144.5601,136.3159 Q144.5601,138.4077 145.2449,139.4744 Q145.9297,140.541 147.2744,140.541 Q147.9053,140.541 148.4988,140.2712 Q149.0923,140.0015 149.7231,139.4204 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="194" x="167.75" y="140.5352">ApplyCustomHttpHeaderWrapper</text><line style="stroke:#A80036;stroke-width:1.5;" x1="10" x2="487" y1="152" y2="152"/><polygon fill="none" points="20,158,24,162,20,166,16,162" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="119" x="29" y="166.6348">headers : HttpHeaders</text><line style="stroke:#A80036;stroke-width:1.5;" x1="10" x2="487" y1="172.9551" y2="172.9551"/><ellipse cx="20" cy="183.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="453" x="29" y="187.5898">authenticate(requestOptionContainer: RequestOptions) : Promise&lt;RequestOptions&gt;</text><rect fill="#F24D5C" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="17" y="193.9102"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="345" x="29" y="200.5449">applyCustomHeader(options: RequestOptions) : RequestOptions</text><!--MD5=[f18ac0e6b46fad41f096bfde65eea3c9]
+class TapjawAuthenticationWrapper--><rect codeLine="9" fill="#FEFECE" filter="url(#f1hegh9hbbzt4m)" height="52.9551" id="TapjawAuthenticationWrapper" style="stroke:#A80036;stroke-width:1.5;" width="405" x="46" y="7"/><ellipse cx="157.25" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M153.6777,19.2651 L153.6777,17.1069 L161.0571,17.1069 L161.0571,19.2651 L158.5918,19.2651 L158.5918,27.3418 L161.0571,27.3418 L161.0571,29.5 L153.6777,29.5 L153.6777,27.3418 L156.1431,27.3418 L156.1431,19.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="174" x="177.75" y="27.5352">TapjawAuthenticationWrapper</text><line style="stroke:#A80036;stroke-width:1.5;" x1="47" x2="450" y1="39" y2="39"/><ellipse cx="57" cy="50" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="379" x="66" y="53.6348">authenticate(requestOptionContainer: unknown) : Promise&lt;unknown&gt;</text><!--MD5=[e14c27af4e7fe0cdaaf597d5dae1f3b4]
+reverse link TapjawAuthenticationWrapper to ApplyCustomHttpHeaderWrapper--><path codeLine="12" d="M248.5,80.33 C248.5,93.2 248.5,107.14 248.5,119.81 " fill="none" id="TapjawAuthenticationWrapper-backto-ApplyCustomHttpHeaderWrapper" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="241.5,80.1,248.5,60.1,255.5,80.1,241.5,80.1" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[4e7a045ee7439938c479e0bd220009a6]
+@startuml
+skinparam BackgroundColor transparent
+hide empty methods
+hide empty fields
+class "ApplyCustomHttpHeaderWrapper" {
+    #headers : HttpHeaders
+    +authenticate(requestOptionContainer: RequestOptions) : Promise<RequestOptions>
+    -applyCustomHeader(options: RequestOptions) : RequestOptions
+}
+interface "TapjawAuthenticationWrapper" {
+    +authenticate(requestOptionContainer: unknown) : Promise<unknown>
+}
+"TapjawAuthenticationWrapper" <|.. "ApplyCustomHttpHeaderWrapper"
+@enduml
+
+PlantUML version 1.2021.6(Fri May 14 09:09:51 CEST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>
