@@ -1,4 +1,3 @@
-import querystring from 'querystring';
 import TapjawAuthenticator, { HttpHeaders, TapjawAuthenticatorError } from '../contracts/tapjaw-authenticator';
 import request from './support/request';
 
@@ -17,7 +16,7 @@ export default class OauthAuthenticator implements TapjawAuthenticator<OauthResp
         protected readonly clientSecret: string,
         protected readonly hostname: string,
         protected readonly path: string,
-        protected readonly postParams: querystring.ParsedUrlQueryInput,
+        protected readonly postParams: Record<string, string>,
         protected readonly method: string = 'POST',
         protected readonly responseEncoding: BufferEncoding = 'utf8'
     ) {}
@@ -36,16 +35,16 @@ export default class OauthAuthenticator implements TapjawAuthenticator<OauthResp
 
         const headers = {
             Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         };
 
         // @todo migrate to URLSearchParams in future.
-        const params: string = querystring.stringify(this.postParams);
+        const params: string = new URLSearchParams(this.postParams).toString();
         const options = {
             hostname: this.hostname,
             path: this.path,
             method: this.method,
-            headers,
+            headers
         };
 
         this.authenticated = false;

@@ -25,6 +25,6 @@ module.exports = {
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/ban-ts-comment': 'warn',
         '@typescript-eslint/no-var-requires': 'error',
-        'max-len': ['error', { "code": 120, "ignoreUrls": true, ignorePattern: '^import .*' }]
+        'max-len': ['error', { "code": 120, "ignoreUrls": true, ignorePattern: '^import .*' }],
     }
 };

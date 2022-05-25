@@ -1,12 +1,12 @@
 /// <reference types="node" />
-import { IncomingMessage } from 'http';
-import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-connector';
-import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
+import { IncomingMessage } from "http";
+import TapjawConnector, { TapjawConnectorResponse } from "../contracts/tapjaw-connector";
+import TapjawAuthenticationWrapper from "../contracts/tapjaw-authentication-wrapper";
 export interface TapjawHttpHeaders extends Record<string, string | undefined> {
     Accept?: string;
-    'Accept-Encoding'?: string;
+    "Accept-Encoding"?: string;
     Cookie?: string;
-    'User-Agent'?: string;
+    "User-Agent"?: string;
 }
 export declare class ArrayParameter {
     values: string[];

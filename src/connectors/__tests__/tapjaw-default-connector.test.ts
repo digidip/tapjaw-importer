@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { TapjawAuthenticator, TapjawMetadata, TapjawError } from '../..';
+import { TapjawAuthenticator, TapjawMetadata, TapjawError } from '../../';
 import TapjawDefaultConnector from '../tapjaw-default-connector';
 import { TapjawHttpConnectorCharSet, TapjawHttpConnectorProtocol } from '../tapjaw-http-connector';
 
