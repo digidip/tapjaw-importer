@@ -1217,12 +1217,12 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-axios-cookiejar-support@^2:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/axios-cookiejar-support/-/axios-cookiejar-support-2.0.3.tgz#54fc8911d16555a5d3cfd88ec68776ecbac7184a"
-  integrity sha512-tvMB+0JhxXLjjvePsXzqXhBI4DMlW4ImR4pKKNl+xclwF0IviNV+CkuhubQCCFjPzOXv7PIzOq3z7WFiF9pMpw==
+axios-cookiejar-support@^4.0.0:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/axios-cookiejar-support/-/axios-cookiejar-support-4.0.2.tgz#211d5abe940be6410d490af0ca7a4df073912432"
+  integrity sha512-IArUBLuuxjp3NnU/6kMN0xmhpr/+ECuVT7EKSUygATX5T+uWTypy9xaIRH8xjxTaNHv4upVcIpRmfoY5CoiJKA==
   dependencies:
-    http-cookie-agent "^1.0.2"
+    http-cookie-agent "^4.0.1"
 
 axios@^0.24:
   version "0.24.0"
@@ -2368,10 +2368,10 @@ html-escaper@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-escaper/-/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
 
-http-cookie-agent@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/http-cookie-agent/-/http-cookie-agent-1.0.3.tgz#20856350584cb95d8075a1fbfef6340ee7e609bf"
-  integrity sha512-/cMOTjED6d3l1NJb3ykAdGxVdXDdLiajAwKS7hP65XF7CI+8yGvIuGrpiEgbJOX5FN/EOr7WoPy/8EB2qL/X4Q==
+http-cookie-agent@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/http-cookie-agent/-/http-cookie-agent-4.0.1.tgz#916376301d350afcc8bca5deab9d8b2a7aa980e2"
+  integrity sha512-9aCG7g3RSfplQLVT8qYX+qPS4bdCMo6Rx4gPLwTq1+iPahtNGLnUAmgz/kjvRP2XtrjdYoWc33lIaV0YYHa8JA==
   dependencies:
     agent-base "^6.0.2"
 
