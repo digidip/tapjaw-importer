@@ -1,6 +1,6 @@
 {
     "name": "tapjaw-importer",
-    "version": "2.0.0-rc3",
+    "version": "2.0.0-rc4",
     "description": "Create your own stream of payload messages to STDOUT from any API.",
     "repository": "https://github.com/digidip/tapjaw-importer",
     "author": "Jeramy Wenserit <jeramy@digidip.net>",
@@ -79,7 +79,8 @@
         "clean-build": "rm -rf ./lib && node node_modules/.bin/tsc -p ./tsconfig.build.json",
         "watch": "node node_modules/.bin/tsc -w",
         "api-docs": "rm -rf docs/assets docs/classes docs/enums docs/interfaces docs/modules index.html && node node_modules/.bin/typedoc",
-        "watch-api-docs": "node node_modules/.bin/typedoc --watch"
+        "watch-api-docs": "node node_modules/.bin/typedoc --watch",
+        "prepare-release": "yarn version --no-git-tag-version && yarn api-docs && git add -A docs/ package.json && git commit -am \"bump version to $npm_package_version\""
     },
     "types": "lib/index.d.ts"
 }
