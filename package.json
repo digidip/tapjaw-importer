@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "axios": "^0.24",
-        "axios-cookiejar-support": "^2",
+        "axios-cookiejar-support": "^4.0.0",
         "camelcase-keys": "^7",
         "commander": "^9.0.0",
         "csvtojson": "^2.0.10",
