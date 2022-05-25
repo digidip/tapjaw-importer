@@ -1,6 +1,6 @@
-import TapjawAuthenticator, { AuthorizationHeaders } from '../contracts/tapjaw-authenticator';
-import BearerAuthAuthenticator from './bearer-auth-authenticator';
-import JWTBuilder from './jwt/jwt-builder';
+import TapjawAuthenticator, { AuthorizationHeaders } from "../contracts/tapjaw-authenticator";
+import BearerAuthAuthenticator from "./bearer-auth-authenticator";
+import JWTBuilder from "./jwt/jwt-builder";
 
 export type JWTBearerResponse = AuthorizationHeaders;
 
