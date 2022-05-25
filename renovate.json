@@ -5,6 +5,7 @@
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
   "automergeType": "pr",
+  "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
