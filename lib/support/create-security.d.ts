@@ -1,7 +1,7 @@
 /// <reference types="node" />
-import TapjawAuthenticationWrapper from "../contracts/tapjaw-authentication-wrapper";
-import { CustomHeaders } from "../authenticators/custom-header-authenticator";
-import JWTBuilder from "../authenticators/jwt/jwt-builder";
+import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
+import { CustomHeaders } from '../authenticators/custom-header-authenticator';
+import JWTBuilder from '../authenticators/jwt/jwt-builder';
 export declare const createBasicSecurity: (username: string, password: string) => TapjawAuthenticationWrapper;
 export declare const createBearerSecurity: (token: string) => TapjawAuthenticationWrapper;
 export declare const createSimpleAuthorizationHeaderSecurity: (token: string) => TapjawAuthenticationWrapper;

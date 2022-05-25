@@ -1,4 +1,4 @@
-import TapjawAuthenticator, { AuthorizationHeaders } from "../contracts/tapjaw-authenticator";
+import TapjawAuthenticator, { AuthorizationHeaders } from '../contracts/tapjaw-authenticator';
 export declare type BearerResponse = AuthorizationHeaders;
 export default class BearerAuthAuthenticator implements TapjawAuthenticator<BearerResponse> {
     protected readonly bearerToken: string;

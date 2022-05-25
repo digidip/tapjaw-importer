@@ -1,4 +1,4 @@
-import TapjawAuthenticator, { AuthorizationHeaders } from "../contracts/tapjaw-authenticator";
+import TapjawAuthenticator, { AuthorizationHeaders } from '../contracts/tapjaw-authenticator';
 export default class PrefetchTokenAuthorizationHeaderAuthenticator implements TapjawAuthenticator<AuthorizationHeaders> {
     protected readonly apiKey: string;
     protected readonly hostname: string;

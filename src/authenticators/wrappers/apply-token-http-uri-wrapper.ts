@@ -1,7 +1,7 @@
-import { RequestOptions } from "https";
-import TapjawAuthenticator, { TapjawAuthenticatorError } from "../../contracts/tapjaw-authenticator";
-import { TapjawAuthenticationWrapper } from "../../contracts";
-import { URIToken } from "../preauth-uri-token-authenticator";
+import { RequestOptions } from 'https';
+import TapjawAuthenticator, { TapjawAuthenticatorError } from '../../contracts/tapjaw-authenticator';
+import { TapjawAuthenticationWrapper } from '../../contracts';
+import { URIToken } from '../preauth-uri-token-authenticator';
 
 export default class ApplyTokenHttpUriWrapper implements TapjawAuthenticationWrapper {
     protected token!: URIToken;
@@ -19,10 +19,10 @@ export default class ApplyTokenHttpUriWrapper implements TapjawAuthenticationWra
 
         // Generate the Authorization token.
         this.token = await this.authenticator.authenticate();
-        if (typeof this.token !== "string") {
+        if (typeof this.token !== 'string') {
             throw new TapjawAuthenticatorError(
                 `No Authorization token recieved from authenticator: ${
-                    this.authenticator.constructor.name || "Unknown"
+                    this.authenticator.constructor.name || 'Unknown'
                 }`
             );
         }
@@ -33,7 +33,7 @@ export default class ApplyTokenHttpUriWrapper implements TapjawAuthenticationWra
     private applyTokenToURI(options: RequestOptions): RequestOptions {
         if (!options.path) {
             throw new TapjawAuthenticatorError(
-                `No path available in RequestOptions: ${this.authenticator.constructor.name || "Unknown"}`
+                `No path available in RequestOptions: ${this.authenticator.constructor.name || 'Unknown'}`
             );
         }
         const path = new URL(`https://www.digidip.com/${options.path}`);

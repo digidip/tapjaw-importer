@@ -1,4 +1,4 @@
-import TapjawAuthenticator, { HttpHeaders } from "../contracts/tapjaw-authenticator";
+import TapjawAuthenticator, { HttpHeaders } from '../contracts/tapjaw-authenticator';
 
 export type CustomHeaders = [string, string];
 

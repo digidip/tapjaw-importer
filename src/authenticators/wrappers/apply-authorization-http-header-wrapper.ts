@@ -1,6 +1,6 @@
 import TapjawAuthenticator, {
     AuthorizationHeaders,
-    TapjawAuthenticatorError,
+    TapjawAuthenticatorError
 } from '../../contracts/tapjaw-authenticator';
 import { RequestOptions } from 'https';
 import TapjawAuthenticationWrapper from '../../contracts/tapjaw-authentication-wrapper';
@@ -34,8 +34,8 @@ export default class ApplyAuthorizationHttpHeaderWrapper implements TapjawAuthen
             ...options,
             headers: {
                 ...options.headers,
-                ...this.authenticationData,
-            },
+                ...this.authenticationData
+            }
         };
     }
 }

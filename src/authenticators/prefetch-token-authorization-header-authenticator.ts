@@ -1,5 +1,5 @@
-import TapjawAuthenticator, { AuthorizationHeaders, TapjawAuthenticatorError } from "../contracts/tapjaw-authenticator";
-import request from "./support/request";
+import TapjawAuthenticator, { AuthorizationHeaders, TapjawAuthenticatorError } from '../contracts/tapjaw-authenticator';
+import request from './support/request';
 
 export default class PrefetchTokenAuthorizationHeaderAuthenticator
     implements TapjawAuthenticator<AuthorizationHeaders>
@@ -10,7 +10,7 @@ export default class PrefetchTokenAuthorizationHeaderAuthenticator
         protected readonly apiKey: string,
         protected readonly hostname: string,
         protected readonly path: string,
-        protected readonly method: string = "POST"
+        protected readonly method: string = 'POST'
     ) {}
 
     isAuthenticated(): boolean {
@@ -19,12 +19,12 @@ export default class PrefetchTokenAuthorizationHeaderAuthenticator
 
     public async authenticate(): Promise<AuthorizationHeaders> {
         const headers = {
-            Accept: "application/json",
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         };
 
         const params: string = new URLSearchParams({
-            key: "general",
+            key: 'general',
             secret: this.apiKey
         }).toString();
 
@@ -37,7 +37,7 @@ export default class PrefetchTokenAuthorizationHeaderAuthenticator
 
         const oauthResponse = await request(params, options);
         if (!oauthResponse) {
-            throw new TapjawAuthenticatorError("No token response was recieved.");
+            throw new TapjawAuthenticatorError('No token response was recieved.');
         }
         const oauthJson = JSON.parse(oauthResponse) as { data: { token: string } };
         this.token = oauthJson.data.token;

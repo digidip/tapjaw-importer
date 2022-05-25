@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import TapjawAuthenticator, { HttpHeaders } from "../contracts/tapjaw-authenticator";
-export declare type OauthResponse = HttpHeaders & Record<"access_token", string>;
+import TapjawAuthenticator, { HttpHeaders } from '../contracts/tapjaw-authenticator';
+export declare type OauthResponse = HttpHeaders & Record<'access_token', string>;
 export declare const isOauthResponse: (obj: unknown) => obj is OauthResponse;
 export default class OauthAuthenticator implements TapjawAuthenticator<OauthResponse> {
     protected readonly clientId: string;

@@ -1,4 +1,4 @@
-import TapjawAuthenticator, { AuthorizationHeaders } from "../contracts/tapjaw-authenticator";
+import TapjawAuthenticator, { AuthorizationHeaders } from '../contracts/tapjaw-authenticator';
 
 export type BearerResponse = AuthorizationHeaders;
 

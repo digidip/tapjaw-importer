@@ -1,7 +1,7 @@
-import { RequestOptions } from "http";
-import TapjawAuthenticator from "../../contracts/tapjaw-authenticator";
-import { TapjawAuthenticationWrapper } from "../../contracts";
-import { HttpHeaders } from "../../contracts/tapjaw-authenticator";
+import { RequestOptions } from 'http';
+import TapjawAuthenticator from '../../contracts/tapjaw-authenticator';
+import { TapjawAuthenticationWrapper } from '../../contracts';
+import { HttpHeaders } from '../../contracts/tapjaw-authenticator';
 
 export default class ApplyCustomHttpHeaderWrapper implements TapjawAuthenticationWrapper {
     constructor(private readonly authenticator: TapjawAuthenticator<HttpHeaders>) {}

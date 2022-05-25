@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import TapjawAuthenticator, { HttpHeaders } from "../contracts/tapjaw-authenticator";
-export declare type OauthRefreshResponse = HttpHeaders & Record<"access_token", string> & Record<"refresh_token", string>;
+import TapjawAuthenticator, { HttpHeaders } from '../contracts/tapjaw-authenticator';
+export declare type OauthRefreshResponse = HttpHeaders & Record<'access_token', string> & Record<'refresh_token', string>;
 export default class OauthRefreshAuthenticator implements TapjawAuthenticator<OauthRefreshResponse> {
     protected readonly clientId: string;
     protected readonly clientSecret: string;

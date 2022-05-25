@@ -49,8 +49,8 @@ export default class ApplyOauthAuthorizationHttpHeaderWrapper implements TapjawA
             ...options,
             headers: {
                 ...options.headers,
-                Authorization: `Bearer ${accessToken}`,
-            },
+                Authorization: `Bearer ${accessToken}`
+            }
         };
     }
 }

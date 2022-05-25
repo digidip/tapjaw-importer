@@ -1,4 +1,4 @@
-import TapjawAuthenticator from "../contracts/tapjaw-authenticator";
+import TapjawAuthenticator from '../contracts/tapjaw-authenticator';
 export declare type URIToken = string;
 export default class PreauthUriTokenAuthenticator implements TapjawAuthenticator<URIToken> {
     protected readonly hostname: string;
