@@ -40,7 +40,7 @@
         "axios": "^0.24",
         "axios-cookiejar-support": "^2",
         "camelcase-keys": "^7",
-        "commander": "^8.3.0",
+        "commander": "^9.0.0",
         "csvtojson": "^2.0.10",
         "deepmerge": "^4",
         "globby": "^13.0.0",
