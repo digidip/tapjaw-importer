@@ -1,4 +1,4 @@
-import TapjawAuthenticator, { AuthorizationHeaders } from '../contracts/tapjaw-authenticator';
+import TapjawAuthenticator, { AuthorizationHeaders } from "../contracts/tapjaw-authenticator";
 export declare type BasicAuthResponse = AuthorizationHeaders;
 export default class BasicAuthAuthenticator implements TapjawAuthenticator<BasicAuthResponse> {
     protected readonly username: string;
