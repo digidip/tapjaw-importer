@@ -80,7 +80,7 @@
         "watch": "node node_modules/.bin/tsc -w",
         "api-docs": "rm -rf docs/assets docs/classes docs/enums docs/interfaces docs/modules index.html && node node_modules/.bin/typedoc",
         "watch-api-docs": "node node_modules/.bin/typedoc --watch",
-        "prepare-release": "yarn version --no-git-tag-version && yarn api-docs && git add -A docs/ package.json && git commit -am \"bump version to $npm_package_version\""
+        "create-release": "yarn version --no-git-tag-version && node release.js"
     },
     "types": "lib/index.d.ts"
 }
