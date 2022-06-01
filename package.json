@@ -6,7 +6,7 @@
     "author": "Jeramy Wenserit <jeramy@digidip.net>",
     "license": "MIT",
     "devDependencies": {
-        "@types/jest": "27.5.1",
+        "@types/jest": "27.5.2",
         "@types/jsdom": "16.2.14",
         "@types/jsonpath": "0.2.0",
         "@types/jsonwebtoken": "8.5.8",
