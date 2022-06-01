@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import TapjawMessage from '../messages/tapjaw-message';
-import TapjawCommand, { TapjawCommandArgs, TapjawCommandDefaultFlags, TapjawCommandFlags } from '../contracts/tapjaw-command';
+import TapjawCommand, { TapjawCommandArgs, TapjawCommandFlags } from '../contracts/tapjaw-command';
 import { Command } from 'commander';
 import TapjawLogger from '../contracts/tapjaw-logger';
 export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, M extends TapjawMessage> implements TapjawCommand {
@@ -12,10 +12,10 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
      * Run the command the execute the iterator run routine.
      *
      */
-    run(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void>;
+    run(args: TapjawCommandArgs, flags: T): Promise<void>;
     protected emit(message: M): void;
-    protected abstract onMessageFilter(message: M, args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<M | null>;
-    protected onBeforeExit(): Promise<void>;
+    protected abstract onMessageFilter(message: M, args: TapjawCommandArgs, flags: T): Promise<M | null>;
+    protected onBeforeExit(args: TapjawCommandArgs, flags: T): Promise<void>;
     static register(program: Command): void;
     protected static getLogger(): TapjawLogger;
 }

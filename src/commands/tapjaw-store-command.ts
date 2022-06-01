@@ -1,9 +1,5 @@
 import TapjawMessage from '../messages/tapjaw-message';
-import TapjawCommand, {
-    TapjawCommandArgs,
-    TapjawCommandDefaultFlags,
-    TapjawCommandFlags,
-} from '../contracts/tapjaw-command';
+import TapjawCommand, { TapjawCommandArgs, TapjawCommandFlags } from '../contracts/tapjaw-command';
 import split2 from 'split2';
 import through from 'through';
 import { Command } from 'commander';
@@ -25,24 +21,22 @@ export default abstract class TapjawStoreCommand<T extends TapjawCommandFlags, M
      * Run the command the execute the iterator run routine.
      *
      */
-    public async run(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void> {
+    public async run(args: TapjawCommandArgs, flags: T): Promise<void> {
+        const instance = <typeof TapjawStoreCommand>this.constructor;
+
         return new Promise((resolve, reject) => {
             process.on('beforeExit', () => {
-                this.onBeforeExit().catch((error: Error) => TapjawStoreCommand.getLogger().error(error));
+                this.onBeforeExit(args, flags).catch((error: Error) => instance.getLogger().error(error));
             });
 
             this.stdin
                 .pipe(split2())
                 .pipe(
                     through((line: string): void => {
-                        const message = jsonMessageParser<M>(
-                            line,
-                            this.displayJsonParseErrors,
-                            TapjawStoreCommand.getLogger()
-                        );
+                        const message = jsonMessageParser<M>(line, this.displayJsonParseErrors, instance.getLogger());
 
                         if (isTapjawMessage(message)) {
-                            this.onStoreMessage(message, args, flags).catch(TapjawStoreCommand.getLogger().error);
+                            this.onStoreMessage(message, args, flags).catch(instance.getLogger().error);
                         }
                     })
                 )
@@ -51,13 +45,9 @@ export default abstract class TapjawStoreCommand<T extends TapjawCommandFlags, M
         });
     }
 
-    protected abstract onStoreMessage(
-        message: M,
-        args: TapjawCommandArgs,
-        flags: T & TapjawCommandDefaultFlags
-    ): Promise<void>;
+    protected abstract onStoreMessage(message: M, args: TapjawCommandArgs, flags: T): Promise<void>;
 
-    protected onBeforeExit(): Promise<void> {
+    protected onBeforeExit(args: TapjawCommandArgs, flags: T): Promise<void> {
         return Promise.resolve();
     }
 

@@ -1,4 +1,4 @@
-import TapjawCommand, { TapjawCommandArgs, TapjawCommandDefaultFlags, TapjawCommandFlags } from '../contracts/tapjaw-command';
+import TapjawCommand, { TapjawCommandArgs, TapjawCommandFlags } from '../contracts/tapjaw-command';
 import { Command } from 'commander';
 import TapjawLogger from '../contracts/tapjaw-logger';
 export default abstract class TapjawToolCommand<T extends TapjawCommandFlags> implements TapjawCommand {
@@ -6,7 +6,7 @@ export default abstract class TapjawToolCommand<T extends TapjawCommandFlags> im
      * Run the command the execute the iterator run routine.
      *
      */
-    abstract run(args: TapjawCommandArgs, flags: T & TapjawCommandDefaultFlags): Promise<void>;
+    abstract run(args: TapjawCommandArgs, flags: T): Promise<void>;
     static register(program: Command): void;
     protected static getLogger(): TapjawLogger;
 }
