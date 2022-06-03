@@ -4,14 +4,14 @@ import TapjawConnector from '../contracts/tapjaw-connector';
 export default class TapjawConnectorError extends Error {
     public parentStack?: string;
 
-    constructor(message: unknown, adapter: TapjawConnector) {
+    constructor(message: unknown, connector: TapjawConnector) {
         if (typeof message === 'string') {
-            super(message);
-            this.name = `TapjawConnectorError:${adapter.constructor.name}`;
+            super(`${connector.constructor.name}: ${message}`);
+            this.name = `TapjawConnectorError:${connector.constructor.name}`;
         } else if (isError(message)) {
-            super(String(message));
+            super(`${connector.constructor.name}: ${String(message)}`);
 
-            this.name = `TapjawConnectorError:${adapter.constructor.name}`;
+            this.name = `TapjawConnectorError:${connector.constructor.name}`;
             this.parentStack = message.stack;
         } else {
             throw new Error('Unsupported message data type passed to TapjawConnectorError');

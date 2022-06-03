@@ -6,7 +6,7 @@ export default class ApplyOAuthRefreshHttpHeaderWrapper extends ApplyOauthAuthor
         super(refreshAthenticator);
     }
 
-    public async refreshToken() {
+    public async refreshToken(): Promise<void> {
         const oauthResponse = await this.refreshAthenticator.refreshToken();
 
         if (this.authenticationData) {

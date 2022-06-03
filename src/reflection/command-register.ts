@@ -2,7 +2,7 @@ import { Argument, Command } from 'commander';
 import { TapjawCommand, CommandAction, CommandOption } from '../commands';
 import displayExample from '../support/display-example';
 
-export default function (this: TapjawCommand & { prototype?: object }, program: Command): Command {
+export default function (this: TapjawCommand & { prototype?: Record<string, unknown> }, program: Command): Command {
     if (!this.prototype) {
         throw new Error(`${this.constructor.name}.prototype missing.`);
     }

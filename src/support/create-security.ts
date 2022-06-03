@@ -7,7 +7,7 @@ import { default as TapjawBearerAuthenticator } from '../authenticators/bearer-a
 import { default as TapjawNonBearerAuthenticator } from '../authenticators/non-bearer-authorization-authenticator';
 import {
     CustomHeaders,
-    default as TapjawCustomHeaderAuthenticator
+    default as TapjawCustomHeaderAuthenticator,
 } from '../authenticators/custom-header-authenticator';
 import { default as TapjawOauthAuthenticator } from '../authenticators/oauth-authenticator';
 import ApplyJwtHttpHeaderWrapper from '../authenticators/wrappers/apply-jwt-http-header-wrapper';

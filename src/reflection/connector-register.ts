@@ -5,7 +5,7 @@ import TapjawConnectorError from '../errors/tapjaw-connector-error';
 
 export default function (this: TapjawDefaultConnector): TapjawDefaultConnector {
     if (!Reflect.hasMetadata('tapjaw:connector:host', this, 'class')) {
-        throw new TapjawConnectorError(`@TapjawMetadata.Connector.Host(string) is required!`, this);
+        throw new TapjawConnectorError('@TapjawMetadata.Connector.Host(string) is required!', this);
     }
     if (!Reflect.hasMetadata('tapjaw:connector:protocol', this, 'class')) {
         throw new TapjawConnectorError(

@@ -8,7 +8,7 @@ export {
     createOAuthRefreshSecurity,
     createPrefetchTokenAuthorizationHeadersSecurity,
     createQueryParamterPrefetchTokenSecurity,
-    createSimpleAuthorizationHeaderSecurity
+    createSimpleAuthorizationHeaderSecurity,
 } from '../support/create-security';
 
 export { default as BasicAuthAuthenticator } from './basic-auth-authenticator';

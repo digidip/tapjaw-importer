@@ -1,19 +1,19 @@
-import http, { IncomingMessage } from "http";
-import https from "https";
-import { encode, decode, encodingExists } from "iconv-lite";
-import querystring from "querystring";
-import zlib from "zlib";
-import TapjawConnector, { TapjawConnectorResponse } from "../contracts/tapjaw-connector";
-import TapjawAuthenticationWrapper from "../contracts/tapjaw-authentication-wrapper";
-import deepmerge from "deepmerge";
-import { URLSearchParams } from "url";
-import TapjawConnectorError from "../errors/tapjaw-connector-error";
+import http, { IncomingMessage } from 'http';
+import https from 'https';
+import { encode, decode, encodingExists } from 'iconv-lite';
+import querystring from 'querystring';
+import zlib from 'zlib';
+import TapjawConnector, { TapjawConnectorResponse } from '../contracts/tapjaw-connector';
+import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
+import deepmerge from 'deepmerge';
+import { URLSearchParams } from 'url';
+import TapjawConnectorError from '../errors/tapjaw-connector-error';
 
 export interface TapjawHttpHeaders extends Record<string, string | undefined> {
     Accept?: string;
-    "Accept-Encoding"?: string;
+    'Accept-Encoding'?: string;
     Cookie?: string;
-    "User-Agent"?: string;
+    'User-Agent'?: string;
 }
 
 export class ArrayParameter {
@@ -44,8 +44,8 @@ const DEFAULT_TIMEOUT = 30000;
  * @enum
  */
 export enum TapjawHttpConnectorCharSet {
-    UTF8 = "utf-8",
-    LATIN1 = "iso-8859-1"
+    UTF8 = 'utf-8',
+    LATIN1 = 'iso-8859-1',
 }
 
 /**
@@ -53,8 +53,8 @@ export enum TapjawHttpConnectorCharSet {
  * @enum
  */
 export enum TapjawHttpConnectorProtocol {
-    HTTPS = "https",
-    HTTP = "http"
+    HTTPS = 'https',
+    HTTP = 'http',
 }
 
 /**
@@ -130,7 +130,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         }
 
         if (!encodingExists(encoding)) {
-            throw new TapjawConnectorError(`Unsupported decoding: ${encoding || "not set"}`, this);
+            throw new TapjawConnectorError(`Unsupported decoding: ${encoding || 'not set'}`, this);
         }
 
         this.useDecoding = encoding;
@@ -148,7 +148,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         }
 
         if (!encodingExists(encoding)) {
-            throw new TapjawConnectorError(`Unsupported encoding: ${encoding || "not set"}`, this);
+            throw new TapjawConnectorError(`Unsupported encoding: ${encoding || 'not set'}`, this);
         }
 
         this.useEncoding = encoding;
@@ -173,9 +173,9 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             hostname: this.host,
             port: this.port,
             path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
-            method: "GET",
+            method: 'GET',
             headers,
-            timeout
+            timeout,
         };
 
         return this.getResponse(options);
@@ -200,9 +200,9 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             hostname: this.host,
             port: this.port,
             path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
-            method: "DELETE",
+            method: 'DELETE',
             headers,
-            timeout
+            timeout,
         };
 
         return this.getResponse(options);
@@ -225,7 +225,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         headers?: TapjawHttpHeaders,
         timeout = DEFAULT_TIMEOUT
     ): Promise<TapjawConnectorResponse> {
-        if (typeof body === "object") {
+        if (typeof body === 'object') {
             body = new URLSearchParams(body).toString();
         }
 
@@ -233,13 +233,13 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             hostname: this.host,
             port: this.port,
             path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
-            method: "POST",
+            method: 'POST',
             headers: {
                 ...headers,
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Content-Length": Buffer.byteLength(body)
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': Buffer.byteLength(body),
             },
-            timeout
+            timeout,
         };
 
         return this.getResponse(options, body);
@@ -262,7 +262,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         headers?: TapjawHttpHeaders,
         timeout = DEFAULT_TIMEOUT
     ): Promise<TapjawConnectorResponse> {
-        if (typeof json !== "string") {
+        if (typeof json !== 'string') {
             json = JSON.stringify(json);
         }
 
@@ -270,13 +270,13 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             hostname: this.host,
             port: this.port,
             path: Object.keys(query).length > 0 ? `${uri}?${this.stringifyParameters(query)}` : uri,
-            method: "POST",
+            method: 'POST',
             headers: {
                 ...headers,
-                "Content-Type": "application/json",
-                "Content-Length": Buffer.byteLength(json)
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(json),
             },
-            timeout
+            timeout,
         };
 
         return this.getResponse(options, json);
@@ -304,7 +304,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
             }
         }
 
-        return queryParams.join("&");
+        return queryParams.join('&');
     }
 
     /**
@@ -347,19 +347,19 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                 this.lastResponse = response;
                 if (response.statusCode !== 200) {
                     const error = new TapjawConnectorError(
-                        `HTTP Status code was ${response?.statusCode || "not set"}.`,
+                        `HTTP Status code was ${response?.statusCode || 'not set'}.`,
                         this
                     );
                     reject(error);
                 }
 
                 const buffer: Buffer[] = [];
-                response.on("data", (data: string) => buffer.push(Buffer.from(data, "binary")));
-                response.on("end", () => {
+                response.on('data', (data: string) => buffer.push(Buffer.from(data, 'binary')));
+                response.on('end', () => {
                     let contentBuffer = Buffer.concat(buffer);
 
                     if (!contentBuffer) {
-                        reject(new TapjawConnectorError("Empty content buffer", this));
+                        reject(new TapjawConnectorError('Empty content buffer', this));
                     }
 
                     if (this.enableGzip) {
@@ -377,20 +377,20 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
                             : contentBuffer.toString()
                     );
                 });
-                response.on("error", reject);
+                response.on('error', reject);
             });
 
             connectorRequest
-                .on("timeout", () => {
+                .on('timeout', () => {
                     connectorRequest.abort();
                     reject(
                         new TapjawConnectorError(
-                            `${options.hostname || "not set"} Timed out after ${options.timeout || "(not set)"}ms`,
+                            `${options.hostname || 'not set'} Timed out after ${options.timeout || '(not set)'}ms`,
                             this
                         )
                     );
                 })
-                .on("error", reject);
+                .on('error', reject);
 
             if (writeBody) {
                 connectorRequest.write(writeBody);

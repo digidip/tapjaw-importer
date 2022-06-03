@@ -20,19 +20,19 @@ export default class PrefetchTokenAuthorizationHeaderAuthenticator
     public async authenticate(): Promise<AuthorizationHeaders> {
         const headers = {
             Accept: 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         };
 
         const params: string = new URLSearchParams({
             key: 'general',
-            secret: this.apiKey
+            secret: this.apiKey,
         }).toString();
 
         const options = {
             hostname: this.hostname,
             path: this.path,
             method: this.method,
-            headers
+            headers,
         };
 
         const oauthResponse = await request(params, options);
@@ -43,7 +43,7 @@ export default class PrefetchTokenAuthorizationHeaderAuthenticator
         this.token = oauthJson.data.token;
 
         return {
-            Authorization: `Bearer ${this.token}`
+            Authorization: `Bearer ${this.token}`,
         };
     }
 }

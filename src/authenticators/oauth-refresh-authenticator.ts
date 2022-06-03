@@ -33,7 +33,7 @@ export default class OauthRefreshAuthenticator implements TapjawAuthenticator<Oa
 
         const headers = {
             Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         };
 
         // @todo migrate to URLSearchParams in future.
@@ -42,7 +42,7 @@ export default class OauthRefreshAuthenticator implements TapjawAuthenticator<Oa
             hostname: this.hostname,
             path: this.path,
             method: this.method,
-            headers
+            headers,
         };
 
         this.authenticated = false;
@@ -79,7 +79,7 @@ export default class OauthRefreshAuthenticator implements TapjawAuthenticator<Oa
 
         const headers = {
             Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         };
 
         if (this.lastResponse === null || !('refresh_token' in this.lastResponse)) {
@@ -90,14 +90,14 @@ export default class OauthRefreshAuthenticator implements TapjawAuthenticator<Oa
 
         const params: string = new URLSearchParams({
             grant_type: 'refresh_token',
-            refresh_token: this.lastResponse.refresh_token
+            refresh_token: this.lastResponse.refresh_token,
         }).toString();
 
         const options = {
             hostname: this.hostname,
             path: this.path,
             method: this.method,
-            headers
+            headers,
         };
 
         this.authenticated = false;

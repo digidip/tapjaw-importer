@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 export const REGEX_DATE_YYYY_MM_DD = /^20\d{2}-(0[1-9]|1(0|1|2))-(0[1-9]|1[0-9]|2[0-9]|3(0|1))$/;
 export const REGEX_DATE_ISO8601 = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})[+-](\d{2}):(\d{2})/;
 

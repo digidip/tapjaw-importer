@@ -8,7 +8,7 @@ export default class BasicAuthAuthenticator implements TapjawAuthenticator<Basic
 
     constructor(protected readonly username: string, protected readonly password: string) {
         this.headers = {
-            Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+            Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`,
         };
     }
 

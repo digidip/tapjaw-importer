@@ -10,7 +10,7 @@ export default class ManualJWTBuilder extends JWTBuilder {
         super(algorithm);
     }
 
-    protected async getPayloadMetadata(): Promise<object> {
+    protected async getPayloadMetadata(): Promise<Record<string, unknown>> {
         return Promise.resolve(this.payload);
     }
 

@@ -8,7 +8,7 @@ export default class BearerAuthAuthenticator implements TapjawAuthenticator<Bear
 
     constructor(protected readonly bearerToken: string) {
         this.header = {
-            Authorization: `Bearer ${bearerToken}`
+            Authorization: `Bearer ${bearerToken}`,
         };
     }
 
