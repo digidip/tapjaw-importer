@@ -4,6 +4,7 @@
         "editor.minimap.maxColumn": 120,
         "editor.tabSize": 4,
         "editor.detectIndentation": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 150,

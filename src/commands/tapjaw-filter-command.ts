@@ -58,6 +58,7 @@ export default abstract class TapjawFilterCommand<T extends TapjawCommandFlags, 
 
     protected abstract onMessageFilter(message: M, args: TapjawCommandArgs, flags: T): Promise<M | null>;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected onBeforeExit(args: TapjawCommandArgs, flags: T): Promise<void> {
         return Promise.resolve();
     }

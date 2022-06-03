@@ -21,6 +21,6 @@ export default abstract class JWTBuilder {
         );
     }
 
-    protected abstract getPayloadMetadata(): Promise<object>;
+    protected abstract getPayloadMetadata(): Promise<Record<string, unknown>>;
     protected abstract getSecretKey(): Promise<string>;
 }

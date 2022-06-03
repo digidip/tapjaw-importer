@@ -60,7 +60,7 @@ describe('Make sure TapjawDefaultConnector works as expected.', () => {
 
         expect(() => new TestConnector()).toThrowError(
             new TapjawError.TapjawConnectorError(`@TapjawMetadata.Connector.Host(string) is required!`, {
-                constructor: { name: 'TapjawConnectorError' },
+                constructor: { name: 'TestConnector' },
             } as unknown as TestConnector)
         );
     });
@@ -75,7 +75,7 @@ describe('Make sure TapjawDefaultConnector works as expected.', () => {
             new TapjawError.TapjawConnectorError(
                 `@TapjawMetadata.Connector.Protocol(TapjawHttpConnectorProtocol) is required.`,
                 {
-                    constructor: { name: 'TapjawConnectorError' },
+                    constructor: { name: 'TestConnector' },
                 } as unknown as TestConnector
             )
         );

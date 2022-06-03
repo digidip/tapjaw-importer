@@ -7,8 +7,7 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'prettier'
+        'plugin:@typescript-eslint/recommended-requiring-type-checking'
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -18,13 +17,20 @@ module.exports = {
         files: ['*.ts']
     },
     plugins: [
-        '@typescript-eslint'
+        '@typescript-eslint',
+        'prettier'
     ],
     root: true,
     rules: {
+        quotes: ['error', 'single'],
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/ban-ts-comment': 'warn',
         '@typescript-eslint/no-var-requires': 'error',
-        'max-len': ['error', { "code": 120, "ignoreUrls": true, ignorePattern: '^import .*' }],
+        '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: 'abstract .*' }],
+        'max-len': [
+            'error',
+            { "code": 120, "ignoreUrls": true, ignorePattern: '^(import|export) .*' }
+        ],
+        'prettier/prettier': 2,
     }
 };

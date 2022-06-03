@@ -3,7 +3,7 @@ import JWTBuilder from './jwt-builder';
 
 export interface RequestJWTResponse {
     secret: string;
-    payload: object;
+    payload: Record<string, unknown>;
 }
 
 export default abstract class RequestJWTBuilder extends JWTBuilder {
@@ -13,7 +13,7 @@ export default abstract class RequestJWTBuilder extends JWTBuilder {
         super(algorithm);
     }
 
-    protected async getPayloadMetadata(): Promise<object> {
+    protected async getPayloadMetadata(): Promise<Record<string, unknown>> {
         if (!this.requestResponse) {
             this.requestResponse = await this.getRequestResponse();
         }

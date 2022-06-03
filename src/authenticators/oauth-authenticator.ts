@@ -35,7 +35,7 @@ export default class OauthAuthenticator implements TapjawAuthenticator<OauthResp
 
         const headers = {
             Authorization: `Basic ${Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64')}`,
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         };
 
         // @todo migrate to URLSearchParams in future.
@@ -44,7 +44,7 @@ export default class OauthAuthenticator implements TapjawAuthenticator<OauthResp
             hostname: this.hostname,
             path: this.path,
             method: this.method,
-            headers
+            headers,
         };
 
         this.authenticated = false;

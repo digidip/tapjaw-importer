@@ -26,7 +26,7 @@ export function fromFormat(dateTime: string, format: string): Date {
     return DateTime.fromFormat(dateTime, format, { zone: 'UTC' }).toJSDate();
 }
 
-export function now() {
+export function now(): Date {
     return new Date();
 }
 

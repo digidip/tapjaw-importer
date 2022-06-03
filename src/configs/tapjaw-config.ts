@@ -43,7 +43,7 @@ getTapjawConfig.toBoolean = function (configKey: string): boolean {
         default:
             throw new TapjawConfigError(
                 `Config key "${configKey}" on "${TapjawConfig.name}" is not a valid boolean value. ` +
-                    `Valid values: 1, 0, yes, no, true or false.`
+                    'Valid values: 1, 0, yes, no, true or false.'
             );
     }
 };

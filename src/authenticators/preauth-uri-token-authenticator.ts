@@ -22,18 +22,18 @@ export default class PreauthUriTokenAuthenticator implements TapjawAuthenticator
 
     public async authenticate(): Promise<URIToken> {
         const headers = {
-            ...this.headers
+            ...this.headers,
         };
 
         const params: string = new URLSearchParams({
-            ...this.params
+            ...this.params,
         }).toString();
 
         const options = {
             hostname: this.hostname,
             path: this.path,
             method: this.method,
-            headers
+            headers,
         };
 
         if (this.method === 'GET') {

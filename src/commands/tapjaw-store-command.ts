@@ -47,6 +47,7 @@ export default abstract class TapjawStoreCommand<T extends TapjawCommandFlags, M
 
     protected abstract onStoreMessage(message: M, args: TapjawCommandArgs, flags: T): Promise<void>;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected onBeforeExit(args: TapjawCommandArgs, flags: T): Promise<void> {
         return Promise.resolve();
     }
