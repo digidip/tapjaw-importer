@@ -17,6 +17,8 @@ import { default as TapjawOauthRefreshAuthenticator } from '../authenticators/oa
 import { default as TapjawPrefetchTokenAuthorizationHeaderAuthenticator } from '../authenticators/prefetch-token-authorization-header-authenticator';
 import { ApplyTokenHttpUriWrapper } from '../authenticators/wrappers';
 import { PreauthUriTokenAuthenticator } from '../authenticators';
+import QueryStringAuthenticator, { QueryParameters } from '../authenticators/query-string-authenticator';
+import ApplyQueryStringWrapper from '../authenticators/wrappers/apply-query-string-wrapper';
 
 export const createBasicSecurity = (username: string, password: string): TapjawAuthenticationWrapper =>
     new TapjawApplyAuthorizationHttpHeaderWrapper(new TapjawBasicAuthenticator(username, password));
@@ -95,16 +97,6 @@ export const createJWTSecurity = (jwtBuilder: JWTBuilder): TapjawAuthenticationW
     return new ApplyJwtHttpHeaderWrapper(jwtBuilder);
 };
 
-// const createSessionSecurity = (
-//     loginPageUrl: string,
-//     formSelector: string,
-//     fillables: Map<FormFieldName, FormFieldValue>
-// ) =>
-//     new TpajawApplyCookieHttpHeaderWrapper(
-//         new TapjawSessionAuthenticator(
-//             loginPageUrl,
-//             new TapjawHtmlFormExtractor(formSelector, loginPageUrl),
-//             new TapjawRequestFormBuilder(fillables)
-//         ),
-//         loginPageUrl
-//     );
+export const createQueryStringSecurity = (queryParameters: QueryParameters): TapjawAuthenticationWrapper => {
+    return new ApplyQueryStringWrapper(new QueryStringAuthenticator(queryParameters));
+};

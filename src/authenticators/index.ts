@@ -9,6 +9,7 @@ export {
     createPrefetchTokenAuthorizationHeadersSecurity,
     createQueryParamterPrefetchTokenSecurity,
     createSimpleAuthorizationHeaderSecurity,
+    createQueryStringSecurity,
 } from '../support/create-security';
 
 export { default as BasicAuthAuthenticator } from './basic-auth-authenticator';
