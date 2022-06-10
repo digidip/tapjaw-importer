@@ -19,9 +19,7 @@ export { default as OAuthAuthenticator } from './oauth-authenticator';
 // Additional authenticators
 export { default as NonBearerAuthorizationAuthenticator } from './non-bearer-authorization-authenticator';
 export { default as CustomHeaderAuthenticator } from './custom-header-authenticator';
-export {
-    default as PrefetchTokenAuthorizationHeaderAuthenticator
-} from './prefetch-token-authorization-header-authenticator';
+export { default as PrefetchTokenAuthorizationHeaderAuthenticator } from './prefetch-token-authorization-header-authenticator';
 export { default as OauthRefreshAuthenticator } from './oauth-refresh-authenticator';
 export { default as PreauthUriTokenAuthenticator } from './preauth-uri-token-authenticator';
 
