@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="272px" preserveAspectRatio="none" style="width:311px;height:272px;background:#00000000;" version="1.1" viewBox="0 0 311 272" width="311px" zoomAndPan="magnify"><defs><filter height="300%" id="fq0iuuba21gyi" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[737eeb22b905e9f15237dcd0f02bdb69]
+class BasicAuthAuthenticator--><rect codeLine="4" fill="#FEFECE" filter="url(#fq0iuuba21gyi)" height="125.7305" id="BasicAuthAuthenticator" style="stroke:#A80036;stroke-width:1.5;" width="288" x="9" y="133"/><ellipse cx="83.25" cy="149" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M85.7231,155.1431 Q85.1421,155.4419 84.5029,155.5913 Q83.8638,155.7407 83.1582,155.7407 Q80.6514,155.7407 79.3315,154.0889 Q78.0117,152.437 78.0117,149.3159 Q78.0117,146.1865 79.3315,144.5347 Q80.6514,142.8828 83.1582,142.8828 Q83.8638,142.8828 84.5112,143.0322 Q85.1587,143.1816 85.7231,143.4805 L85.7231,146.2031 Q85.0923,145.6221 84.4988,145.3523 Q83.9053,145.0825 83.2744,145.0825 Q81.9297,145.0825 81.2449,146.1492 Q80.5601,147.2158 80.5601,149.3159 Q80.5601,151.4077 81.2449,152.4744 Q81.9297,153.541 83.2744,153.541 Q83.9053,153.541 84.4988,153.2712 Q85.0923,153.0015 85.7231,152.4204 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="131" x="103.75" y="153.5352">BasicAuthAuthenticator</text><line style="stroke:#A80036;stroke-width:1.5;" x1="10" x2="296" y1="165" y2="165"/><polygon fill="none" points="20,171,24,175,20,179,16,175" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="93" x="29" y="179.6348">password : string</text><polygon fill="none" points="20,183.9551,24,187.9551,20,191.9551,16,187.9551" style="stroke:#B38D22;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="94" x="29" y="192.5898">username : string</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="17" y="198.9102"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="125" x="29" y="205.5449">authenticated : boolean</text><rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="17" y="211.8652"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="170" x="29" y="218.5">headers : AuthorizationHeaders</text><line style="stroke:#A80036;stroke-width:1.5;" x1="10" x2="296" y1="224.8203" y2="224.8203"/><ellipse cx="20" cy="235.8203" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="262" x="29" y="239.4551">authenticate() : Promise&lt;AuthorizationHeaders&gt;</text><ellipse cx="20" cy="248.7754" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="144" x="29" y="252.4102">isAuthenticated() : boolean</text><!--MD5=[aab01bdd6f29abc07228ad5531706c8b]
+class TapjawAuthenticator<BasicAuthResponse>--><rect codeLine="12" fill="#FEFECE" filter="url(#fq0iuuba21gyi)" height="65.9102" id="TapjawAuthenticator&lt;BasicAuthResponse&gt;" style="stroke:#A80036;stroke-width:1.5;" width="282" x="12" y="7"/><ellipse cx="27" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M23.4277,19.2651 L23.4277,17.1069 L30.8071,17.1069 L30.8071,19.2651 L28.3418,19.2651 L28.3418,27.3418 L30.8071,27.3418 L30.8071,29.5 L23.4277,29.5 L23.4277,27.3418 L25.8931,27.3418 L25.8931,19.2651 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="250" x="41" y="27.5352">TapjawAuthenticator&lt;BasicAuthResponse&gt;</text><line style="stroke:#A80036;stroke-width:1.5;" x1="13" x2="293" y1="39" y2="39"/><ellipse cx="23" cy="50" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="249" x="32" y="53.6348">authenticate() : Promise&lt;BasicAuthResponse&gt;</text><ellipse cx="23" cy="62.9551" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="144" x="32" y="66.5898">isAuthenticated() : boolean</text><!--MD5=[ce64fb1fab79b655e952e885d04853b4]
+reverse link TapjawAuthenticator<BasicAuthResponse> to BasicAuthAuthenticator--><path codeLine="16" d="M153,93.42 C153,106.11 153,119.8 153,132.89 " fill="none" id="TapjawAuthenticator&lt;BasicAuthResponse&gt;-backto-BasicAuthAuthenticator" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="146,93.28,153,73.28,160,93.28,146,93.28" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[ff6a2195f01e109435e8e8d0da6e77a3]
+@startuml
+skinparam BackgroundColor transparent
+hide empty methods
+hide empty fields
+class "BasicAuthAuthenticator" {
+    #password : string
+    #username : string
+    -authenticated : boolean
+    -headers : AuthorizationHeaders
+    +authenticate() : Promise<AuthorizationHeaders>
+    +isAuthenticated() : boolean
+}
+interface "TapjawAuthenticator<BasicAuthResponse>" {
+    +authenticate() : Promise<BasicAuthResponse>
+    +isAuthenticated() : boolean
+}
+"TapjawAuthenticator<BasicAuthResponse>" <|.. "BasicAuthAuthenticator"
+@enduml
+
+PlantUML version 1.2021.14(Fri Nov 12 17:46:50 CET 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

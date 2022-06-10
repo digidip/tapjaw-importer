@@ -2,6 +2,7 @@
 import TapjawAuthenticationWrapper from '../contracts/tapjaw-authentication-wrapper';
 import { CustomHeaders } from '../authenticators/custom-header-authenticator';
 import JWTBuilder from '../authenticators/jwt/jwt-builder';
+import { QueryParameters } from '../authenticators/query-string-authenticator';
 export declare const createBasicSecurity: (username: string, password: string) => TapjawAuthenticationWrapper;
 export declare const createBearerSecurity: (token: string) => TapjawAuthenticationWrapper;
 export declare const createSimpleAuthorizationHeaderSecurity: (token: string) => TapjawAuthenticationWrapper;
@@ -12,3 +13,4 @@ export declare const createPrefetchTokenAuthorizationHeadersSecurity: (apiKey: s
 export declare const createOAuthSecurity: (clientId: string, clientSecret: string, hostname: string, path: string, postParams: Record<string, string>, method?: string, responseEncoding?: BufferEncoding) => TapjawAuthenticationWrapper;
 export declare const createOAuthRefreshSecurity: (clientId: string, clientSecret: string, hostname: string, path: string, postParams: Record<string, string>, method?: string, responseEncoding?: BufferEncoding) => TapjawAuthenticationWrapper;
 export declare const createJWTSecurity: (jwtBuilder: JWTBuilder) => TapjawAuthenticationWrapper;
+export declare const createQueryStringSecurity: (queryParameters: QueryParameters) => TapjawAuthenticationWrapper;
