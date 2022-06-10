@@ -9,6 +9,7 @@ export {
     createPrefetchTokenAuthorizationHeadersSecurity,
     createQueryParamterPrefetchTokenSecurity,
     createSimpleAuthorizationHeaderSecurity,
+    createQueryStringSecurity,
 } from '../support/create-security';
 
 export { default as BasicAuthAuthenticator } from './basic-auth-authenticator';
@@ -22,6 +23,7 @@ export { default as CustomHeaderAuthenticator } from './custom-header-authentica
 export { default as PrefetchTokenAuthorizationHeaderAuthenticator } from './prefetch-token-authorization-header-authenticator';
 export { default as OauthRefreshAuthenticator } from './oauth-refresh-authenticator';
 export { default as PreauthUriTokenAuthenticator } from './preauth-uri-token-authenticator';
+export { default as QueryStringAuthenticator } from './query-string-authenticator';
 
 export * as JWT from './jwt';
 

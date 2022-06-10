@@ -6,3 +6,4 @@ export { default as ApplyJwtHttpHeaderWrapper } from './apply-jwt-http-header-wr
 export { default as ApplyCustomHttpHeaderWrapper } from './apply-custom-http-header-wrapper';
 export { default as ApplyOAuthRefreshHttpHeaderWrapper } from './apply-oauth-refresh-http-header-wrapper';
 export { default as ApplyTokenHttpUriWrapper } from './apply-token-http-uri-wrapper';
+export { default as ApplyQueryStringWrapper } from './apply-query-string-wrapper';
