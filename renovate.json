@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "automergeType": "pr",
+  "automerge": true,
+  "rebaseWhen": "behind-base-branch",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
+  ]
+}
