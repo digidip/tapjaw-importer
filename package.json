@@ -27,7 +27,7 @@
         "eslint-plugin-prettier": "4.0.0",
         "eslint-plugin-promise": "5.2.0",
         "jest": "28.1.0",
-        "jest-mock-process": "1.4.1",
+        "jest-mock-process": "1.5.1",
         "prettier": "2.6.2",
         "ts-jest": "28.0.4",
         "typedoc": "0.22.17",
