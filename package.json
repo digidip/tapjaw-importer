@@ -1,10 +1,13 @@
 {
-    "name": "tapjaw-importer",
+    "name": "@digidip/tapjaw-importer",
     "version": "2.0.0-pre1",
     "description": "Create your own stream of payload messages to STDOUT from any API.",
-    "repository": "https://github.com/digidip/tapjaw-importer",
     "author": "Jeramy Wenserit <jeramy@digidip.net>",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/digidip/tapjaw-importer"
+    },
     "devDependencies": {
         "@types/jest": "28.1.1",
         "@types/jsdom": "16.2.14",
