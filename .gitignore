@@ -66,3 +66,5 @@ oclif.manifest.json
 .DS_Store
 
 *-test.*
+
+lib/
