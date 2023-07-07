@@ -1,5 +1,5 @@
 {
-    "name": "@digidip/tapjaw-importer",
+    "name": "tapjaw-importer",
     "version": "2.0.0-rc11",
     "description": "Create your own stream of payload messages to STDOUT from any API.",
     "author": "Jeramy Wenserit <jeramy@digidip.net>",
