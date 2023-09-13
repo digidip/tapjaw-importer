@@ -100,7 +100,7 @@ The overview documentation in the `docs/markdown/` directory, the latest [API do
 - Commander.js
 - reflect-metadata
 - Typescript 4
-- Unix based operating system (it might work in Windows, but compatibility can be assured)
+- Unix based operating system (it might work in Windows, but compatibility can't be assured)
 
 # Setup a new project
 
