@@ -21,6 +21,26 @@ describe('Make sure sortObjectArrays() works as expected', () => {
         });
     });
 
+    test('should sort a basic array with a null in the middle payload', () => {
+        const payload = {
+            moo: [999, 111, null, 444, 333, 777]
+        };
+
+        expect(sortObjectArrays(payload)).toEqual({
+            moo: [111, 333, 444, 777, 999, null]
+        });
+    });
+
+    test('should sort a basic array with only a null in the middle payload', () => {
+        const payload = {
+            moo: [null]
+        };
+
+        expect(sortObjectArrays(payload)).toEqual({
+            moo: [null]
+        });
+    });
+
     test('should sort an array of objects payload (support nesting)', () => {
         const payload = {
             moo: [
