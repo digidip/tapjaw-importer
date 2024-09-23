@@ -24,7 +24,7 @@ TestConnector {
     "authenticator": BearerAuthAuthenticator {
       "authenticated": false,
       "bearerToken": "xxx",
-      "header": Object {
+      "header": {
         "Authorization": "Bearer xxx",
       },
     },
