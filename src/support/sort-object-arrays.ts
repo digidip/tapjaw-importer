@@ -33,7 +33,7 @@ export default function sortObjectArrays<T = Record<string, unknown>>(payload: R
 
         if (Array.isArray(prop) && prop.length > 0) {
             prop.forEach((value: unknown, index: number) => {
-                if (value && typeof value === 'object') {
+                if (value && typeof value === 'object' && !Array.isArray(value) && value !== null) {
                     // recurse into child objects
                     prop[index] = sortObjectArrays<T>(value as Record<string, unknown>);
                 }
