@@ -36,7 +36,7 @@ export type TapjawHttpFormParameters = Record<string, string>;
 
 export type TapjawHttpRequestBody = string | TapjawHttpFormParameters;
 
-const DEFAULT_TIMEOUT = 30000;
+const DEFAULT_TIMEOUT = 60000;
 
 /**
  * Known supported character sets used by {@link TapjawHttpConnector}, {@link TapjawMetadata.Connector.Encode}
