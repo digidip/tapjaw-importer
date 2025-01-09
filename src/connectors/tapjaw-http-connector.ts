@@ -345,7 +345,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         return new Promise((resolve, reject) => {
             const connectorRequest = this.getProtocolRequest()(options, (response: IncomingMessage) => {
                 this.lastResponse = response;
-                if (response.statusCode !== 200) {
+                const successStatusCode = [200, 201, 204];
+                if (!successStatusCode.includes(Number(response.statusCode))) {
                     const error = new TapjawConnectorError(
                         `HTTP Status code was ${response?.statusCode || 'not set'}.`,
                         this
