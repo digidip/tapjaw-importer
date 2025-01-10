@@ -8,6 +8,9 @@ TestConnector {
   "port": 443,
   "protocol": "https",
   "security": undefined,
+  "successfulStatusCodes": [
+    200,
+  ],
   "useDecoding": "iso-8859-1",
   "useEncoding": "utf-8",
 }
@@ -29,6 +32,9 @@ TestConnector {
       },
     },
   },
+  "successfulStatusCodes": [
+    200,
+  ],
   "useDecoding": "utf-8",
   "useEncoding": "utf-8",
 }
@@ -42,6 +48,9 @@ TestConnector {
   "port": 80,
   "protocol": "https",
   "security": undefined,
+  "successfulStatusCodes": [
+    200,
+  ],
   "useDecoding": "iso-8859-1",
   "useEncoding": "iso-8859-1",
 }
@@ -55,6 +64,9 @@ TestConnector {
   "port": 80,
   "protocol": "http",
   "security": undefined,
+  "successfulStatusCodes": [
+    200,
+  ],
   "useDecoding": "iso-8859-1",
   "useEncoding": "utf-8",
 }
@@ -68,6 +80,9 @@ TestConnector {
   "port": 80,
   "protocol": "http",
   "security": undefined,
+  "successfulStatusCodes": [
+    200,
+  ],
   "useDecoding": undefined,
   "useEncoding": undefined,
 }
@@ -81,6 +96,9 @@ TestConnector {
   "port": 443,
   "protocol": "https",
   "security": undefined,
+  "successfulStatusCodes": [
+    200,
+  ],
   "useDecoding": undefined,
   "useEncoding": undefined,
 }
