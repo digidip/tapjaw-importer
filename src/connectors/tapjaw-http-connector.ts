@@ -100,7 +100,8 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         protected host: string,
         protected port = 80,
         protected protocol = TapjawHttpConnectorProtocol.HTTPS,
-        protected security?: TapjawAuthenticationWrapper
+        protected security?: TapjawAuthenticationWrapper,
+        protected successfulStatusCodes = [200] // Override this in your implementation
     ) {
         if (protocol === TapjawHttpConnectorProtocol.HTTPS && (port === 80 || !port)) {
             this.port = 443;
@@ -345,8 +346,7 @@ export default abstract class TapjawHttpConnector implements TapjawConnector {
         return new Promise((resolve, reject) => {
             const connectorRequest = this.getProtocolRequest()(options, (response: IncomingMessage) => {
                 this.lastResponse = response;
-                const successStatusCode = [200, 201, 204];
-                if (!successStatusCode.includes(Number(response.statusCode))) {
+                if (!this.successfulStatusCodes.includes(Number(response.statusCode))) {
                     const error = new TapjawConnectorError(
                         `HTTP Status code was ${response?.statusCode || 'not set'}.`,
                         this

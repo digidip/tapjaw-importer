@@ -2,6 +2,7 @@ import TapjawHttpConnector, {
     TapjawHttpQueryParameters,
     ArrayParameter,
     DuplicateParameter,
+    TapjawHttpConnectorProtocol,
 } from '../tapjaw-http-connector';
 
 let statusCode = 200;
@@ -45,6 +46,16 @@ describe('Group of Http Connector tests', () => {
         }
     }
 
+    class TestStatusCodeConnector extends TapjawHttpConnector {
+        enableGzip = false;
+        useDecoding = 'utf8';
+        useEncoding = 'utf8';
+
+        public constructor(host: string) {
+            super(host, 443, TapjawHttpConnectorProtocol.HTTPS, undefined, [200, 201, 204]);
+        }
+    }
+
     it('should correctly generate Query strings with different key => value types.', () => {
         const connector = new TestConnector('moo.com');
         expect(
@@ -59,17 +70,17 @@ describe('Group of Http Connector tests', () => {
     it.each([{ givenStatusCode: 500 }, { givenStatusCode: 400 }, { givenStatusCode: 401 }])
         ('should throw error for response with statuses codes like "$givenStatusCode"', ({givenStatusCode}) => {
         statusCode = givenStatusCode;
-        const connector = new TestConnector('moo.com');
+        const connector = new TestStatusCodeConnector('moo.com');
         
         expect(async () =>
             await connector.post('/test-uri',{},{})
-        ).rejects.toThrow(new Error(`TestConnector: HTTP Status code was ${givenStatusCode}.`));
+        ).rejects.toThrow(new Error(`TestStatusCodeConnector: HTTP Status code was ${givenStatusCode}.`));
     });
 
     it.each([{ givenStatusCode: 200 }, { givenStatusCode: 201 }, { givenStatusCode: 204 }])
-        ('should NOT throw error for response with success status code "$givenStatusCode"', async ({givenStatusCode}) => {
+        ('should NOT throw error for response with success status code "$givenStatusCode"', async ({ givenStatusCode }) => {
         statusCode = givenStatusCode;
-        const connector = new TestConnector('moo.com');
+        const connector = new TestStatusCodeConnector('moo.com');
 
         await expect(
             connector.post('/test-uri',{},{})
