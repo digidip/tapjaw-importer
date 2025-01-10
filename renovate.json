@@ -2,8 +2,8 @@
   "extends": [
     "config:base"
   ],
-  "prConcurrentLimit": 0,
-  "prHourlyLimit": 0,
+  "prConcurrentLimit": 1,
+  "prHourlyLimit": 2,
   "automergeType": "pr",
   "automerge": true,
   "rebaseWhen": "behind-base-branch",
@@ -11,11 +11,15 @@
     {
       "matchUpdateTypes": [
         "minor",
-        "patch",
-        "pin",
-        "digest"
+        "patch"
       ],
-      "automerge": false
+      "automerge": true
+    },
+    {
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "automerge": true
     }
   ]
 }
